@@ -14,7 +14,7 @@ BASE_URL = "https://data-api.binance.vision/api/v3/klines"
 OUTPUT_DIR = Path("data")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
-BACKFILL_DAYS = 8
+BACKFILL_DAYS = 40
 
 
 def fetch_batch(symbol, start_ms, end_ms):
