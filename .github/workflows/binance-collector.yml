@@ -23,6 +23,9 @@ jobs:
 
       - name: Run collector
         run: python collector.py
+        
+      - name: Collect BTC dominance
+        run: python btc_d_collector.py
 
       - name: Commit updated market data
         run: |
