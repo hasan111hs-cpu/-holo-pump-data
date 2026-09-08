@@ -1,7 +1,7 @@
 {
-  "collected_at_utc": "2026-09-08T18:49:11.411776+00:00",
+  "collected_at_utc": "2026-09-08T21:24:24.517067+00:00",
   "interval": "1m",
-  "backfill_days": 40,
+  "retain_days": 40,
   "symbols": [
     "HOLOUSDT",
     "PUMPUSDT",
@@ -10,21 +10,33 @@
   "status": {
     "HOLOUSDT": {
       "success": true,
-      "rows": 62545,
-      "first_open_time_utc": "2026-07-27T08:25:00+00:00",
-      "last_open_time_utc": "2026-09-08T18:49:00+00:00"
+      "rows": 57600,
+      "first_open_time_ms": 1785446700000,
+      "last_open_time_ms": 1788902640000,
+      "gaps_repaired": 0,
+      "gaps_remaining": 0,
+      "missing_minutes": 0,
+      "file_mb": 10.01
     },
     "PUMPUSDT": {
       "success": true,
-      "rows": 62545,
-      "first_open_time_utc": "2026-07-27T08:25:00+00:00",
-      "last_open_time_utc": "2026-09-08T18:49:00+00:00"
+      "rows": 57600,
+      "first_open_time_ms": 1785446700000,
+      "last_open_time_ms": 1788902640000,
+      "gaps_repaired": 0,
+      "gaps_remaining": 0,
+      "missing_minutes": 0,
+      "file_mb": 10.02
     },
     "BTCUSDT": {
       "success": true,
-      "rows": 62545,
-      "first_open_time_utc": "2026-07-27T08:25:00+00:00",
-      "last_open_time_utc": "2026-09-08T18:49:00+00:00"
+      "rows": 57600,
+      "first_open_time_ms": 1785446700000,
+      "last_open_time_ms": 1788902640000,
+      "gaps_repaired": 0,
+      "gaps_remaining": 0,
+      "missing_minutes": 0,
+      "file_mb": 11.28
     }
   }
 }
