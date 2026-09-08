@@ -1,0 +1,45 @@
+name: Canonical Signal Engine
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 16:50 UTC daily - three minutes after the 16:47 cutoff.
+    # GitHub cron is best-effort and may run late; that is acceptable because
+    # the signal reads nothing past 16:46 UTC, so a late run is causally identical.
+    - cron: "50 16 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  signal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh market data
+        run: python collector.py
+
+      - name: Refresh BTC dominance
+        run: python btc_d_collector.py
+
+      - name: Generate canonical signal record
+        run: python signal.py
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ signals/
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Signal record $(date -u +%Y-%m-%d)"
+            git push
+          fi
