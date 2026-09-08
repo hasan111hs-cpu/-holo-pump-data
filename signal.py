@@ -120,15 +120,19 @@ def main():
            "data_audit": {}}
 
     if now < cutoff:
-        rec.update(locked_state="NOT OBSERVED", reason="run started before the 16:47 UTC cutoff")
-        write(rec, exec_date); return
+        # Do NOT write a record. Writing NOT OBSERVED here would be locked in by the
+        # no-overwrite rule and would permanently destroy an otherwise observable day.
+        # Leaving the day unwritten keeps it retriable by any later run.
+        print(f"{exec_date}: before the 16:47 UTC cutoff - no record written, day stays retriable")
+        return
 
     try:
         bars = {s: load(s) for s in ("HOLOUSDT", "PUMPUSDT", "BTCUSDT")}
         dom = btcd_daily()
     except Exception as exc:
-        rec.update(locked_state="NOT OBSERVED", reason=f"input unreadable: {exc}")
-        write(rec, exec_date); return
+        # Observer failure, not a market fact. Write nothing so the day is retriable.
+        print(f"{exec_date}: input unreadable ({exc}) - no record written, day stays retriable")
+        return
 
     invalid = []
     M = {}
