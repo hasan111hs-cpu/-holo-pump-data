@@ -29,17 +29,20 @@ jobs:
       - name: Refresh BTC dominance
         run: python btc_d_collector.py
 
-      - name: Generate canonical signal record
+      - name: Settle yesterday's execution
+        run: python execute.py
+
+      - name: Generate today's signal record
         run: python signal.py
 
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ signals/
+          git add data/BTC-D.json signals/ ledgers/
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
-            git commit -m "Signal record $(date -u +%Y-%m-%d)"
+            git commit -m "Signal + execution $(date -u +%Y-%m-%d)"
             git push
           fi
