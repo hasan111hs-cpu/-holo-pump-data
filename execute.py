@@ -43,16 +43,34 @@ def ts_ms(d, h, m):
                .replace(hour=h, minute=m).timestamp() * 1000)
 
 
+class ObserverFailure(Exception):
+    """The evaluation process itself did not complete (network, API, transport).
+    Distinct from source-data failure, where the fetch succeeded but Binance
+    genuinely does not hold a mandatory bar."""
+
+
+RETRIES = 3
+
+
 def fetch(symbol, start_ms, end_ms):
-    """Pull 1m klines inclusive of both bounds. Returns {open_time_ms: (o,h,l,c)}."""
+    """Pull 1m klines inclusive of both bounds. Returns {open_time_ms: (o,h,l,c)}.
+    Raises ObserverFailure if the request cannot be completed after retries."""
     bars, cursor = {}, start_ms
     while cursor <= end_ms:
         q = urllib.parse.urlencode({"symbol": symbol, "interval": "1m", "limit": 1000,
                                     "startTime": cursor, "endTime": end_ms})
         req = urllib.request.Request(f"{BASE_URL}?{q}",
                                      headers={"User-Agent": "HOLO-PUMP-Quant-Lab/3.0"})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            raw = json.loads(r.read().decode())
+        raw = None
+        for attempt in range(RETRIES):
+            try:
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    raw = json.loads(r.read().decode())
+                break
+            except Exception as exc:
+                if attempt == RETRIES - 1:
+                    raise ObserverFailure(f"{symbol}: {exc}")
+                time.sleep(2 ** attempt)
         if not raw:
             break
         for k in raw:
@@ -78,12 +96,14 @@ def run_strategy(name, bars, exec_date, exposure):
     end_ms = ts_ms(exec_date + timedelta(days=1), 17, 59)   # registry W
 
     if ref_ms not in bars:
-        return {"status": "NOT OBSERVED", "reason": "reference bar 18:04 unavailable"}
+        # fetch completed; Binance does not hold this mandatory bar -> source-data failure
+        return {"status": "NO EXECUTION - DATA",
+                "reason": "mandatory 18:04 reference bar absent from source"}
     ref = bars[ref_ms][3]
 
     seq = [t for t in sorted(bars) if start_ms <= t <= end_ms]
     if not seq:
-        return {"status": "NOT OBSERVED", "reason": "no execution bars"}
+        return {"status": "NO EXECUTION - DATA", "reason": "no bars in the execution window"}
     expected = (end_ms - start_ms) // MIN + 1
     if len(seq) != expected:
         return {"status": "NO EXECUTION - DATA",
@@ -187,17 +207,13 @@ def load_ledger(name):
             "capital": 10000.0, "observations": 0, "fills": 0, "trades": []}
 
 
-def main():
-    exec_date = (date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1
-                 else datetime.now(timezone.utc).date() - timedelta(days=1))
+def settle(exec_date):
+    """Settle one locked signal. Returns True if an execution block was written."""
     path = SIG / f"{exec_date.isoformat()}.json"
-    if not path.exists():
-        print(f"No signal record for {exec_date}"); return
     rec = json.loads(path.read_text())
 
     if "execution" in rec:
-        print(f"{exec_date} already has an execution block — refusing to overwrite")
-        return
+        return False                                  # immutable once settled
 
     state = rec.get("locked_state")
     if state not in ("HOLO", "PUMP"):
@@ -208,19 +224,23 @@ def main():
             ledger_path(name).write_text(json.dumps(led, indent=2))
         path.write_text(json.dumps(rec, indent=2))
         print(f"{exec_date}  {state}  -> no position, ledgers unchanged")
-        return
+        return True
 
-    # trading window must be complete before execution may be computed
     end_ms = ts_ms(exec_date + timedelta(days=1), 17, 59)
     if datetime.now(timezone.utc).timestamp() * 1000 < end_ms + MIN:
-        print(f"{exec_date} trading window has not closed yet — try after "
-              f"{iso(end_ms + MIN)}")
-        return
+        print(f"{exec_date}  trading window still open -> deferred")
+        return False
 
     symbol = SYMBOL[state]
-    bars = fetch(symbol, ts_ms(exec_date, 18, 0), end_ms)
-    print(f"{exec_date}  {state} ({symbol})  {len(bars)} bars fetched")
+    try:
+        bars = fetch(symbol, ts_ms(exec_date, 18, 0), end_ms)
+    except ObserverFailure as exc:
+        # The evaluation process did not complete. Write NOTHING, so the next run
+        # retries. A NOT OBSERVED execution must never become permanent.
+        print(f"{exec_date}  NOT OBSERVED (observer failure: {exc}) -> will retry")
+        return False
 
+    print(f"{exec_date}  {state} ({symbol})  {len(bars)} bars fetched")
     block = {"coin": state, "symbol": symbol, "strategies": {}}
     for name in SPEC:
         expo = float(rec[SPEC[name]["expo"]])
@@ -247,6 +267,20 @@ def main():
 
     rec["execution"] = block
     path.write_text(json.dumps(rec, indent=2))
+    return True
+
+
+def main():
+    if len(sys.argv) > 1:
+        settle(date.fromisoformat(sys.argv[1])); return
+    # Settle every unsettled record, oldest first. This makes a NOT OBSERVED
+    # execution self-healing: a failed or skipped run is retried the next day.
+    pending = sorted(p.stem for p in SIG.glob("*.json")
+                     if "execution" not in json.loads(p.read_text()))
+    if not pending:
+        print("No unsettled signal records"); return
+    for d in pending:
+        settle(date.fromisoformat(d))
 
 
 if __name__ == "__main__":
