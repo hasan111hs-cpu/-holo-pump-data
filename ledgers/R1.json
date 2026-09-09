@@ -2,10 +2,11 @@
   "strategy": "R1",
   "starting_capital": 10000.0,
   "capital": 10000.0,
-  "observations": 1,
+  "observations": 2,
   "fills": 0,
   "settlements": [
-    "2026-09-08:R1"
+    "2026-09-08:R1",
+    "2026-09-09:R1"
   ],
   "trades": []
 }
