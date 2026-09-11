@@ -12,6 +12,9 @@ on:
 permissions:
   contents: write
 
+env:
+  HEARTBEAT_TRIGGER: ${{ github.event_name }}
+
 jobs:
   signal:
     runs-on: ubuntu-latest
@@ -24,7 +27,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Mark signal job started
+      # ---- canonical order: signal is locked BEFORE execution begins ----
+      - name: Signal job started
         run: |
           python heartbeat.py mark SIGNAL_JOB_EXPECTED ok "16:47 UTC cutoff"
           python heartbeat.py mark SIGNAL_JOB_STARTED ok "run ${{ github.run_number }} ${{ github.event_name }}"
@@ -32,32 +36,37 @@ jobs:
       - name: Refresh market data
         run: python collector.py
 
-      - name: Mark collector healthy
-        run: python heartbeat.py mark COLLECTOR_HEALTH_CHECK ok "collector.py completed"
-
-      - name: Collector failure
-        if: failure()
-        run: python heartbeat.py mark COLLECTOR_HEALTH_CHECK failed "collector.py raised"
-
       - name: Refresh BTC dominance
         run: python btc_d_collector.py
 
+      - name: Collector health
+        run: python heartbeat.py mark COLLECTOR_HEALTH_CHECK ok "collector + btc_d completed"
+
+      - name: Collector failure
+        if: failure()
+        run: python heartbeat.py mark COLLECTOR_HEALTH_CHECK failed "collector raised"
+
+      - name: Lock today's signal
+        run: |
+          python signal.py
+          python heartbeat.py mark DATA_AUDIT_COMPLETE ok "signal.py completed"
+
+      - name: Signal lock failure
+        if: failure()
+        run: python heartbeat.py mark DATA_AUDIT_COMPLETE failed "signal.py raised"
+
+      # ---- only now may execution settle prior locked signals ----
       - name: Settle prior executions
         run: |
           python heartbeat.py mark EXECUTION_JOB_EXPECTED ok "18:05 UTC activation"
           python heartbeat.py mark EXECUTION_JOB_STARTED ok
           python execute.py
 
-      - name: Generate today's signal record
-        run: |
-          python signal.py
-          python heartbeat.py mark DATA_AUDIT_COMPLETE ok "signal.py completed"
-
-      - name: Signal job failure
+      - name: Execution failure
         if: failure()
-        run: python heartbeat.py mark SIGNAL_JOB_STARTED failed "pipeline raised before signal lock"
+        run: python heartbeat.py mark EXECUTION_JOB_STARTED failed "execute.py raised"
 
-      - name: Mark report generated
+      - name: Report generated
         if: always()
         run: python heartbeat.py mark REPORT_GENERATED ok
 
