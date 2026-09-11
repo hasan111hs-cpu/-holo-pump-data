@@ -3,15 +3,11 @@ name: Canonical Signal Engine
 on:
   workflow_dispatch:
   schedule:
-    # 16:50 UTC daily - three minutes after the 16:47 cutoff.
-    # GitHub cron is best-effort and may run late; that is acceptable because
-    # the signal reads nothing past 16:46 UTC, so a late run is causally identical.
     - cron: "50 16 * * *"
     - cron: "5 18 * * *"
     - cron: "30 19 * * *"
     - cron: "0 21 * * *"
     - cron: "0 23 * * *"
-
 
 permissions:
   contents: write
@@ -28,27 +24,58 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Mark signal job started
+        run: |
+          python heartbeat.py mark SIGNAL_JOB_EXPECTED ok "16:47 UTC cutoff"
+          python heartbeat.py mark SIGNAL_JOB_STARTED ok "run ${{ github.run_number }} ${{ github.event_name }}"
+
       - name: Refresh market data
         run: python collector.py
+
+      - name: Mark collector healthy
+        run: python heartbeat.py mark COLLECTOR_HEALTH_CHECK ok "collector.py completed"
+
+      - name: Collector failure
+        if: failure()
+        run: python heartbeat.py mark COLLECTOR_HEALTH_CHECK failed "collector.py raised"
 
       - name: Refresh BTC dominance
         run: python btc_d_collector.py
 
-      - name: Settle yesterday's execution
-        run: python execute.py
+      - name: Settle prior executions
+        run: |
+          python heartbeat.py mark EXECUTION_JOB_EXPECTED ok "18:05 UTC activation"
+          python heartbeat.py mark EXECUTION_JOB_STARTED ok
+          python execute.py
 
       - name: Generate today's signal record
-        run: python signal.py
+        run: |
+          python signal.py
+          python heartbeat.py mark DATA_AUDIT_COMPLETE ok "signal.py completed"
+
+      - name: Signal job failure
+        if: failure()
+        run: python heartbeat.py mark SIGNAL_JOB_STARTED failed "pipeline raised before signal lock"
+
+      - name: Mark report generated
+        if: always()
+        run: python heartbeat.py mark REPORT_GENERATED ok
+
+      - name: Operational audit
+        if: always()
+        run: |
+          python heartbeat.py audit
+          python heartbeat.py sweep
 
       - name: Commit
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/BTC-D.json signals/ executions/ ledgers/
-
+          git add data/BTC-D.json signals/ executions/ ledgers/ operational_logs/
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
-            git commit -m "Signal + execution $(date -u +%Y-%m-%d)"
+            git commit -m "Signal + execution + heartbeat $(date -u +%Y-%m-%d)"
             git push
           fi
