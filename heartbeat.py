@@ -42,7 +42,11 @@ MANDATORY = {
     "REPORT_GENERATED": None,
     "T1_BINANCE_RECONCILIATION_COMPLETE": None,
 }
-GRACE_MINUTES = 90          # after which a missing expected stage is a failure
+# Deadlines. The hard bound is execution activation: a signal cannot become
+# canonical after execution has already begun.
+ON_TIME_DEADLINE = (17, 2)        # 15 min after the 16:47 cutoff
+HARD_DEADLINE    = (18, 5)        # execution activation - absolute bound
+GRACE_MINUTES = 78                # 16:47 -> 18:05, retained only for stage reporting
 
 
 def now():
@@ -68,7 +72,7 @@ ORDER = ["SIGNAL_JOB_EXPECTED", "SIGNAL_JOB_STARTED", "COLLECTOR_HEALTH_CHECK",
          "DATA_AUDIT_COMPLETE", "SIGNAL_LOCKED", "EXECUTION_JOB_EXPECTED",
          "EXECUTION_JOB_STARTED", "REPORT_GENERATED",
          "T1_BINANCE_RECONCILIATION_COMPLETE"]
-ON_TIME_MINUTES = 15
+ON_TIME_MINUTES = 15       # superseded by ON_TIME_DEADLINE, kept for reference
 
 
 def ts_of(ev):
@@ -264,21 +268,47 @@ def audit(d=None):
                          "detected_at_utc": now().isoformat()})
 
     trigger = os.environ.get("HEARTBEAT_TRIGGER", "")
-    sd = log["delays"]["signal_start_delay_seconds"]
+    automatic = trigger == "schedule"
+
+    on_time_by = datetime.combine(d, datetime.min.time(), timezone.utc).replace(
+        hour=ON_TIME_DEADLINE[0], minute=ON_TIME_DEADLINE[1])
+    hard_by = datetime.combine(d, datetime.min.time(), timezone.utc).replace(
+        hour=HARD_DEADLINE[0], minute=HARD_DEADLINE[1])
+
+    start_ev, lock_ev = seen.get("SIGNAL_JOB_STARTED"), seen.get("SIGNAL_LOCKED")
+    started_at = datetime.fromisoformat(ts_of(start_ev)) if start_ev else None
+    locked_at = datetime.fromisoformat(ts_of(lock_ev)) if lock_ev else None
+
+    # Absolute rule: the signal must be LOCKED before execution activation.
+    locked_in_time = locked_at is not None and locked_at < hard_by
+    log["signal_locked_before_execution_activation"] = locked_in_time
+    log["hard_deadline_utc"] = hard_by.isoformat()
+    log["on_time_deadline_utc"] = on_time_by.isoformat()
+
+    if not locked_in_time and locked_at is not None:
+        failures.append({"stage": "SIGNAL_LOCKED",
+                         "reason": f"locked {locked_at.isoformat()}, after execution "
+                                   f"activation {hard_by.isoformat()}",
+                         "detected_at_utc": now().isoformat()})
+
     if trigger == "workflow_dispatch":
-        classification = "MANUAL_TEST_RUN"
-    elif failures or sd is None:
+        # A manual run that still respected the causal cutoff is a research
+        # observation, not an infrastructure test.
+        classification = ("CAUSAL_MANUAL_OBSERVATION" if locked_in_time
+                          else "MANUAL_TEST_RUN")
+    elif not locked_in_time:
         classification = "MISSED_OBSERVATION_OPERATIONAL_FAILURE"
-    elif sd <= ON_TIME_MINUTES * 60:
-        classification = "CANONICAL_ON_TIME"
-    elif sd <= GRACE_MINUTES * 60:
-        classification = "CANONICAL_LATE_WITHIN_GRACE"
+    elif automatic and started_at is not None and started_at <= on_time_by:
+        classification = "CANONICAL_AUTOMATIC_ON_TIME"
+    elif automatic:
+        classification = "CANONICAL_AUTOMATIC_LATE_WITHIN_GRACE"
     else:
-        classification = "MISSED_OBSERVATION_OPERATIONAL_FAILURE"
+        classification = "CAUSAL_MANUAL_OBSERVATION"
 
     log["trigger"] = trigger or "unknown"
     log["validity_classification"] = classification
-    log["counts_as_prospective_observation"] = classification.startswith("CANONICAL")
+    # Only an AUTOMATIC, in-time lock counts toward the official prospective sample.
+    log["counts_as_prospective_observation"] = classification.startswith("CANONICAL_AUTOMATIC")
     log["timing"] = timing
     log["failures"] = failures
     log["final_status"] = "OPERATIONAL FAILURE" if failures else "OK"
@@ -310,6 +340,16 @@ def sweep():
     missed = []
     d = start
     while d <= end:
+        if (SIG / f"{d.isoformat()}.json").exists() and not path_for(d).exists():
+            # signal exists but no operational evidence of an automatic trigger
+            log = load(d)
+            log["validity_classification"] = "CAUSAL_MANUAL_OBSERVATION"
+            log["counts_as_prospective_observation"] = False
+            log["final_status"] = "OK"
+            log["note"] = ("Signal locked and causally valid, but predates operational "
+                           "logging or was manually triggered. Preserved as a research "
+                           "observation; excluded from the automated prospective sample.")
+            save(d, log)
         if not (SIG / f"{d.isoformat()}.json").exists():
             log = load(d)
             log["final_status"] = "OPERATIONAL FAILURE"
