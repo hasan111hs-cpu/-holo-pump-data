@@ -2,18 +2,31 @@ name: Canonical Signal Engine
 
 on:
   workflow_dispatch:
+    inputs:
+      purpose:
+        description: "Purpose of this manual run"
+        required: true
+        default: test
+        type: choice
+        options: [test, reconstruction]
   schedule:
-    - cron: "50 16 * * *"
-    - cron: "5 18 * * *"
-    - cron: "30 19 * * *"
-    - cron: "0 21 * * *"
-    - cron: "0 23 * * *"
+    - cron: "50 16 * * *"     # PRIMARY - only trigger that can create a canonical signal
+    - cron: "5 18 * * *"      # RECOVERY / AUDIT
+    - cron: "30 19 * * *"     # RECOVERY / AUDIT
+    - cron: "0 21 * * *"      # RECOVERY / AUDIT
+    - cron: "0 23 * * *"      # RECOVERY / AUDIT
 
 permissions:
   contents: write
 
+# §7 serialise, never cancel: two runs must not mutate canonical artifacts at once.
+concurrency:
+  group: canonical-signal-engine
+  cancel-in-progress: false
+
 env:
   HEARTBEAT_TRIGGER: ${{ github.event_name }}
+  HEARTBEAT_PURPOSE: ${{ github.event.inputs.purpose || 'scheduled' }}
 
 jobs:
   signal:
@@ -27,7 +40,6 @@ jobs:
         with:
           python-version: "3.12"
 
-      # ---- canonical order: signal is locked BEFORE execution begins ----
       - name: Signal job started
         run: |
           python heartbeat.py mark SIGNAL_JOB_EXPECTED ok "16:47 UTC cutoff"
@@ -46,25 +58,55 @@ jobs:
         if: failure()
         run: python heartbeat.py mark COLLECTOR_HEALTH_CHECK failed "collector raised"
 
-      - name: Lock today's signal
+      # §8 later crons are RECOVERY/AUDIT only and may not create a canonical signal
+      - name: Hard-deadline gate
+        id: gate
+        continue-on-error: true
+        run: python heartbeat.py may_lock
+
+      - name: Compute today's signal
+        if: steps.gate.outcome == 'success'
         run: |
           python signal.py
           python heartbeat.py mark DATA_AUDIT_COMPLETE ok "signal.py completed"
 
-      - name: Signal lock failure
-        if: failure()
-        run: python heartbeat.py mark DATA_AUDIT_COMPLETE failed "signal.py raised"
+      # §5 CRITICAL PERSISTENCE. SIGNAL_LOCKED is asserted only after the immutable
+      # artifact is durably stored. Execution may not begin before this succeeds.
+      - name: Persist signal artifact (critical)
+        if: steps.gate.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config pull.rebase true
+          git add signals/ data/BTC-D.json
+          if git diff --cached --quiet; then
+            echo "no new signal artifact to persist"
+          else
+            git commit -m "Signal lock $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "local SHA:  $(git rev-parse HEAD)"
+            echo "remote SHA: $(git ls-remote origin main | cut -f1)"
+            persisted=0
+            for attempt in 1 2 3 4 5; do
+              if git push; then
+                echo "PERSISTED on push attempt $attempt"; persisted=1; break
+              fi
+              echo "push rejected on attempt $attempt, rebasing"
+              git pull --rebase --autostash origin main || true
+            done
+            if [ "$persisted" != "1" ]; then
+              echo "CRITICAL PERSISTENCE FAILURE: signal artifact not durably stored"
+              python heartbeat.py mark SIGNAL_LOCKED failed "critical persistence failed after 5 attempts"
+              exit 1
+            fi
+          fi
+          python heartbeat.py mark SIGNAL_LOCKED ok "artifact durably persisted to origin/main"
 
-      # ---- only now may execution settle prior locked signals ----
       - name: Settle prior executions
+        if: steps.gate.outcome == 'success'
         run: |
           python heartbeat.py mark EXECUTION_JOB_EXPECTED ok "18:05 UTC activation"
           python heartbeat.py mark EXECUTION_JOB_STARTED ok
           python execute.py
-
-      - name: Execution failure
-        if: failure()
-        run: python heartbeat.py mark EXECUTION_JOB_STARTED failed "execute.py raised"
 
       - name: Report generated
         if: always()
@@ -76,7 +118,8 @@ jobs:
           python heartbeat.py audit
           python heartbeat.py sweep
 
-      - name: Commit
+      # Remaining artifacts: executions, ledgers, operational logs.
+      - name: Persist remaining artifacts
         if: always()
         run: |
           git config user.name "github-actions[bot]"
@@ -84,21 +127,16 @@ jobs:
           git config pull.rebase true
           git add data/BTC-D.json signals/ executions/ ledgers/ operational_logs/
           if git diff --cached --quiet; then
-            echo "Nothing to commit"
-            exit 0
+            echo "Nothing further to commit"; exit 0
           fi
-          git commit -m "Signal + execution + heartbeat $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          # Concurrent runs (manual + scheduled, or overlapping crons) can push
-          # between our checkout and our push. Rebase and retry rather than
-          # losing the record.
+          git commit -m "Execution + heartbeat $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "local SHA:  $(git rev-parse HEAD)"
+          echo "remote SHA: $(git ls-remote origin main | cut -f1)"
           for attempt in 1 2 3 4 5; do
-            if git push; then
-              echo "pushed on attempt $attempt"
-              exit 0
-            fi
-            echo "push rejected, rebasing (attempt $attempt)"
+            if git push; then echo "pushed on attempt $attempt"; exit 0; fi
+            echo "push rejected on attempt $attempt, rebasing"
             git pull --rebase --autostash origin main || true
             sleep $((attempt * 5))
           done
-          echo "ERROR: could not push after 5 attempts"
+          echo "ERROR: canonical artifacts not durably stored after 5 attempts"
           exit 1
