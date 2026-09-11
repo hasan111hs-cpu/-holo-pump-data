@@ -374,6 +374,58 @@ def may_lock():
     return 1
 
 
+def verify_locks():
+    """Registry §6: canonical settlement requires a VALID pre-deadline durable lock.
+
+    Enforced mechanically without modifying frozen execute.py: for any signal record
+    lacking evidence of a durably persisted SIGNAL_LOCKED before 18:05 UTC, we write a
+    NON-CANONICAL execution record. execute.py refuses to write an execution record
+    that already exists, so it will skip the date and never mutate the ledger.
+    """
+    quarantined = []
+    for p in sorted(SIG.glob("*.json")):
+        d = date.fromisoformat(p.stem)
+        if (EXE / p.name).exists():
+            continue                                   # already settled or quarantined
+        rec = json.loads(p.read_text())
+        if rec.get("locked_state") not in ("HOLO", "PUMP"):
+            continue                                   # no position, nothing to protect
+
+        log = load(d)
+        hard = datetime.combine(d, datetime.min.time(), timezone.utc).replace(
+            hour=HARD_DEADLINE[0], minute=HARD_DEADLINE[1])
+        valid = False
+        for e in log.get("events", []):
+            if e.get("stage") != "SIGNAL_LOCKED" or e.get("status") != "ok":
+                continue
+            if "durably persisted" not in (e.get("detail") or ""):
+                continue
+            if e.get("trigger_role") not in ("PRIMARY", "RECOVERY"):
+                continue                               # manual or post-deadline slot
+            if datetime.fromisoformat(ts_of(e)) < hard:
+                valid = True
+                break
+        if valid:
+            continue
+
+        (EXE / p.name).write_text(json.dumps({
+            "execution_date": d.isoformat(),
+            "status": "NON_CANONICAL - NO VALID PRE-DEADLINE LOCK",
+            "locked_state": rec.get("locked_state"),
+            "reason": ("no durably persisted SIGNAL_LOCKED from an automatic "
+                       "PRIMARY/RECOVERY trigger before 18:05 UTC"),
+            "canonical_capital_effect": "none",
+            "note": ("Quarantined per registry §6. Any later analysis of this date is "
+                     "POST_HOC_RECONSTRUCTION and must not touch canonical capital."),
+            "quarantined_at_utc": now().isoformat(),
+        }, indent=2))
+        quarantined.append(d.isoformat())
+        print(f"[verify_locks] QUARANTINED {d}: no valid pre-deadline lock")
+    if not quarantined:
+        print("[verify_locks] all unsettled signals carry a valid pre-deadline lock")
+    return quarantined
+
+
 def sweep():
     """Flag any execution date with no signal record - a missed prospective lock."""
     dates = sorted(p.stem for p in SIG.glob("*.json"))
@@ -426,5 +478,7 @@ if __name__ == "__main__":
         sweep()
     elif cmd == "may_lock":
         sys.exit(may_lock())
+    elif cmd == "verify_locks":
+        verify_locks()
     else:
         print(f"unknown command: {cmd}")
