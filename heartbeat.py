@@ -71,6 +71,16 @@ ORDER = ["SIGNAL_JOB_EXPECTED", "SIGNAL_JOB_STARTED", "COLLECTOR_HEALTH_CHECK",
 ON_TIME_MINUTES = 15
 
 
+def ts_of(ev):
+    """Old logs used timestamp_utc; new ones use recorded_at_utc. Accept either."""
+    return ev.get("recorded_at_utc") or ev.get("timestamp_utc") or ""
+
+
+def sort_events(events):
+    return sorted(events, key=lambda e: (ORDER.index(e["stage"]) if e.get("stage") in ORDER
+                                         else 99, ts_of(e)))
+
+
 def expected_at(stage, d):
     """Clock deadline for an *_EXPECTED stage. Not a time any job can influence."""
     slot = MANDATORY.get(stage)
@@ -89,8 +99,7 @@ def mark(stage, status="ok", detail="", d=None):
     if exp:
         ev["expected_at_utc"] = exp          # the deadline, distinct from when we wrote it
     log["events"].append(ev)
-    log["events"].sort(key=lambda e: (ORDER.index(e["stage"]) if e["stage"] in ORDER else 99,
-                                      e["recorded_at_utc"]))
+    log["events"] = sort_events(log["events"])
     save(d, log)
     print(f"[heartbeat] {d} {stage} {status} {detail}")
 
@@ -185,7 +194,7 @@ def audit(d=None):
             timing[started_stage] = {"due_utc": due.isoformat(), "started_utc": None,
                                      "lateness_minutes": round(late, 1), "within_grace": False}
             continue
-        started = datetime.fromisoformat(ev["recorded_at_utc"])
+        started = datetime.fromisoformat(ts_of(ev))
         late = (started - due).total_seconds() / 60
         timing[started_stage] = {"due_utc": due.isoformat(),
                                  "started_utc": started.isoformat(),
@@ -229,8 +238,7 @@ def audit(d=None):
         log["events"].append({"stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
                               "status": "ok", "detail": "exact match both symbols",
                               "recorded_at_utc": now().isoformat()})
-        log["events"].sort(key=lambda e: (ORDER.index(e["stage"]) if e["stage"] in ORDER
-                                          else 99, e["recorded_at_utc"]))
+        log["events"] = sort_events(log["events"])
         failures = [f for f in failures if f["stage"] != "T1_BINANCE_RECONCILIATION_COMPLETE"]
 
     # explicit delay fields measured against the two clock deadlines
@@ -240,7 +248,7 @@ def audit(d=None):
             return None
         due = datetime.combine(d, datetime.min.time(), timezone.utc).replace(
             hour=slot[0], minute=slot[1])
-        return round((datetime.fromisoformat(ev["recorded_at_utc"]) - due).total_seconds(), 1)
+        return round((datetime.fromisoformat(ts_of(ev)) - due).total_seconds(), 1)
 
     log["delays"] = {
         "signal_start_delay_seconds": delay_s("SIGNAL_JOB_STARTED", (16, 47)),
@@ -250,8 +258,7 @@ def audit(d=None):
 
     # ordering invariant: the signal must be locked before execution begins
     lk, ex = seen.get("SIGNAL_LOCKED"), seen.get("EXECUTION_JOB_STARTED")
-    if lk and ex and datetime.fromisoformat(ex["recorded_at_utc"]) < \
-            datetime.fromisoformat(lk["recorded_at_utc"]):
+    if lk and ex and datetime.fromisoformat(ts_of(ex)) < datetime.fromisoformat(ts_of(lk)):
         failures.append({"stage": "STAGE_ORDERING",
                          "reason": "EXECUTION_JOB_STARTED recorded before SIGNAL_LOCKED",
                          "detected_at_utc": now().isoformat()})
@@ -324,8 +331,12 @@ def sweep():
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "audit"
     if cmd == "mark":
-        mark(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else "ok",
-             " ".join(sys.argv[4:]) if len(sys.argv) > 4 else "")
+        try:
+            mark(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else "ok",
+                 " ".join(sys.argv[4:]) if len(sys.argv) > 4 else "")
+        except Exception as exc:
+            # Observability must never be able to break the thing it observes.
+            print(f"[heartbeat] WARNING: mark failed: {exc}")
     elif cmd == "audit":
         audit()
     elif cmd == "sweep":
