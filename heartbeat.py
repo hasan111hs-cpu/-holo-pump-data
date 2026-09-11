@@ -98,7 +98,8 @@ def mark(stage, status="ok", detail="", d=None):
     d = d or now().date()
     log = load(d)
     ev = {"stage": stage, "status": status, "detail": detail,
-          "recorded_at_utc": now().isoformat()}
+          "recorded_at_utc": now().isoformat(),
+          "trigger_role": os.environ.get("HEARTBEAT_ROLE", "UNKNOWN")}
     exp = expected_at(stage, d)
     if exp:
         ev["expected_at_utc"] = exp          # the deadline, distinct from when we wrote it
@@ -313,6 +314,20 @@ def audit(d=None):
     else:
         classification = "CAUSAL_MANUAL_OBSERVATION"
 
+    # §5 which scheduler slot ran, and which one actually created the canonical lock
+    log["trigger_role"] = os.environ.get("HEARTBEAT_ROLE", "UNKNOWN")
+    lock_events = [e for e in log["events"]
+                   if e.get("stage") == "SIGNAL_LOCKED" and e.get("status") == "ok"]
+    creator = None
+    for e in lock_events:
+        if "durably persisted" in (e.get("detail") or ""):
+            creator = e.get("trigger_role")
+            break
+    log["canonical_lock_created_by"] = creator or (
+        lock_events[0].get("trigger_role") if lock_events else None)
+    log["primary_trigger_fired"] = any(
+        e.get("trigger_role") == "PRIMARY" and e.get("stage") == "SIGNAL_JOB_STARTED"
+        for e in log["events"])
     log["trigger"] = trigger or "unknown"
     log["validity_classification"] = classification
     # Only an AUTOMATIC, in-time lock counts toward the official prospective sample.
