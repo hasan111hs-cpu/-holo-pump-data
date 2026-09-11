@@ -10,11 +10,11 @@ on:
         type: choice
         options: [test, reconstruction]
   schedule:
-    - cron: "50 16 * * *"     # PRIMARY - only trigger that can create a canonical signal
-    - cron: "5 18 * * *"      # RECOVERY / AUDIT
-    - cron: "30 19 * * *"     # RECOVERY / AUDIT
-    - cron: "0 21 * * *"      # RECOVERY / AUDIT
-    - cron: "0 23 * * *"      # RECOVERY / AUDIT
+    - cron: "50 16 * * *"     # PRIMARY   - canonical signal attempt
+    - cron: "20 17 * * *"     # RECOVERY  - second pre-deadline canonical attempt
+    - cron: "30 19 * * *"     # POST_DEADLINE_AUDIT only
+    - cron: "0 21 * * *"      # POST_DEADLINE_AUDIT only
+    - cron: "0 23 * * *"      # POST_DEADLINE_AUDIT only
 
 permissions:
   contents: write
@@ -27,6 +27,12 @@ concurrency:
 env:
   HEARTBEAT_TRIGGER: ${{ github.event_name }}
   HEARTBEAT_PURPOSE: ${{ github.event.inputs.purpose || 'scheduled' }}
+  # §5 which scheduler slot this run represents
+  HEARTBEAT_ROLE: >-
+    ${{ github.event_name == 'workflow_dispatch' && 'MANUAL'
+     || github.event.schedule == '50 16 * * *' && 'PRIMARY'
+     || github.event.schedule == '20 17 * * *' && 'RECOVERY'
+     || 'POST_DEADLINE_AUDIT' }}
 
 jobs:
   signal:
@@ -43,7 +49,7 @@ jobs:
       - name: Signal job started
         run: |
           python heartbeat.py mark SIGNAL_JOB_EXPECTED ok "16:47 UTC cutoff"
-          python heartbeat.py mark SIGNAL_JOB_STARTED ok "run ${{ github.run_number }} ${{ github.event_name }}"
+          python heartbeat.py mark SIGNAL_JOB_STARTED ok "run ${{ github.run_number }} ${{ github.event_name }} role=$HEARTBEAT_ROLE"
 
       - name: Refresh market data
         run: python collector.py
