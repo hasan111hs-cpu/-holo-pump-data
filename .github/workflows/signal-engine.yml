@@ -7,6 +7,11 @@ on:
     # GitHub cron is best-effort and may run late; that is acceptable because
     # the signal reads nothing past 16:46 UTC, so a late run is causally identical.
     - cron: "50 16 * * *"
+    - cron: "5 18 * * *"
+    - cron: "30 19 * * *"
+    - cron: "0 21 * * *"
+    - cron: "0 23 * * *"
+
 
 permissions:
   contents: write
