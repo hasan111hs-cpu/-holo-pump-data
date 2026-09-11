@@ -23,6 +23,14 @@
       "expected_at_utc": "2026-09-11T16:47:00+00:00"
     },
     {
+      "stage": "SIGNAL_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "16:47 UTC cutoff",
+      "recorded_at_utc": "2026-09-11T23:01:48.646100+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-09-11T16:47:00+00:00"
+    },
+    {
       "stage": "SIGNAL_JOB_STARTED",
       "status": "ok",
       "detail": "run 9 workflow_dispatch",
@@ -39,6 +47,13 @@
       "status": "ok",
       "detail": "run 14 schedule role=POST_DEADLINE_AUDIT",
       "recorded_at_utc": "2026-09-11T21:50:56.914500+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "SIGNAL_JOB_STARTED",
+      "status": "ok",
+      "detail": "run 15 schedule role=POST_DEADLINE_AUDIT",
+      "recorded_at_utc": "2026-09-11T23:01:48.697513+00:00",
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
@@ -61,6 +76,13 @@
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
+      "stage": "COLLECTOR_HEALTH_CHECK",
+      "status": "ok",
+      "detail": "collector + btc_d completed",
+      "recorded_at_utc": "2026-09-11T23:05:39.611572+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
       "stage": "DATA_AUDIT_COMPLETE",
       "status": "ok",
       "detail": "signal.py completed",
@@ -80,6 +102,13 @@
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
+      "stage": "DATA_AUDIT_COMPLETE",
+      "status": "ok",
+      "detail": "signal.py completed",
+      "recorded_at_utc": "2026-09-11T23:05:40.258158+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
       "stage": "SIGNAL_LOCKED",
       "status": "ok",
       "detail": "verified by artifact",
@@ -90,6 +119,13 @@
       "status": "ok",
       "detail": "artifact durably persisted to origin/main",
       "recorded_at_utc": "2026-09-11T21:54:41.636527+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "SIGNAL_LOCKED",
+      "status": "ok",
+      "detail": "artifact durably persisted to origin/main",
+      "recorded_at_utc": "2026-09-11T23:05:42.008678+00:00",
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
@@ -114,6 +150,14 @@
       "expected_at_utc": "2026-09-11T18:05:00+00:00"
     },
     {
+      "stage": "EXECUTION_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "18:05 UTC activation",
+      "recorded_at_utc": "2026-09-11T23:05:42.134195+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-09-11T18:05:00+00:00"
+    },
+    {
       "stage": "EXECUTION_JOB_STARTED",
       "status": "ok",
       "detail": "",
@@ -130,6 +174,13 @@
       "status": "ok",
       "detail": "",
       "recorded_at_utc": "2026-09-11T21:54:41.895056+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "EXECUTION_JOB_STARTED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-09-11T23:05:42.185691+00:00",
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
@@ -152,6 +203,13 @@
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
+      "stage": "REPORT_GENERATED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-09-11T23:05:42.297404+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
       "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
       "status": "ok",
       "detail": "exact match both symbols",
@@ -168,6 +226,12 @@
       "status": "ok",
       "detail": "exact match both symbols",
       "recorded_at_utc": "2026-09-11T21:54:47.115390+00:00"
+    },
+    {
+      "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
+      "status": "ok",
+      "detail": "exact match both symbols",
+      "recorded_at_utc": "2026-09-11T23:05:47.086509+00:00"
     }
   ],
   "final_status": "OPERATIONAL FAILURE",
@@ -194,25 +258,25 @@
   "failures": [
     {
       "stage": "SIGNAL_JOB_STARTED",
-      "reason": "started 304min after 2026-09-11T16:47:00+00:00, exceeding 78min grace (scheduler did not fire on time)",
-      "detected_at_utc": "2026-09-11T21:54:42.122864+00:00"
+      "reason": "started 375min after 2026-09-11T16:47:00+00:00, exceeding 78min grace (scheduler did not fire on time)",
+      "detected_at_utc": "2026-09-11T23:05:42.359652+00:00"
     },
     {
       "stage": "EXECUTION_JOB_STARTED",
-      "reason": "started 230min after 2026-09-11T18:05:00+00:00, exceeding 78min grace (scheduler did not fire on time)",
-      "detected_at_utc": "2026-09-11T21:54:42.122881+00:00"
+      "reason": "started 301min after 2026-09-11T18:05:00+00:00, exceeding 78min grace (scheduler did not fire on time)",
+      "detected_at_utc": "2026-09-11T23:05:42.359665+00:00"
     },
     {
       "stage": "SIGNAL_LOCKED",
-      "reason": "locked 2026-09-11T21:54:41.636527+00:00, after execution activation 2026-09-11T18:05:00+00:00",
-      "detected_at_utc": "2026-09-11T21:54:47.115476+00:00"
+      "reason": "locked 2026-09-11T23:05:42.008678+00:00, after execution activation 2026-09-11T18:05:00+00:00",
+      "detected_at_utc": "2026-09-11T23:05:47.086582+00:00"
     }
   ],
-  "audited_at_utc": "2026-09-11T21:54:47.115496+00:00",
+  "audited_at_utc": "2026-09-11T23:05:47.086617+00:00",
   "delays": {
-    "signal_start_delay_seconds": 18236.9,
-    "signal_lock_delay_seconds": 18461.6,
-    "execution_start_delay_seconds": 13781.9
+    "signal_start_delay_seconds": 22488.7,
+    "signal_lock_delay_seconds": 22722.0,
+    "execution_start_delay_seconds": 18042.2
   },
   "trigger": "schedule",
   "validity_classification": "MISSED_OBSERVATION_OPERATIONAL_FAILURE",
@@ -220,15 +284,15 @@
   "timing": {
     "SIGNAL_JOB_STARTED": {
       "due_utc": "2026-09-11T16:47:00+00:00",
-      "started_utc": "2026-09-11T21:50:56.914500+00:00",
-      "lateness_minutes": 303.9,
+      "started_utc": "2026-09-11T23:01:48.697513+00:00",
+      "lateness_minutes": 374.8,
       "grace_minutes": 78,
       "within_grace": false
     },
     "EXECUTION_JOB_STARTED": {
       "due_utc": "2026-09-11T18:05:00+00:00",
-      "started_utc": "2026-09-11T21:54:41.895056+00:00",
-      "lateness_minutes": 229.7,
+      "started_utc": "2026-09-11T23:05:42.185691+00:00",
+      "lateness_minutes": 300.7,
       "grace_minutes": 78,
       "within_grace": false
     }
