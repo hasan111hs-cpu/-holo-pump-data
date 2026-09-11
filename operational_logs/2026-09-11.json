@@ -1,0 +1,82 @@
+{
+  "execution_date": "2026-09-11",
+  "events": [
+    {
+      "stage": "SIGNAL_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "16:47 UTC cutoff",
+      "timestamp_utc": "2026-09-11T18:41:20.759797+00:00"
+    },
+    {
+      "stage": "SIGNAL_JOB_STARTED",
+      "status": "ok",
+      "detail": "run 9 workflow_dispatch",
+      "timestamp_utc": "2026-09-11T18:41:20.817250+00:00"
+    },
+    {
+      "stage": "COLLECTOR_HEALTH_CHECK",
+      "status": "ok",
+      "detail": "collector.py completed",
+      "timestamp_utc": "2026-09-11T18:43:56.858565+00:00"
+    },
+    {
+      "stage": "EXECUTION_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "18:05 UTC activation",
+      "timestamp_utc": "2026-09-11T18:43:57.163306+00:00"
+    },
+    {
+      "stage": "EXECUTION_JOB_STARTED",
+      "status": "ok",
+      "detail": "",
+      "timestamp_utc": "2026-09-11T18:43:57.219803+00:00"
+    },
+    {
+      "stage": "DATA_AUDIT_COMPLETE",
+      "status": "ok",
+      "detail": "signal.py completed",
+      "timestamp_utc": "2026-09-11T18:43:57.920748+00:00"
+    },
+    {
+      "stage": "REPORT_GENERATED",
+      "status": "ok",
+      "detail": "",
+      "timestamp_utc": "2026-09-11T18:43:57.990755+00:00"
+    },
+    {
+      "stage": "SIGNAL_LOCKED",
+      "status": "ok",
+      "detail": "verified by artifact",
+      "timestamp_utc": "2026-09-11T18:43:58.062699+00:00"
+    },
+    {
+      "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
+      "status": "ok",
+      "detail": "exact match both symbols",
+      "timestamp_utc": "2026-09-11T18:44:01.199728+00:00"
+    }
+  ],
+  "final_status": "OK",
+  "t1_reconciliation": {
+    "HOLO": {
+      "window_group_day": "2026-09-09",
+      "binance_quote_volume": 34566680.99687999,
+      "collector_quote_volume": 34566680.99687999,
+      "abs_difference": 0.0,
+      "binance_minutes": 1367,
+      "collector_minutes": 1367,
+      "match": true
+    },
+    "PUMP": {
+      "window_group_day": "2026-09-09",
+      "binance_quote_volume": 53475904.93032585,
+      "collector_quote_volume": 53475904.93032585,
+      "abs_difference": 0.0,
+      "binance_minutes": 1367,
+      "collector_minutes": 1367,
+      "match": true
+    }
+  },
+  "failures": [],
+  "audited_at_utc": "2026-09-11T18:44:01.199741+00:00"
+}
