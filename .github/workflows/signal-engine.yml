@@ -129,6 +129,7 @@ jobs:
         run: |
           python heartbeat.py audit
           python heartbeat.py sweep
+          python heartbeat.py annotate
 
       # Remaining artifacts: executions, ledgers, operational logs.
       - name: Persist remaining artifacts
