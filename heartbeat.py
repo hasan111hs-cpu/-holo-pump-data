@@ -333,6 +333,7 @@ def audit(d=None):
     # Only an AUTOMATIC, in-time lock counts toward the official prospective sample.
     log["counts_as_prospective_observation"] = classification.startswith("CANONICAL_AUTOMATIC")
     log["timing"] = timing
+    log["canonical_automatic_prospective_observations"] = canonical_count()
     log["failures"] = failures
     log["final_status"] = "OPERATIONAL FAILURE" if failures else "OK"
     log["audited_at_utc"] = now().isoformat()
@@ -372,6 +373,71 @@ def may_lock():
           f"creation is blocked.")
     mark("SIGNAL_LOCKED", "failed", "blocked: past 18:05 hard deadline, recovery mode", d)
     return 1
+
+
+LEDGER_DIR = Path("ledgers")
+
+
+def canonical_count():
+    """Authoritative count, DERIVED from operational logs rather than stored twice."""
+    n = 0
+    for p in LOGS.glob("*.json"):
+        try:
+            if json.loads(p.read_text()).get("counts_as_prospective_observation"):
+                n += 1
+        except Exception:
+            continue
+    return n
+
+
+def annotate():
+    """Registry §2/§3/§6: append-only accounting correction across all three ledgers.
+
+    Writes ONLY metadata. Never touches observations, fills, capital, trades or
+    settlements - those remain exactly as the original engine recorded them.
+    Idempotent: re-running adds nothing.
+    """
+    adjustment_id = "2026-09-08-pre-enforcement-reclassification"
+    for strat in ("R1", "A1", "B1"):
+        p = LEDGER_DIR / f"{strat}.json"
+        if not p.exists():
+            print(f"[annotate] {strat}: no ledger, skipped"); continue
+        led = json.loads(p.read_text())
+        adjustments = led.setdefault("accounting_adjustments", [])
+        if any(a.get("adjustment_id") == adjustment_id for a in adjustments):
+            print(f"[annotate] {strat}: adjustment already present")
+        else:
+            sid = f"2026-09-08:{strat}"
+            if sid in led.get("settlements", []):
+                adjustments.append({
+                    "adjustment_id": adjustment_id,
+                    "effective_date": "2026-09-11",
+                    "type": "OBSERVATION_RECLASSIFICATION",
+                    "settlement_id": sid,
+                    "original_classification": "PRE_ENFORCEMENT_SETTLEMENT",
+                    "revised_classification": "CAUSAL_MANUAL_OBSERVATION",
+                    "canonical_prospective_effect": 0,
+                    "capital_effect": 0,
+                    "reason": ("Observation was later ruled non-canonical because it was "
+                               "manually triggered and lacked an automatic PRIMARY/RECOVERY "
+                               "durable lock before 18:05 UTC."),
+                    "historical_record_rewritten": False,
+                })
+                print(f"[annotate] {strat}: correction appended for {sid}")
+            else:
+                print(f"[annotate] {strat}: settlement {sid} absent, nothing to correct")
+        # §3 separate authoritative metric; never redefine `observations`
+        led["canonical_automatic_prospective_observations"] = canonical_count()
+        led["legacy_or_noncanonical_observations"] = len(led.get("accounting_adjustments", []))
+        led["field_semantics"] = {
+            "observations": ("raw settlement-event counter from the execution engine; "
+                             "NOT the canonical prospective count"),
+            "canonical_automatic_prospective_observations": (
+                "authoritative experiment count; derived from operational logs where "
+                "counts_as_prospective_observation is true"),
+        }
+        p.write_text(json.dumps(led, indent=2))
+    print(f"[annotate] canonical automatic prospective observations = {canonical_count()}")
 
 
 def verify_locks():
@@ -480,5 +546,10 @@ if __name__ == "__main__":
         sys.exit(may_lock())
     elif cmd == "verify_locks":
         verify_locks()
+    elif cmd == "annotate":
+        try:
+            annotate()
+        except Exception as exc:
+            print(f"[annotate] WARNING: {exc}")
     else:
         print(f"unknown command: {cmd}")
