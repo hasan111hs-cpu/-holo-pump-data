@@ -81,10 +81,24 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config pull.rebase true
           git add data/BTC-D.json signals/ executions/ ledgers/ operational_logs/
           if git diff --cached --quiet; then
             echo "Nothing to commit"
-          else
-            git commit -m "Signal + execution + heartbeat $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "Signal + execution + heartbeat $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          # Concurrent runs (manual + scheduled, or overlapping crons) can push
+          # between our checkout and our push. Rebase and retry rather than
+          # losing the record.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "push rejected, rebasing (attempt $attempt)"
+            git pull --rebase --autostash origin main || true
+            sleep $((attempt * 5))
+          done
+          echo "ERROR: could not push after 5 attempts"
+          exit 1
