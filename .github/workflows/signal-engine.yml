@@ -107,8 +107,14 @@ jobs:
           fi
           python heartbeat.py mark SIGNAL_LOCKED ok "artifact durably persisted to origin/main"
 
+      # §6 quarantine any signal lacking a valid pre-deadline durable lock BEFORE
+      # execute.py runs. execute.py will then skip it via its own immutability guard.
+      - name: Verify pre-deadline locks
+        if: always()
+        run: python heartbeat.py verify_locks
+
       - name: Settle prior executions
-        if: steps.gate.outcome == 'success'
+        if: always()
         run: |
           python heartbeat.py mark EXECUTION_JOB_EXPECTED ok "18:05 UTC activation"
           python heartbeat.py mark EXECUTION_JOB_STARTED ok
