@@ -1,0 +1,1518 @@
+{
+  "generated_at_utc": "2026-09-11T18:21:30.999172+00:00",
+  "note": "READ-ONLY DIAGNOSTIC. No strategy rule, threshold or ledger touched.",
+  "provenance": {
+    "HOLO": {
+      "source": "collector.py -> data-api.binance.vision /api/v3/klines (native Binance 1m)",
+      "reconstructed_from_trades": false,
+      "single_source": true,
+      "rows_in_file": 57600,
+      "schemas_present": [
+        "compact"
+      ],
+      "earliest_bar_utc": "2026-08-02T18:19:00+00:00",
+      "latest_bar_utc": "2026-09-11T18:18:00+00:00"
+    },
+    "PUMP": {
+      "source": "collector.py -> data-api.binance.vision /api/v3/klines (native Binance 1m)",
+      "reconstructed_from_trades": false,
+      "single_source": true,
+      "rows_in_file": 57600,
+      "schemas_present": [
+        "compact"
+      ],
+      "earliest_bar_utc": "2026-08-02T18:19:00+00:00",
+      "latest_bar_utc": "2026-09-11T18:18:00+00:00"
+    }
+  },
+  "dates": {
+    "2026-09-08": {
+      "HOLO": {
+        "current_window": {
+          "label": "current",
+          "group_day": "2026-09-07",
+          "window_start_utc": "2026-09-07T18:00:00+00:00",
+          "window_end_utc": "2026-09-08T16:46:00+00:00",
+          "expected_minutes": 1367,
+          "actual_minutes": 1367,
+          "missing_minutes": 0,
+          "missing_sample": [],
+          "duplicate_timestamps": 0,
+          "first_bar_utc": "2026-09-07T18:00:00+00:00",
+          "last_bar_utc": "2026-09-08T16:46:00+00:00",
+          "total_base_volume": 7028122.8,
+          "total_quote_volume": 463805.02769,
+          "total_taker_buy_quote": 208949.20103999999,
+          "zero_volume_bars": 420,
+          "nonzero_volume_bars": 947,
+          "median_1m_quote_volume": 99.9999,
+          "max_1m_quote_volume": 16486.09401,
+          "consecutive_identical_closes": 912,
+          "duplicate_ohlcv_rows": 28,
+          "schemas_present": [
+            "compact"
+          ]
+        },
+        "prior_windows": [
+          {
+            "label": "prior-1",
+            "group_day": "2026-09-06",
+            "window_start_utc": "2026-09-06T18:00:00+00:00",
+            "window_end_utc": "2026-09-07T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-06T18:00:00+00:00",
+            "last_bar_utc": "2026-09-07T16:46:00+00:00",
+            "total_base_volume": 8028580.9,
+            "total_quote_volume": 539998.3788,
+            "total_taker_buy_quote": 248849.13209,
+            "zero_volume_bars": 309,
+            "nonzero_volume_bars": 1058,
+            "median_1m_quote_volume": 118.47119,
+            "max_1m_quote_volume": 11746.91824,
+            "consecutive_identical_closes": 898,
+            "duplicate_ohlcv_rows": 95,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-2",
+            "group_day": "2026-09-05",
+            "window_start_utc": "2026-09-05T18:00:00+00:00",
+            "window_end_utc": "2026-09-06T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-05T18:00:00+00:00",
+            "last_bar_utc": "2026-09-06T16:46:00+00:00",
+            "total_base_volume": 8185162.1,
+            "total_quote_volume": 548209.72024,
+            "total_taker_buy_quote": 257014.77,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 144.71294,
+            "max_1m_quote_volume": 13316.70959,
+            "consecutive_identical_closes": 708,
+            "duplicate_ohlcv_rows": 192,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-3",
+            "group_day": "2026-09-04",
+            "window_start_utc": "2026-09-04T18:00:00+00:00",
+            "window_end_utc": "2026-09-05T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-04T18:00:00+00:00",
+            "last_bar_utc": "2026-09-05T16:46:00+00:00",
+            "total_base_volume": 7848568.7,
+            "total_quote_volume": 505294.44067,
+            "total_taker_buy_quote": 237188.58059,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 127.79889,
+            "max_1m_quote_volume": 11914.28731,
+            "consecutive_identical_closes": 747,
+            "duplicate_ohlcv_rows": 288,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-4",
+            "group_day": "2026-09-03",
+            "window_start_utc": "2026-09-03T18:00:00+00:00",
+            "window_end_utc": "2026-09-04T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-03T18:00:00+00:00",
+            "last_bar_utc": "2026-09-04T16:46:00+00:00",
+            "total_base_volume": 24752384.7,
+            "total_quote_volume": 1582989.07523,
+            "total_taker_buy_quote": 846418.59104,
+            "zero_volume_bars": 208,
+            "nonzero_volume_bars": 1159,
+            "median_1m_quote_volume": 253.63294,
+            "max_1m_quote_volume": 212824.651,
+            "consecutive_identical_closes": 738,
+            "duplicate_ohlcv_rows": 95,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-5",
+            "group_day": "2026-09-02",
+            "window_start_utc": "2026-09-02T18:00:00+00:00",
+            "window_end_utc": "2026-09-03T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-02T18:00:00+00:00",
+            "last_bar_utc": "2026-09-03T16:46:00+00:00",
+            "total_base_volume": 13382510.3,
+            "total_quote_volume": 826872.24197,
+            "total_taker_buy_quote": 444966.00575,
+            "zero_volume_bars": 348,
+            "nonzero_volume_bars": 1019,
+            "median_1m_quote_volume": 199.9996,
+            "max_1m_quote_volume": 21158.85306,
+            "consecutive_identical_closes": 826,
+            "duplicate_ohlcv_rows": 15,
+            "schemas_present": [
+              "compact"
+            ]
+          }
+        ],
+        "calculation": {
+          "current_quote_volume_sum": 463805.02769,
+          "prior_quote_volume_sums": [
+            539998.3788,
+            548209.72024,
+            505294.44067,
+            1582989.07523,
+            826872.24197
+          ],
+          "median_of_priors": 548209.72024,
+          "formula": "current_sum / median(prior_five_sums)",
+          "vol_ratio": 0.8460357607065986
+        },
+        "independent_check": {
+          "current": {
+            "binance_quote_volume": 463805.02769,
+            "collector_quote_volume": 463805.02769,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          },
+          "prior-1": {
+            "binance_quote_volume": 539998.3788,
+            "collector_quote_volume": 539998.3788,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          }
+        }
+      },
+      "PUMP": {
+        "current_window": {
+          "label": "current",
+          "group_day": "2026-09-07",
+          "window_start_utc": "2026-09-07T18:00:00+00:00",
+          "window_end_utc": "2026-09-08T16:46:00+00:00",
+          "expected_minutes": 1367,
+          "actual_minutes": 1367,
+          "missing_minutes": 0,
+          "missing_sample": [],
+          "duplicate_timestamps": 0,
+          "first_bar_utc": "2026-09-07T18:00:00+00:00",
+          "last_bar_utc": "2026-09-08T16:46:00+00:00",
+          "total_base_volume": 8657088669.0,
+          "total_quote_volume": 37710008.459103,
+          "total_taker_buy_quote": 19019724.288408,
+          "zero_volume_bars": 0,
+          "nonzero_volume_bars": 1367,
+          "median_1m_quote_volume": 16402.398285,
+          "max_1m_quote_volume": 560282.129957,
+          "consecutive_identical_closes": 85,
+          "duplicate_ohlcv_rows": 0,
+          "schemas_present": [
+            "compact"
+          ]
+        },
+        "prior_windows": [
+          {
+            "label": "prior-1",
+            "group_day": "2026-09-06",
+            "window_start_utc": "2026-09-06T18:00:00+00:00",
+            "window_end_utc": "2026-09-07T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-06T18:00:00+00:00",
+            "last_bar_utc": "2026-09-07T16:46:00+00:00",
+            "total_base_volume": 12396330706.0,
+            "total_quote_volume": 52412683.318704,
+            "total_taker_buy_quote": 29031787.955017,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 18555.385389,
+            "max_1m_quote_volume": 685908.3137,
+            "consecutive_identical_closes": 105,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-2",
+            "group_day": "2026-09-05",
+            "window_start_utc": "2026-09-05T18:00:00+00:00",
+            "window_end_utc": "2026-09-06T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-05T18:00:00+00:00",
+            "last_bar_utc": "2026-09-06T16:46:00+00:00",
+            "total_base_volume": 11008068058.0,
+            "total_quote_volume": 43615549.357091,
+            "total_taker_buy_quote": 23171455.505614,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 16508.596777,
+            "max_1m_quote_volume": 633052.80601,
+            "consecutive_identical_closes": 104,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-3",
+            "group_day": "2026-09-04",
+            "window_start_utc": "2026-09-04T18:00:00+00:00",
+            "window_end_utc": "2026-09-05T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-04T18:00:00+00:00",
+            "last_bar_utc": "2026-09-05T16:46:00+00:00",
+            "total_base_volume": 5082274696.0,
+            "total_quote_volume": 21161436.454471,
+            "total_taker_buy_quote": 11860992.702641,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 6559.779308,
+            "max_1m_quote_volume": 872428.554126,
+            "consecutive_identical_closes": 113,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-4",
+            "group_day": "2026-09-03",
+            "window_start_utc": "2026-09-03T18:00:00+00:00",
+            "window_end_utc": "2026-09-04T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-03T18:00:00+00:00",
+            "last_bar_utc": "2026-09-04T16:46:00+00:00",
+            "total_base_volume": 9419619792.0,
+            "total_quote_volume": 40240062.632514,
+            "total_taker_buy_quote": 18632282.432,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 18277.108303,
+            "max_1m_quote_volume": 843098.774389,
+            "consecutive_identical_closes": 79,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-5",
+            "group_day": "2026-09-02",
+            "window_start_utc": "2026-09-02T18:00:00+00:00",
+            "window_end_utc": "2026-09-03T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-02T18:00:00+00:00",
+            "last_bar_utc": "2026-09-03T16:46:00+00:00",
+            "total_base_volume": 6417103977.0,
+            "total_quote_volume": 27601973.887689,
+            "total_taker_buy_quote": 14016642.853837,
+            "zero_volume_bars": 1,
+            "nonzero_volume_bars": 1366,
+            "median_1m_quote_volume": 11612.372278,
+            "max_1m_quote_volume": 376241.310515,
+            "consecutive_identical_closes": 92,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          }
+        ],
+        "calculation": {
+          "current_quote_volume_sum": 37710008.459103,
+          "prior_quote_volume_sums": [
+            52412683.318704,
+            43615549.357091,
+            21161436.454471,
+            40240062.632514,
+            27601973.887689
+          ],
+          "median_of_priors": 40240062.632514,
+          "formula": "current_sum / median(prior_five_sums)",
+          "vol_ratio": 0.9371259881845534
+        },
+        "independent_check": {
+          "current": {
+            "binance_quote_volume": 37710008.459103,
+            "collector_quote_volume": 37710008.459103,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          },
+          "prior-1": {
+            "binance_quote_volume": 52412683.318704,
+            "collector_quote_volume": 52412683.318704,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          }
+        }
+      }
+    },
+    "2026-09-09": {
+      "HOLO": {
+        "current_window": {
+          "label": "current",
+          "group_day": "2026-09-08",
+          "window_start_utc": "2026-09-08T18:00:00+00:00",
+          "window_end_utc": "2026-09-09T16:46:00+00:00",
+          "expected_minutes": 1367,
+          "actual_minutes": 1367,
+          "missing_minutes": 0,
+          "missing_sample": [],
+          "duplicate_timestamps": 0,
+          "first_bar_utc": "2026-09-08T18:00:00+00:00",
+          "last_bar_utc": "2026-09-09T16:46:00+00:00",
+          "total_base_volume": 853935301.7,
+          "total_quote_volume": 56959650.93241,
+          "total_taker_buy_quote": 17098695.92048,
+          "zero_volume_bars": 343,
+          "nonzero_volume_bars": 1024,
+          "median_1m_quote_volume": 370.00124,
+          "max_1m_quote_volume": 2040990.30028,
+          "consecutive_identical_closes": 822,
+          "duplicate_ohlcv_rows": 7,
+          "schemas_present": [
+            "compact"
+          ]
+        },
+        "prior_windows": [
+          {
+            "label": "prior-1",
+            "group_day": "2026-09-07",
+            "window_start_utc": "2026-09-07T18:00:00+00:00",
+            "window_end_utc": "2026-09-08T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-07T18:00:00+00:00",
+            "last_bar_utc": "2026-09-08T16:46:00+00:00",
+            "total_base_volume": 7028122.8,
+            "total_quote_volume": 463805.02769,
+            "total_taker_buy_quote": 208949.20103999999,
+            "zero_volume_bars": 420,
+            "nonzero_volume_bars": 947,
+            "median_1m_quote_volume": 99.9999,
+            "max_1m_quote_volume": 16486.09401,
+            "consecutive_identical_closes": 912,
+            "duplicate_ohlcv_rows": 28,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-2",
+            "group_day": "2026-09-06",
+            "window_start_utc": "2026-09-06T18:00:00+00:00",
+            "window_end_utc": "2026-09-07T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-06T18:00:00+00:00",
+            "last_bar_utc": "2026-09-07T16:46:00+00:00",
+            "total_base_volume": 8028580.9,
+            "total_quote_volume": 539998.3788,
+            "total_taker_buy_quote": 248849.13209,
+            "zero_volume_bars": 309,
+            "nonzero_volume_bars": 1058,
+            "median_1m_quote_volume": 118.47119,
+            "max_1m_quote_volume": 11746.91824,
+            "consecutive_identical_closes": 898,
+            "duplicate_ohlcv_rows": 95,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-3",
+            "group_day": "2026-09-05",
+            "window_start_utc": "2026-09-05T18:00:00+00:00",
+            "window_end_utc": "2026-09-06T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-05T18:00:00+00:00",
+            "last_bar_utc": "2026-09-06T16:46:00+00:00",
+            "total_base_volume": 8185162.1,
+            "total_quote_volume": 548209.72024,
+            "total_taker_buy_quote": 257014.77,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 144.71294,
+            "max_1m_quote_volume": 13316.70959,
+            "consecutive_identical_closes": 708,
+            "duplicate_ohlcv_rows": 192,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-4",
+            "group_day": "2026-09-04",
+            "window_start_utc": "2026-09-04T18:00:00+00:00",
+            "window_end_utc": "2026-09-05T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-04T18:00:00+00:00",
+            "last_bar_utc": "2026-09-05T16:46:00+00:00",
+            "total_base_volume": 7848568.7,
+            "total_quote_volume": 505294.44067,
+            "total_taker_buy_quote": 237188.58059,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 127.79889,
+            "max_1m_quote_volume": 11914.28731,
+            "consecutive_identical_closes": 747,
+            "duplicate_ohlcv_rows": 288,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-5",
+            "group_day": "2026-09-03",
+            "window_start_utc": "2026-09-03T18:00:00+00:00",
+            "window_end_utc": "2026-09-04T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-03T18:00:00+00:00",
+            "last_bar_utc": "2026-09-04T16:46:00+00:00",
+            "total_base_volume": 24752384.7,
+            "total_quote_volume": 1582989.07523,
+            "total_taker_buy_quote": 846418.59104,
+            "zero_volume_bars": 208,
+            "nonzero_volume_bars": 1159,
+            "median_1m_quote_volume": 253.63294,
+            "max_1m_quote_volume": 212824.651,
+            "consecutive_identical_closes": 738,
+            "duplicate_ohlcv_rows": 95,
+            "schemas_present": [
+              "compact"
+            ]
+          }
+        ],
+        "calculation": {
+          "current_quote_volume_sum": 56959650.93241,
+          "prior_quote_volume_sums": [
+            463805.02769,
+            539998.3788,
+            548209.72024,
+            505294.44067,
+            1582989.07523
+          ],
+          "median_of_priors": 539998.3788,
+          "formula": "current_sum / median(prior_five_sums)",
+          "vol_ratio": 105.4811517378763
+        },
+        "independent_check": {
+          "current": {
+            "binance_quote_volume": 56959650.93241,
+            "collector_quote_volume": 56959650.93241,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          },
+          "prior-1": {
+            "binance_quote_volume": 463805.02769,
+            "collector_quote_volume": 463805.02769,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          }
+        }
+      },
+      "PUMP": {
+        "current_window": {
+          "label": "current",
+          "group_day": "2026-09-08",
+          "window_start_utc": "2026-09-08T18:00:00+00:00",
+          "window_end_utc": "2026-09-09T16:46:00+00:00",
+          "expected_minutes": 1367,
+          "actual_minutes": 1367,
+          "missing_minutes": 0,
+          "missing_sample": [],
+          "duplicate_timestamps": 0,
+          "first_bar_utc": "2026-09-08T18:00:00+00:00",
+          "last_bar_utc": "2026-09-09T16:46:00+00:00",
+          "total_base_volume": 9031197040.0,
+          "total_quote_volume": 40888523.316562,
+          "total_taker_buy_quote": 21737717.18988,
+          "zero_volume_bars": 2,
+          "nonzero_volume_bars": 1365,
+          "median_1m_quote_volume": 19635.324242,
+          "max_1m_quote_volume": 291787.887279,
+          "consecutive_identical_closes": 82,
+          "duplicate_ohlcv_rows": 0,
+          "schemas_present": [
+            "compact"
+          ]
+        },
+        "prior_windows": [
+          {
+            "label": "prior-1",
+            "group_day": "2026-09-07",
+            "window_start_utc": "2026-09-07T18:00:00+00:00",
+            "window_end_utc": "2026-09-08T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-07T18:00:00+00:00",
+            "last_bar_utc": "2026-09-08T16:46:00+00:00",
+            "total_base_volume": 8657088669.0,
+            "total_quote_volume": 37710008.459103,
+            "total_taker_buy_quote": 19019724.288408,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 16402.398285,
+            "max_1m_quote_volume": 560282.129957,
+            "consecutive_identical_closes": 85,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-2",
+            "group_day": "2026-09-06",
+            "window_start_utc": "2026-09-06T18:00:00+00:00",
+            "window_end_utc": "2026-09-07T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-06T18:00:00+00:00",
+            "last_bar_utc": "2026-09-07T16:46:00+00:00",
+            "total_base_volume": 12396330706.0,
+            "total_quote_volume": 52412683.318704,
+            "total_taker_buy_quote": 29031787.955017,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 18555.385389,
+            "max_1m_quote_volume": 685908.3137,
+            "consecutive_identical_closes": 105,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-3",
+            "group_day": "2026-09-05",
+            "window_start_utc": "2026-09-05T18:00:00+00:00",
+            "window_end_utc": "2026-09-06T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-05T18:00:00+00:00",
+            "last_bar_utc": "2026-09-06T16:46:00+00:00",
+            "total_base_volume": 11008068058.0,
+            "total_quote_volume": 43615549.357091,
+            "total_taker_buy_quote": 23171455.505614,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 16508.596777,
+            "max_1m_quote_volume": 633052.80601,
+            "consecutive_identical_closes": 104,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-4",
+            "group_day": "2026-09-04",
+            "window_start_utc": "2026-09-04T18:00:00+00:00",
+            "window_end_utc": "2026-09-05T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-04T18:00:00+00:00",
+            "last_bar_utc": "2026-09-05T16:46:00+00:00",
+            "total_base_volume": 5082274696.0,
+            "total_quote_volume": 21161436.454471,
+            "total_taker_buy_quote": 11860992.702641,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 6559.779308,
+            "max_1m_quote_volume": 872428.554126,
+            "consecutive_identical_closes": 113,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-5",
+            "group_day": "2026-09-03",
+            "window_start_utc": "2026-09-03T18:00:00+00:00",
+            "window_end_utc": "2026-09-04T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-03T18:00:00+00:00",
+            "last_bar_utc": "2026-09-04T16:46:00+00:00",
+            "total_base_volume": 9419619792.0,
+            "total_quote_volume": 40240062.632514,
+            "total_taker_buy_quote": 18632282.432,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 18277.108303,
+            "max_1m_quote_volume": 843098.774389,
+            "consecutive_identical_closes": 79,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          }
+        ],
+        "calculation": {
+          "current_quote_volume_sum": 40888523.316562,
+          "prior_quote_volume_sums": [
+            37710008.459103,
+            52412683.318704,
+            43615549.357091,
+            21161436.454471,
+            40240062.632514
+          ],
+          "median_of_priors": 40240062.632514,
+          "formula": "current_sum / median(prior_five_sums)",
+          "vol_ratio": 1.0161148030501335
+        },
+        "independent_check": {
+          "current": {
+            "binance_quote_volume": 40888523.316562,
+            "collector_quote_volume": 40888523.316562,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          },
+          "prior-1": {
+            "binance_quote_volume": 37710008.459103,
+            "collector_quote_volume": 37710008.459103,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          }
+        }
+      }
+    },
+    "2026-09-10": {
+      "HOLO": {
+        "current_window": {
+          "label": "current",
+          "group_day": "2026-09-09",
+          "window_start_utc": "2026-09-09T18:00:00+00:00",
+          "window_end_utc": "2026-09-10T16:46:00+00:00",
+          "expected_minutes": 1367,
+          "actual_minutes": 1367,
+          "missing_minutes": 0,
+          "missing_sample": [],
+          "duplicate_timestamps": 0,
+          "first_bar_utc": "2026-09-09T18:00:00+00:00",
+          "last_bar_utc": "2026-09-10T16:46:00+00:00",
+          "total_base_volume": 542330023.2,
+          "total_quote_volume": 34566680.99688,
+          "total_taker_buy_quote": 12777088.96281,
+          "zero_volume_bars": 37,
+          "nonzero_volume_bars": 1330,
+          "median_1m_quote_volume": 2118.14911,
+          "max_1m_quote_volume": 1740212.11305,
+          "consecutive_identical_closes": 606,
+          "duplicate_ohlcv_rows": 0,
+          "schemas_present": [
+            "compact"
+          ]
+        },
+        "prior_windows": [
+          {
+            "label": "prior-1",
+            "group_day": "2026-09-08",
+            "window_start_utc": "2026-09-08T18:00:00+00:00",
+            "window_end_utc": "2026-09-09T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-08T18:00:00+00:00",
+            "last_bar_utc": "2026-09-09T16:46:00+00:00",
+            "total_base_volume": 853935301.7,
+            "total_quote_volume": 56959650.93241,
+            "total_taker_buy_quote": 17098695.92048,
+            "zero_volume_bars": 343,
+            "nonzero_volume_bars": 1024,
+            "median_1m_quote_volume": 370.00124,
+            "max_1m_quote_volume": 2040990.30028,
+            "consecutive_identical_closes": 822,
+            "duplicate_ohlcv_rows": 7,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-2",
+            "group_day": "2026-09-07",
+            "window_start_utc": "2026-09-07T18:00:00+00:00",
+            "window_end_utc": "2026-09-08T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-07T18:00:00+00:00",
+            "last_bar_utc": "2026-09-08T16:46:00+00:00",
+            "total_base_volume": 7028122.8,
+            "total_quote_volume": 463805.02769,
+            "total_taker_buy_quote": 208949.20103999999,
+            "zero_volume_bars": 420,
+            "nonzero_volume_bars": 947,
+            "median_1m_quote_volume": 99.9999,
+            "max_1m_quote_volume": 16486.09401,
+            "consecutive_identical_closes": 912,
+            "duplicate_ohlcv_rows": 28,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-3",
+            "group_day": "2026-09-06",
+            "window_start_utc": "2026-09-06T18:00:00+00:00",
+            "window_end_utc": "2026-09-07T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-06T18:00:00+00:00",
+            "last_bar_utc": "2026-09-07T16:46:00+00:00",
+            "total_base_volume": 8028580.9,
+            "total_quote_volume": 539998.3788,
+            "total_taker_buy_quote": 248849.13209,
+            "zero_volume_bars": 309,
+            "nonzero_volume_bars": 1058,
+            "median_1m_quote_volume": 118.47119,
+            "max_1m_quote_volume": 11746.91824,
+            "consecutive_identical_closes": 898,
+            "duplicate_ohlcv_rows": 95,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-4",
+            "group_day": "2026-09-05",
+            "window_start_utc": "2026-09-05T18:00:00+00:00",
+            "window_end_utc": "2026-09-06T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-05T18:00:00+00:00",
+            "last_bar_utc": "2026-09-06T16:46:00+00:00",
+            "total_base_volume": 8185162.1,
+            "total_quote_volume": 548209.72024,
+            "total_taker_buy_quote": 257014.77,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 144.71294,
+            "max_1m_quote_volume": 13316.70959,
+            "consecutive_identical_closes": 708,
+            "duplicate_ohlcv_rows": 192,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-5",
+            "group_day": "2026-09-04",
+            "window_start_utc": "2026-09-04T18:00:00+00:00",
+            "window_end_utc": "2026-09-05T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-04T18:00:00+00:00",
+            "last_bar_utc": "2026-09-05T16:46:00+00:00",
+            "total_base_volume": 7848568.7,
+            "total_quote_volume": 505294.44067,
+            "total_taker_buy_quote": 237188.58059,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 127.79889,
+            "max_1m_quote_volume": 11914.28731,
+            "consecutive_identical_closes": 747,
+            "duplicate_ohlcv_rows": 288,
+            "schemas_present": [
+              "compact"
+            ]
+          }
+        ],
+        "calculation": {
+          "current_quote_volume_sum": 34566680.99688,
+          "prior_quote_volume_sums": [
+            56959650.93241,
+            463805.02769,
+            539998.3788,
+            548209.72024,
+            505294.44067
+          ],
+          "median_of_priors": 539998.3788,
+          "formula": "current_sum / median(prior_five_sums)",
+          "vol_ratio": 64.01256439638779
+        },
+        "independent_check": {
+          "current": {
+            "binance_quote_volume": 34566680.99688,
+            "collector_quote_volume": 34566680.99688,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          },
+          "prior-1": {
+            "binance_quote_volume": 56959650.93241,
+            "collector_quote_volume": 56959650.93241,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          }
+        }
+      },
+      "PUMP": {
+        "current_window": {
+          "label": "current",
+          "group_day": "2026-09-09",
+          "window_start_utc": "2026-09-09T18:00:00+00:00",
+          "window_end_utc": "2026-09-10T16:46:00+00:00",
+          "expected_minutes": 1367,
+          "actual_minutes": 1367,
+          "missing_minutes": 0,
+          "missing_sample": [],
+          "duplicate_timestamps": 0,
+          "first_bar_utc": "2026-09-09T18:00:00+00:00",
+          "last_bar_utc": "2026-09-10T16:46:00+00:00",
+          "total_base_volume": 12832888991.0,
+          "total_quote_volume": 53475904.930326,
+          "total_taker_buy_quote": 24722488.260492,
+          "zero_volume_bars": 0,
+          "nonzero_volume_bars": 1367,
+          "median_1m_quote_volume": 19257.310357,
+          "max_1m_quote_volume": 988934.574222,
+          "consecutive_identical_closes": 86,
+          "duplicate_ohlcv_rows": 0,
+          "schemas_present": [
+            "compact"
+          ]
+        },
+        "prior_windows": [
+          {
+            "label": "prior-1",
+            "group_day": "2026-09-08",
+            "window_start_utc": "2026-09-08T18:00:00+00:00",
+            "window_end_utc": "2026-09-09T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-08T18:00:00+00:00",
+            "last_bar_utc": "2026-09-09T16:46:00+00:00",
+            "total_base_volume": 9031197040.0,
+            "total_quote_volume": 40888523.316562,
+            "total_taker_buy_quote": 21737717.18988,
+            "zero_volume_bars": 2,
+            "nonzero_volume_bars": 1365,
+            "median_1m_quote_volume": 19635.324242,
+            "max_1m_quote_volume": 291787.887279,
+            "consecutive_identical_closes": 82,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-2",
+            "group_day": "2026-09-07",
+            "window_start_utc": "2026-09-07T18:00:00+00:00",
+            "window_end_utc": "2026-09-08T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-07T18:00:00+00:00",
+            "last_bar_utc": "2026-09-08T16:46:00+00:00",
+            "total_base_volume": 8657088669.0,
+            "total_quote_volume": 37710008.459103,
+            "total_taker_buy_quote": 19019724.288408,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 16402.398285,
+            "max_1m_quote_volume": 560282.129957,
+            "consecutive_identical_closes": 85,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-3",
+            "group_day": "2026-09-06",
+            "window_start_utc": "2026-09-06T18:00:00+00:00",
+            "window_end_utc": "2026-09-07T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-06T18:00:00+00:00",
+            "last_bar_utc": "2026-09-07T16:46:00+00:00",
+            "total_base_volume": 12396330706.0,
+            "total_quote_volume": 52412683.318704,
+            "total_taker_buy_quote": 29031787.955017,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 18555.385389,
+            "max_1m_quote_volume": 685908.3137,
+            "consecutive_identical_closes": 105,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-4",
+            "group_day": "2026-09-05",
+            "window_start_utc": "2026-09-05T18:00:00+00:00",
+            "window_end_utc": "2026-09-06T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-05T18:00:00+00:00",
+            "last_bar_utc": "2026-09-06T16:46:00+00:00",
+            "total_base_volume": 11008068058.0,
+            "total_quote_volume": 43615549.357091,
+            "total_taker_buy_quote": 23171455.505614,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 16508.596777,
+            "max_1m_quote_volume": 633052.80601,
+            "consecutive_identical_closes": 104,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-5",
+            "group_day": "2026-09-04",
+            "window_start_utc": "2026-09-04T18:00:00+00:00",
+            "window_end_utc": "2026-09-05T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-04T18:00:00+00:00",
+            "last_bar_utc": "2026-09-05T16:46:00+00:00",
+            "total_base_volume": 5082274696.0,
+            "total_quote_volume": 21161436.454471,
+            "total_taker_buy_quote": 11860992.702641,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 6559.779308,
+            "max_1m_quote_volume": 872428.554126,
+            "consecutive_identical_closes": 113,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          }
+        ],
+        "calculation": {
+          "current_quote_volume_sum": 53475904.930326,
+          "prior_quote_volume_sums": [
+            40888523.316562,
+            37710008.459103,
+            52412683.318704,
+            43615549.357091,
+            21161436.454471
+          ],
+          "median_of_priors": 40888523.316562,
+          "formula": "current_sum / median(prior_five_sums)",
+          "vol_ratio": 1.3078463244150824
+        },
+        "independent_check": {
+          "current": {
+            "binance_quote_volume": 53475904.930326,
+            "collector_quote_volume": 53475904.930326,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          },
+          "prior-1": {
+            "binance_quote_volume": 40888523.316562,
+            "collector_quote_volume": 40888523.316562,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          }
+        }
+      }
+    },
+    "2026-09-11": {
+      "HOLO": {
+        "current_window": {
+          "label": "current",
+          "group_day": "2026-09-10",
+          "window_start_utc": "2026-09-10T18:00:00+00:00",
+          "window_end_utc": "2026-09-11T16:46:00+00:00",
+          "expected_minutes": 1367,
+          "actual_minutes": 1367,
+          "missing_minutes": 0,
+          "missing_sample": [],
+          "duplicate_timestamps": 0,
+          "first_bar_utc": "2026-09-10T18:00:00+00:00",
+          "last_bar_utc": "2026-09-11T16:46:00+00:00",
+          "total_base_volume": 1553366237.4,
+          "total_quote_volume": 96196026.01649,
+          "total_taker_buy_quote": 29357934.42689,
+          "zero_volume_bars": 0,
+          "nonzero_volume_bars": 1367,
+          "median_1m_quote_volume": 2062.98734,
+          "max_1m_quote_volume": 3779662.11291,
+          "consecutive_identical_closes": 525,
+          "duplicate_ohlcv_rows": 0,
+          "schemas_present": [
+            "compact"
+          ]
+        },
+        "prior_windows": [
+          {
+            "label": "prior-1",
+            "group_day": "2026-09-09",
+            "window_start_utc": "2026-09-09T18:00:00+00:00",
+            "window_end_utc": "2026-09-10T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-09T18:00:00+00:00",
+            "last_bar_utc": "2026-09-10T16:46:00+00:00",
+            "total_base_volume": 542330023.2,
+            "total_quote_volume": 34566680.99688,
+            "total_taker_buy_quote": 12777088.96281,
+            "zero_volume_bars": 37,
+            "nonzero_volume_bars": 1330,
+            "median_1m_quote_volume": 2118.14911,
+            "max_1m_quote_volume": 1740212.11305,
+            "consecutive_identical_closes": 606,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-2",
+            "group_day": "2026-09-08",
+            "window_start_utc": "2026-09-08T18:00:00+00:00",
+            "window_end_utc": "2026-09-09T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-08T18:00:00+00:00",
+            "last_bar_utc": "2026-09-09T16:46:00+00:00",
+            "total_base_volume": 853935301.7,
+            "total_quote_volume": 56959650.93241,
+            "total_taker_buy_quote": 17098695.92048,
+            "zero_volume_bars": 343,
+            "nonzero_volume_bars": 1024,
+            "median_1m_quote_volume": 370.00124,
+            "max_1m_quote_volume": 2040990.30028,
+            "consecutive_identical_closes": 822,
+            "duplicate_ohlcv_rows": 7,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-3",
+            "group_day": "2026-09-07",
+            "window_start_utc": "2026-09-07T18:00:00+00:00",
+            "window_end_utc": "2026-09-08T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-07T18:00:00+00:00",
+            "last_bar_utc": "2026-09-08T16:46:00+00:00",
+            "total_base_volume": 7028122.8,
+            "total_quote_volume": 463805.02769,
+            "total_taker_buy_quote": 208949.20103999999,
+            "zero_volume_bars": 420,
+            "nonzero_volume_bars": 947,
+            "median_1m_quote_volume": 99.9999,
+            "max_1m_quote_volume": 16486.09401,
+            "consecutive_identical_closes": 912,
+            "duplicate_ohlcv_rows": 28,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-4",
+            "group_day": "2026-09-06",
+            "window_start_utc": "2026-09-06T18:00:00+00:00",
+            "window_end_utc": "2026-09-07T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-06T18:00:00+00:00",
+            "last_bar_utc": "2026-09-07T16:46:00+00:00",
+            "total_base_volume": 8028580.9,
+            "total_quote_volume": 539998.3788,
+            "total_taker_buy_quote": 248849.13209,
+            "zero_volume_bars": 309,
+            "nonzero_volume_bars": 1058,
+            "median_1m_quote_volume": 118.47119,
+            "max_1m_quote_volume": 11746.91824,
+            "consecutive_identical_closes": 898,
+            "duplicate_ohlcv_rows": 95,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-5",
+            "group_day": "2026-09-05",
+            "window_start_utc": "2026-09-05T18:00:00+00:00",
+            "window_end_utc": "2026-09-06T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-05T18:00:00+00:00",
+            "last_bar_utc": "2026-09-06T16:46:00+00:00",
+            "total_base_volume": 8185162.1,
+            "total_quote_volume": 548209.72024,
+            "total_taker_buy_quote": 257014.77,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 144.71294,
+            "max_1m_quote_volume": 13316.70959,
+            "consecutive_identical_closes": 708,
+            "duplicate_ohlcv_rows": 192,
+            "schemas_present": [
+              "compact"
+            ]
+          }
+        ],
+        "calculation": {
+          "current_quote_volume_sum": 96196026.01649,
+          "prior_quote_volume_sums": [
+            34566680.99688,
+            56959650.93241,
+            463805.02769,
+            539998.3788,
+            548209.72024
+          ],
+          "median_of_priors": 548209.72024,
+          "formula": "current_sum / median(prior_five_sums)",
+          "vol_ratio": 175.47303972351395
+        },
+        "independent_check": {
+          "current": {
+            "binance_quote_volume": 96196026.01649,
+            "collector_quote_volume": 96196026.01649,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          },
+          "prior-1": {
+            "binance_quote_volume": 34566680.99688,
+            "collector_quote_volume": 34566680.99688,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          }
+        }
+      },
+      "PUMP": {
+        "current_window": {
+          "label": "current",
+          "group_day": "2026-09-10",
+          "window_start_utc": "2026-09-10T18:00:00+00:00",
+          "window_end_utc": "2026-09-11T16:46:00+00:00",
+          "expected_minutes": 1367,
+          "actual_minutes": 1367,
+          "missing_minutes": 0,
+          "missing_sample": [],
+          "duplicate_timestamps": 0,
+          "first_bar_utc": "2026-09-10T18:00:00+00:00",
+          "last_bar_utc": "2026-09-11T16:46:00+00:00",
+          "total_base_volume": 9397334195.0,
+          "total_quote_volume": 34984551.763511,
+          "total_taker_buy_quote": 17249146.400966,
+          "zero_volume_bars": 0,
+          "nonzero_volume_bars": 1367,
+          "median_1m_quote_volume": 13134.396622,
+          "max_1m_quote_volume": 705991.672939,
+          "consecutive_identical_closes": 102,
+          "duplicate_ohlcv_rows": 0,
+          "schemas_present": [
+            "compact"
+          ]
+        },
+        "prior_windows": [
+          {
+            "label": "prior-1",
+            "group_day": "2026-09-09",
+            "window_start_utc": "2026-09-09T18:00:00+00:00",
+            "window_end_utc": "2026-09-10T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-09T18:00:00+00:00",
+            "last_bar_utc": "2026-09-10T16:46:00+00:00",
+            "total_base_volume": 12832888991.0,
+            "total_quote_volume": 53475904.930326,
+            "total_taker_buy_quote": 24722488.260492,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 19257.310357,
+            "max_1m_quote_volume": 988934.574222,
+            "consecutive_identical_closes": 86,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-2",
+            "group_day": "2026-09-08",
+            "window_start_utc": "2026-09-08T18:00:00+00:00",
+            "window_end_utc": "2026-09-09T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-08T18:00:00+00:00",
+            "last_bar_utc": "2026-09-09T16:46:00+00:00",
+            "total_base_volume": 9031197040.0,
+            "total_quote_volume": 40888523.316562,
+            "total_taker_buy_quote": 21737717.18988,
+            "zero_volume_bars": 2,
+            "nonzero_volume_bars": 1365,
+            "median_1m_quote_volume": 19635.324242,
+            "max_1m_quote_volume": 291787.887279,
+            "consecutive_identical_closes": 82,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-3",
+            "group_day": "2026-09-07",
+            "window_start_utc": "2026-09-07T18:00:00+00:00",
+            "window_end_utc": "2026-09-08T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-07T18:00:00+00:00",
+            "last_bar_utc": "2026-09-08T16:46:00+00:00",
+            "total_base_volume": 8657088669.0,
+            "total_quote_volume": 37710008.459103,
+            "total_taker_buy_quote": 19019724.288408,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 16402.398285,
+            "max_1m_quote_volume": 560282.129957,
+            "consecutive_identical_closes": 85,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-4",
+            "group_day": "2026-09-06",
+            "window_start_utc": "2026-09-06T18:00:00+00:00",
+            "window_end_utc": "2026-09-07T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-06T18:00:00+00:00",
+            "last_bar_utc": "2026-09-07T16:46:00+00:00",
+            "total_base_volume": 12396330706.0,
+            "total_quote_volume": 52412683.318704,
+            "total_taker_buy_quote": 29031787.955017,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 18555.385389,
+            "max_1m_quote_volume": 685908.3137,
+            "consecutive_identical_closes": 105,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          },
+          {
+            "label": "prior-5",
+            "group_day": "2026-09-05",
+            "window_start_utc": "2026-09-05T18:00:00+00:00",
+            "window_end_utc": "2026-09-06T16:46:00+00:00",
+            "expected_minutes": 1367,
+            "actual_minutes": 1367,
+            "missing_minutes": 0,
+            "missing_sample": [],
+            "duplicate_timestamps": 0,
+            "first_bar_utc": "2026-09-05T18:00:00+00:00",
+            "last_bar_utc": "2026-09-06T16:46:00+00:00",
+            "total_base_volume": 11008068058.0,
+            "total_quote_volume": 43615549.357091,
+            "total_taker_buy_quote": 23171455.505614,
+            "zero_volume_bars": 0,
+            "nonzero_volume_bars": 1367,
+            "median_1m_quote_volume": 16508.596777,
+            "max_1m_quote_volume": 633052.80601,
+            "consecutive_identical_closes": 104,
+            "duplicate_ohlcv_rows": 0,
+            "schemas_present": [
+              "compact"
+            ]
+          }
+        ],
+        "calculation": {
+          "current_quote_volume_sum": 34984551.763511,
+          "prior_quote_volume_sums": [
+            53475904.930326,
+            40888523.316562,
+            37710008.459103,
+            52412683.318704,
+            43615549.357091
+          ],
+          "median_of_priors": 43615549.357091,
+          "formula": "current_sum / median(prior_five_sums)",
+          "vol_ratio": 0.8021119137370953
+        },
+        "independent_check": {
+          "current": {
+            "binance_quote_volume": 34984551.763511,
+            "collector_quote_volume": 34984551.763511,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          },
+          "prior-1": {
+            "binance_quote_volume": 53475904.930326,
+            "collector_quote_volume": 53475904.930326,
+            "abs_difference": 0.0,
+            "ratio_binance_over_collector": 1.0,
+            "binance_minutes": 1367,
+            "collector_minutes": 1367
+          }
+        }
+      }
+    }
+  }
+}
