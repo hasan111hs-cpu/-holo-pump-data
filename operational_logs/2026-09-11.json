@@ -15,6 +15,14 @@
       "expected_at_utc": "2026-09-11T16:47:00+00:00"
     },
     {
+      "stage": "SIGNAL_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "16:47 UTC cutoff",
+      "recorded_at_utc": "2026-09-11T21:50:56.848435+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-09-11T16:47:00+00:00"
+    },
+    {
       "stage": "SIGNAL_JOB_STARTED",
       "status": "ok",
       "detail": "run 9 workflow_dispatch",
@@ -25,6 +33,13 @@
       "status": "ok",
       "detail": "run 12 workflow_dispatch",
       "recorded_at_utc": "2026-09-11T19:18:16.560518+00:00"
+    },
+    {
+      "stage": "SIGNAL_JOB_STARTED",
+      "status": "ok",
+      "detail": "run 14 schedule role=POST_DEADLINE_AUDIT",
+      "recorded_at_utc": "2026-09-11T21:50:56.914500+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
       "stage": "COLLECTOR_HEALTH_CHECK",
@@ -39,6 +54,13 @@
       "recorded_at_utc": "2026-09-11T19:22:02.341079+00:00"
     },
     {
+      "stage": "COLLECTOR_HEALTH_CHECK",
+      "status": "ok",
+      "detail": "collector + btc_d completed",
+      "recorded_at_utc": "2026-09-11T21:54:39.251666+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
       "stage": "DATA_AUDIT_COMPLETE",
       "status": "ok",
       "detail": "signal.py completed",
@@ -51,10 +73,24 @@
       "recorded_at_utc": "2026-09-11T19:22:02.929435+00:00"
     },
     {
+      "stage": "DATA_AUDIT_COMPLETE",
+      "status": "ok",
+      "detail": "signal.py completed",
+      "recorded_at_utc": "2026-09-11T21:54:39.954653+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
       "stage": "SIGNAL_LOCKED",
       "status": "ok",
       "detail": "verified by artifact",
       "timestamp_utc": "2026-09-11T18:43:58.062699+00:00"
+    },
+    {
+      "stage": "SIGNAL_LOCKED",
+      "status": "ok",
+      "detail": "artifact durably persisted to origin/main",
+      "recorded_at_utc": "2026-09-11T21:54:41.636527+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
       "stage": "EXECUTION_JOB_EXPECTED",
@@ -70,6 +106,14 @@
       "expected_at_utc": "2026-09-11T18:05:00+00:00"
     },
     {
+      "stage": "EXECUTION_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "18:05 UTC activation",
+      "recorded_at_utc": "2026-09-11T21:54:41.825201+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-09-11T18:05:00+00:00"
+    },
+    {
       "stage": "EXECUTION_JOB_STARTED",
       "status": "ok",
       "detail": "",
@@ -80,6 +124,13 @@
       "status": "ok",
       "detail": "",
       "recorded_at_utc": "2026-09-11T19:22:03.062170+00:00"
+    },
+    {
+      "stage": "EXECUTION_JOB_STARTED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-09-11T21:54:41.895056+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
       "stage": "REPORT_GENERATED",
@@ -94,6 +145,13 @@
       "recorded_at_utc": "2026-09-11T19:22:03.198617+00:00"
     },
     {
+      "stage": "REPORT_GENERATED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-09-11T21:54:42.042331+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
       "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
       "status": "ok",
       "detail": "exact match both symbols",
@@ -104,6 +162,12 @@
       "status": "ok",
       "detail": "exact match both symbols",
       "recorded_at_utc": "2026-09-11T19:22:07.993084+00:00"
+    },
+    {
+      "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
+      "status": "ok",
+      "detail": "exact match both symbols",
+      "recorded_at_utc": "2026-09-11T21:54:47.115390+00:00"
     }
   ],
   "final_status": "OPERATIONAL FAILURE",
@@ -130,33 +194,51 @@
   "failures": [
     {
       "stage": "SIGNAL_JOB_STARTED",
-      "reason": "started 151min after 2026-09-11T16:47:00+00:00, exceeding 90min grace (scheduler did not fire on time)",
-      "detected_at_utc": "2026-09-11T19:22:03.271631+00:00"
+      "reason": "started 304min after 2026-09-11T16:47:00+00:00, exceeding 78min grace (scheduler did not fire on time)",
+      "detected_at_utc": "2026-09-11T21:54:42.122864+00:00"
+    },
+    {
+      "stage": "EXECUTION_JOB_STARTED",
+      "reason": "started 230min after 2026-09-11T18:05:00+00:00, exceeding 78min grace (scheduler did not fire on time)",
+      "detected_at_utc": "2026-09-11T21:54:42.122881+00:00"
+    },
+    {
+      "stage": "SIGNAL_LOCKED",
+      "reason": "locked 2026-09-11T21:54:41.636527+00:00, after execution activation 2026-09-11T18:05:00+00:00",
+      "detected_at_utc": "2026-09-11T21:54:47.115476+00:00"
     }
   ],
-  "audited_at_utc": "2026-09-11T19:22:07.993151+00:00",
+  "audited_at_utc": "2026-09-11T21:54:47.115496+00:00",
   "delays": {
-    "signal_start_delay_seconds": 9076.6,
-    "signal_lock_delay_seconds": 7018.1,
-    "execution_start_delay_seconds": 4623.1
+    "signal_start_delay_seconds": 18236.9,
+    "signal_lock_delay_seconds": 18461.6,
+    "execution_start_delay_seconds": 13781.9
   },
-  "trigger": "workflow_dispatch",
-  "validity_classification": "MANUAL_TEST_RUN",
+  "trigger": "schedule",
+  "validity_classification": "MISSED_OBSERVATION_OPERATIONAL_FAILURE",
   "counts_as_prospective_observation": false,
   "timing": {
     "SIGNAL_JOB_STARTED": {
       "due_utc": "2026-09-11T16:47:00+00:00",
-      "started_utc": "2026-09-11T19:18:16.560518+00:00",
-      "lateness_minutes": 151.3,
-      "grace_minutes": 90,
+      "started_utc": "2026-09-11T21:50:56.914500+00:00",
+      "lateness_minutes": 303.9,
+      "grace_minutes": 78,
       "within_grace": false
     },
     "EXECUTION_JOB_STARTED": {
       "due_utc": "2026-09-11T18:05:00+00:00",
-      "started_utc": "2026-09-11T19:22:03.062170+00:00",
-      "lateness_minutes": 77.1,
-      "grace_minutes": 90,
-      "within_grace": true
+      "started_utc": "2026-09-11T21:54:41.895056+00:00",
+      "lateness_minutes": 229.7,
+      "grace_minutes": 78,
+      "within_grace": false
     }
-  }
+  },
+  "signal_locked_before_execution_activation": false,
+  "hard_deadline_utc": "2026-09-11T18:05:00+00:00",
+  "on_time_deadline_utc": "2026-09-11T17:02:00+00:00",
+  "declared_purpose": "scheduled",
+  "trigger_role": "POST_DEADLINE_AUDIT",
+  "canonical_lock_created_by": "POST_DEADLINE_AUDIT",
+  "primary_trigger_fired": false,
+  "canonical_automatic_prospective_observations": 0
 }

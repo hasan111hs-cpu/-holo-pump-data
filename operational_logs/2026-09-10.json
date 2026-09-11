@@ -1,0 +1,8 @@
+{
+  "execution_date": "2026-09-10",
+  "events": [],
+  "final_status": "OK",
+  "validity_classification": "CAUSAL_MANUAL_OBSERVATION",
+  "counts_as_prospective_observation": false,
+  "note": "Signal locked and causally valid, but predates operational logging or was manually triggered. Preserved as a research observation; excluded from the automated prospective sample."
+}

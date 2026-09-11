@@ -10,5 +10,25 @@
     "2026-09-10:R1",
     "2026-09-11:R1"
   ],
-  "trades": []
+  "trades": [],
+  "accounting_adjustments": [
+    {
+      "adjustment_id": "2026-09-08-pre-enforcement-reclassification",
+      "effective_date": "2026-09-11",
+      "type": "OBSERVATION_RECLASSIFICATION",
+      "settlement_id": "2026-09-08:R1",
+      "original_classification": "PRE_ENFORCEMENT_SETTLEMENT",
+      "revised_classification": "CAUSAL_MANUAL_OBSERVATION",
+      "canonical_prospective_effect": 0,
+      "capital_effect": 0,
+      "reason": "Observation was later ruled non-canonical because it was manually triggered and lacked an automatic PRIMARY/RECOVERY durable lock before 18:05 UTC.",
+      "historical_record_rewritten": false
+    }
+  ],
+  "canonical_automatic_prospective_observations": 0,
+  "legacy_or_noncanonical_observations": 1,
+  "field_semantics": {
+    "observations": "raw settlement-event counter from the execution engine; NOT the canonical prospective count",
+    "canonical_automatic_prospective_observations": "authoritative experiment count; derived from operational logs where counts_as_prospective_observation is true"
+  }
 }
