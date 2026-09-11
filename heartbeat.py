@@ -333,10 +333,13 @@ def audit(d=None):
     # Only an AUTOMATIC, in-time lock counts toward the official prospective sample.
     log["counts_as_prospective_observation"] = classification.startswith("CANONICAL_AUTOMATIC")
     log["timing"] = timing
-    log["canonical_automatic_prospective_observations"] = canonical_count()
     log["failures"] = failures
     log["final_status"] = "OPERATIONAL FAILURE" if failures else "OK"
     log["audited_at_utc"] = now().isoformat()
+    save(d, log)
+    # Derived count must be recomputed AFTER this day's classification is on disk,
+    # otherwise today's own observation is missing from its own total.
+    log["canonical_automatic_prospective_observations"] = canonical_count()
     save(d, log)
 
     print(f"\n[heartbeat audit] {d}: {log['final_status']}  "
