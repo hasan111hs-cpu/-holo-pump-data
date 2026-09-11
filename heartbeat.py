@@ -212,10 +212,13 @@ def audit(d=None):
                                        f"(scheduler did not fire on time)",
                              "detected_at_utc": now().isoformat()})
 
-    # 2. artifacts that prove the stage really happened
+    # 2. artifacts that prove the stage really happened.
+    # Registry §5: SIGNAL_LOCKED means the immutable artifact is DURABLY PERSISTED,
+    # not merely that signal.py returned. The workflow marks it only after a
+    # successful push; here we verify the artifact exists at minimum.
     if (SIG / f"{d.isoformat()}.json").exists():
         if "SIGNAL_LOCKED" not in seen:
-            mark("SIGNAL_LOCKED", "ok", "verified by artifact", d)
+            mark("SIGNAL_LOCKED", "ok", "artifact present (durability asserted by workflow)", d)
             log = load(d); seen = stages_seen(log)
             failures = [f for f in failures if f["stage"] != "SIGNAL_LOCKED"]
     else:
@@ -291,11 +294,16 @@ def audit(d=None):
                                    f"activation {hard_by.isoformat()}",
                          "detected_at_utc": now().isoformat()})
 
+    purpose = os.environ.get("HEARTBEAT_PURPOSE", "test").strip().lower()
+    log["declared_purpose"] = purpose
     if trigger == "workflow_dispatch":
-        # A manual run that still respected the causal cutoff is a research
-        # observation, not an infrastructure test.
-        classification = ("CAUSAL_MANUAL_OBSERVATION" if locked_in_time
-                          else "MANUAL_TEST_RUN")
+        if locked_in_time:
+            classification = "CAUSAL_MANUAL_OBSERVATION"
+        else:
+            # §1: after the hard deadline, purpose decides. An infrastructure test is
+            # not the same as an attempt to recover the missed trading decision.
+            classification = ("POST_HOC_RECONSTRUCTION" if purpose == "reconstruction"
+                              else "MANUAL_TEST_RUN")
     elif not locked_in_time:
         classification = "MISSED_OBSERVATION_OPERATIONAL_FAILURE"
     elif automatic and started_at is not None and started_at <= on_time_by:
@@ -329,6 +337,26 @@ def audit(d=None):
     for k, v in rec.items():
         print(f"  T+1 {k}: match={v.get('match')} diff={v.get('abs_difference')}")
     return log
+
+
+def may_lock():
+    """Registry §8: a run starting after the 18:05 UTC hard deadline may NOT create a
+    new canonical signal. Later crons are RECOVERY/AUDIT triggers only.
+    Exit 0 = signal creation permitted. Exit 1 = recovery mode, do not create."""
+    d = now().date()
+    already = (SIG / f"{d.isoformat()}.json").exists()
+    hard = datetime.combine(d, datetime.min.time(), timezone.utc).replace(
+        hour=HARD_DEADLINE[0], minute=HARD_DEADLINE[1])
+    if already:
+        print("[gate] signal record already exists - signal.py will no-op"); return 0
+    if now() < hard:
+        print(f"[gate] {now().isoformat()} is before {hard.isoformat()} - locking permitted")
+        return 0
+    print(f"[gate] {now().isoformat()} is AFTER the {hard.isoformat()} hard deadline "
+          f"and no signal record exists. RECOVERY/AUDIT mode: canonical signal "
+          f"creation is blocked.")
+    mark("SIGNAL_LOCKED", "failed", "blocked: past 18:05 hard deadline, recovery mode", d)
+    return 1
 
 
 def sweep():
@@ -381,5 +409,7 @@ if __name__ == "__main__":
         audit()
     elif cmd == "sweep":
         sweep()
+    elif cmd == "may_lock":
+        sys.exit(may_lock())
     else:
         print(f"unknown command: {cmd}")
