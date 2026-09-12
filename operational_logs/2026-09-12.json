@@ -1,0 +1,131 @@
+{
+  "execution_date": "2026-09-12",
+  "events": [
+    {
+      "stage": "SIGNAL_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "16:47 UTC cutoff",
+      "recorded_at_utc": "2026-09-12T00:46:38.655803+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-09-12T16:47:00+00:00"
+    },
+    {
+      "stage": "SIGNAL_JOB_STARTED",
+      "status": "ok",
+      "detail": "run 16 schedule role=POST_DEADLINE_AUDIT",
+      "recorded_at_utc": "2026-09-12T00:46:38.726506+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "COLLECTOR_HEALTH_CHECK",
+      "status": "ok",
+      "detail": "collector + btc_d completed",
+      "recorded_at_utc": "2026-09-12T00:50:24.963286+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "DATA_AUDIT_COMPLETE",
+      "status": "ok",
+      "detail": "signal.py completed",
+      "recorded_at_utc": "2026-09-12T00:50:25.162021+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "SIGNAL_LOCKED",
+      "status": "ok",
+      "detail": "artifact durably persisted to origin/main",
+      "recorded_at_utc": "2026-09-12T00:50:26.686191+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "EXECUTION_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "18:05 UTC activation",
+      "recorded_at_utc": "2026-09-12T00:50:26.834257+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-09-12T18:05:00+00:00"
+    },
+    {
+      "stage": "EXECUTION_JOB_STARTED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-09-12T00:50:26.894889+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "REPORT_GENERATED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-09-12T00:50:27.031469+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
+      "status": "ok",
+      "detail": "exact match both symbols",
+      "recorded_at_utc": "2026-09-12T00:50:31.833676+00:00"
+    }
+  ],
+  "final_status": "OPERATIONAL FAILURE",
+  "t1_reconciliation": {
+    "HOLO": {
+      "window_group_day": "2026-09-10",
+      "binance_quote_volume": 96196026.01649001,
+      "collector_quote_volume": 96196026.01649001,
+      "abs_difference": 0.0,
+      "binance_minutes": 1367,
+      "collector_minutes": 1367,
+      "match": true
+    },
+    "PUMP": {
+      "window_group_day": "2026-09-10",
+      "binance_quote_volume": 34984551.76351096,
+      "collector_quote_volume": 34984551.76351096,
+      "abs_difference": 0.0,
+      "binance_minutes": 1367,
+      "collector_minutes": 1367,
+      "match": true
+    }
+  },
+  "delays": {
+    "signal_start_delay_seconds": -57621.3,
+    "signal_lock_delay_seconds": -57393.3,
+    "execution_start_delay_seconds": -62073.1
+  },
+  "signal_locked_before_execution_activation": true,
+  "hard_deadline_utc": "2026-09-12T18:05:00+00:00",
+  "on_time_deadline_utc": "2026-09-12T17:02:00+00:00",
+  "declared_purpose": "scheduled",
+  "trigger_role": "POST_DEADLINE_AUDIT",
+  "canonical_lock_created_by": "POST_DEADLINE_AUDIT",
+  "primary_trigger_fired": false,
+  "trigger": "schedule",
+  "validity_classification": "MISSED_OBSERVATION_OPERATIONAL_FAILURE",
+  "counts_as_prospective_observation": false,
+  "timing": {
+    "SIGNAL_JOB_STARTED": {
+      "due_utc": "2026-09-12T16:47:00+00:00",
+      "started_utc": "2026-09-12T00:46:38.726506+00:00",
+      "lateness_minutes": -960.4,
+      "grace_minutes": 78,
+      "within_grace": true
+    },
+    "EXECUTION_JOB_STARTED": {
+      "due_utc": "2026-09-12T18:05:00+00:00",
+      "started_utc": "2026-09-12T00:50:26.894889+00:00",
+      "lateness_minutes": -1034.6,
+      "grace_minutes": 78,
+      "within_grace": true
+    }
+  },
+  "failures": [
+    {
+      "stage": "SIGNAL_LOCKED",
+      "reason": "no signal record; prospective lock never occurred",
+      "detected_at_utc": "2026-09-12T00:50:31.899615+00:00"
+    }
+  ],
+  "audited_at_utc": "2026-09-12T00:50:31.833760+00:00",
+  "canonical_automatic_prospective_observations": 1,
+  "note": "NOT reconstructed. A missed causal lock is excluded from the prospective sample and is never labelled canonical."
+}
