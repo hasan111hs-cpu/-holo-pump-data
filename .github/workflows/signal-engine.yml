@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       purpose:
-        description: "Purpose of this manual run"
+        description: "Purpose of this run"
         required: true
         default: test
         type: choice
-        options: [test, reconstruction]
+        options: [test, reconstruction, PRIMARY_EXTERNAL, RECOVERY_EXTERNAL]
   schedule:
-    - cron: "50 16 * * *"     # PRIMARY   - canonical signal attempt
-    - cron: "20 17 * * *"     # RECOVERY  - second pre-deadline canonical attempt
+    # GitHub cron is retained ONLY as post-deadline audit/settlement redundancy.
+    # Primary and recovery canonical triggers are now external (16:48 / 17:20 UTC).
     - cron: "30 19 * * *"     # POST_DEADLINE_AUDIT only
     - cron: "0 21 * * *"      # POST_DEADLINE_AUDIT only
     - cron: "0 23 * * *"      # POST_DEADLINE_AUDIT only
@@ -26,14 +26,8 @@ concurrency:
 
 env:
   HEARTBEAT_TRIGGER: ${{ github.event_name }}
+  HEARTBEAT_SLOT: ${{ github.event.schedule || 'workflow_dispatch' }}
   HEARTBEAT_PURPOSE: ${{ github.event.inputs.purpose || 'scheduled' }}
-  # §5 which scheduler slot this run represents
-  HEARTBEAT_SLOT: ${{ github.event.schedule || 'manual' }}
-  HEARTBEAT_ROLE: >-
-    ${{ github.event_name == 'workflow_dispatch' && 'MANUAL'
-     || github.event.schedule == '50 16 * * *' && 'PRIMARY'
-     || github.event.schedule == '20 17 * * *' && 'RECOVERY'
-     || 'POST_DEADLINE_AUDIT' }}
 
 jobs:
   signal:
@@ -46,6 +40,34 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      # §2/§3 canonical automatic authority requires BOTH an approved role AND the
+      # approved machine actor. A human selecting PRIMARY_EXTERNAL is still MANUAL.
+      - name: Resolve trigger role
+        run: |
+          EVENT="${{ github.event_name }}"
+          ACTOR="${{ github.actor }}"
+          APPROVED="${{ vars.SCHEDULER_ACTOR }}"
+          REQUESTED="${{ github.event.inputs.purpose }}"
+          SLOT="${{ github.event.schedule }}"
+          ROLE="MANUAL"
+          if [ "$EVENT" = "schedule" ]; then
+            ROLE="POST_DEADLINE_AUDIT"
+          elif [ "$EVENT" = "workflow_dispatch" ]; then
+            case "$REQUESTED" in
+              PRIMARY_EXTERNAL|RECOVERY_EXTERNAL)
+                if [ -n "$APPROVED" ] && [ "$ACTOR" = "$APPROVED" ]; then
+                  ROLE="$REQUESTED"
+                else
+                  echo "DENIED: actor '$ACTOR' is not the approved scheduler identity"
+                  echo "        requested role '$REQUESTED' downgraded to MANUAL"
+                  ROLE="MANUAL"
+                fi
+                ;;
+            esac
+          fi
+          echo "event=$EVENT actor=$ACTOR slot=$SLOT requested=$REQUESTED -> role=$ROLE"
+          echo "HEARTBEAT_ROLE=$ROLE" >> $GITHUB_ENV
 
       - name: Signal job started
         run: |
