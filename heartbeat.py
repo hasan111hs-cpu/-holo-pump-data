@@ -53,6 +53,28 @@ def now():
     return datetime.now(timezone.utc)
 
 
+SIGNAL_ROLES = {"PRIMARY", "RECOVERY"}
+
+
+def role():
+    return os.environ.get("HEARTBEAT_ROLE", "UNKNOWN")
+
+
+def target_execution_date():
+    """Registry §7: the date a run OPERATES ON, distinct from when it started.
+
+    A POST_DEADLINE_AUDIT slot that is delayed past midnight UTC still belongs to
+    the previous cycle. Scheduler latency must not silently re-target it at the new
+    day, where it would sit before that day's cutoff and look like a valid attempt.
+    """
+    n = now()
+    cut = datetime.combine(n.date(), datetime.min.time(), timezone.utc).replace(
+        hour=16, minute=47)
+    if role() == "POST_DEADLINE_AUDIT" and n < cut:
+        return n.date() - timedelta(days=1)      # delayed past midnight; prior cycle
+    return n.date()
+
+
 def path_for(d):
     return LOGS / f"{d.isoformat()}.json"
 
@@ -95,7 +117,7 @@ def expected_at(stage, d):
 
 
 def mark(stage, status="ok", detail="", d=None):
-    d = d or now().date()
+    d = d or target_execution_date()
     log = load(d)
     ev = {"stage": stage, "status": status, "detail": detail,
           "recorded_at_utc": now().isoformat(),
@@ -170,7 +192,7 @@ def reconcile_t1(exec_date):
 
 
 def audit(d=None):
-    d = d or now().date()
+    d = d or target_execution_date()
     log = load(d)
     seen = stages_seen(log)
     failures = []
@@ -297,7 +319,12 @@ def audit(d=None):
 
     purpose = os.environ.get("HEARTBEAT_PURPOSE", "test").strip().lower()
     log["declared_purpose"] = purpose
-    if trigger == "workflow_dispatch":
+    # A role without signal authority can never yield a canonical observation,
+    # whatever the clock says.
+    if role() not in SIGNAL_ROLES and trigger == "schedule":
+        classification = "MISSED_OBSERVATION_OPERATIONAL_FAILURE" if not locked_in_time \
+            else "POST_HOC_RECONSTRUCTION"
+    elif trigger == "workflow_dispatch":
         if locked_in_time:
             classification = "CAUSAL_MANUAL_OBSERVATION"
         else:
@@ -307,9 +334,10 @@ def audit(d=None):
                               else "MANUAL_TEST_RUN")
     elif not locked_in_time:
         classification = "MISSED_OBSERVATION_OPERATIONAL_FAILURE"
-    elif automatic and started_at is not None and started_at <= on_time_by:
+    elif automatic and role() in SIGNAL_ROLES and started_at is not None \
+            and started_at <= on_time_by:
         classification = "CANONICAL_AUTOMATIC_ON_TIME"
-    elif automatic:
+    elif automatic and role() in SIGNAL_ROLES:
         classification = "CANONICAL_AUTOMATIC_LATE_WITHIN_GRACE"
     else:
         classification = "CAUSAL_MANUAL_OBSERVATION"
@@ -328,6 +356,11 @@ def audit(d=None):
     log["primary_trigger_fired"] = any(
         e.get("trigger_role") == "PRIMARY" and e.get("stage") == "SIGNAL_JOB_STARTED"
         for e in log["events"])
+    log["actual_started_at_utc"] = now().isoformat()
+    log["actual_run_date"] = now().date().isoformat()
+    log["target_execution_date"] = d.isoformat()
+    log["scheduled_slot"] = os.environ.get("HEARTBEAT_SLOT", "")
+    log["role_has_signal_authority"] = role() in SIGNAL_ROLES
     log["trigger"] = trigger or "unknown"
     log["validity_classification"] = classification
     # Only an AUTOMATIC, in-time lock counts toward the official prospective sample.
@@ -362,7 +395,12 @@ def may_lock():
     """Registry §8: a run starting after the 18:05 UTC hard deadline may NOT create a
     new canonical signal. Later crons are RECOVERY/AUDIT triggers only.
     Exit 0 = signal creation permitted. Exit 1 = recovery mode, do not create."""
-    d = now().date()
+    # §4/§5: ROLE grants authority; TIME only restricts it further.
+    if role() not in SIGNAL_ROLES:
+        print(f"[gate] trigger_role={role()} has no canonical signal authority. "
+              f"Audit/recovery only - signal creation blocked regardless of clock.")
+        return 1
+    d = target_execution_date()
     already = (SIG / f"{d.isoformat()}.json").exists()
     hard = datetime.combine(d, datetime.min.time(), timezone.utc).replace(
         hour=HARD_DEADLINE[0], minute=HARD_DEADLINE[1])
@@ -527,6 +565,15 @@ def sweep():
             save(d, log)
             missed.append(d.isoformat())
         d += timedelta(days=1)
+    # Any reclassification here invalidates counts computed earlier in this run.
+    for p in LOGS.glob("*.json"):
+        try:
+            lg = json.loads(p.read_text())
+        except Exception:
+            continue
+        if lg.get("canonical_automatic_prospective_observations") is not None:
+            lg["canonical_automatic_prospective_observations"] = canonical_count()
+            p.write_text(json.dumps(lg, indent=2))
     print(f"[sweep] {start} -> {end}: {len(missed)} missed observation(s)")
     for m in missed:
         print(f"  MISSED  {m}")
