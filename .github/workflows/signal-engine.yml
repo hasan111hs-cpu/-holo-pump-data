@@ -28,6 +28,7 @@ env:
   HEARTBEAT_TRIGGER: ${{ github.event_name }}
   HEARTBEAT_PURPOSE: ${{ github.event.inputs.purpose || 'scheduled' }}
   # §5 which scheduler slot this run represents
+  HEARTBEAT_SLOT: ${{ github.event.schedule || 'manual' }}
   HEARTBEAT_ROLE: >-
     ${{ github.event_name == 'workflow_dispatch' && 'MANUAL'
      || github.event.schedule == '50 16 * * *' && 'PRIMARY'
@@ -105,7 +106,16 @@ jobs:
               exit 1
             fi
           fi
-          python heartbeat.py mark SIGNAL_LOCKED ok "artifact durably persisted to origin/main"
+          # SIGNAL_LOCKED may only be asserted if a signal record actually exists.
+          # signal.py declines to write one before the cutoff or when a record is
+          # already present, and "nothing to commit" must never imply a lock.
+          TODAY=$(date -u +%Y-%m-%d)
+          if [ -f "signals/$TODAY.json" ]; then
+            python heartbeat.py mark SIGNAL_LOCKED ok "artifact durably persisted to origin/main"
+          else
+            echo "no signal record for $TODAY - SIGNAL_LOCKED not asserted"
+            python heartbeat.py mark SIGNAL_LOCKED failed "no signal record written for this execution date"
+          fi
 
       # §6 quarantine any signal lacking a valid pre-deadline durable lock BEFORE
       # execute.py runs. execute.py will then skip it via its own immutability guard.
