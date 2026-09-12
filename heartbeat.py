@@ -53,7 +53,11 @@ def now():
     return datetime.now(timezone.utc)
 
 
-SIGNAL_ROLES = {"PRIMARY", "RECOVERY"}
+# Roles carrying canonical signal authority. EXTERNAL roles are granted by the
+# workflow ONLY after verifying github.actor against the approved machine identity,
+# so their presence here already implies authentication.
+SIGNAL_ROLES = {"PRIMARY", "RECOVERY", "PRIMARY_EXTERNAL", "RECOVERY_EXTERNAL"}
+AUTOMATIC_ROLES = SIGNAL_ROLES
 
 
 def role():
@@ -294,7 +298,10 @@ def audit(d=None):
                          "detected_at_utc": now().isoformat()})
 
     trigger = os.environ.get("HEARTBEAT_TRIGGER", "")
-    automatic = trigger == "schedule"
+    # §1/§3: automation is established by an approved role, which the workflow grants
+    # only after actor verification. Transport (schedule vs workflow_dispatch) is not
+    # the discriminator - human discretion is.
+    automatic = role() in AUTOMATIC_ROLES
 
     on_time_by = datetime.combine(d, datetime.min.time(), timezone.utc).replace(
         hour=ON_TIME_DEADLINE[0], minute=ON_TIME_DEADLINE[1])
@@ -319,50 +326,53 @@ def audit(d=None):
 
     purpose = os.environ.get("HEARTBEAT_PURPOSE", "test").strip().lower()
     log["declared_purpose"] = purpose
+
     # A role without signal authority can never yield a canonical observation,
-    # whatever the clock says.
-    if role() not in SIGNAL_ROLES and trigger == "schedule":
-        classification = "MISSED_OBSERVATION_OPERATIONAL_FAILURE" if not locked_in_time \
-            else "POST_HOC_RECONSTRUCTION"
-    elif trigger == "workflow_dispatch":
-        if locked_in_time:
-            classification = "CAUSAL_MANUAL_OBSERVATION"
+    # whatever the clock or transport says.
+    if not automatic:
+        if trigger == "workflow_dispatch":
+            if locked_in_time:
+                classification = "CAUSAL_MANUAL_OBSERVATION"
+            else:
+                classification = ("POST_HOC_RECONSTRUCTION" if purpose == "reconstruction"
+                                  else "MANUAL_TEST_RUN")
         else:
-            # §1: after the hard deadline, purpose decides. An infrastructure test is
-            # not the same as an attempt to recover the missed trading decision.
-            classification = ("POST_HOC_RECONSTRUCTION" if purpose == "reconstruction"
-                              else "MANUAL_TEST_RUN")
+            classification = ("POST_HOC_RECONSTRUCTION" if locked_in_time
+                              else "MISSED_OBSERVATION_OPERATIONAL_FAILURE")
     elif not locked_in_time:
         classification = "MISSED_OBSERVATION_OPERATIONAL_FAILURE"
-    elif automatic and role() in SIGNAL_ROLES and started_at is not None \
-            and started_at <= on_time_by:
+    elif started_at is not None and started_at <= on_time_by:
         classification = "CANONICAL_AUTOMATIC_ON_TIME"
-    elif automatic and role() in SIGNAL_ROLES:
-        classification = "CANONICAL_AUTOMATIC_LATE_WITHIN_GRACE"
     else:
-        classification = "CAUSAL_MANUAL_OBSERVATION"
+        classification = "CANONICAL_AUTOMATIC_LATE_WITHIN_GRACE"
 
-    # §5 which scheduler slot ran, and which one actually created the canonical lock
-    log["trigger_role"] = os.environ.get("HEARTBEAT_ROLE", "UNKNOWN")
+    # §7 primary/recovery attribution
+    roles_seen = {e.get("trigger_role") for e in log["events"]}
+    log["primary_external_failure"] = (
+        role() == "RECOVERY_EXTERNAL" and "PRIMARY_EXTERNAL" not in roles_seen)
+    log["recovery_external_success"] = (
+        role() == "RECOVERY_EXTERNAL" and classification.startswith("CANONICAL"))
+
+    log["actual_started_at_utc"] = now().isoformat()
+    log["actual_run_date"] = now().date().isoformat()
+    log["target_execution_date"] = d.isoformat()
+    log["scheduled_slot"] = os.environ.get("HEARTBEAT_SLOT", "")
+    log["trigger_role"] = role()
+    log["role_has_signal_authority"] = role() in SIGNAL_ROLES
+    log["trigger"] = trigger or "unknown"
     lock_events = [e for e in log["events"]
                    if e.get("stage") == "SIGNAL_LOCKED" and e.get("status") == "ok"]
     creator = None
     for e in lock_events:
         if "durably persisted" in (e.get("detail") or ""):
-            creator = e.get("trigger_role")
-            break
+            creator = e.get("trigger_role"); break
     log["canonical_lock_created_by"] = creator or (
         lock_events[0].get("trigger_role") if lock_events else None)
     log["primary_trigger_fired"] = any(
-        e.get("trigger_role") == "PRIMARY" and e.get("stage") == "SIGNAL_JOB_STARTED"
-        for e in log["events"])
-    log["actual_started_at_utc"] = now().isoformat()
-    log["actual_run_date"] = now().date().isoformat()
-    log["target_execution_date"] = d.isoformat()
-    log["scheduled_slot"] = os.environ.get("HEARTBEAT_SLOT", "")
-    log["role_has_signal_authority"] = role() in SIGNAL_ROLES
-    log["trigger"] = trigger or "unknown"
+        e.get("trigger_role") in ("PRIMARY", "PRIMARY_EXTERNAL")
+        and e.get("stage") == "SIGNAL_JOB_STARTED" for e in log["events"])
     log["validity_classification"] = classification
+
     # Only an AUTOMATIC, in-time lock counts toward the official prospective sample.
     log["counts_as_prospective_observation"] = classification.startswith("CANONICAL_AUTOMATIC")
     log["timing"] = timing
