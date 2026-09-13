@@ -1,0 +1,66 @@
+name: Extended Historical OOS Research
+
+# EXTENDED_HISTORICAL_RESEARCH / FROZEN_PRE_REGISTERED_TEST
+# Manual, one-shot. Completely separate from the canonical signal pipeline.
+# Writes only to research/extended_historical_validation/.
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type RUN-ONCE to confirm this burns the OOS period"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oos-research
+  cancel-in-progress: false
+
+jobs:
+  oos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Confirm one-shot authorisation
+        run: |
+          if [ "${{ github.event.inputs.confirm }}" != "RUN-ONCE" ]; then
+            echo "Not confirmed. This test may only be run once; the OOS period is burned on inspection."
+            exit 1
+          fi
+
+      - name: Refuse if results already exist
+        run: |
+          if [ -f research/extended_historical_validation/oos_signals.json ]; then
+            echo "OOS results already present. The period is burned. Re-running is prohibited."
+            exit 1
+          fi
+
+      - name: Refresh canonical BTC.D
+        env:
+          NEWHEDGE_TOKEN: ${{ secrets.NEWHEDGE_TOKEN }}
+        run: python newhedge_collector.py || true
+
+      - name: Run pre-registered OOS test
+        run: python research_oos.py
+
+      - name: Commit research artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config pull.rebase true
+          git add research/extended_historical_validation/
+          git diff --cached --quiet && exit 0
+          git commit -m "EXTENDED_HISTORICAL_RESEARCH: pre-registered OOS test, one-shot"
+          for a in 1 2 3 4 5; do
+            git push && exit 0
+            git pull --rebase --autostash origin main || true
+            sleep $((a * 5))
+          done
+          exit 1
