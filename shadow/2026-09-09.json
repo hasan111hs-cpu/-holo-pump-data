@@ -1,0 +1,195 @@
+{
+  "label": "COUNTERFACTUAL / SHADOW",
+  "execution_date": "2026-09-09",
+  "canonical_locked_state": "NO TRADE",
+  "canonical_reason": "no coin qualifies",
+  "btc_hard_gate_pass": true,
+  "btc_ret": 0.0035313953183249147,
+  "btc_mom3": -0.007313072668666765,
+  "btc_rng3": 0.01734190980966836,
+  "generated_at_utc": "2026-09-13T21:37:37.108632+00:00",
+  "canonical_capital_effect": "none",
+  "note": "Research only. Qualification read from the immutable signal artifact; execution mechanics reconstructed from later authoritative 1m data. Never promoted to canonical history.",
+  "coins": {
+    "HOLO": {
+      "qualified": false,
+      "failed_gates": [
+        "clv",
+        "taker",
+        "mom3",
+        "dfh"
+      ],
+      "metrics": {
+        "ret": 0.007656967840734996,
+        "clv": 0.4791666666666661,
+        "vol_ratio": 105.4811517378763,
+        "taker": 0.3001896191528599,
+        "mom1": -0.007541478129713397,
+        "mom3": -0.007541478129713397,
+        "dfh": 0.03660322108345538,
+        "rs": 0.004125572522410081
+      },
+      "distance_from_failed_thresholds": {
+        "clv": {
+          "value": 0.4791666666666661,
+          "threshold": "CLV >= 0.50",
+          "bound": "min",
+          "limit": 0.5,
+          "distance": -0.02083333
+        },
+        "taker": {
+          "value": 0.3001896191528599,
+          "threshold": "taker-buy ratio >= 47%",
+          "bound": "min",
+          "limit": 0.47,
+          "distance": -0.16981038
+        },
+        "mom3": {
+          "value": -0.007541478129713397,
+          "threshold": "3h momentum >= -0.50%",
+          "bound": "min",
+          "limit": -0.005,
+          "distance": -0.00254148
+        },
+        "dfh": {
+          "value": 0.03660322108345538,
+          "threshold": "distance from high <= 2.5%",
+          "bound": "max",
+          "limit": 0.025,
+          "distance": 0.01160322
+        }
+      },
+      "btc_stress_multiplier": 0.5,
+      "rs_multiplier": 1.15,
+      "btcd_multiplier": 1.15,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 3.30625,
+        "A1": 0.991875,
+        "B1": 0.826562
+      },
+      "counterfactual_execution": {
+        "R1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-09T20:28:00+00:00",
+          "entry_px": 0.0653,
+          "exit_ts": "2026-09-09T22:08:00+00:00",
+          "exit_px": 0.0643205,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.06501,
+          "reclaim_threshold": 0.06514001999999999,
+          "hypothetical_net_return": -0.05620625,
+          "hypothetical_exposure": 3.30625
+        },
+        "A1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-09T21:16:00+00:00",
+          "entry_px": 0.0655,
+          "exit_ts": "2026-09-09T22:05:00+00:00",
+          "exit_px": 0.06471400000000001,
+          "exit_reason": "SL",
+          "gross_return": -0.012,
+          "flush_threshold": 0.06534000000000001,
+          "reclaim_threshold": 0.06540534,
+          "hypothetical_net_return": -0.01388625,
+          "hypothetical_exposure": 0.991875
+        },
+        "B1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-09T21:16:00+00:00",
+          "entry_px": 0.0655,
+          "exit_ts": "2026-09-09T22:08:00+00:00",
+          "exit_px": 0.0645175,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.06534000000000001,
+          "reclaim_threshold": 0.06547068,
+          "hypothetical_net_return": -0.01405155,
+          "hypothetical_exposure": 0.826562
+        }
+      }
+    },
+    "PUMP": {
+      "qualified": false,
+      "failed_gates": [
+        "ret"
+      ],
+      "metrics": {
+        "ret": 0.08945686900958472,
+        "clv": 0.9524680073126143,
+        "vol_ratio": 1.0161148030501335,
+        "taker": 0.5316337061523345,
+        "mom1": 0.04349726775956264,
+        "mom3": 0.03535024940359999,
+        "dfh": 0.005416666666666663,
+        "rs": 0.0859254736912598
+      },
+      "distance_from_failed_thresholds": {
+        "ret": {
+          "value": 0.08945686900958472,
+          "threshold": "partial-day return in [0%, +6%]",
+          "bound": "max",
+          "limit": 0.06,
+          "distance": 0.02945687
+        }
+      },
+      "btc_stress_multiplier": 0.5,
+      "rs_multiplier": 0.75,
+      "btcd_multiplier": 1.15,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 2.15625,
+        "A1": 0.646875,
+        "B1": 0.539062
+      },
+      "counterfactual_execution": {
+        "R1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-09T19:45:00+00:00",
+          "entry_px": 0.004762,
+          "exit_ts": "2026-09-09T19:47:00+00:00",
+          "exit_px": 0.00469057,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.004679735,
+          "reclaim_threshold": 0.00468909447,
+          "hypothetical_net_return": -0.03665625,
+          "hypothetical_exposure": 2.15625
+        },
+        "A1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-09T18:55:00+00:00",
+          "entry_px": 0.004741,
+          "exit_ts": "2026-09-09T19:02:00+00:00",
+          "exit_px": 0.004684108,
+          "exit_reason": "SL",
+          "gross_return": -0.012,
+          "flush_threshold": 0.00470349,
+          "reclaim_threshold": 0.00470819349,
+          "hypothetical_net_return": -0.00905625,
+          "hypothetical_exposure": 0.646875
+        },
+        "B1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-09T18:55:00+00:00",
+          "entry_px": 0.004741,
+          "exit_ts": "2026-09-09T19:07:00+00:00",
+          "exit_px": 0.004669885,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.00470349,
+          "reclaim_threshold": 0.004712896980000001,
+          "hypothetical_net_return": -0.00916405,
+          "hypothetical_exposure": 0.539062
+        }
+      }
+    }
+  }
+}

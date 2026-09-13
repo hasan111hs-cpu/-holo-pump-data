@@ -1,0 +1,228 @@
+{
+  "label": "COUNTERFACTUAL / SHADOW",
+  "execution_date": "2026-09-10",
+  "canonical_locked_state": "NO TRADE",
+  "canonical_reason": "no coin qualifies",
+  "btc_hard_gate_pass": false,
+  "btc_ret": -0.020285112216918755,
+  "btc_mom3": 0.0018592898091889243,
+  "btc_rng3": 0.008072261971520217,
+  "generated_at_utc": "2026-09-13T21:37:40.229046+00:00",
+  "canonical_capital_effect": "none",
+  "note": "Research only. Qualification read from the immutable signal artifact; execution mechanics reconstructed from later authoritative 1m data. Never promoted to canonical history.",
+  "coins": {
+    "HOLO": {
+      "qualified": false,
+      "failed_gates": [
+        "ret",
+        "clv",
+        "taker",
+        "dfh"
+      ],
+      "metrics": {
+        "ret": -0.06959152798789725,
+        "clv": 0.1896551724137928,
+        "vol_ratio": 64.01256439638779,
+        "taker": 0.3696359787612604,
+        "mom1": 0.0016286644951140072,
+        "mom3": -0.0016233766233766378,
+        "dfh": 0.07099697885196368,
+        "rs": -0.049306415770978496
+      },
+      "distance_from_failed_thresholds": {
+        "ret": {
+          "value": -0.06959152798789725,
+          "threshold": "partial-day return in [0%, +6%]",
+          "bound": "min",
+          "limit": 0.0,
+          "distance": -0.06959153
+        },
+        "clv": {
+          "value": 0.1896551724137928,
+          "threshold": "CLV >= 0.50",
+          "bound": "min",
+          "limit": 0.5,
+          "distance": -0.31034483
+        },
+        "taker": {
+          "value": 0.3696359787612604,
+          "threshold": "taker-buy ratio >= 47%",
+          "bound": "min",
+          "limit": 0.47,
+          "distance": -0.10036402
+        },
+        "dfh": {
+          "value": 0.07099697885196368,
+          "threshold": "distance from high <= 2.5%",
+          "bound": "max",
+          "limit": 0.025,
+          "distance": 0.04599698
+        }
+      },
+      "btc_stress_multiplier": 1.0,
+      "rs_multiplier": 1.0,
+      "btcd_multiplier": 1.0,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 5.0,
+        "A1": 1.5,
+        "B1": 1.25
+      },
+      "counterfactual_execution": {
+        "R1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-11T03:19:00+00:00",
+          "entry_px": 0.0609,
+          "exit_ts": "2026-09-11T10:27:00+00:00",
+          "exit_px": 0.059986500000000005,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.060774499999999995,
+          "reclaim_threshold": 0.060896048999999994,
+          "hypothetical_net_return": -0.085,
+          "hypothetical_exposure": 5.0
+        },
+        "A1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-10T23:17:00+00:00",
+          "entry_px": 0.0612,
+          "exit_ts": "2026-09-11T02:53:00+00:00",
+          "exit_px": 0.060465599999999994,
+          "exit_reason": "SL",
+          "gross_return": -0.012,
+          "flush_threshold": 0.061083,
+          "reclaim_threshold": 0.061144082999999995,
+          "hypothetical_net_return": -0.021,
+          "hypothetical_exposure": 1.5
+        },
+        "B1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-11T01:39:00+00:00",
+          "entry_px": 0.0613,
+          "exit_ts": "2026-09-11T02:54:00+00:00",
+          "exit_px": 0.0603805,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.061083,
+          "reclaim_threshold": 0.061205166,
+          "hypothetical_net_return": -0.02125,
+          "hypothetical_exposure": 1.25
+        }
+      }
+    },
+    "PUMP": {
+      "qualified": false,
+      "failed_gates": [
+        "ret",
+        "clv",
+        "taker",
+        "mom3",
+        "dfh"
+      ],
+      "metrics": {
+        "ret": -0.18851251840942562,
+        "clv": 0.07254361799816354,
+        "vol_ratio": 1.3078463244150824,
+        "taker": 0.46231079759572175,
+        "mom1": 0.0039042165538782925,
+        "mom3": -0.013050153531217967,
+        "dfh": 0.20752003287446058,
+        "rs": -0.16822740619250687
+      },
+      "distance_from_failed_thresholds": {
+        "ret": {
+          "value": -0.18851251840942562,
+          "threshold": "partial-day return in [0%, +6%]",
+          "bound": "min",
+          "limit": 0.0,
+          "distance": -0.18851252
+        },
+        "clv": {
+          "value": 0.07254361799816354,
+          "threshold": "CLV >= 0.50",
+          "bound": "min",
+          "limit": 0.5,
+          "distance": -0.42745638
+        },
+        "taker": {
+          "value": 0.46231079759572175,
+          "threshold": "taker-buy ratio >= 47%",
+          "bound": "min",
+          "limit": 0.47,
+          "distance": -0.0076892
+        },
+        "mom3": {
+          "value": -0.013050153531217967,
+          "threshold": "3h momentum >= -0.50%",
+          "bound": "min",
+          "limit": -0.005,
+          "distance": -0.00805015
+        },
+        "dfh": {
+          "value": 0.20752003287446058,
+          "threshold": "distance from high <= 2.5%",
+          "bound": "max",
+          "limit": 0.025,
+          "distance": 0.18252003
+        }
+      },
+      "btc_stress_multiplier": 1.0,
+      "rs_multiplier": 1.0,
+      "btcd_multiplier": 1.0,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 5.0,
+        "A1": 1.5,
+        "B1": 1.25
+      },
+      "counterfactual_execution": {
+        "R1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-10T18:19:00+00:00",
+          "entry_px": 0.003798,
+          "exit_ts": "2026-09-10T22:52:00+00:00",
+          "exit_px": 0.0037410300000000002,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.003787325,
+          "reclaim_threshold": 0.00379489965,
+          "hypothetical_net_return": -0.085,
+          "hypothetical_exposure": 5.0
+        },
+        "A1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-10T18:14:00+00:00",
+          "entry_px": 0.003811,
+          "exit_ts": "2026-09-10T21:07:00+00:00",
+          "exit_px": 0.003811,
+          "exit_reason": "TP1+BE",
+          "gross_return": 0.0125,
+          "flush_threshold": 0.0038065499999999997,
+          "reclaim_threshold": 0.003810356549999999,
+          "hypothetical_net_return": 0.01575,
+          "hypothetical_exposure": 1.5
+        },
+        "B1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-10T18:15:00+00:00",
+          "entry_px": 0.003818,
+          "exit_ts": "2026-09-10T22:51:00+00:00",
+          "exit_px": 0.0037607300000000003,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.0038065499999999997,
+          "reclaim_threshold": 0.0038141631,
+          "hypothetical_net_return": -0.02125,
+          "hypothetical_exposure": 1.25
+        }
+      }
+    }
+  },
+  "btc_gated_counterfactual": "BTC hard gate failed; both coins also failed qualification independently"
+}
