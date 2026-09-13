@@ -3,7 +3,7 @@ CANONICAL R1 / A1 / B1 SIGNAL ENGINE — frozen per the Convention Registry.
 Runs once daily after 16:47 UTC. Writes one immutable record to signals/<date>.json.
 
 Reads only:  data/HOLOUSDT-1m.json, data/PUMPUSDT-1m.json,
-             data/BTCUSDT-1m.json, data/BTC-D.json
+             data/BTCUSDT-1m.json, data/BTCD-NEWHEDGE.json (canonical BTC.D)
 
 NEVER modify a record after it is written. NEVER change a threshold here.
 """
@@ -83,13 +83,23 @@ def metrics(bars, group_day):
 
 
 def btcd_daily():
-    """Provisional: last snapshot within each UTC calendar day."""
-    with (DATA / "BTC-D.json").open() as f:
-        snaps = json.load(f)
+    """CANONICAL BTC.D: Newhedge day-1 observations, stamped 00:00:00 UTC.
+
+    Registry: Newhedge is the provider underlying the Round-9 historical series
+    (184/184 exact on verification). CoinGecko was empirically disproven as an
+    equivalent implementation (42.9% multiplier agreement) and is NON_CANONICAL_
+    REFERENCE only. There is NO fallback: if the canonical observations are absent
+    or malformed, this raises and the day becomes NO TRADE - DATA.
+    """
+    with (DATA / "BTCD-NEWHEDGE.json").open() as f:
+        store = json.load(f)
+    if str(store.get("provider", "")).upper() != "NEWHEDGE":
+        raise ValueError(f"canonical BTC.D provider is {store.get('provider')!r}, expected NEWHEDGE")
     out = {}
-    for s in sorted(snaps, key=lambda x: x["source_updated_at_unix"]):
-        d = datetime.fromtimestamp(s["source_updated_at_unix"], tz=timezone.utc).date()
-        out[d] = float(s["btc_dominance_pct"])
+    for iso, val in (store.get("observations") or {}).items():
+        out[date.fromisoformat(iso)] = float(val)
+    if not out:
+        raise ValueError("canonical BTC.D store contains no observations")
     return out
 
 
@@ -116,7 +126,8 @@ def main():
     rec = {"execution_date": exec_date.isoformat(), "signal_group": group.isoformat(),
            "generated_at_utc": now.isoformat(), "lock_time_utc": cutoff.isoformat(),
            "convention_label": "CANONICAL FORWARD OBSERVATION",
-           "btcd_convention": "PROVISIONAL last-snapshot-in-UTC-day" if BTCD_PROVISIONAL else "frozen",
+           "btcd_convention": "CANONICAL_NEWHEDGE_DAILY",
+           "btcd_provider": "NEWHEDGE",
            "data_audit": {}}
 
     if now < cutoff:
@@ -203,6 +214,10 @@ def main():
 
     rec.update(locked_state=sym, reason="", stress=stress, rs_mult=rsm,
                btcd_mult=dm, btcd_d1=d1, btcd_d2=d2,
+               btcd_provider="NEWHEDGE", btcd_convention="CANONICAL_NEWHEDGE_DAILY",
+               btcd_d_minus_1_date=str(exec_date - timedelta(days=1)), btcd_d_minus_1=d1,
+               btcd_d_minus_2_date=str(exec_date - timedelta(days=2)), btcd_d_minus_2=d2,
+               btcd_direction="DOWN" if d1 < d2 else "UP_OR_FLAT", btcd_multiplier=dm,
                r1_exposure=min(5.00 * stress * rsm * dm, 5.00),
                a1_exposure=min(1.50 * stress * rsm * dm, 1.75),
                b1_exposure=min(1.25 * stress * rsm * dm, 1.75),
