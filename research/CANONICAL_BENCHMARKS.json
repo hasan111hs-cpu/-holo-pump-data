@@ -1,0 +1,33 @@
+{
+  "purpose": "Single source of truth for strategy benchmark figures. INFORMATIONAL ONLY - must never participate in trading logic.",
+  "last_updated_utc": "2026-09-13",
+  "current": {
+    "status": "CURRENT_PROVISIONAL",
+    "methodology_version": "round9-plus-entry-candle-causality",
+    "window": "2026-02-01 to 2026-07-31",
+    "btcd_provider": "Newhedge",
+    "date_approved": "2026-09-13",
+    "strategies": {
+      "R1": {"return_pct": 499.6, "note": "19 fills from 33 locks"},
+      "A1": {"return_pct": 36.9, "note": "25 fills"},
+      "B1": {"return_pct": 37.1, "note": "25 fills"}
+    },
+    "caveat": "PROVISIONAL pending independent execution reverification under the entry-candle fix."
+  },
+  "retired": [
+    {
+      "status": "RETIRED - DO NOT USE",
+      "methodology_version": "round9",
+      "strategies": {
+        "R1": {"return_pct": 334.8, "final_capital_usd": 43483.29},
+        "A1": {"return_pct": 26.2},
+        "B1": {"return_pct": 28.5}
+      },
+      "superseded_by": "round9-plus-entry-candle-causality",
+      "reason": "Entry-candle causality defect: the entry candle's high and low predate the position and must not be used for exit evaluation. Corrected evaluation begins with the next candle.",
+      "date_retired": "2026-09-11",
+      "resurfaced_count": 3,
+      "note": "These figures have re-entered rulings three times after retirement. This artifact exists to stop that recurring."
+    }
+  ]
+}
