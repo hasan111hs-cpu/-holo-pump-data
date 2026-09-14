@@ -50,6 +50,9 @@ jobs:
       - name: Run pre-registered OOS test
         run: python research_oos.py
 
+      - name: Apply pre-registered verdict
+        run: python analyse_oos.py
+
       - name: Commit research artifacts
         run: |
           git config user.name "github-actions[bot]"
