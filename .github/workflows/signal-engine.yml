@@ -179,6 +179,7 @@ jobs:
           python heartbeat.py audit
           python heartbeat.py sweep
           python heartbeat.py annotate
+          python heartbeat.py repair
 
       # AUXILIARY persistence: never allowed to fail the run or block canonical commit
       - name: Shadow table (research only)
@@ -193,7 +194,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config pull.rebase true
-          git add data/BTC-D.json data/BTCD-NEWHEDGE.json signals/ executions/ ledgers/ operational_logs/ shadow/
+          git add data/BTC-D.json data/BTCD-NEWHEDGE.json signals/ executions/ ledgers/ operational_logs/ shadow/ research/
           if git diff --cached --quiet; then
             echo "Nothing further to commit"; exit 0
           fi
