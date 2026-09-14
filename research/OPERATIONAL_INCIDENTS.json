@@ -1,0 +1,28 @@
+{
+  "purpose": "Permanent record of operational defects affecting canonical state. INFORMATIONAL ONLY - must never participate in trading logic.",
+  "incidents": [
+    {
+      "incident_id": "INC-2026-09-14-001",
+      "title": "CANONICAL_CLASSIFICATION_MUTATION_BY_POST_DEADLINE_AUDIT",
+      "severity": "HIGH - PROSPECTIVE SAMPLE INTEGRITY",
+      "status": "REMEDIATED",
+      "discovered_utc": "2026-09-14",
+      "affected_execution_date": "2026-09-13",
+      "affected_component": "heartbeat.py audit()",
+      "root_cause": [
+        "audit() was non-idempotent: a later diagnostic run replaced an already-settled canonical classification using its own trigger_role, which has no signal authority.",
+        "Timing attribution selected the most recent SIGNAL_JOB_STARTED rather than the one belonging to the role that created the durable canonical lock, producing a false 464.7-minute lateness."
+      ],
+      "impact": "Observation #1 (2026-09-13) was silently downgraded from CANONICAL_AUTOMATIC_ON_TIME to POST_HOC_RECONSTRUCTION with counts_as_prospective_observation set false. The prospective sample under-reported by one. No signal artifact, execution, ledger entry or capital value was altered.",
+      "detection_mechanism": "Disagreement between the independently derived canonical prospective count and the expected canonical observation history. The derived count read 1 where 2 was expected. A manually maintained counter would have agreed with itself and concealed the defect.",
+      "corrective_patch": [
+        "Canonical automatic classifications are immutable: no later run may downgrade a settled CANONICAL_AUTOMATIC_* observation. Re-audits are recorded as metadata only.",
+        "lock_creating_start() attributes timing to the run that durably persisted the lock.",
+        "CANONICAL_INTEGRITY_INCIDENT path: immutability does not conceal a genuine contradiction (absent artifact, unauthorised lock creator, lock after the activation deadline). Automatic mutation stops and explicit review is required."
+      ],
+      "regression_test": "Reproduces the exact sequence: PRIMARY_EXTERNAL creates a valid canonical lock, a later POST_DEADLINE_AUDIT targets the same execution date, classification and prospective flag remain unchanged, later run recorded only as re-audit metadata.",
+      "historical_remediation": "CANONICAL_METADATA_CORRECTION, append-only. Corrupted values preserved in the log's corrections[] array rather than erased. No trade, execution, ledger entry or capital change created.",
+      "architectural_lesson": "An observability component with unrestricted write authority over the artifacts it audits can destroy the records it exists to verify. The prohibition in force forbade promoting a reconstruction to canonical; nothing forbade the reverse, because that direction had not been anticipated. Recorded for future design; no redesign undertaken during the reliability window."
+    }
+  ]
+}
