@@ -336,6 +336,31 @@ def audit(d=None):
     # otherwise judge the day by its own start time and destroy the observation.
     prior = str(log.get("validity_classification") or "")
     if prior.startswith("CANONICAL_AUTOMATIC") and log.get("counts_as_prospective_observation"):
+        # §9: routine audit cannot downgrade canonical history, but a genuine
+        # contradiction must not be hidden by the immutability flag either.
+        contradictions = []
+        if not (SIG / f"{d.isoformat()}.json").exists():
+            contradictions.append("signal artifact absent")
+        creator_ev = lock_creating_start(log)
+        if creator_ev is None:
+            contradictions.append("no durable SIGNAL_LOCKED from an authorised role")
+        elif creator_ev.get("trigger_role") not in SIGNAL_ROLES:
+            contradictions.append(f"lock created by unauthorised role "
+                                  f"{creator_ev.get('trigger_role')}")
+        lk = seen.get("SIGNAL_LOCKED")
+        if lk and datetime.fromisoformat(ts_of(lk)) >= hard_by:
+            contradictions.append("lock persisted after the 18:05 activation deadline")
+        if contradictions:
+            log["canonical_integrity_incident"] = {
+                "detected_at_utc": now().isoformat(),
+                "detected_by_role": role(),
+                "contradictions": contradictions,
+                "action": "AUTOMATIC MUTATION STOPPED - explicit review required",
+            }
+            save(d, log)
+            print(f"[heartbeat audit] {d}: CANONICAL_INTEGRITY_INCIDENT - {contradictions}")
+            print("  Automatic mutation stopped. Demotion requires explicit ruling.")
+            return log
         log["canonical_automatic_prospective_observations"] = canonical_count()
         log["last_reaudit_utc"] = now().isoformat()
         log["reaudit_note"] = (f"Classification {prior} is immutable. Re-audit by "
@@ -581,6 +606,72 @@ def lock_creating_start(log):
     return None
 
 
+INCIDENTS = Path("research/OPERATIONAL_INCIDENTS.json")
+
+
+def repair():
+    """Registry ruling 2026-09-14: CANONICAL_METADATA_CORRECTION for 2026-09-13.
+
+    Append-only and idempotent. Restores the authoritative classification without
+    erasing evidence of the corruption. Creates no trade, execution or capital change.
+    """
+    d = date(2026, 9, 13)
+    p = path_for(d)
+    if not p.exists():
+        print("[repair] no log for 2026-09-13 - nothing to correct"); return
+    log = json.loads(p.read_text())
+    if any(c.get("incident_id") == "INC-2026-09-14-001"
+           for c in log.get("corrections", [])):
+        print("[repair] correction already applied - no-op"); return
+    if log.get("validity_classification") == "CANONICAL_AUTOMATIC_ON_TIME":
+        print("[repair] already canonical - no-op"); return
+
+    creator = lock_creating_start(log) or {}
+    lock_ev = next((e for e in log.get("events", [])
+                    if e.get("stage") == "SIGNAL_LOCKED" and e.get("status") == "ok"
+                    and "durably persisted" in (e.get("detail") or "")), {})
+    log.setdefault("corrections", []).append({
+        "incident_id": "INC-2026-09-14-001",
+        "execution_date": d.isoformat(),
+        "correction_type": "CANONICAL_METADATA_CORRECTION",
+        "original_valid_classification": "CANONICAL_AUTOMATIC_ON_TIME",
+        "corrupted_classification": log.get("validity_classification"),
+        "restored_classification": "CANONICAL_AUTOMATIC_ON_TIME",
+        "original_prospective_flag": True,
+        "corrupted_prospective_flag": log.get("counts_as_prospective_observation"),
+        "restored_prospective_flag": True,
+        "lock_creating_trigger_role": creator.get("trigger_role"),
+        "lock_creating_started_at_utc": ts_of(creator) if creator else None,
+        "signal_locked_at_utc": ts_of(lock_ev) if lock_ev else None,
+        "corrupting_trigger_role": "POST_DEADLINE_AUDIT",
+        "corrupting_run_started_at_utc": "2026-09-14T00:31:41.151727+00:00",
+        "corrupted_reported_lateness_minutes": 464.7,
+        "corrupted_timing_basis": "most recent SIGNAL_JOB_STARTED (00:31 audit run)",
+        "root_cause": ("(A) audit() was non-idempotent and allowed a later diagnostic "
+                       "run to replace a settled canonical classification; (B) timing "
+                       "used the most recent SIGNAL_JOB_STARTED rather than the one "
+                       "belonging to the role that created the durable canonical lock."),
+        "corrective_action": ("canonical immutability guard + lock_creating_start() "
+                              "timing attribution + CANONICAL_INTEGRITY_INCIDENT path"),
+        "corrected_at_utc": now().isoformat(),
+        "historical_signal_modified": False,
+        "capital_modified": False,
+        "strategy_modified": False,
+    })
+    log["validity_classification"] = "CANONICAL_AUTOMATIC_ON_TIME"
+    log["counts_as_prospective_observation"] = True
+    log["final_status"] = "OK"
+    log["failures"] = []
+    log["note"] = ("Canonical observation restored by CANONICAL_METADATA_CORRECTION "
+                   "INC-2026-09-14-001. See corrections[] for the corrupted state.")
+    save(d, log)
+    log2 = json.loads(path_for(d).read_text())
+    log2["canonical_automatic_prospective_observations"] = canonical_count()
+    path_for(d).write_text(json.dumps(log2, indent=2))
+    print(f"[repair] 2026-09-13 restored to CANONICAL_AUTOMATIC_ON_TIME")
+    print(f"[repair] derived count recomputed: {canonical_count()}")
+
+
 def sweep():
     """Flag any execution date with no signal record - a missed prospective lock."""
     dates = sorted(p.stem for p in SIG.glob("*.json"))
@@ -644,6 +735,11 @@ if __name__ == "__main__":
         sys.exit(may_lock())
     elif cmd == "verify_locks":
         verify_locks()
+    elif cmd == "repair":
+        try:
+            repair()
+        except Exception as exc:
+            print(f"[repair] WARNING: {exc}")
     elif cmd == "annotate":
         try:
             annotate()
