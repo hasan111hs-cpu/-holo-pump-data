@@ -309,6 +309,10 @@ def audit(d=None):
         hour=HARD_DEADLINE[0], minute=HARD_DEADLINE[1])
 
     start_ev, lock_ev = seen.get("SIGNAL_JOB_STARTED"), seen.get("SIGNAL_LOCKED")
+    # Judge timing against the run that CREATED the durable lock, not whichever job
+    # started most recently. A late POST_DEADLINE_AUDIT must not make an on-time
+    # canonical observation appear hours late.
+    start_ev = lock_creating_start(log) or start_ev
     started_at = datetime.fromisoformat(ts_of(start_ev)) if start_ev else None
     locked_at = datetime.fromisoformat(ts_of(lock_ev)) if lock_ev else None
 
@@ -326,6 +330,20 @@ def audit(d=None):
 
     purpose = os.environ.get("HEARTBEAT_PURPOSE", "test").strip().lower()
     log["declared_purpose"] = purpose
+
+    # IMMUTABILITY: once a day is settled as a canonical automatic observation, no
+    # later run may downgrade it. A POST_DEADLINE_AUDIT re-running the audit would
+    # otherwise judge the day by its own start time and destroy the observation.
+    prior = str(log.get("validity_classification") or "")
+    if prior.startswith("CANONICAL_AUTOMATIC") and log.get("counts_as_prospective_observation"):
+        log["canonical_automatic_prospective_observations"] = canonical_count()
+        log["last_reaudit_utc"] = now().isoformat()
+        log["reaudit_note"] = (f"Classification {prior} is immutable. Re-audit by "
+                               f"trigger_role={role()} recorded but not applied.")
+        save(d, log)
+        print(f"[heartbeat audit] {d}: {prior} PRESERVED (immutable) "
+              f"[re-audit by {role()} ignored]")
+        return log
 
     # A role without signal authority can never yield a canonical observation,
     # whatever the clock or transport says.
@@ -541,6 +559,26 @@ def verify_locks():
     if not quarantined:
         print("[verify_locks] all unsettled signals carry a valid pre-deadline lock")
     return quarantined
+
+
+def lock_creating_start(log):
+    """The SIGNAL_JOB_STARTED belonging to the run that durably persisted the lock.
+
+    Timing must be judged against the run that produced the canonical artifact, not
+    against whichever job happened to start most recently.
+    """
+    creator = None
+    for e in log.get("events", []):
+        if (e.get("stage") == "SIGNAL_LOCKED" and e.get("status") == "ok"
+                and "durably persisted" in (e.get("detail") or "")):
+            creator = e.get("trigger_role")
+            break
+    if creator is None:
+        return None
+    for e in log.get("events", []):
+        if e.get("stage") == "SIGNAL_JOB_STARTED" and e.get("trigger_role") == creator:
+            return e
+    return None
 
 
 def sweep():
