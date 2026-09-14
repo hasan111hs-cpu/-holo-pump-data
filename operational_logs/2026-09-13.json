@@ -316,22 +316,11 @@
       "recorded_at_utc": "2026-09-14T00:35:17.277750+00:00"
     }
   ],
-  "final_status": "OPERATIONAL FAILURE",
-  "validity_classification": "POST_HOC_RECONSTRUCTION",
-  "counts_as_prospective_observation": false,
-  "failures": [
-    {
-      "stage": "SIGNAL_JOB_STARTED",
-      "reason": "started 465min after 2026-09-13T16:47:00+00:00, exceeding 78min grace (scheduler did not fire on time)",
-      "detected_at_utc": "2026-09-14T00:35:12.889180+00:00"
-    },
-    {
-      "stage": "EXECUTION_JOB_STARTED",
-      "reason": "started 390min after 2026-09-13T18:05:00+00:00, exceeding 78min grace (scheduler did not fire on time)",
-      "detected_at_utc": "2026-09-14T00:35:12.889196+00:00"
-    }
-  ],
-  "note": "NOT reconstructed. A missed causal lock is excluded from the prospective sample and is never labelled canonical.",
+  "final_status": "OK",
+  "validity_classification": "CANONICAL_AUTOMATIC_ON_TIME",
+  "counts_as_prospective_observation": true,
+  "failures": [],
+  "note": "Canonical observation restored by CANONICAL_METADATA_CORRECTION INC-2026-09-14-001. See corrections[] for the corrupted state.",
   "t1_reconciliation": {
     "HOLO": {
       "window_group_day": "2026-09-11",
@@ -389,5 +378,31 @@
     }
   },
   "audited_at_utc": "2026-09-14T00:35:17.277861+00:00",
-  "canonical_automatic_prospective_observations": 1
+  "canonical_automatic_prospective_observations": 2,
+  "corrections": [
+    {
+      "incident_id": "INC-2026-09-14-001",
+      "execution_date": "2026-09-13",
+      "correction_type": "CANONICAL_METADATA_CORRECTION",
+      "original_valid_classification": "CANONICAL_AUTOMATIC_ON_TIME",
+      "corrupted_classification": "POST_HOC_RECONSTRUCTION",
+      "restored_classification": "CANONICAL_AUTOMATIC_ON_TIME",
+      "original_prospective_flag": true,
+      "corrupted_prospective_flag": false,
+      "restored_prospective_flag": true,
+      "lock_creating_trigger_role": "PRIMARY_EXTERNAL",
+      "lock_creating_started_at_utc": "2026-09-13T16:48:13.109225+00:00",
+      "signal_locked_at_utc": "2026-09-13T16:51:00.540240+00:00",
+      "corrupting_trigger_role": "POST_DEADLINE_AUDIT",
+      "corrupting_run_started_at_utc": "2026-09-14T00:31:41.151727+00:00",
+      "corrupted_reported_lateness_minutes": 464.7,
+      "corrupted_timing_basis": "most recent SIGNAL_JOB_STARTED (00:31 audit run)",
+      "root_cause": "(A) audit() was non-idempotent and allowed a later diagnostic run to replace a settled canonical classification; (B) timing used the most recent SIGNAL_JOB_STARTED rather than the one belonging to the role that created the durable canonical lock.",
+      "corrective_action": "canonical immutability guard + lock_creating_start() timing attribution + CANONICAL_INTEGRITY_INCIDENT path",
+      "corrected_at_utc": "2026-09-14T22:42:23.846560+00:00",
+      "historical_signal_modified": false,
+      "capital_modified": false,
+      "strategy_modified": false
+    }
+  ]
 }
