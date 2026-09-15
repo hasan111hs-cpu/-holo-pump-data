@@ -1,0 +1,108 @@
+{
+  "window": "2025-09-17..2026-01-31",
+  "label": "EXTENDED_HISTORICAL_RESEARCH",
+  "locks": 23,
+  "no_trade": 114,
+  "no_data": 0,
+  "strategies": {
+    "R1": {
+      "strategy": "R1",
+      "fills": 15,
+      "wins": 5,
+      "losses": 10,
+      "win_rate": 0.3333,
+      "profit_factor": 1.3377,
+      "total_return": 0.117567,
+      "max_drawdown": 0.178636,
+      "largest_win": 0.29,
+      "largest_loss": -0.085,
+      "largest_win_over_gross_profits": 0.3704,
+      "top2_wins_over_gross_profits": 0.5833,
+      "median_trade": -0.0425,
+      "mean_trade": 0.013178,
+      "excl_best_1": -0.133669,
+      "excl_best_2": -0.257484,
+      "excl_best_3": -0.363507,
+      "verdict": "AMBIGUOUS",
+      "verdict_reasons": [
+        "PF 1.338 in [1.0, 1.5) with positive return"
+      ],
+      "holo_contribution": 0.348674,
+      "pump_contribution": -0.151007,
+      "monthly": {
+        "2025-09": 0.205,
+        "2025-10": 0.075375,
+        "2025-12": 0.107373,
+        "2026-01": -0.190081
+      }
+    },
+    "A1": {
+      "strategy": "A1",
+      "fills": 19,
+      "wins": 8,
+      "losses": 11,
+      "win_rate": 0.4211,
+      "profit_factor": 1.6729,
+      "total_return": 0.111383,
+      "max_drawdown": 0.049321,
+      "largest_win": 0.06555,
+      "largest_loss": -0.02415,
+      "largest_win_over_gross_profits": 0.2322,
+      "top2_wins_over_gross_profits": 0.4644,
+      "median_trade": -0.0105,
+      "mean_trade": 0.005977,
+      "excl_best_1": 0.043014,
+      "excl_best_2": -0.02115,
+      "excl_best_3": -0.067212,
+      "verdict": "PASS",
+      "verdict_reasons": [
+        "PF 1.673 >= 1.5",
+        "return +0.1114 > 0",
+        "MDD 0.049 <= 0.2",
+        "concentration passes"
+      ],
+      "holo_contribution": 0.179427,
+      "pump_contribution": -0.065861,
+      "monthly": {
+        "2025-09": 0.02355,
+        "2025-10": -0.013519,
+        "2025-12": 0.052171,
+        "2026-01": 0.051364
+      }
+    },
+    "B1": {
+      "strategy": "B1",
+      "fills": 19,
+      "wins": 9,
+      "losses": 10,
+      "win_rate": 0.4737,
+      "profit_factor": 2.0331,
+      "total_return": 0.158881,
+      "max_drawdown": 0.049898,
+      "largest_win": 0.047438,
+      "largest_loss": -0.024438,
+      "largest_win_over_gross_profits": 0.1561,
+      "top2_wins_over_gross_profits": 0.3121,
+      "median_trade": -0.010625,
+      "mean_trade": 0.00813,
+      "excl_best_1": 0.106396,
+      "excl_best_2": 0.056288,
+      "excl_best_3": 0.00845,
+      "verdict": "PASS",
+      "verdict_reasons": [
+        "PF 2.033 >= 1.5",
+        "return +0.1589 > 0",
+        "MDD 0.050 <= 0.2",
+        "concentration passes"
+      ],
+      "holo_contribution": 0.195798,
+      "pump_contribution": -0.041333,
+      "monthly": {
+        "2025-09": 0.067437,
+        "2025-10": 0.000875,
+        "2025-12": 0.062517,
+        "2026-01": 0.023636
+      }
+    }
+  }
+}
