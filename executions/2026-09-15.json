@@ -1,0 +1,17 @@
+{
+  "execution_date": "2026-09-15",
+  "locked_state": "NO TRADE",
+  "status": "NO POSITION",
+  "settled_at_utc": "2026-09-15T16:51:16.405805+00:00",
+  "strategies": {
+    "R1": {
+      "status": "NO POSITION"
+    },
+    "A1": {
+      "status": "NO POSITION"
+    },
+    "B1": {
+      "status": "NO POSITION"
+    }
+  }
+}
