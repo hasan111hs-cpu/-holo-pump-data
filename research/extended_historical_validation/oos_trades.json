@@ -1,0 +1,416 @@
+[
+  {
+    "execution_date": "2025-09-19",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-09-19",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-09-19",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-09-25",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-09-25",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-09-25",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-09-30",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-09-30",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-09-30",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-02",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-02",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-02",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-04",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-04",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-04",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-11",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-11",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-11",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-12",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-12",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-10-12",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-02",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-02",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-02",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-03",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-03",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-03",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-08",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-08",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-08",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-15",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-15",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-15",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-17",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-17",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-17",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-18",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-18",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-18",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-19",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-19",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-19",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-21",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-21",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-21",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-23",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-23",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2025-12-23",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-03",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-03",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-03",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-11",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-11",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-11",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-12",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-12",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-12",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-13",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-13",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-13",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-16",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-16",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-16",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-22",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-22",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-22",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-29",
+    "strategy": "R1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-29",
+    "strategy": "A1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  },
+  {
+    "execution_date": "2026-01-29",
+    "strategy": "B1",
+    "status": "ENGINE_ERROR",
+    "reason": "too many values to unpack (expected 4)"
+  }
+]
