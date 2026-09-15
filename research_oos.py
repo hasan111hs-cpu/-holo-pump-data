@@ -18,7 +18,6 @@ from datetime import datetime, timezone, timedelta, date
 from pathlib import Path
 from statistics import median
 
-import signal as _sigmod_guard  # noqa - ensure stdlib 'signal' not shadowed accidentally
 sys.path.insert(0, ".")
 import importlib.util
 
@@ -43,8 +42,9 @@ def fetch_klines(symbol, start_ms, end_ms):
     """Binance 1m klines, paged. Research-only retrieval."""
     out, cur = {}, start_ms
     while cur < end_ms:
+        # data-api.binance.vision — the same endpoint the frozen engines use.
+        # api.binance.com returns HTTP 451 from GitHub-hosted runners.
         url = (f"https://data-api.binance.vision/api/v3/klines?symbol={symbol}"
-
                f"&interval=1m&startTime={cur}&endTime={end_ms}&limit=1000")
         for attempt in range(4):
             try:
