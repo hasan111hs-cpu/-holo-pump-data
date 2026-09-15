@@ -83,6 +83,9 @@ def main():
         print(f"[oos] fetching {s} ...")
         bars[s] = fetch_klines(s, start_ms, end_ms)
         print(f"[oos]   {len(bars[s])} bars")
+    exec_bars = {s: {ts: (v[0], v[1], v[2], v[3]) for ts, v in bars[s].items()}
+                 for s in SYMS}
+
 
     dom = SG.btcd_daily()          # canonical Newhedge, frozen loader
     print(f"[oos] BTC.D observations available: {len(dom)}")
@@ -96,7 +99,7 @@ def main():
             sym = "HOLOUSDT" if rec["locked_state"] == "HOLO" else "PUMPUSDT"
             for name in ("R1", "A1", "B1"):
                 try:
-                    r = EX.run_strategy(name, bars[sym], d, rec[f"{name.lower()}_exposure"])
+                    r = EX.run_strategy(name, exec_bars[sym], d, rec[f"{name.lower()}_exposure"])
                     r.update(execution_date=d.isoformat(), strategy=name, coin=rec["locked_state"])
                     trades.append(r)
                 except Exception as exc:
