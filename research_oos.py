@@ -43,7 +43,8 @@ def fetch_klines(symbol, start_ms, end_ms):
     """Binance 1m klines, paged. Research-only retrieval."""
     out, cur = {}, start_ms
     while cur < end_ms:
-        url = (f"https://api.binance.com/api/v3/klines?symbol={symbol}"
+        url = (f"https://data-api.binance.vision/api/v3/klines?symbol={symbol}"
+
                f"&interval=1m&startTime={cur}&endTime={end_ms}&limit=1000")
         for attempt in range(4):
             try:
