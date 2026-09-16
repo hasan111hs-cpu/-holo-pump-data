@@ -1,0 +1,117 @@
+{
+  "label": ["EXTENDED_HISTORICAL_RESEARCH", "FROZEN_PRE_REGISTERED_TEST"],
+  "purpose": "Complete audit record: the pre-registration as it stood before any outcome was observed, the feasibility finding, the aborted runs, and the single authorised result. INFORMATIONAL ONLY - no trading logic reads this.",
+
+  "pre_registration": {
+    "frozen_before_any_outcome_observed": true,
+    "oos_window": "2025-09-17 to 2026-01-31",
+    "development_window": "2026-02-01 to 2026-07-31",
+    "primary_target": "R1",
+    "secondary": ["A1", "B1"],
+    "minimum_fills_for_verdict": 12,
+    "pass_requires_all": {
+      "total_return": "> 0",
+      "profit_factor": ">= 1.50",
+      "max_drawdown": "<= 0.20",
+      "concentration": "passes",
+      "no_implementation_defect": true
+    },
+    "ambiguous_if": [
+      "PF >= 1.00 and < 1.50 with positive return",
+      "max drawdown > 0.20 and <= 0.35",
+      "concentration fails"
+    ],
+    "fail_if_any": ["PF < 1.00", "total return < 0", "max drawdown > 0.35"],
+    "concentration_test": {
+      "largest_win_over_gross_profits": "fail if > 0.40",
+      "top2_wins_over_gross_profits": "fail if > 0.60"
+    },
+    "unfavourable_result_rule": "No repair to R1/A1/B1. Retire or create a separately named version.",
+    "burn_rule": "The OOS dataset is permanently burned once performance is inspected."
+  },
+
+  "feasibility": {
+    "holo_binance_spot_listing": "2025-09-11T12:00:00Z",
+    "pump_binance_spot_listing": "2025-09-11T12:30:00Z",
+    "binding_constraint": "five prior valid matched-volume windows",
+    "first_canonically_testable_execution_date": "2025-09-17",
+    "usable_oos_days": 137,
+    "projected_r1_fills_before_run": 14,
+    "note": "Projection recorded before the run. Actual was 15. The marginal projected sample size was part of the pre-run audit trail."
+  },
+
+  "aborted_runs": [
+    {
+      "attempt": 1,
+      "outcome": "FAILED - no performance computed",
+      "cause": "HTTP 451 from api.binance.com; GitHub-hosted runners are geo-blocked. The frozen engines use data-api.binance.vision.",
+      "performance_inspected": false
+    },
+    {
+      "attempt": 2,
+      "outcome": "FAILED - no performance computed",
+      "cause": "Bar-shape mismatch. signal.py reads 6-tuples carrying quote and taker volume; execute.py unpacks 4-tuples. ENGINE_ERROR on all 69 evaluations.",
+      "performance_inspected": false
+    }
+  ],
+  "one_shot_consumed_by": "attempt 3 - the first outcome-producing run",
+
+  "signal_layer": {
+    "execution_dates_evaluated": 137,
+    "locks": 23,
+    "no_trade": 114,
+    "no_trade_data": 0,
+    "lock_rate_per_day": 0.168,
+    "development_window_lock_rate": 0.181
+  },
+
+  "results": {
+    "R1": {
+      "formal_verdict": "AMBIGUOUS",
+      "verdict_reason": "PF 1.338 in [1.00, 1.50) with positive return",
+      "minimum_fill_requirement": "MET (15 >= 12)",
+      "fills": 15, "wins": 5, "losses": 10, "win_rate": 0.3333,
+      "profit_factor": 1.3377, "total_return": 0.117567, "max_drawdown": 0.178636,
+      "median_trade": -0.0425, "mean_trade": 0.013178,
+      "largest_win": 0.29, "largest_loss": -0.085,
+      "largest_win_over_gross_profits": 0.3704,
+      "top2_wins_over_gross_profits": 0.5833,
+      "concentration_test": "PASSED under the pre-registered thresholds",
+      "excluding_best_1": -0.133669,
+      "excluding_best_2": -0.257484,
+      "excluding_best_3": -0.363507,
+      "holo_contribution": 0.348674, "pump_contribution": -0.151007,
+      "monthly": {"2025-09": 0.205, "2025-10": 0.075375, "2025-12": 0.107373, "2026-01": -0.190081}
+    },
+    "A1": {
+      "formal_verdict": "PASS",
+      "fills": 19, "wins": 8, "losses": 11, "win_rate": 0.4211,
+      "profit_factor": 1.6729, "total_return": 0.111383, "max_drawdown": 0.049321,
+      "largest_win_over_gross_profits": 0.2322, "top2_wins_over_gross_profits": 0.4644,
+      "excluding_best_1": 0.043014, "excluding_best_2": -0.02115, "excluding_best_3": -0.067212,
+      "holo_contribution": 0.179427, "pump_contribution": -0.065861
+    },
+    "B1": {
+      "formal_verdict": "PASS",
+      "fills": 19, "wins": 9, "losses": 10, "win_rate": 0.4737,
+      "profit_factor": 2.0331, "total_return": 0.158881, "max_drawdown": 0.049898,
+      "largest_win_over_gross_profits": 0.1561, "top2_wins_over_gross_profits": 0.3121,
+      "excluding_best_1": 0.106396, "excluding_best_2": 0.056288, "excluding_best_3": 0.00845,
+      "holo_contribution": 0.195798, "pump_contribution": -0.041333
+    }
+  },
+
+  "research_notes": [
+    "R1 passed the pre-registered gross-profit concentration thresholds but failed a stronger descriptive robustness diagnostic: removal of its single best trade changed OOS return from positive to negative.",
+    "The pre-registered concentration criterion measured against gross profits (winners only). With 10 losses against 5 wins, the losses consume most of that gross profit, so a winner at 37% of gross profits was still the entire net result. This limitation is preserved, not corrected retrospectively.",
+    "PUMP contributed negatively across all three strategies in this window. Recorded descriptively. No coin-selection change authorised; optimising on the burned dataset is prohibited.",
+    "In-sample versus OOS divergence: R1 development +499.6% vs OOS +11.76% AMBIGUOUS; A1 +36.9% vs +11.14% PASS; B1 +37.1% vs +15.89% PASS. The development ranking inverted. Development and OOS returns must never be combined into a single validation metric."
+  ],
+
+  "burned_data_declaration": {
+    "window": "2025-09-17 to 2026-01-31",
+    "status": "PERMANENTLY BURNED",
+    "effective_from": "2026-09-16",
+    "meaning": "This period must never again be described as unseen or out-of-sample for any strategy version developed after these results became visible. For any future R2/A2/B2 or other post-dated strategy, it is known historical data."
+  }
+}
