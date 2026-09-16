@@ -426,6 +426,7 @@ def audit(d=None):
     # Derived count must be recomputed AFTER this day's classification is on disk,
     # otherwise today's own observation is missing from its own total.
     log["canonical_automatic_prospective_observations"] = canonical_count()
+    log["current_spec_newhedge_observations"] = current_spec_count()
     save(d, log)
 
     print(f"\n[heartbeat audit] {d}: {log['final_status']}  "
@@ -672,6 +673,60 @@ def repair():
     print(f"[repair] derived count recomputed: {canonical_count()}")
 
 
+def annotate_provenance():
+    """Registry ruling: PROVENANCE_TRANSITION_ANNOTATION for 2026-09-13.
+
+    Append-only and idempotent. Records which BTC.D regime produced the observation.
+    Changes no classification, no signal artifact, no capital, no counts.
+    """
+    d = date(2026, 9, 13)
+    p = path_for(d)
+    if not p.exists():
+        print("[provenance] no log for 2026-09-13"); return
+    log = json.loads(p.read_text())
+    if log.get("btcd_provenance") is not None:
+        print("[provenance] annotation already present - no-op"); return
+    log["btcd_provenance"] = {
+        "annotation_type": "PROVENANCE_TRANSITION_ANNOTATION",
+        "btcd_provider_regime": "PRE_NEWHEDGE_SWITCH",
+        "btcd_provider_used": "COINGECKO",
+        "btcd_convention_used": "PROVISIONAL last-snapshot-in-UTC-day",
+        "superseded_by": "CANONICAL_NEWHEDGE_DAILY",
+        "capital_effect": "NONE",
+        "exposure_applied": False,
+        "signal_recomputed": False,
+        "classification_changed": False,
+        "annotated_at_utc": now().isoformat(),
+        "note": ("Observation was generated prospectively before the canonical BTC.D "
+                 "provider correction. BTC.D input used CoinGecko under the then-active "
+                 "PROVISIONAL convention. CoinGecko was subsequently demonstrated to be "
+                 "non-equivalent to the historical Newhedge BTC.D series and removed "
+                 "from canonical sizing. This observation was NO TRADE; therefore no "
+                 "exposure or capital discrepancy exists. Observation remains canonical "
+                 "as an authentic prospective record of the implementation operating at "
+                 "that time."),
+    }
+    save(d, log)
+    print("[provenance] 2026-09-13 annotated PRE_NEWHEDGE_SWITCH (classification unchanged)")
+
+
+def current_spec_count():
+    """Registry §6/§7: observations under the current Newhedge regime. Informational;
+    does not alter the canonical prospective observation count."""
+    n = 0
+    for p in LOGS.glob("*.json"):
+        try:
+            lg = json.loads(p.read_text())
+        except Exception:
+            continue
+        if not lg.get("counts_as_prospective_observation"):
+            continue
+        if (lg.get("btcd_provenance") or {}).get("btcd_provider_regime") == "PRE_NEWHEDGE_SWITCH":
+            continue
+        n += 1
+    return n
+
+
 def sweep():
     """Flag any execution date with no signal record - a missed prospective lock."""
     dates = sorted(p.stem for p in SIG.glob("*.json"))
@@ -735,6 +790,11 @@ if __name__ == "__main__":
         sys.exit(may_lock())
     elif cmd == "verify_locks":
         verify_locks()
+    elif cmd == "provenance":
+        try:
+            annotate_provenance()
+        except Exception as exc:
+            print(f"[provenance] WARNING: {exc}")
     elif cmd == "repair":
         try:
             repair()
