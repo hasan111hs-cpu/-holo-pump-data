@@ -8,9 +8,18 @@
     "btcd_provider": "Newhedge",
     "date_approved": "2026-09-13",
     "strategies": {
-      "R1": {"return_pct": 499.6, "note": "19 fills from 33 locks"},
-      "A1": {"return_pct": 36.9, "note": "25 fills"},
-      "B1": {"return_pct": 37.1, "note": "25 fills"}
+      "R1": {
+        "return_pct": 499.6,
+        "note": "19 fills from 33 locks"
+      },
+      "A1": {
+        "return_pct": 36.9,
+        "note": "25 fills"
+      },
+      "B1": {
+        "return_pct": 37.1,
+        "note": "25 fills"
+      }
     },
     "caveat": "PROVISIONAL pending independent execution reverification under the entry-candle fix."
   },
@@ -19,9 +28,16 @@
       "status": "RETIRED - DO NOT USE",
       "methodology_version": "round9",
       "strategies": {
-        "R1": {"return_pct": 334.8, "final_capital_usd": 43483.29},
-        "A1": {"return_pct": 26.2},
-        "B1": {"return_pct": 28.5}
+        "R1": {
+          "return_pct": 334.8,
+          "final_capital_usd": 43483.29
+        },
+        "A1": {
+          "return_pct": 26.2
+        },
+        "B1": {
+          "return_pct": 28.5
+        }
       },
       "superseded_by": "round9-plus-entry-candle-causality",
       "reason": "Entry-candle causality defect: the entry candle's high and low predate the position and must not be used for exit evaluation. Corrected evaluation begins with the next candle.",
@@ -29,5 +45,16 @@
       "resurfaced_count": 3,
       "note": "These figures have re-entered rulings three times after retirement. This artifact exists to stop that recurring."
     }
-  ]
+  ],
+  "oos_evidence": {
+    "artifact": "research/extended_historical_validation/PRE_REGISTRATION_AND_RESULT.json",
+    "window": "2025-09-17 to 2026-01-31",
+    "status": "BURNED",
+    "verdicts": {
+      "R1": "AMBIGUOUS",
+      "A1": "PASS",
+      "B1": "PASS"
+    },
+    "note": "Separate evidence stream. The 'current' figures above remain the CURRENT_PROVISIONAL development benchmarks and are NOT replaced or merged with OOS results."
+  }
 }
