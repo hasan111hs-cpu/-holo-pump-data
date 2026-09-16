@@ -176,11 +176,12 @@ jobs:
       - name: Operational audit
         if: always()
         run: |
+          python heartbeat.py provenance
           python heartbeat.py audit
           python heartbeat.py sweep
           python heartbeat.py annotate
           python heartbeat.py repair
-          python heartbeat.py provenance
+
 
       # AUXILIARY persistence: never allowed to fail the run or block canonical commit
       - name: Shadow table (research only)
