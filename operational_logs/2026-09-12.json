@@ -386,7 +386,7 @@
     {
       "stage": "SIGNAL_LOCKED",
       "reason": "no signal record; prospective lock never occurred",
-      "detected_at_utc": "2026-09-16T16:51:04.679074+00:00"
+      "detected_at_utc": "2026-09-16T22:19:12.354153+00:00"
     }
   ],
   "audited_at_utc": "2026-09-13T00:32:24.597717+00:00",
@@ -398,5 +398,6 @@
   "scheduled_slot": "0 23 * * *",
   "role_has_signal_authority": false,
   "primary_external_failure": false,
-  "recovery_external_success": false
+  "recovery_external_success": false,
+  "current_spec_newhedge_observations": 3
 }
