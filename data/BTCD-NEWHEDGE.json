@@ -369,7 +369,8 @@
     "2026-09-11": 59.3,
     "2026-09-12": 58.76,
     "2026-09-13": 58.38,
-    "2026-09-14": 60.05
+    "2026-09-14": 60.05,
+    "2026-09-15": 57.08
   },
   "retrievals": [
     {
@@ -398,6 +399,15 @@
       "response_sha256": "29fd4370e1df84f82325a81d9b17477c7e7f8ed7c586976ea80880ae683a7e6b",
       "source_status": "ok",
       "canonical_for_execution_date": "2026-09-15"
+    },
+    {
+      "retrieved_at_utc": "2026-09-16T16:50:57.809526+00:00",
+      "attempt": 1,
+      "observation_count": 365,
+      "latest_observation_date": "2026-09-15",
+      "response_sha256": "0563b594e90ed190b49b256242e3aa90bb9cd2a5795283f50a1a89966effb736",
+      "source_status": "ok",
+      "canonical_for_execution_date": "2026-09-16"
     }
   ],
   "canonical": {
@@ -433,6 +443,17 @@
       "btcd_direction": "UP_OR_FLAT",
       "btcd_multiplier": 1.0,
       "resolved_at_utc": "2026-09-15T23:30:14.906457+00:00"
+    },
+    "2026-09-16": {
+      "btcd_provider": "NEWHEDGE",
+      "btcd_convention": "CANONICAL_NEWHEDGE_DAILY",
+      "btcd_d_minus_1_date": "2026-09-15",
+      "btcd_d_minus_1": 57.08,
+      "btcd_d_minus_2_date": "2026-09-14",
+      "btcd_d_minus_2": 60.05,
+      "btcd_direction": "DOWN",
+      "btcd_multiplier": 1.15,
+      "resolved_at_utc": "2026-09-16T16:50:57.810140+00:00"
     }
   }
 }
