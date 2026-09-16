@@ -176,12 +176,14 @@ jobs:
       - name: Operational audit
         if: always()
         run: |
+          # Registry invariant: authoritative mutations persist FIRST; derived
+          # metrics are terminal and computed only after every input has landed.
           python heartbeat.py provenance
+          python heartbeat.py repair
           python heartbeat.py audit
           python heartbeat.py sweep
           python heartbeat.py annotate
-          python heartbeat.py repair
-
+          python heartbeat.py derive
 
       # AUXILIARY persistence: never allowed to fail the run or block canonical commit
       - name: Shadow table (research only)
