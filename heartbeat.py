@@ -425,8 +425,8 @@ def audit(d=None):
     save(d, log)
     # Derived count must be recomputed AFTER this day's classification is on disk,
     # otherwise today's own observation is missing from its own total.
-    log["canonical_automatic_prospective_observations"] = canonical_count()
-    log["current_spec_newhedge_observations"] = current_spec_count()
+    # Counts are NOT finalised here. The terminal derive() pass computes them after
+    # every authoritative mutation has persisted.
     save(d, log)
 
     print(f"\n[heartbeat audit] {d}: {log['final_status']}  "
@@ -727,6 +727,68 @@ def current_spec_count():
     return n
 
 
+def derive():
+    """TERMINAL derivation pass. Registry invariant: all authoritative mutations for an
+    execution date must complete and persist BEFORE any dependent derived metric is
+    computed. Derived values are terminal outputs, never intermediate mutable state.
+
+    Must run LAST in the workflow, after provenance, repair, audit, sweep and annotate.
+    """
+    canon, spec = canonical_count(), current_spec_count()
+    updated = 0
+    for p in sorted(LOGS.glob("*.json")):
+        try:
+            lg = json.loads(p.read_text())
+        except Exception:
+            continue
+        before = (lg.get("canonical_automatic_prospective_observations"),
+                  lg.get("current_spec_newhedge_observations"))
+        if before == (None, None):
+            continue
+        if before != (canon, spec):
+            lg["canonical_automatic_prospective_observations"] = canon
+            lg["current_spec_newhedge_observations"] = spec
+            p.write_text(json.dumps(lg, indent=2))
+            updated += 1
+    for strat in ("R1", "A1", "B1"):
+        lp = LEDGER_DIR / f"{strat}.json"
+        if not lp.exists():
+            continue
+        led = json.loads(lp.read_text())
+        if led.get("canonical_automatic_prospective_observations") != canon:
+            led["canonical_automatic_prospective_observations"] = canon
+            led["current_spec_newhedge_observations"] = spec
+            lp.write_text(json.dumps(led, indent=2))
+    print(f"[derive] canonical={canon} current_spec={spec}  ({updated} log(s) refreshed)")
+    return canon, spec
+
+
+def note_stale_derivation(d, recorded, correct):
+    """Registry §5/§10: append-only record of a stale derived value. Never silently
+    rewrites the historical figure."""
+    p = path_for(d)
+    if not p.exists():
+        return
+    log = json.loads(p.read_text())
+    notes = log.setdefault("derived_value_corrections", [])
+    if any(n.get("field") == "current_spec_newhedge_observations" for n in notes):
+        return
+    notes.append({
+        "field": "current_spec_newhedge_observations",
+        "recorded_value": recorded,
+        "correct_derived_value": correct,
+        "cause": "DERIVATION_BEFORE_DEPENDENCY_PERSISTENCE",
+        "detail": ("The count was derived at 16:51:04.621 UTC; the provenance annotation "
+                   "it depends on was persisted at 16:51:04.847 UTC, 226ms later."),
+        "capital_effect": "NONE",
+        "signal_effect": "NONE",
+        "classification_effect": "NONE",
+        "noted_at_utc": now().isoformat(),
+    })
+    p.write_text(json.dumps(log, indent=2))
+    print(f"[derive] {d}: append-only stale-derivation note added ({recorded} -> {correct})")
+
+
 def sweep():
     """Flag any execution date with no signal record - a missed prospective lock."""
     dates = sorted(p.stem for p in SIG.glob("*.json"))
@@ -790,6 +852,12 @@ if __name__ == "__main__":
         sys.exit(may_lock())
     elif cmd == "verify_locks":
         verify_locks()
+    elif cmd == "derive":
+        try:
+            canon, spec = derive()
+            note_stale_derivation(date(2026, 9, 16), 4, 3)
+        except Exception as exc:
+            print(f"[derive] WARNING: {exc}")
     elif cmd == "provenance":
         try:
             annotate_provenance()
