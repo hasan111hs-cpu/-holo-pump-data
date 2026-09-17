@@ -7,7 +7,7 @@
   "btc_ret": 0.0127936418485044,
   "btc_mom3": 0.006899388563780917,
   "btc_rng3": 0.0114683653921852,
-  "generated_at_utc": "2026-09-17T22:24:34.499742+00:00",
+  "generated_at_utc": "2026-09-17T23:29:11.901821+00:00",
   "canonical_capital_effect": "none",
   "note": "Research only. Qualification read from the immutable signal artifact; execution mechanics reconstructed from later authoritative 1m data. Never promoted to canonical history.",
   "coins": {
