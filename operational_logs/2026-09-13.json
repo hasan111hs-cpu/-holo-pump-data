@@ -378,7 +378,7 @@
     }
   },
   "audited_at_utc": "2026-09-14T00:35:17.277861+00:00",
-  "canonical_automatic_prospective_observations": 4,
+  "canonical_automatic_prospective_observations": 5,
   "corrections": [
     {
       "incident_id": "INC-2026-09-14-001",
@@ -418,5 +418,5 @@
     "annotated_at_utc": "2026-09-16T16:51:04.847471+00:00",
     "note": "Observation was generated prospectively before the canonical BTC.D provider correction. BTC.D input used CoinGecko under the then-active PROVISIONAL convention. CoinGecko was subsequently demonstrated to be non-equivalent to the historical Newhedge BTC.D series and removed from canonical sizing. This observation was NO TRADE; therefore no exposure or capital discrepancy exists. Observation remains canonical as an authentic prospective record of the implementation operating at that time."
   },
-  "current_spec_newhedge_observations": 3
+  "current_spec_newhedge_observations": 4
 }
