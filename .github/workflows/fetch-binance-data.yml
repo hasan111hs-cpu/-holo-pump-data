@@ -1,0 +1,51 @@
+name: Fetch Binance futures data
+
+on:
+  workflow_dispatch:
+    inputs:
+      symbol:
+        description: "Futures symbol (ENAUSDT, PUMPUSDT, HOLOUSDT)"
+        required: true
+        default: "ENAUSDT"
+      start:
+        description: "First month (YYYY-MM)"
+        required: true
+        default: "2024-09"
+      end:
+        description: "Last month (YYYY-MM)"
+        required: true
+        default: "2026-08"
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      SYMBOL: ${{ inputs.symbol }}
+      START: ${{ inputs.start }}
+      END: ${{ inputs.end }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download, verify checksums, merge
+        run: python scripts/fetch_binance_data.py --symbol "$SYMBOL" --start "$START" --end "$END" --out data
+
+      - name: Write run summary
+        run: |
+          echo "## $SYMBOL futures data ($START → $END)" >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          cat data/data_manifest.json >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.symbol }}_futures_${{ inputs.start }}_${{ inputs.end }}
+          path: data/
+          retention-days: 90
