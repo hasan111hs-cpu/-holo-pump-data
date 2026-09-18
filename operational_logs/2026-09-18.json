@@ -18,6 +18,14 @@
       "expected_at_utc": "2026-09-18T16:47:00+00:00"
     },
     {
+      "stage": "SIGNAL_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "16:47 UTC cutoff",
+      "recorded_at_utc": "2026-09-18T23:04:36.584009+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-09-18T16:47:00+00:00"
+    },
+    {
       "stage": "SIGNAL_JOB_STARTED",
       "status": "ok",
       "detail": "run 44 workflow_dispatch role=PRIMARY_EXTERNAL",
@@ -32,6 +40,13 @@
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
+      "stage": "SIGNAL_JOB_STARTED",
+      "status": "ok",
+      "detail": "run 46 schedule role=POST_DEADLINE_AUDIT",
+      "recorded_at_utc": "2026-09-18T23:04:36.659857+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
       "stage": "COLLECTOR_HEALTH_CHECK",
       "status": "ok",
       "detail": "collector + btc_d completed",
@@ -43,6 +58,13 @@
       "status": "ok",
       "detail": "collector + btc_d completed",
       "recorded_at_utc": "2026-09-18T21:50:26.072061+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "COLLECTOR_HEALTH_CHECK",
+      "status": "ok",
+      "detail": "collector + btc_d completed",
+      "recorded_at_utc": "2026-09-18T23:08:19.787213+00:00",
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
@@ -76,6 +98,14 @@
       "expected_at_utc": "2026-09-18T18:05:00+00:00"
     },
     {
+      "stage": "EXECUTION_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "18:05 UTC activation",
+      "recorded_at_utc": "2026-09-18T23:08:20.028268+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-09-18T18:05:00+00:00"
+    },
+    {
       "stage": "EXECUTION_JOB_STARTED",
       "status": "ok",
       "detail": "",
@@ -87,6 +117,13 @@
       "status": "ok",
       "detail": "",
       "recorded_at_utc": "2026-09-18T21:50:26.375542+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "EXECUTION_JOB_STARTED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-09-18T23:08:20.094857+00:00",
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
@@ -104,6 +141,13 @@
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
+      "stage": "REPORT_GENERATED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-09-18T23:08:20.236404+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
       "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
       "status": "ok",
       "detail": "exact match both symbols",
@@ -114,6 +158,12 @@
       "status": "ok",
       "detail": "exact match both symbols",
       "recorded_at_utc": "2026-09-18T21:50:31.435729+00:00"
+    },
+    {
+      "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
+      "status": "ok",
+      "detail": "exact match both symbols",
+      "recorded_at_utc": "2026-09-18T23:08:25.028247+00:00"
     }
   ],
   "final_status": "OK",
@@ -142,9 +192,9 @@
     }
   },
   "delays": {
-    "signal_start_delay_seconds": 17971.6,
+    "signal_start_delay_seconds": 22656.7,
     "signal_lock_delay_seconds": 255.1,
-    "execution_start_delay_seconds": 13526.4
+    "execution_start_delay_seconds": 18200.1
   },
   "signal_locked_before_execution_activation": true,
   "hard_deadline_utc": "2026-09-18T18:05:00+00:00",
@@ -179,7 +229,7 @@
   },
   "audited_at_utc": "2026-09-18T16:51:19.641167+00:00",
   "canonical_automatic_prospective_observations": 6,
-  "last_reaudit_utc": "2026-09-18T21:50:31.436921+00:00",
+  "last_reaudit_utc": "2026-09-18T23:08:25.029359+00:00",
   "reaudit_note": "Classification CANONICAL_AUTOMATIC_ON_TIME is immutable. Re-audit by trigger_role=POST_DEADLINE_AUDIT recorded but not applied.",
   "current_spec_newhedge_observations": 5
 }
