@@ -7,7 +7,7 @@
   "btc_ret": 0.054619229672090874,
   "btc_mom3": 0.013918024977205734,
   "btc_rng3": 0.019444184816734558,
-  "generated_at_utc": "2026-09-19T16:51:48.531969+00:00",
+  "generated_at_utc": "2026-09-19T21:40:50.920486+00:00",
   "canonical_capital_effect": "none",
   "note": "Research only. Qualification read from the immutable signal artifact; execution mechanics reconstructed from later authoritative 1m data. Never promoted to canonical history.",
   "coins": {
@@ -53,8 +53,42 @@
         "B1": 1.653125
       },
       "counterfactual_execution": {
-        "status": "DEFERRED",
-        "reason": "trading window has not closed"
+        "R1": {
+          "status": "NO FILL",
+          "reason": "no flush",
+          "entry_ts": null,
+          "entry_px": null,
+          "exit_ts": null,
+          "exit_px": null,
+          "exit_reason": null,
+          "gross_return": null,
+          "flush_threshold": 0.0588045,
+          "reclaim_threshold": 0.058922109
+        },
+        "A1": {
+          "status": "NO FILL",
+          "reason": "no flush",
+          "entry_ts": null,
+          "entry_px": null,
+          "exit_ts": null,
+          "exit_px": null,
+          "exit_reason": null,
+          "gross_return": null,
+          "flush_threshold": 0.059103,
+          "reclaim_threshold": 0.059162102999999994
+        },
+        "B1": {
+          "status": "NO FILL",
+          "reason": "no flush",
+          "entry_ts": null,
+          "entry_px": null,
+          "exit_ts": null,
+          "exit_px": null,
+          "exit_reason": null,
+          "gross_return": null,
+          "flush_threshold": 0.059103,
+          "reclaim_threshold": 0.059221206000000005
+        }
       }
     },
     "PUMP": {
@@ -107,8 +141,48 @@
         "B1": 1.4375
       },
       "counterfactual_execution": {
-        "status": "DEFERRED",
-        "reason": "trading window has not closed"
+        "R1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-18T22:50:00+00:00",
+          "entry_px": 0.004261,
+          "exit_ts": "2026-09-19T00:09:00+00:00",
+          "exit_px": 0.004197085,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.0042463349999999995,
+          "reclaim_threshold": 0.004254827669999999,
+          "hypothetical_net_return": -0.085,
+          "hypothetical_exposure": 5.0
+        },
+        "A1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-18T22:52:00+00:00",
+          "entry_px": 0.004279,
+          "exit_ts": "2026-09-19T00:03:00+00:00",
+          "exit_px": 0.004227652,
+          "exit_reason": "SL",
+          "gross_return": -0.012,
+          "flush_threshold": 0.00426789,
+          "reclaim_threshold": 0.004272157889999999,
+          "hypothetical_net_return": -0.02415,
+          "hypothetical_exposure": 1.725
+        },
+        "B1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-18T22:52:00+00:00",
+          "entry_px": 0.004279,
+          "exit_ts": "2026-09-19T00:06:00+00:00",
+          "exit_px": 0.004214814999999999,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.00426789,
+          "reclaim_threshold": 0.00427642578,
+          "hypothetical_net_return": -0.0244375,
+          "hypothetical_exposure": 1.4375
+        }
       }
     }
   }
