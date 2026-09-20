@@ -278,8 +278,8 @@
     }
   },
   "audited_at_utc": "2026-09-19T16:51:48.287955+00:00",
-  "canonical_automatic_prospective_observations": 7,
+  "canonical_automatic_prospective_observations": 8,
   "last_reaudit_utc": "2026-09-20T00:32:27.509578+00:00",
   "reaudit_note": "Classification CANONICAL_AUTOMATIC_ON_TIME is immutable. Re-audit by trigger_role=POST_DEADLINE_AUDIT recorded but not applied.",
-  "current_spec_newhedge_observations": 6
+  "current_spec_newhedge_observations": 7
 }
