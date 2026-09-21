@@ -1,0 +1,118 @@
+name: Build frozen multi-coin universe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: multicoin-universe-stage1
+  cancel-in-progress: false
+
+jobs:
+  build-universe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore Stage 1 verified working cache
+        uses: actions/cache/restore@v4
+        with:
+          path: _stage1_cache
+          key: stage1-cache-${{ github.run_id }}
+          restore-keys: |
+            stage1-cache-
+
+      - name: Construct point-in-time universe from Binance archive
+        run: python scripts/build_multicoin_universe.py
+
+      - name: Validate Stage 1 outputs
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          p=pathlib.Path('research/multicoin_expansion/universe.json')
+          m=pathlib.Path('research/multicoin_expansion/stage1_manifest.json')
+          assert p.exists() and m.exists()
+          u=json.loads(p.read_text())
+          assert u['status']=='FROZEN_UNIVERSE_STAGE1'
+          assert len(u['months'])==12
+          for month, rec in u['months'].items():
+              assert rec['selected_count'] <= 15
+              assert rec['selected_count'] == len(rec['members'])
+              assert [x['rank'] for x in rec['members']] == list(range(1, rec['selected_count']+1))
+              for x in rec['members']:
+                  assert 'entered_universe' in x and 'exited_universe' in x
+                  assert 'last_available_archive_month' in x and 'delisting_date' in x
+                  if month == '2025-09':
+                      assert x['entered_universe'] is None and x.get('boundary') == 'study_start'
+                  if month == '2026-08':
+                      assert x['exited_universe'] is None and x.get('boundary') == 'study_end'
+          aug_archive_count=sum(1 for x in u['survivorship_evidence']['symbols'].values()
+                                if x.get('last_available_archive_month') and x['last_available_archive_month'] >= '2026-08')
+          print(f'Selected distinct members with a 2026-08 archive: {aug_archive_count}')
+          s=u['survivorship_evidence']
+          assert s['distinct_symbols_selected']==len(s['symbols'])
+          # HARD GATE: the enumeration itself must contain historical contracts that no
+          # longer trade. If it had fallen back to the live exchangeInfo universe, every
+          # enumerated symbol would still carry a 2026-08 archive and this gap would be ~0.
+          enum=u['archive_symbols_enumerated']; live=u['archive_symbols_with_2026_08_archive']
+          print(f'Archive enumeration: {enum} symbols total, {live} with a 2026-08 archive, gap {enum-live}')
+          if enum - live < 50:
+              print(f'SURVIVORSHIP FAILURE: only {enum-live} enumerated symbols lack a 2026-08 archive; the enumeration appears to be the currently-listed universe, not the historical archive.', file=sys.stderr)
+              raise SystemExit(1)
+          # INFORMATIONAL ONLY: selected top-15 members that later stopped trading. A
+          # top-15-by-volume contract being delisted inside 12 months is uncommon, so zero
+          # here is not by itself evidence of a defect and must not fail the run.
+          n=sum(1 for x in s['symbols'].values()
+                if x.get('last_available_archive_month') and x['last_available_archive_month'] < '2026-08')
+          print(f'Selected distinct members with archive coverage ending before 2026-08: {n}')
+          if n == 0:
+              print('NOTE: no selected member stopped trading before 2026-08. Informational, not a failure; the hard gate above is the survivorship test.')
+          print('Stage 1 validation PASS')
+          PY
+
+      # Preserve expensive output even if validation or the later git push fails.
+      - name: Upload Stage 1 recovery artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: multicoin-universe-stage1
+          path: |
+            research/multicoin_expansion/universe.json
+            research/multicoin_expansion/stage1_manifest.json
+          if-no-files-found: warn
+          retention-days: 90
+
+      - name: Save Stage 1 verified working cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: _stage1_cache
+          key: stage1-cache-${{ github.run_id }}
+
+      - name: Commit frozen universe and permanent manifest safely
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/multicoin_expansion/universe.json research/multicoin_expansion/stage1_manifest.json
+          if git diff --cached --quiet; then
+            echo "No Stage 1 changes to commit."
+            exit 0
+          fi
+          git commit -m "research: freeze multicoin universe"
+          git fetch origin main
+          if ! git rebase origin/main; then
+            echo "ERROR: Stage 1 rebase conflict. Aborting rebase and stopping; no retry and no push attempted." >&2
+            git rebase --abort || true
+            exit 1
+          fi
+          git push origin HEAD:main
