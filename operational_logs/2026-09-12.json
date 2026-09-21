@@ -386,11 +386,11 @@
     {
       "stage": "SIGNAL_LOCKED",
       "reason": "no signal record; prospective lock never occurred",
-      "detected_at_utc": "2026-09-21T00:42:12.383269+00:00"
+      "detected_at_utc": "2026-09-21T16:51:02.254215+00:00"
     }
   ],
   "audited_at_utc": "2026-09-13T00:32:24.597717+00:00",
-  "canonical_automatic_prospective_observations": 8,
+  "canonical_automatic_prospective_observations": 9,
   "note": "NOT reconstructed. A missed causal lock is excluded from the prospective sample and is never labelled canonical.",
   "actual_started_at_utc": "2026-09-13T00:32:24.597700+00:00",
   "actual_run_date": "2026-09-13",
@@ -399,5 +399,5 @@
   "role_has_signal_authority": false,
   "primary_external_failure": false,
   "recovery_external_success": false,
-  "current_spec_newhedge_observations": 7
+  "current_spec_newhedge_observations": 8
 }
