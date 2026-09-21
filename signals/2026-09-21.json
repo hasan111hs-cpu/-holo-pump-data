@@ -1,0 +1,62 @@
+{
+  "execution_date": "2026-09-21",
+  "signal_group": "2026-09-20",
+  "generated_at_utc": "2026-09-21T16:50:55.685022+00:00",
+  "lock_time_utc": "2026-09-21T16:47:00+00:00",
+  "convention_label": "CANONICAL FORWARD OBSERVATION",
+  "btcd_convention": "CANONICAL_NEWHEDGE_DAILY",
+  "btcd_provider": "NEWHEDGE",
+  "data_audit": {
+    "holo_window": "ok",
+    "pump_window": "ok",
+    "btc_window": "ok",
+    "holo_5_matched": "ok",
+    "pump_5_matched": "ok",
+    "btcd_d1": "ok",
+    "btcd_d2": "ok"
+  },
+  "btc_ret": 0.05897032013381964,
+  "btc_mom3": 0.006678171235165786,
+  "btc_rng3": 0.015222810111698966,
+  "btc_gate_pass": true,
+  "holo": {
+    "partial_open": 0.0601,
+    "partial_high": 0.0654,
+    "partial_low": 0.0596,
+    "partial_close": 0.0647,
+    "ret": 0.07653910149750409,
+    "clv": 0.8793103448275852,
+    "taker": 0.472268219706312,
+    "mom1": 0.001547987616098867,
+    "mom3": 0.012519561815336422,
+    "dfh": 0.010703363914373184,
+    "vol_ratio": 1.0770514743570916,
+    "qualify": false,
+    "rs": 0.01756878136368445,
+    "failed": [
+      "ret"
+    ]
+  },
+  "pump": {
+    "partial_open": 0.004148,
+    "partial_high": 0.00452,
+    "partial_low": 0.004142,
+    "partial_close": 0.004345,
+    "ret": 0.0474927675988428,
+    "clv": 0.5370370370370374,
+    "taker": 0.4505107150973661,
+    "mom1": -0.0004600874166091895,
+    "mom3": -0.007990867579908745,
+    "dfh": 0.038716814159292,
+    "vol_ratio": 1.2791638017678344,
+    "qualify": false,
+    "rs": -0.011477552534976843,
+    "failed": [
+      "taker",
+      "mom3",
+      "dfh"
+    ]
+  },
+  "locked_state": "NO TRADE",
+  "reason": "no coin qualifies"
+}
