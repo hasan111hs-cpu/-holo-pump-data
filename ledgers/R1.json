@@ -2,7 +2,7 @@
   "strategy": "R1",
   "starting_capital": 10000.0,
   "capital": 10000.0,
-  "observations": 13,
+  "observations": 14,
   "fills": 0,
   "settlements": [
     "2026-09-08:R1",
@@ -17,7 +17,8 @@
     "2026-09-18:R1",
     "2026-09-19:R1",
     "2026-09-20:R1",
-    "2026-09-21:R1"
+    "2026-09-21:R1",
+    "2026-09-22:R1"
   ],
   "trades": [],
   "accounting_adjustments": [
@@ -34,7 +35,7 @@
       "historical_record_rewritten": false
     }
   ],
-  "canonical_automatic_prospective_observations": 9,
+  "canonical_automatic_prospective_observations": 10,
   "legacy_or_noncanonical_observations": 1,
   "field_semantics": {
     "observations": "raw settlement-event counter from the execution engine; NOT the canonical prospective count",
