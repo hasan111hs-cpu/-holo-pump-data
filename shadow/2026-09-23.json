@@ -1,0 +1,140 @@
+{
+  "label": "COUNTERFACTUAL / SHADOW",
+  "execution_date": "2026-09-23",
+  "canonical_locked_state": "NO TRADE",
+  "canonical_reason": "no coin qualifies",
+  "btc_hard_gate_pass": false,
+  "btc_ret": -0.029481609384472196,
+  "btc_mom3": -0.019770376763830977,
+  "btc_rng3": 0.029225265961046142,
+  "generated_at_utc": "2026-09-23T16:51:37.769970+00:00",
+  "canonical_capital_effect": "none",
+  "note": "Research only. Qualification read from the immutable signal artifact; execution mechanics reconstructed from later authoritative 1m data. Never promoted to canonical history.",
+  "coins": {
+    "HOLO": {
+      "qualified": false,
+      "failed_gates": [
+        "clv",
+        "mom3",
+        "dfh"
+      ],
+      "metrics": {
+        "ret": 0.019938650306748684,
+        "clv": 0.3584905660377357,
+        "vol_ratio": 2.7577885523889663,
+        "taker": 0.5165999572368678,
+        "mom1": 0.0,
+        "mom3": -0.024926686217008664,
+        "dfh": 0.04864091559370529,
+        "rs": 0.04942025969122088
+      },
+      "distance_from_failed_thresholds": {
+        "clv": {
+          "value": 0.3584905660377357,
+          "threshold": "CLV >= 0.50",
+          "bound": "min",
+          "limit": 0.5,
+          "distance": -0.14150943
+        },
+        "mom3": {
+          "value": -0.024926686217008664,
+          "threshold": "3h momentum >= -0.50%",
+          "bound": "min",
+          "limit": -0.005,
+          "distance": -0.01992669
+        },
+        "dfh": {
+          "value": 0.04864091559370529,
+          "threshold": "distance from high <= 2.5%",
+          "bound": "max",
+          "limit": 0.025,
+          "distance": 0.02364092
+        }
+      },
+      "btc_stress_multiplier": 0.5,
+      "rs_multiplier": 1.0,
+      "btcd_multiplier": 1.15,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 2.875,
+        "A1": 0.8625,
+        "B1": 0.71875
+      },
+      "counterfactual_execution": {
+        "status": "DEFERRED",
+        "reason": "trading window has not closed"
+      }
+    },
+    "PUMP": {
+      "qualified": false,
+      "failed_gates": [
+        "ret",
+        "clv",
+        "mom3",
+        "mom1",
+        "dfh"
+      ],
+      "metrics": {
+        "ret": -0.10220440881763526,
+        "clv": 0.12182741116751264,
+        "vol_ratio": 1.2044568595355563,
+        "taker": 0.47493119860230076,
+        "mom1": -0.00811808118081181,
+        "mom3": -0.03977137413669918,
+        "dfh": 0.11404087013843119,
+        "rs": -0.07272279943316307
+      },
+      "distance_from_failed_thresholds": {
+        "ret": {
+          "value": -0.10220440881763526,
+          "threshold": "partial-day return in [0%, +6%]",
+          "bound": "min",
+          "limit": 0.0,
+          "distance": -0.10220441
+        },
+        "clv": {
+          "value": 0.12182741116751264,
+          "threshold": "CLV >= 0.50",
+          "bound": "min",
+          "limit": 0.5,
+          "distance": -0.37817259
+        },
+        "mom3": {
+          "value": -0.03977137413669918,
+          "threshold": "3h momentum >= -0.50%",
+          "bound": "min",
+          "limit": -0.005,
+          "distance": -0.03477137
+        },
+        "mom1": {
+          "value": -0.00811808118081181,
+          "threshold": "1h momentum >= -0.80%",
+          "bound": "min",
+          "limit": -0.008,
+          "distance": -0.00011808
+        },
+        "dfh": {
+          "value": 0.11404087013843119,
+          "threshold": "distance from high <= 2.5%",
+          "bound": "max",
+          "limit": 0.025,
+          "distance": 0.08904087
+        }
+      },
+      "btc_stress_multiplier": 0.5,
+      "rs_multiplier": 1.0,
+      "btcd_multiplier": 1.15,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 2.875,
+        "A1": 0.8625,
+        "B1": 0.71875
+      },
+      "counterfactual_execution": {
+        "status": "DEFERRED",
+        "reason": "trading window has not closed"
+      }
+    }
+  },
+  "btc_gated_counterfactual": "BTC hard gate failed; both coins also failed qualification independently"
+}
