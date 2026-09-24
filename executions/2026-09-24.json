@@ -1,0 +1,9 @@
+{
+  "execution_date": "2026-09-24",
+  "status": "NON_CANONICAL - NO VALID PRE-DEADLINE LOCK",
+  "locked_state": "HOLO",
+  "reason": "no durably persisted SIGNAL_LOCKED from an automatic PRIMARY/RECOVERY trigger before 18:05 UTC",
+  "canonical_capital_effect": "none",
+  "note": "Quarantined per registry \u00a76. Any later analysis of this date is POST_HOC_RECONSTRUCTION and must not touch canonical capital.",
+  "quarantined_at_utc": "2026-09-24T16:52:45.854939+00:00"
+}
