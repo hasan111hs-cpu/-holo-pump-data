@@ -1,0 +1,33 @@
+name: A-2 classification probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Reconnaissance only. Fetches Binance futures exchangeInfo, prints the raw
+      # records for the ruled probe symbols and the full descriptor vocabulary.
+      # Does NOT enumerate the universe, download archives, or build universe.json.
+      - name: Probe Binance exchangeInfo for A-2 classification evidence
+        run: python scripts/probe_a2_classification.py
+
+      - name: Upload raw exchangeInfo snapshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a2-exchangeinfo-probe
+          path: research/multicoin_expansion/a2_exchangeInfo_probe_raw.json
+          if-no-files-found: warn
+          retention-days: 90
