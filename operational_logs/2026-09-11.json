@@ -304,6 +304,6 @@
   "trigger_role": "POST_DEADLINE_AUDIT",
   "canonical_lock_created_by": "POST_DEADLINE_AUDIT",
   "primary_trigger_fired": false,
-  "canonical_automatic_prospective_observations": 12,
-  "current_spec_newhedge_observations": 11
+  "canonical_automatic_prospective_observations": 13,
+  "current_spec_newhedge_observations": 12
 }
