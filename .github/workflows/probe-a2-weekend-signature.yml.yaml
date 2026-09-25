@@ -1,0 +1,49 @@
+name: Probe A-2 weekend signature
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: a2-weekend-signature-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore Stage 1 verified working cache
+        id: stage1-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: _stage1_cache
+          key: stage1-cache-${{ github.run_id }}
+          restore-keys: |
+            stage1-cache-
+
+      - name: Require restored Stage 1 cache
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.stage1-cache.outputs.cache-matched-key }}" = "" ]; then
+            echo "ERROR: no Stage 1 cache matched prefix stage1-cache-." >&2
+            exit 1
+          fi
+          if [ ! -d "_stage1_cache/data/futures/um/monthly/klines" ]; then
+            echo "ERROR: restored cache does not contain expected Binance monthly kline hierarchy." >&2
+            exit 1
+          fi
+          echo "Restored cache key: ${{ steps.stage1-cache.outputs.cache-matched-key }}"
+
+      - name: Run A-2 validation probe
+        run: python scripts/probe_a2_weekend_signature.py
