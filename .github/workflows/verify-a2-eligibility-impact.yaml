@@ -1,0 +1,88 @@
+name: A-2 Step 2c eligibility impact verification
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: a2-eligibility-impact
+  cancel-in-progress: false
+
+jobs:
+  verify-impact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Filename assertion -- fails in seconds with the exact expected path
+      # rather than costing a round trip on a mis-uploaded file.
+      - name: Assert required input files exist at exact paths
+        run: |
+          missing=0
+          for f in \
+            research/multicoin_expansion/universe.json \
+            research/multicoin_expansion/a2_continuity_audit.json \
+            research/multicoin_expansion/a2_continuity_audit_backward.json \
+            scripts/verify_a2_eligibility_impact.py
+          do
+            if [ ! -f "$f" ]; then
+              echo "MISSING: $f"
+              missing=1
+            else
+              echo "ok: $f"
+            fi
+          done
+          if [ "$missing" = "1" ]; then
+            echo ""
+            echo "Files present in research/multicoin_expansion/:"
+            ls -la research/multicoin_expansion/ || true
+            echo ""
+            echo "A file listed as MISSING above is usually a doubled extension"
+            echo "(e.g. name.json.json) from a mobile upload. Rename it on GitHub"
+            echo "to the exact path shown and re-run."
+            exit 1
+          fi
+
+      - name: Record universe.json digest BEFORE
+        run: sha256sum research/multicoin_expansion/universe.json | tee /tmp/universe_before.txt
+
+      - name: Verify eligibility impact
+        run: python scripts/verify_a2_eligibility_impact.py
+
+      - name: Assert universe.json was NOT modified
+        run: |
+          sha256sum -c /tmp/universe_before.txt
+          echo "universe.json unchanged -- PASS"
+
+      - name: Commit outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/multicoin_expansion/a2_eligibility_impact_verification.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "research: A-2 step 2c eligibility impact verification"
+            # The branch may have moved while this run was in flight.
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push origin HEAD:main && break
+              echo "push attempt $i failed; retrying"
+              sleep 5
+            done
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: a2-eligibility-impact-verification
+          path: research/multicoin_expansion/a2_eligibility_impact_verification.json
+          retention-days: 90
