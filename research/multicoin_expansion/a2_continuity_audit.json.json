@@ -1,0 +1,1104 @@
+{
+  "schema_version": 1,
+  "deliverable": "A-2 Step 2 — 7-day continuity audit",
+  "status": "COMPLETE",
+  "frozen_inputs": {
+    "examination_set_count": 118,
+    "examination_set_sha256": "8239751d74dc4d758252e0764e8a6f3d4f43b25bc4f35761050b7a146425d685",
+    "audit_window_start": "2025-07-01",
+    "audit_window_end": "2026-08-31",
+    "gap_threshold_missing_calendar_days": 7,
+    "age_gate_days": 60,
+    "age_gate_operator": ">="
+  },
+  "rule": {
+    "effective_first_trading_day": "first trading day of the latest continuous trading run reaching the study period, where a run is broken by >= 7 consecutive calendar days with no valid trading observations",
+    "original_first_trading_day_preserved": true
+  },
+  "counts": {
+    "symbols_audited": 118,
+    "symbols_with_detected_gap": 0,
+    "symbols_with_effective_start_reset": 0,
+    "symbols_resolved_by_backward_fetch": 0,
+    "backward_archives_downloaded": 0,
+    "symbols_requiring_no_further_work": 118,
+    "eligibility_changes": 0,
+    "formation_months_with_top15_membership_change": 0
+  },
+  "pumpusdt_is_only_reset": false,
+  "flagged_symbols": [],
+  "effective_start_resets": [],
+  "eligibility_changes": [],
+  "top15_membership_changes": [],
+  "symbols": [
+    {
+      "symbol": "1000BONKUSDT",
+      "original_first_trading_day": "2023-11-22",
+      "effective_first_trading_day": "2023-11-22",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "1000LUNCUSDT",
+      "original_first_trading_day": "2022-09-09",
+      "effective_first_trading_day": "2022-09-09",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "1000PEPEUSDT",
+      "original_first_trading_day": "2023-05-05",
+      "effective_first_trading_day": "2023-05-05",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "original_first_trading_day": "2020-10-16",
+      "effective_first_trading_day": "2020-10-16",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ADAUSDT",
+      "original_first_trading_day": "2020-01-31",
+      "effective_first_trading_day": "2020-01-31",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "AIAUSDT",
+      "original_first_trading_day": "2025-09-18",
+      "effective_first_trading_day": "2025-09-18",
+      "first_in_window_observation": "2025-09-18",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "AIOTUSDT",
+      "original_first_trading_day": "2025-04-30",
+      "effective_first_trading_day": "2025-04-30",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "AKEUSDT",
+      "original_first_trading_day": "2025-09-26",
+      "effective_first_trading_day": "2025-09-26",
+      "first_in_window_observation": "2025-09-26",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ALLOUSDT",
+      "original_first_trading_day": "2025-11-11",
+      "effective_first_trading_day": "2025-11-11",
+      "first_in_window_observation": "2025-11-11",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "APEUSDT",
+      "original_first_trading_day": "2022-03-17",
+      "effective_first_trading_day": "2022-03-17",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "APTUSDT",
+      "original_first_trading_day": "2022-10-19",
+      "effective_first_trading_day": "2022-10-19",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ARBUSDT",
+      "original_first_trading_day": "2023-03-23",
+      "effective_first_trading_day": "2023-03-23",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ARIAUSDT",
+      "original_first_trading_day": "2025-09-03",
+      "effective_first_trading_day": "2025-09-03",
+      "first_in_window_observation": "2025-09-03",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ASTERUSDT",
+      "original_first_trading_day": "2025-09-19",
+      "effective_first_trading_day": "2025-09-19",
+      "first_in_window_observation": "2025-09-19",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "AVAXUSDT",
+      "original_first_trading_day": "2020-09-23",
+      "effective_first_trading_day": "2020-09-23",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "AXSUSDT",
+      "original_first_trading_day": "2020-11-20",
+      "effective_first_trading_day": "2020-11-20",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BANKUSDT",
+      "original_first_trading_day": "2025-04-18",
+      "effective_first_trading_day": "2025-04-18",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BASUSDT",
+      "original_first_trading_day": "2025-08-26",
+      "effective_first_trading_day": "2025-08-26",
+      "first_in_window_observation": "2025-08-26",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BCHUSDT",
+      "original_first_trading_day": "2020-01-01",
+      "effective_first_trading_day": "2020-01-01",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BEATUSDT",
+      "original_first_trading_day": "2025-11-12",
+      "effective_first_trading_day": "2025-11-12",
+      "first_in_window_observation": "2025-11-12",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BERAUSDT",
+      "original_first_trading_day": "2025-02-06",
+      "effective_first_trading_day": "2025-02-06",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BIOUSDT",
+      "original_first_trading_day": "2025-01-03",
+      "effective_first_trading_day": "2025-01-03",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BNBUSDT",
+      "original_first_trading_day": "2020-02-10",
+      "effective_first_trading_day": "2020-02-10",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BSBUSDT",
+      "original_first_trading_day": "2026-03-25",
+      "effective_first_trading_day": "2026-03-25",
+      "first_in_window_observation": "2026-03-25",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BULLAUSDT",
+      "original_first_trading_day": "2025-07-04",
+      "effective_first_trading_day": "2025-07-04",
+      "first_in_window_observation": "2025-07-04",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BUSDT",
+      "original_first_trading_day": "2025-05-22",
+      "effective_first_trading_day": "2025-05-22",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "BZUSDT",
+      "original_first_trading_day": "2026-04-01",
+      "effective_first_trading_day": "2026-04-01",
+      "first_in_window_observation": "2026-04-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "CAKEUSDT",
+      "original_first_trading_day": "2023-11-02",
+      "effective_first_trading_day": "2023-11-02",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "CLUSDT",
+      "original_first_trading_day": "2026-04-01",
+      "effective_first_trading_day": "2026-04-01",
+      "first_in_window_observation": "2026-04-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "CRCLUSDT",
+      "original_first_trading_day": "2026-02-09",
+      "effective_first_trading_day": "2026-02-09",
+      "first_in_window_observation": "2026-02-09",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "DASHUSDT",
+      "original_first_trading_day": "2020-02-04",
+      "effective_first_trading_day": "2020-02-04",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "DEGOUSDT",
+      "original_first_trading_day": "2024-12-13",
+      "effective_first_trading_day": "2024-12-13",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "DEXEUSDT",
+      "original_first_trading_day": "2024-12-24",
+      "effective_first_trading_day": "2024-12-24",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "original_first_trading_day": "2020-07-10",
+      "effective_first_trading_day": "2020-07-10",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "DOTUSDT",
+      "original_first_trading_day": "2020-08-22",
+      "effective_first_trading_day": "2020-08-22",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "DRAMUSDT",
+      "original_first_trading_day": "2026-05-18",
+      "effective_first_trading_day": "2026-05-18",
+      "first_in_window_observation": "2026-05-18",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "DUSKUSDT",
+      "original_first_trading_day": "2022-01-07",
+      "effective_first_trading_day": "2022-01-07",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "EDENUSDT",
+      "original_first_trading_day": "2025-09-30",
+      "effective_first_trading_day": "2025-09-30",
+      "first_in_window_observation": "2025-09-30",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ENAUSDT",
+      "original_first_trading_day": "2024-04-02",
+      "effective_first_trading_day": "2024-04-02",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ENJUSDT",
+      "original_first_trading_day": "2020-09-29",
+      "effective_first_trading_day": "2020-09-29",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ENSOUSDT",
+      "original_first_trading_day": "2025-10-14",
+      "effective_first_trading_day": "2025-10-14",
+      "first_in_window_observation": "2025-10-14",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ESPORTSUSDT",
+      "original_first_trading_day": "2025-07-29",
+      "effective_first_trading_day": "2025-07-29",
+      "first_in_window_observation": "2025-07-29",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "EVAAUSDT",
+      "original_first_trading_day": "2025-10-03",
+      "effective_first_trading_day": "2025-10-03",
+      "first_in_window_observation": "2025-10-03",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "EWYUSDT",
+      "original_first_trading_day": "2026-03-16",
+      "effective_first_trading_day": "2026-03-16",
+      "first_in_window_observation": "2026-03-16",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "FARTCOINUSDT",
+      "original_first_trading_day": "2024-12-20",
+      "effective_first_trading_day": "2024-12-20",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "FHEUSDT",
+      "original_first_trading_day": "2025-04-12",
+      "effective_first_trading_day": "2025-04-12",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "FILUSDT",
+      "original_first_trading_day": "2020-10-16",
+      "effective_first_trading_day": "2020-10-16",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "HIFIUSDT",
+      "original_first_trading_day": "2023-09-16",
+      "effective_first_trading_day": "2023-09-16",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "HUSDT",
+      "original_first_trading_day": "2025-06-25",
+      "effective_first_trading_day": "2025-06-25",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "HYPEUSDT",
+      "original_first_trading_day": "2025-05-30",
+      "effective_first_trading_day": "2025-05-30",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ICPUSDT",
+      "original_first_trading_day": "2021-05-11",
+      "effective_first_trading_day": "2021-05-11",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "INTCUSDT",
+      "original_first_trading_day": "2026-02-02",
+      "effective_first_trading_day": "2026-02-02",
+      "first_in_window_observation": "2026-02-02",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "IPUSDT",
+      "original_first_trading_day": "2025-02-13",
+      "effective_first_trading_day": "2025-02-13",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "JELLYJELLYUSDT",
+      "original_first_trading_day": "2025-03-26",
+      "effective_first_trading_day": "2025-03-26",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "LABUSDT",
+      "original_first_trading_day": "2025-10-17",
+      "effective_first_trading_day": "2025-10-17",
+      "first_in_window_observation": "2025-10-17",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "LDOUSDT",
+      "original_first_trading_day": "2022-09-22",
+      "effective_first_trading_day": "2022-09-22",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "LIGHTUSDT",
+      "original_first_trading_day": "2025-09-27",
+      "effective_first_trading_day": "2025-09-27",
+      "first_in_window_observation": "2025-09-27",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "LINKUSDT",
+      "original_first_trading_day": "2020-01-17",
+      "effective_first_trading_day": "2020-01-17",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "LTCUSDT",
+      "original_first_trading_day": "2020-01-09",
+      "effective_first_trading_day": "2020-01-09",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "LUNA2USDT",
+      "original_first_trading_day": "2022-09-10",
+      "effective_first_trading_day": "2022-09-10",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "LYNUSDT",
+      "original_first_trading_day": "2025-10-06",
+      "effective_first_trading_day": "2025-10-06",
+      "first_in_window_observation": "2025-10-06",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "MAGICUSDT",
+      "original_first_trading_day": "2023-01-25",
+      "effective_first_trading_day": "2023-01-25",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "MSTRUSDT",
+      "original_first_trading_day": "2026-02-09",
+      "effective_first_trading_day": "2026-02-09",
+      "first_in_window_observation": "2026-02-09",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "MUSDT",
+      "original_first_trading_day": "2025-07-07",
+      "effective_first_trading_day": "2025-07-07",
+      "first_in_window_observation": "2025-07-07",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "MUUSDT",
+      "original_first_trading_day": "2026-04-07",
+      "effective_first_trading_day": "2026-04-07",
+      "first_in_window_observation": "2026-04-07",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "MYXUSDT",
+      "original_first_trading_day": "2025-06-18",
+      "effective_first_trading_day": "2025-06-18",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "NEARUSDT",
+      "original_first_trading_day": "2020-10-15",
+      "effective_first_trading_day": "2020-10-15",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "NMRUSDT",
+      "original_first_trading_day": "2023-06-22",
+      "effective_first_trading_day": "2023-06-22",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ONDOUSDT",
+      "original_first_trading_day": "2024-01-20",
+      "effective_first_trading_day": "2024-01-20",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ORCAUSDT",
+      "original_first_trading_day": "2024-12-06",
+      "effective_first_trading_day": "2024-12-06",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ORDIUSDT",
+      "original_first_trading_day": "2023-11-07",
+      "effective_first_trading_day": "2023-11-07",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "PAXGUSDT",
+      "original_first_trading_day": "2025-03-27",
+      "effective_first_trading_day": "2025-03-27",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "PENGUUSDT",
+      "original_first_trading_day": "2024-12-17",
+      "effective_first_trading_day": "2024-12-17",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "PIEVERSEUSDT",
+      "original_first_trading_day": "2025-11-14",
+      "effective_first_trading_day": "2025-11-14",
+      "first_in_window_observation": "2025-11-14",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "PIPPINUSDT",
+      "original_first_trading_day": "2025-01-24",
+      "effective_first_trading_day": "2025-01-24",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "PIXELUSDT",
+      "original_first_trading_day": "2024-02-19",
+      "effective_first_trading_day": "2024-02-19",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "PLAYUSDT",
+      "original_first_trading_day": "2025-07-31",
+      "effective_first_trading_day": "2025-07-31",
+      "first_in_window_observation": "2025-07-31",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "POWERUSDT",
+      "original_first_trading_day": "2025-12-06",
+      "effective_first_trading_day": "2025-12-06",
+      "first_in_window_observation": "2025-12-06",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "PUMPUSDT",
+      "original_first_trading_day": "2025-04-12",
+      "effective_first_trading_day": "2025-04-12",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "QQQUSDT",
+      "original_first_trading_day": "2026-04-06",
+      "effective_first_trading_day": "2026-04-06",
+      "first_in_window_observation": "2026-04-06",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "RAVEUSDT",
+      "original_first_trading_day": "2025-12-14",
+      "effective_first_trading_day": "2025-12-14",
+      "first_in_window_observation": "2025-12-14",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "RIVERUSDT",
+      "original_first_trading_day": "2025-10-17",
+      "effective_first_trading_day": "2025-10-17",
+      "first_in_window_observation": "2025-10-17",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SAMSUNGUSDT",
+      "original_first_trading_day": "2026-06-02",
+      "effective_first_trading_day": "2026-06-02",
+      "first_in_window_observation": "2026-06-02",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SIGNUSDT",
+      "original_first_trading_day": "2025-04-28",
+      "effective_first_trading_day": "2025-04-28",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SIRENUSDT",
+      "original_first_trading_day": "2025-03-22",
+      "effective_first_trading_day": "2025-03-22",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SKHYNIXUSDT",
+      "original_first_trading_day": "2026-06-02",
+      "effective_first_trading_day": "2026-06-02",
+      "first_in_window_observation": "2026-06-02",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SKYAIUSDT",
+      "original_first_trading_day": "2025-05-13",
+      "effective_first_trading_day": "2025-05-13",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SNDKUSDT",
+      "original_first_trading_day": "2026-04-07",
+      "effective_first_trading_day": "2026-04-07",
+      "first_in_window_observation": "2026-04-07",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SOLUSDT",
+      "original_first_trading_day": "2020-09-14",
+      "effective_first_trading_day": "2020-09-14",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SOONUSDT",
+      "original_first_trading_day": "2025-05-23",
+      "effective_first_trading_day": "2025-05-23",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SOXLUSDT",
+      "original_first_trading_day": "2026-05-15",
+      "effective_first_trading_day": "2026-05-15",
+      "first_in_window_observation": "2026-05-15",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SPCXUSDT",
+      "original_first_trading_day": "2026-05-21",
+      "effective_first_trading_day": "2026-05-21",
+      "first_in_window_observation": "2026-05-21",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "STOUSDT",
+      "original_first_trading_day": "2025-04-12",
+      "effective_first_trading_day": "2025-04-12",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "STRKUSDT",
+      "original_first_trading_day": "2024-02-20",
+      "effective_first_trading_day": "2024-02-20",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SUIUSDT",
+      "original_first_trading_day": "2023-05-03",
+      "effective_first_trading_day": "2023-05-03",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "SYNUSDT",
+      "original_first_trading_day": "2024-08-16",
+      "effective_first_trading_day": "2024-08-16",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "TAOUSDT",
+      "original_first_trading_day": "2024-04-11",
+      "effective_first_trading_day": "2024-04-11",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "TAUSDT",
+      "original_first_trading_day": "2025-07-21",
+      "effective_first_trading_day": "2025-07-21",
+      "first_in_window_observation": "2025-07-21",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "TNSRUSDT",
+      "original_first_trading_day": "2024-04-08",
+      "effective_first_trading_day": "2024-04-08",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "TONUSDT",
+      "original_first_trading_day": "2024-03-01",
+      "effective_first_trading_day": "2024-03-01",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "TRUMPUSDT",
+      "original_first_trading_day": "2025-01-18",
+      "effective_first_trading_day": "2025-01-18",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "UBUSDT",
+      "original_first_trading_day": "2025-09-12",
+      "effective_first_trading_day": "2025-09-12",
+      "first_in_window_observation": "2025-09-12",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "UNIUSDT",
+      "original_first_trading_day": "2020-09-18",
+      "effective_first_trading_day": "2020-09-18",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "VELVETUSDT",
+      "original_first_trading_day": "2025-07-15",
+      "effective_first_trading_day": "2025-07-15",
+      "first_in_window_observation": "2025-07-15",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "WIFUSDT",
+      "original_first_trading_day": "2024-01-18",
+      "effective_first_trading_day": "2024-01-18",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "WLDUSDT",
+      "original_first_trading_day": "2023-07-24",
+      "effective_first_trading_day": "2023-07-24",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "WLFIUSDT",
+      "original_first_trading_day": "2025-08-23",
+      "effective_first_trading_day": "2025-08-23",
+      "first_in_window_observation": "2025-08-23",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "XAGUSDT",
+      "original_first_trading_day": "2026-01-07",
+      "effective_first_trading_day": "2026-01-07",
+      "first_in_window_observation": "2026-01-07",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "XAUUSDT",
+      "original_first_trading_day": "2025-12-11",
+      "effective_first_trading_day": "2025-12-11",
+      "first_in_window_observation": "2025-12-11",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "XLMUSDT",
+      "original_first_trading_day": "2020-01-20",
+      "effective_first_trading_day": "2020-01-20",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "XMRUSDT",
+      "original_first_trading_day": "2020-02-03",
+      "effective_first_trading_day": "2020-02-03",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "XPLUSDT",
+      "original_first_trading_day": "2025-08-22",
+      "effective_first_trading_day": "2025-08-22",
+      "first_in_window_observation": "2025-08-22",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "XRPUSDT",
+      "original_first_trading_day": "2020-01-06",
+      "effective_first_trading_day": "2020-01-06",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ZBTUSDT",
+      "original_first_trading_day": "2025-10-17",
+      "effective_first_trading_day": "2025-10-17",
+      "first_in_window_observation": "2025-10-17",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ZECUSDT",
+      "original_first_trading_day": "2020-02-05",
+      "effective_first_trading_day": "2020-02-05",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ZENUSDT",
+      "original_first_trading_day": "2020-11-24",
+      "effective_first_trading_day": "2020-11-24",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "ZKUSDT",
+      "original_first_trading_day": "2024-06-17",
+      "effective_first_trading_day": "2024-06-17",
+      "first_in_window_observation": "2025-07-01",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    },
+    {
+      "symbol": "币安人生USDT",
+      "original_first_trading_day": "2025-10-20",
+      "effective_first_trading_day": "2025-10-20",
+      "first_in_window_observation": "2025-10-20",
+      "boundary_backward_check_performed": false,
+      "backward_archives_downloaded": 0,
+      "gaps": []
+    }
+  ],
+  "prohibitions_observed": [
+    "A-2 detector not run",
+    "No weekend/volatility/volume detector statistics computed",
+    "No strategy performance computed or inspected",
+    "No Stage 2 work performed",
+    "universe.json not modified"
+  ]
+}
