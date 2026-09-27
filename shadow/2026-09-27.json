@@ -1,0 +1,107 @@
+{
+  "label": "COUNTERFACTUAL / SHADOW",
+  "execution_date": "2026-09-27",
+  "canonical_locked_state": "NO TRADE",
+  "canonical_reason": "no coin qualifies",
+  "btc_hard_gate_pass": true,
+  "btc_ret": 0.003180819755528308,
+  "btc_mom3": -0.005209566016831313,
+  "btc_rng3": 0.008109383149210557,
+  "generated_at_utc": "2026-09-27T16:51:48.792538+00:00",
+  "canonical_capital_effect": "none",
+  "note": "Research only. Qualification read from the immutable signal artifact; execution mechanics reconstructed from later authoritative 1m data. Never promoted to canonical history.",
+  "coins": {
+    "HOLO": {
+      "qualified": false,
+      "failed_gates": [
+        "ret",
+        "clv",
+        "dfh"
+      ],
+      "metrics": {
+        "ret": -0.015988372093023284,
+        "clv": 0.22580645161290136,
+        "vol_ratio": 0.8782055215636889,
+        "taker": 0.4738506108227139,
+        "mom1": 0.005943536404160454,
+        "mom3": -0.002945508100147376,
+        "dfh": 0.03423680456490727,
+        "rs": -0.019169191848551592
+      },
+      "distance_from_failed_thresholds": {
+        "ret": {
+          "value": -0.015988372093023284,
+          "threshold": "partial-day return in [0%, +6%]",
+          "bound": "min",
+          "limit": 0.0,
+          "distance": -0.01598837
+        },
+        "clv": {
+          "value": 0.22580645161290136,
+          "threshold": "CLV >= 0.50",
+          "bound": "min",
+          "limit": 0.5,
+          "distance": -0.27419355
+        },
+        "dfh": {
+          "value": 0.03423680456490727,
+          "threshold": "distance from high <= 2.5%",
+          "bound": "max",
+          "limit": 0.025,
+          "distance": 0.0092368
+        }
+      },
+      "btc_stress_multiplier": 1.0,
+      "rs_multiplier": 1.0,
+      "btcd_multiplier": 1.0,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 5.0,
+        "A1": 1.5,
+        "B1": 1.25
+      },
+      "counterfactual_execution": {
+        "status": "DEFERRED",
+        "reason": "trading window has not closed"
+      }
+    },
+    "PUMP": {
+      "qualified": false,
+      "failed_gates": [
+        "ret"
+      ],
+      "metrics": {
+        "ret": 0.1048731192454524,
+        "clv": 0.9308270676691729,
+        "vol_ratio": 0.9501708227020984,
+        "taker": 0.5370494683247878,
+        "mom1": 0.02435977514053711,
+        "mom3": 0.08203210908291192,
+        "dfh": 0.009262988320579951,
+        "rs": 0.10169229948992409
+      },
+      "distance_from_failed_thresholds": {
+        "ret": {
+          "value": 0.1048731192454524,
+          "threshold": "partial-day return in [0%, +6%]",
+          "bound": "max",
+          "limit": 0.06,
+          "distance": 0.04487312
+        }
+      },
+      "btc_stress_multiplier": 1.0,
+      "rs_multiplier": 0.75,
+      "btcd_multiplier": 1.0,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 3.75,
+        "A1": 1.125,
+        "B1": 0.9375
+      },
+      "counterfactual_execution": {
+        "status": "DEFERRED",
+        "reason": "trading window has not closed"
+      }
+    }
+  }
+}
