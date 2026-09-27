@@ -1,0 +1,108 @@
+name: A-2 Step 2b backward continuity audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: a2-continuity-backward
+  cancel-in-progress: false
+
+jobs:
+  backward-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Record universe.json digest BEFORE the audit
+        run: |
+          sha256sum research/multicoin_expansion/universe.json | tee /tmp/universe_before.txt
+
+      - name: Backward continuity walk over pre-window history
+        run: python scripts/audit_a2_continuity_backward.py
+
+      - name: Assert universe.json was NOT modified
+        run: |
+          sha256sum -c /tmp/universe_before.txt
+          echo "universe.json unchanged -- PASS"
+
+      - name: Validate output integrity
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          p = pathlib.Path('research/multicoin_expansion/a2_continuity_audit_backward.json')
+          assert p.exists(), "output file missing"
+          d = json.loads(p.read_text())
+          f = d['frozen_inputs']
+          # The frozen parameters must be byte-identical to Step 2.
+          assert f['gap_threshold_missing_calendar_days'] == 7, "gap threshold altered"
+          assert f['age_gate_days'] == 60, "age gate altered"
+          assert f['age_gate_operator'] == '>=', "age gate operator altered"
+          assert f['examination_set_count'] == 118
+          assert f['examination_set_sha256'] == \
+              "8239751d74dc4d758252e0764e8a6f3d4f43b25bc4f35761050b7a146425d685"
+          assert d['rule']['unchanged_from_step2'] is True
+          assert d['rule']['lookback_horizon'] == 'symbol birth -- no discretionary bound'
+          c = d['counts']
+          assert c['symbols_in_examination_set'] == 118
+          assert c['symbols_requiring_backward_walk'] + c['symbols_with_no_pre_window_history'] == 118
+          assert c['symbols_walked'] == c['symbols_requiring_backward_walk'], \
+              "not every in-scope symbol was walked"
+          # Coverage assertion: the failure this run exists to correct was a
+          # backward check that fired zero times. Zero downloads would mean it
+          # has happened again.
+          assert c['archives_downloaded'] > 0, \
+              "FATAL: zero archives downloaded -- backward walk did not execute"
+          print("Output integrity PASS")
+          print(f"  walked                    : {c['symbols_walked']}")
+          print(f"  archives downloaded       : {c['archives_downloaded']}")
+          print(f"  pre-window breaks found   : {c['symbols_with_pre_window_break']}")
+          print(f"  effective start changes   : {c['symbols_with_effective_start_change']}")
+          print(f"  indeterminate             : {c['symbols_indeterminate']}")
+          PY
+
+      - name: Print PUMPUSDT seam forensic
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          d = json.loads(pathlib.Path(
+              'research/multicoin_expansion/a2_continuity_audit_backward.json').read_text())
+          fr = d['pumpusdt_forensic_daily_bars']
+          obs = fr['observed_days']
+          print(f"PUMPUSDT observed trading days in {fr['span'][0]} .. {fr['span'][1]}: {len(obs)}")
+          for day in sorted(obs):
+              r = obs[day]
+              print(f"  {day}  rows={r['rows']}  volume={r['volume']}")
+          rec = next((s for s in d['symbols'] if s['symbol'] == 'PUMPUSDT'), None)
+          print()
+          print("PUMPUSDT walk record:")
+          print(json.dumps(rec, indent=2))
+          PY
+
+      - name: Commit audit output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/multicoin_expansion/a2_continuity_audit_backward.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "research: A-2 step 2b backward continuity audit"
+            git push
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: a2-continuity-audit-backward
+          path: research/multicoin_expansion/a2_continuity_audit_backward.json
+          retention-days: 90
