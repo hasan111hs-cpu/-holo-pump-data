@@ -1,0 +1,374 @@
+{
+  "schema_version": 2,
+  "deliverable": "A-2 Step 2c -- eligibility impact verification and membership rebuild",
+  "status": "COMPLETE",
+  "supersedes": "Step 2c v1 (UNRESOLVED_NO_FORMATION_DATE_KEY)",
+  "step2b_empty_impact_was_silent_skip": true,
+  "step2b_silent_skip_reason": "Step 2b looked for formation_date / formation_day / as_of. The field is named 'formation_timestamp', so every month hit `continue` and the empty impact list carried no information.",
+  "frozen_inputs": {
+    "universe_sha256": "ea79bbdeff91bdc3918c523bf248e2c2fe88aa34ec161f2633d0b1940c75c12a",
+    "age_gate_days": 60,
+    "age_gate_operator": ">="
+  },
+  "formation_date_field": "formation_timestamp",
+  "formation_date_resolution": "named candidate",
+  "formation_dates": {
+    "2025-09": "2025-09-01",
+    "2025-10": "2025-10-01",
+    "2025-11": "2025-11-01",
+    "2025-12": "2025-12-01",
+    "2026-01": "2026-01-01",
+    "2026-02": "2026-02-01",
+    "2026-03": "2026-03-01",
+    "2026-04": "2026-04-01",
+    "2026-05": "2026-05-01",
+    "2026-06": "2026-06-01",
+    "2026-07": "2026-07-01",
+    "2026-08": "2026-08-01"
+  },
+  "volume_windows": {
+    "2025-09": {
+      "start": "2025-08-02",
+      "end": "2025-08-31"
+    },
+    "2025-10": {
+      "start": "2025-09-01",
+      "end": "2025-09-30"
+    },
+    "2025-11": {
+      "start": "2025-10-02",
+      "end": "2025-10-31"
+    },
+    "2025-12": {
+      "start": "2025-11-01",
+      "end": "2025-11-30"
+    },
+    "2026-01": {
+      "start": "2025-12-02",
+      "end": "2025-12-31"
+    },
+    "2026-02": {
+      "start": "2026-01-02",
+      "end": "2026-01-31"
+    },
+    "2026-03": {
+      "start": "2026-01-30",
+      "end": "2026-02-28"
+    },
+    "2026-04": {
+      "start": "2026-03-02",
+      "end": "2026-03-31"
+    },
+    "2026-05": {
+      "start": "2026-04-01",
+      "end": "2026-04-30"
+    },
+    "2026-06": {
+      "start": "2026-05-02",
+      "end": "2026-05-31"
+    },
+    "2026-07": {
+      "start": "2026-06-01",
+      "end": "2026-06-30"
+    },
+    "2026-08": {
+      "start": "2026-07-02",
+      "end": "2026-07-31"
+    }
+  },
+  "symbols": [
+    {
+      "symbol": "ICPUSDT",
+      "original_first_trading_day": "2021-05-11",
+      "effective_first_trading_day": "2022-09-27",
+      "months": [
+        {
+          "formation_month": "2025-09",
+          "formation_date": "2025-09-01",
+          "age_days_under_original": 1574,
+          "age_days_under_effective": 1070,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2025-10",
+          "formation_date": "2025-10-01",
+          "age_days_under_original": 1604,
+          "age_days_under_effective": 1100,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2025-11",
+          "formation_date": "2025-11-01",
+          "age_days_under_original": 1635,
+          "age_days_under_effective": 1131,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2025-12",
+          "formation_date": "2025-12-01",
+          "age_days_under_original": 1665,
+          "age_days_under_effective": 1161,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-01",
+          "formation_date": "2026-01-01",
+          "age_days_under_original": 1696,
+          "age_days_under_effective": 1192,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-02",
+          "formation_date": "2026-02-01",
+          "age_days_under_original": 1727,
+          "age_days_under_effective": 1223,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-03",
+          "formation_date": "2026-03-01",
+          "age_days_under_original": 1755,
+          "age_days_under_effective": 1251,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-04",
+          "formation_date": "2026-04-01",
+          "age_days_under_original": 1786,
+          "age_days_under_effective": 1282,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-05",
+          "formation_date": "2026-05-01",
+          "age_days_under_original": 1816,
+          "age_days_under_effective": 1312,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-06",
+          "formation_date": "2026-06-01",
+          "age_days_under_original": 1847,
+          "age_days_under_effective": 1343,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-07",
+          "formation_date": "2026-07-01",
+          "age_days_under_original": 1877,
+          "age_days_under_effective": 1373,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-08",
+          "formation_date": "2026-08-01",
+          "age_days_under_original": 1908,
+          "age_days_under_effective": 1404,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        }
+      ],
+      "months_flipping_to_ineligible": [],
+      "months_requiring_membership_rebuild": []
+    },
+    {
+      "symbol": "PUMPUSDT",
+      "original_first_trading_day": "2025-04-12",
+      "effective_first_trading_day": "2025-07-01",
+      "months": [
+        {
+          "formation_month": "2025-09",
+          "formation_date": "2025-09-01",
+          "age_days_under_original": 142,
+          "age_days_under_effective": 62,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2025-10",
+          "formation_date": "2025-10-01",
+          "age_days_under_original": 172,
+          "age_days_under_effective": 92,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": true,
+          "current_rank": 7
+        },
+        {
+          "formation_month": "2025-11",
+          "formation_date": "2025-11-01",
+          "age_days_under_original": 203,
+          "age_days_under_effective": 123,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": true,
+          "current_rank": 14
+        },
+        {
+          "formation_month": "2025-12",
+          "formation_date": "2025-12-01",
+          "age_days_under_original": 233,
+          "age_days_under_effective": 153,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-01",
+          "formation_date": "2026-01-01",
+          "age_days_under_original": 264,
+          "age_days_under_effective": 184,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-02",
+          "formation_date": "2026-02-01",
+          "age_days_under_original": 295,
+          "age_days_under_effective": 215,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": true,
+          "current_rank": 15
+        },
+        {
+          "formation_month": "2026-03",
+          "formation_date": "2026-03-01",
+          "age_days_under_original": 323,
+          "age_days_under_effective": 243,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-04",
+          "formation_date": "2026-04-01",
+          "age_days_under_original": 354,
+          "age_days_under_effective": 274,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-05",
+          "formation_date": "2026-05-01",
+          "age_days_under_original": 384,
+          "age_days_under_effective": 304,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-06",
+          "formation_date": "2026-06-01",
+          "age_days_under_original": 415,
+          "age_days_under_effective": 335,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-07",
+          "formation_date": "2026-07-01",
+          "age_days_under_original": 445,
+          "age_days_under_effective": 365,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        },
+        {
+          "formation_month": "2026-08",
+          "formation_date": "2026-08-01",
+          "age_days_under_original": 476,
+          "age_days_under_effective": 396,
+          "eligible_under_original": true,
+          "eligible_under_effective": true,
+          "eligibility_flipped_to_ineligible": false,
+          "currently_selected_member": false,
+          "current_rank": null
+        }
+      ],
+      "months_flipping_to_ineligible": [],
+      "months_requiring_membership_rebuild": []
+    }
+  ],
+  "formation_months_requiring_membership_rebuild": [],
+  "membership_rebuilds": [],
+  "prohibitions_observed": [
+    "No thresholds altered (age gate 60, operator >=)",
+    "Ranking rule and selection count read as frozen, not recomputed",
+    "universe.json read only -- digest asserted unchanged",
+    "No archives downloaded",
+    "Membership rebuild REPORTED, not written",
+    "A-2 detector not run",
+    "No Stage 2 work performed"
+  ]
+}
