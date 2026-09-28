@@ -1,0 +1,104 @@
+name: A-2 Step 2e point-in-time eligibility
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: a2-eligibility-pit
+  cancel-in-progress: false
+
+jobs:
+  pit-eligibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Assert required input files exist at exact paths
+        run: |
+          missing=0
+          for f in \
+            research/multicoin_expansion/universe.json \
+            research/multicoin_expansion/a2_continuity_audit_backward.json \
+            research/multicoin_expansion/a2_continuity_audit_forward.json \
+            scripts/verify_a2_eligibility_pit.py
+          do
+            if [ ! -f "$f" ]; then echo "MISSING: $f"; missing=1; else echo "ok: $f"; fi
+          done
+          if [ "$missing" = "1" ]; then
+            echo ""; echo "Present in research/multicoin_expansion/:"
+            ls -la research/multicoin_expansion/ || true
+            echo ""; echo "Present in scripts/:"; ls -la scripts/ || true
+            echo ""
+            echo "A MISSING file is usually a doubled extension (name.json.json,"
+            echo "name.py.txt) or a space in the name, from a mobile upload."
+            echo "Rename it on GitHub to the exact path shown and re-run."
+            exit 1
+          fi
+
+      - name: Record universe.json digest BEFORE
+        run: sha256sum research/multicoin_expansion/universe.json | tee /tmp/universe_before.txt
+
+      - name: Point-in-time eligibility recomputation
+        run: python scripts/verify_a2_eligibility_pit.py
+
+      - name: Assert universe.json was NOT modified
+        run: |
+          sha256sum -c /tmp/universe_before.txt
+          echo "universe.json unchanged -- PASS"
+
+      - name: Validate output integrity
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          d = json.loads(pathlib.Path(
+              'research/multicoin_expansion/a2_eligibility_pit.json').read_text())
+          i = d['inputs']
+          assert i['age_gate_days'] == 60, "age gate altered"
+          assert i['age_gate_operator'] == '>=', "age gate operator altered"
+          assert i['universe_sha256'] == \
+              "ea79bbdeff91bdc3918c523bf248e2c2fe88aa34ec161f2633d0b1940c75c12a"
+          assert d['symbols'], "no symbols assessed"
+          print("Output integrity PASS")
+          print("  rebuild months:", d['formation_months_requiring_membership_rebuild'])
+          for r in d['symbols']:
+              flips = [x['formation_month'] for x in r['months']
+                       if x['flips_to_ineligible_point_in_time']]
+              dis = [x['formation_month'] for x in r['months'] if x['readings_disagree']]
+              print(f"  {r['symbol']}: global_eff={r['global_effective_start']} "
+                    f"flips={flips} pit_vs_global_disagree={dis}")
+          print("  selected-but-not-trading rows:",
+                len(d['selected_members_not_trading_at_formation']))
+          PY
+
+      - name: Commit outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/multicoin_expansion/a2_eligibility_pit.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "research: A-2 step 2e point-in-time eligibility"
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push origin HEAD:main && break
+              echo "push attempt $i failed; retrying"
+              sleep 5
+            done
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: a2-eligibility-pit
+          path: research/multicoin_expansion/a2_eligibility_pit.json
+          retention-days: 90
