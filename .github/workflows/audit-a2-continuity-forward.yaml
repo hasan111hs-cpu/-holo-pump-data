@@ -1,0 +1,122 @@
+name: A-2 Step 2d forward continuity verification
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: a2-continuity-forward
+  cancel-in-progress: false
+
+jobs:
+  forward-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Assert required input files exist at exact paths
+        run: |
+          missing=0
+          for f in \
+            research/multicoin_expansion/universe.json \
+            research/multicoin_expansion/a2_continuity_audit.json \
+            research/multicoin_expansion/a2_continuity_audit_backward.json \
+            scripts/audit_a2_continuity_forward.py
+          do
+            if [ ! -f "$f" ]; then echo "MISSING: $f"; missing=1; else echo "ok: $f"; fi
+          done
+          if [ "$missing" = "1" ]; then
+            echo ""; echo "Present in research/multicoin_expansion/:"
+            ls -la research/multicoin_expansion/ || true
+            echo ""; echo "Present in scripts/:"; ls -la scripts/ || true
+            echo ""
+            echo "A MISSING file is usually a doubled extension (name.json.json,"
+            echo "name.py.txt) or a space in the name, from a mobile upload."
+            echo "Rename it on GitHub to the exact path shown and re-run."
+            exit 1
+          fi
+
+      - name: Record universe.json digest BEFORE
+        run: sha256sum research/multicoin_expansion/universe.json | tee /tmp/universe_before.txt
+
+      - name: Independent forward continuity scan
+        run: python scripts/audit_a2_continuity_forward.py
+
+      - name: Assert universe.json was NOT modified
+        run: |
+          sha256sum -c /tmp/universe_before.txt
+          echo "universe.json unchanged -- PASS"
+
+      - name: Validate output integrity
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          d = json.loads(pathlib.Path(
+              'research/multicoin_expansion/a2_continuity_audit_forward.json').read_text())
+          f = d['frozen_inputs']
+          assert f['gap_threshold_missing_calendar_days'] == 7, "gap threshold altered"
+          assert f['window_start'] == '2025-07-01' and f['window_end'] == '2026-08-31'
+          assert f['examination_set_count'] == 118
+          assert f['examination_set_sha256'] == \
+              "8239751d74dc4d758252e0764e8a6f3d4f43b25bc4f35761050b7a146425d685"
+          c = d['counts']
+          assert c['symbols_scanned'] == 118, "not all 118 scanned"
+          assert c['archives_downloaded'] > 0, "FATAL: no archives downloaded"
+          print("Output integrity PASS")
+          for k, v in c.items():
+              print(f"  {k}: {v}")
+          a = d['agreement_with_step2']
+          print(f"  first-observation agreement: {a['first_observation']}")
+          print(f"  gap-detection  agreement   : {a['gap_detection']}")
+          PY
+
+      - name: Print PUMPUSDT July 2025 seam
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          d = json.loads(pathlib.Path(
+              'research/multicoin_expansion/a2_continuity_audit_forward.json').read_text())
+          s = d['pumpusdt_july_2025_seam']
+          for day in sorted(s['observed_days']):
+              r = s['observed_days'][day]
+              print(f"  {day}  close={r.get('close')}  volume={r.get('volume')}")
+          print()
+          print("bars 2025-07-01..07-09:", s['bars_2025_07_01_to_07_09'] or "NONE")
+          print("bars from 2025-07-10  :", s['bars_from_2025_07_10'][:5] or "NONE")
+          if 'close_ratio_across_seam' in s:
+              print("close ratio across seam:", s['close_ratio_across_seam'])
+          print()
+          print(s['interpretation'])
+          PY
+
+      - name: Commit audit output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/multicoin_expansion/a2_continuity_audit_forward.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "research: A-2 step 2d forward continuity verification"
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push origin HEAD:main && break
+              echo "push attempt $i failed; retrying"
+              sleep 5
+            done
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: a2-continuity-audit-forward
+          path: research/multicoin_expansion/a2_continuity_audit_forward.json
+          retention-days: 90
