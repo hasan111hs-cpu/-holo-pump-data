@@ -1,0 +1,124 @@
+{
+  "label": "COUNTERFACTUAL / SHADOW",
+  "execution_date": "2026-09-29",
+  "canonical_locked_state": "NO TRADE",
+  "canonical_reason": "no coin qualifies",
+  "btc_hard_gate_pass": false,
+  "btc_ret": -0.009621682506294027,
+  "btc_mom3": -0.012358526254868663,
+  "btc_rng3": 0.01864684597756597,
+  "generated_at_utc": "2026-09-29T16:52:07.908351+00:00",
+  "canonical_capital_effect": "none",
+  "note": "Research only. Qualification read from the immutable signal artifact; execution mechanics reconstructed from later authoritative 1m data. Never promoted to canonical history.",
+  "coins": {
+    "HOLO": {
+      "qualified": false,
+      "failed_gates": [
+        "mom3",
+        "mom1",
+        "dfh"
+      ],
+      "metrics": {
+        "ret": 0.0062597809076681,
+        "clv": 0.5357142857142849,
+        "vol_ratio": 0.7924657366357508,
+        "taker": 0.5351778461466945,
+        "mom1": -0.010769230769230864,
+        "mom3": -0.025757575757575868,
+        "dfh": 0.0388639760837071,
+        "rs": 0.015881463413962127
+      },
+      "distance_from_failed_thresholds": {
+        "mom3": {
+          "value": -0.025757575757575868,
+          "threshold": "3h momentum >= -0.50%",
+          "bound": "min",
+          "limit": -0.005,
+          "distance": -0.02075758
+        },
+        "mom1": {
+          "value": -0.010769230769230864,
+          "threshold": "1h momentum >= -0.80%",
+          "bound": "min",
+          "limit": -0.008,
+          "distance": -0.00276923
+        },
+        "dfh": {
+          "value": 0.0388639760837071,
+          "threshold": "distance from high <= 2.5%",
+          "bound": "max",
+          "limit": 0.025,
+          "distance": 0.01386398
+        }
+      },
+      "btc_stress_multiplier": 0.5,
+      "rs_multiplier": 1.15,
+      "btcd_multiplier": 1.15,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 3.30625,
+        "A1": 0.991875,
+        "B1": 0.826562
+      },
+      "counterfactual_execution": {
+        "status": "DEFERRED",
+        "reason": "trading window has not closed"
+      }
+    },
+    "PUMP": {
+      "qualified": false,
+      "failed_gates": [
+        "ret",
+        "mom3",
+        "dfh"
+      ],
+      "metrics": {
+        "ret": 0.08728036669213135,
+        "clv": 0.8211974110032364,
+        "vol_ratio": 2.327558478002134,
+        "taker": 0.5140671899141043,
+        "mom1": -0.004894249257122896,
+        "mom3": -0.02483727303871186,
+        "dfh": 0.03736895502198171,
+        "rs": 0.09690204919842538
+      },
+      "distance_from_failed_thresholds": {
+        "ret": {
+          "value": 0.08728036669213135,
+          "threshold": "partial-day return in [0%, +6%]",
+          "bound": "max",
+          "limit": 0.06,
+          "distance": 0.02728037
+        },
+        "mom3": {
+          "value": -0.02483727303871186,
+          "threshold": "3h momentum >= -0.50%",
+          "bound": "min",
+          "limit": -0.005,
+          "distance": -0.01983727
+        },
+        "dfh": {
+          "value": 0.03736895502198171,
+          "threshold": "distance from high <= 2.5%",
+          "bound": "max",
+          "limit": 0.025,
+          "distance": 0.01236896
+        }
+      },
+      "btc_stress_multiplier": 0.5,
+      "rs_multiplier": 0.75,
+      "btcd_multiplier": 1.15,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 2.15625,
+        "A1": 0.646875,
+        "B1": 0.539062
+      },
+      "counterfactual_execution": {
+        "status": "DEFERRED",
+        "reason": "trading window has not closed"
+      }
+    }
+  },
+  "btc_gated_counterfactual": "BTC hard gate failed; both coins also failed qualification independently"
+}
