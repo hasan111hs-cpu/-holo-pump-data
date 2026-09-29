@@ -7,7 +7,7 @@
   "btc_ret": -0.010704235344195623,
   "btc_mom3": -0.0013455248973429645,
   "btc_rng3": 0.019692840618679,
-  "generated_at_utc": "2026-09-29T16:52:07.865546+00:00",
+  "generated_at_utc": "2026-09-29T23:09:11.678790+00:00",
   "canonical_capital_effect": "none",
   "note": "Research only. Qualification read from the immutable signal artifact; execution mechanics reconstructed from later authoritative 1m data. Never promoted to canonical history.",
   "coins": {
@@ -77,8 +77,48 @@
         "B1": 1.25
       },
       "counterfactual_execution": {
-        "status": "DEFERRED",
-        "reason": "trading window has not closed"
+        "R1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-28T20:06:00+00:00",
+          "entry_px": 0.0632,
+          "exit_ts": "2026-09-29T01:18:00+00:00",
+          "exit_px": 0.062252,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.06304,
+          "reclaim_threshold": 0.06316608,
+          "hypothetical_net_return": -0.085,
+          "hypothetical_exposure": 5.0
+        },
+        "A1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-28T20:24:00+00:00",
+          "entry_px": 0.0635,
+          "exit_ts": "2026-09-28T21:56:00+00:00",
+          "exit_px": 0.062738,
+          "exit_reason": "SL",
+          "gross_return": -0.012,
+          "flush_threshold": 0.06336,
+          "reclaim_threshold": 0.06342336,
+          "hypothetical_net_return": -0.021,
+          "hypothetical_exposure": 1.5
+        },
+        "B1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-28T20:24:00+00:00",
+          "entry_px": 0.0635,
+          "exit_ts": "2026-09-28T22:04:00+00:00",
+          "exit_px": 0.0625475,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.06336,
+          "reclaim_threshold": 0.06348672,
+          "hypothetical_net_return": -0.02125,
+          "hypothetical_exposure": 1.25
+        }
       }
     },
     "PUMP": {
@@ -123,8 +163,48 @@
         "B1": 0.9375
       },
       "counterfactual_execution": {
-        "status": "DEFERRED",
-        "reason": "trading window has not closed"
+        "R1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-28T18:34:00+00:00",
+          "entry_px": 0.005219,
+          "exit_ts": "2026-09-28T19:10:00+00:00",
+          "exit_px": 0.005140715,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.005204739999999999,
+          "reclaim_threshold": 0.0052151494799999995,
+          "hypothetical_net_return": -0.06375,
+          "hypothetical_exposure": 3.75
+        },
+        "A1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-28T18:27:00+00:00",
+          "entry_px": 0.005237,
+          "exit_ts": "2026-09-28T18:31:00+00:00",
+          "exit_px": 0.005174156,
+          "exit_reason": "SL",
+          "gross_return": -0.012,
+          "flush_threshold": 0.0052311599999999995,
+          "reclaim_threshold": 0.0052363911599999985,
+          "hypothetical_net_return": -0.01575,
+          "hypothetical_exposure": 1.125
+        },
+        "B1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-28T18:36:00+00:00",
+          "entry_px": 0.005248,
+          "exit_ts": "2026-09-28T19:04:00+00:00",
+          "exit_px": 0.00516928,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.0052311599999999995,
+          "reclaim_threshold": 0.005241622319999999,
+          "hypothetical_net_return": -0.0159375,
+          "hypothetical_exposure": 0.9375
+        }
       }
     }
   }
