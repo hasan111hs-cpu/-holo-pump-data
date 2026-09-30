@@ -1,0 +1,50 @@
+{
+  "status": "OK",
+  "entry_boundary_utc": "2026-09-29T18:00:00+00:00",
+  "expiry_boundary_utc": "2026-09-30T18:00:00+00:00",
+  "source_file": "simple_live/2026-09-29.json",
+  "strategies": {
+    "SimpleP": {
+      "status": "TP",
+      "exit_time_utc": "2026-09-29T18:40:00+00:00",
+      "entry_price": 0.005641,
+      "exit_price": 0.00586664,
+      "return_pct": 4.0,
+      "tp_price": 0.00586664,
+      "sl_price": 0.005499975,
+      "symbol": "PUMPUSDT",
+      "tp_pct": 4.0,
+      "sl_pct": 2.5,
+      "path_minutes": 1440,
+      "missing_minutes": 0,
+      "duplicates": 0
+    },
+    "SimpleP2": {
+      "status": "TP",
+      "exit_time_utc": "2026-09-29T18:25:00+00:00",
+      "entry_price": 0.005641,
+      "exit_price": 0.005782025,
+      "return_pct": 2.5,
+      "tp_price": 0.005782025,
+      "sl_price": 0.005330745,
+      "symbol": "PUMPUSDT",
+      "tp_pct": 2.5,
+      "sl_pct": 5.5,
+      "path_minutes": 1440,
+      "missing_minutes": 0,
+      "duplicates": 0
+    },
+    "SimpleE": {
+      "status": "NO_TRADE"
+    },
+    "SimpleE2": {
+      "status": "NO_TRADE"
+    },
+    "SimpleH": {
+      "status": "NO_TRADE"
+    },
+    "SimpleH2": {
+      "status": "NO_TRADE"
+    }
+  }
+}
