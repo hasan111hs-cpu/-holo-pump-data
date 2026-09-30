@@ -1,0 +1,50 @@
+{
+  "generated_at_utc": "2026-09-30T11:58:31.378359+00:00",
+  "window_start_utc": "2026-09-28T18:00:00+00:00",
+  "window_end_utc": "2026-09-29T18:00:00+00:00",
+  "status": "OK",
+  "symbols": {
+    "PUMPUSDT": {
+      "status": "OK",
+      "rows": 1440,
+      "unique_minutes": 1440,
+      "duplicates": 0,
+      "missing_minutes": 0,
+      "open": 0.005236,
+      "close": 0.00564,
+      "return_pct": 7.715813598166532,
+      "threshold_pct": 6.5,
+      "qualified": true,
+      "decision": "BUY",
+      "entry_price_2200_dubai": 0.005641
+    },
+    "ENAUSDT": {
+      "status": "OK",
+      "rows": 1440,
+      "unique_minutes": 1440,
+      "duplicates": 0,
+      "missing_minutes": 0,
+      "open": 0.2621,
+      "close": 0.2458,
+      "return_pct": -6.2190003815337676,
+      "threshold_pct": 1.0,
+      "qualified": false,
+      "decision": "NO TRADE",
+      "entry_price_2200_dubai": 0.2457
+    },
+    "HOLOUSDT": {
+      "status": "OK",
+      "rows": 1440,
+      "unique_minutes": 1440,
+      "duplicates": 0,
+      "missing_minutes": 0,
+      "open": 0.0639,
+      "close": 0.0638,
+      "return_pct": -0.15649452269170805,
+      "threshold_pct": 2.0,
+      "qualified": false,
+      "decision": "NO TRADE",
+      "entry_price_2200_dubai": 0.0639
+    }
+  }
+}
