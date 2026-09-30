@@ -1,0 +1,197 @@
+name: Fetch Binance spot data
+
+on:
+  workflow_dispatch:
+    inputs:
+      symbol:
+        description: "Spot symbol (e.g. PUMPUSDT)"
+        required: true
+        default: "PUMPUSDT"
+      start:
+        description: "First month (YYYY-MM)"
+        required: true
+        default: "2025-09"
+      end:
+        description: "Last month (YYYY-MM)"
+        required: true
+        default: "2026-09"
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch and verify Binance Spot 1m data
+        shell: python
+        env:
+          SYMBOL: ${{ inputs.symbol }}
+          START: ${{ inputs.start }}
+          END: ${{ inputs.end }}
+        run: |
+          import os, urllib.request, urllib.error, zipfile, io
+          import hashlib, csv, gzip, json
+          from datetime import datetime, timezone
+
+          symbol = os.environ["SYMBOL"].upper()
+          start = os.environ["START"]
+          end = os.environ["END"]
+
+          BASE = "https://data.binance.vision/data/spot/monthly/klines"
+          OUT = f"{symbol}_spot_1m_{start}_{end}.csv.gz"
+
+          def months(a, b):
+              y, m = map(int, a.split("-"))
+              ey, em = map(int, b.split("-"))
+              while (y, m) <= (ey, em):
+                  yield f"{y:04d}-{m:02d}"
+                  m += 1
+                  if m == 13:
+                      y += 1
+                      m = 1
+
+          rows_total = 0
+          first_ms = None
+          last_ms = None
+          previous_ms = None
+          gaps = []
+          missing_months = []
+          verified_months = []
+
+          with gzip.open(OUT, "wt", newline="") as fout:
+              writer = csv.writer(fout)
+              writer.writerow([
+                  "open_time","open","high","low","close","volume",
+                  "close_time","quote_volume","count",
+                  "taker_buy_volume","taker_buy_quote_volume","ignore"
+              ])
+
+              for month in months(start, end):
+                  url = f"{BASE}/{symbol}/1m/{symbol}-1m-{month}.zip"
+
+                  try:
+                      with urllib.request.urlopen(url, timeout=120) as r:
+                          blob = r.read()
+                  except urllib.error.HTTPError as e:
+                      if e.code == 404:
+                          print(f"{month}: not available")
+                          missing_months.append(month)
+                          continue
+                      raise
+
+                  with urllib.request.urlopen(url + ".CHECKSUM", timeout=120) as r:
+                      checksum = r.read().decode().split()[0].lower()
+
+                  actual = hashlib.sha256(blob).hexdigest()
+
+                  if actual != checksum:
+                      raise RuntimeError(
+                          f"SHA256 mismatch for {month}: "
+                          f"expected {checksum}, got {actual}"
+                      )
+
+                  with zipfile.ZipFile(io.BytesIO(blob)) as z:
+                      csv_name = next(
+                          n for n in z.namelist() if n.endswith(".csv")
+                      )
+                      text = z.read(csv_name).decode()
+
+                  month_rows = 0
+
+                  for row in csv.reader(io.StringIO(text)):
+                      if not row:
+                          continue
+
+                      try:
+                          ts = int(row[0])
+                      except ValueError:
+                          continue
+
+                      # Binance archives may use microseconds.
+                      if ts > 10**14:
+                          ts //= 1000
+
+                      if previous_ms is not None:
+                          delta = ts - previous_ms
+
+                          if delta > 60_000:
+                              gaps.append({
+                                  "after": previous_ms,
+                                  "before": ts,
+                                  "missing_minutes":
+                                      delta // 60_000 - 1
+                              })
+                          elif delta <= 0:
+                              continue
+
+                      row[0] = str(ts)
+
+                      close_ts = int(row[6])
+                      if close_ts > 10**14:
+                          close_ts //= 1000
+                      row[6] = str(close_ts)
+
+                      writer.writerow(row[:12])
+
+                      if first_ms is None:
+                          first_ms = ts
+
+                      last_ms = ts
+                      previous_ms = ts
+                      month_rows += 1
+                      rows_total += 1
+
+                  verified_months.append(month)
+                  print(f"{month}: {month_rows:,} bars verified")
+
+          h = hashlib.sha256()
+          with open(OUT, "rb") as f:
+              for chunk in iter(lambda: f.read(1024 * 1024), b""):
+                  h.update(chunk)
+
+          def iso(ms):
+              if ms is None:
+                  return None
+              return datetime.fromtimestamp(
+                  ms / 1000, tz=timezone.utc
+              ).strftime("%Y-%m-%d %H:%M UTC")
+
+          manifest = {
+              "symbol": symbol,
+              "market": "Binance Spot",
+              "interval": "1m",
+              "requested_window": [start, end],
+              "verified_months": verified_months,
+              "missing_months": missing_months,
+              "rows": rows_total,
+              "first_bar": iso(first_ms),
+              "last_bar": iso(last_ms),
+              "gap_count": len(gaps),
+              "missing_bars_total": sum(
+                  g["missing_minutes"] for g in gaps
+              ),
+              "sha256": h.hexdigest(),
+              "file": OUT
+          }
+
+          with open("spot_manifest.json", "w") as f:
+              json.dump(manifest, f, indent=2)
+
+          print(json.dumps(manifest, indent=2))
+
+          if rows_total == 0:
+              raise RuntimeError("No Spot kline data downloaded.")
+
+      - name: Upload Spot dataset
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.symbol }}-spot-1m-${{ inputs.start }}-${{ inputs.end }}
+          path: |
+            ${{ inputs.symbol }}_spot_1m_${{ inputs.start }}_${{ inputs.end }}.csv.gz
+            spot_manifest.json
+          retention-days: 30
