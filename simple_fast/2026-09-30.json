@@ -1,0 +1,43 @@
+{
+  "generated_at_utc": "2026-09-30T21:50:06.886990+00:00",
+  "boundary_utc": "2026-09-30T18:00:00+00:00",
+  "boundary_dubai": "2026-09-30T22:00:00+00:00",
+  "signal_window_start_utc": "2026-09-29T18:00:00+00:00",
+  "signal_window_end_utc": "2026-09-30T18:00:00+00:00",
+  "status": "OK",
+  "symbols": {
+    "PUMPUSDT": {
+      "status": "OK",
+      "open": 0.005641,
+      "close": 0.005889,
+      "return_pct": 4.396383619925537,
+      "threshold_pct": 6.5,
+      "qualified": false,
+      "decision": "NO TRADE",
+      "open_minute_utc": "2026-09-29T18:00:00+00:00",
+      "close_minute_utc": "2026-09-30T17:59:00+00:00"
+    },
+    "ENAUSDT": {
+      "status": "OK",
+      "open": 0.2457,
+      "close": 0.2662,
+      "return_pct": 8.343508343508343,
+      "threshold_pct": 1.0,
+      "qualified": true,
+      "decision": "BUY",
+      "open_minute_utc": "2026-09-29T18:00:00+00:00",
+      "close_minute_utc": "2026-09-30T17:59:00+00:00"
+    },
+    "HOLOUSDT": {
+      "status": "OK",
+      "open": 0.0639,
+      "close": 0.0649,
+      "return_pct": 1.5649452269170583,
+      "threshold_pct": 2.0,
+      "qualified": false,
+      "decision": "NO TRADE",
+      "open_minute_utc": "2026-09-29T18:00:00+00:00",
+      "close_minute_utc": "2026-09-30T17:59:00+00:00"
+    }
+  }
+}
