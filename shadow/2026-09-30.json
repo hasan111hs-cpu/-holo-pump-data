@@ -1,0 +1,77 @@
+{
+  "label": "COUNTERFACTUAL / SHADOW",
+  "execution_date": "2026-09-30",
+  "canonical_locked_state": "HOLO",
+  "canonical_reason": "",
+  "btc_hard_gate_pass": true,
+  "btc_ret": 0.0161294186030696,
+  "btc_mom3": -0.0021511820330969433,
+  "btc_rng3": 0.016600937953534203,
+  "generated_at_utc": "2026-09-30T16:52:25.374771+00:00",
+  "canonical_capital_effect": "none",
+  "note": "Research only. Qualification read from the immutable signal artifact; execution mechanics reconstructed from later authoritative 1m data. Never promoted to canonical history.",
+  "coins": {
+    "HOLO": {
+      "qualified": true,
+      "failed_gates": [],
+      "metrics": {
+        "ret": 0.032863849765258246,
+        "clv": 0.8888888888888906,
+        "vol_ratio": 0.6804686708226868,
+        "taker": 0.5445399681953748,
+        "mom1": 0.0122699386503069,
+        "mom3": 0.00917431192660545,
+        "dfh": 0.004524886877827975,
+        "rs": 0.016734431162188645
+      },
+      "distance_from_failed_thresholds": {},
+      "btc_stress_multiplier": 1.0,
+      "rs_multiplier": 1.15,
+      "btcd_multiplier": 1.0,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 5.0,
+        "A1": 1.725,
+        "B1": 1.4375
+      }
+    },
+    "PUMP": {
+      "qualified": false,
+      "failed_gates": [
+        "dfh"
+      ],
+      "metrics": {
+        "ret": 0.04006381847190199,
+        "clv": 0.7069271758436941,
+        "vol_ratio": 1.9941490384890264,
+        "taker": 0.471604729754726,
+        "mom1": 0.0428368290081762,
+        "mom3": 0.03419707385862858,
+        "dfh": 0.02735411140583558,
+        "rs": 0.02393439986883239
+      },
+      "distance_from_failed_thresholds": {
+        "dfh": {
+          "value": 0.02735411140583558,
+          "threshold": "distance from high <= 2.5%",
+          "bound": "max",
+          "limit": 0.025,
+          "distance": 0.00235411
+        }
+      },
+      "btc_stress_multiplier": 1.0,
+      "rs_multiplier": 1.0,
+      "btcd_multiplier": 1.0,
+      "btcd_multiplier_estimated": false,
+      "hypothetical_exposure": {
+        "R1": 5.0,
+        "A1": 1.5,
+        "B1": 1.25
+      },
+      "counterfactual_execution": {
+        "status": "DEFERRED",
+        "reason": "trading window has not closed"
+      }
+    }
+  }
+}

@@ -41,7 +41,7 @@
       "historical_record_rewritten": false
     }
   ],
-  "canonical_automatic_prospective_observations": 17,
+  "canonical_automatic_prospective_observations": 18,
   "legacy_or_noncanonical_observations": 1,
   "field_semantics": {
     "observations": "raw settlement-event counter from the execution engine; NOT the canonical prospective count",
