@@ -538,6 +538,15 @@
       "response_sha256": "4b2f7f710fc2a187c6973c72cdbad647033210e215fa4d3b816540523e520bdc",
       "source_status": "ok",
       "canonical_for_execution_date": "2026-09-29"
+    },
+    {
+      "retrieved_at_utc": "2026-09-30T00:09:18.093367+00:00",
+      "attempt": 1,
+      "observation_count": 364,
+      "latest_observation_date": "2026-09-28",
+      "response_sha256": "d196da976270b98b66bf79a030b06bb21ea2d79205376f5599e8db5adec483e0",
+      "source_status": "ok",
+      "canonical_for_execution_date": "2026-09-30"
     }
   ],
   "canonical": {
