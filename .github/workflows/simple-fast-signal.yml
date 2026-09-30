@@ -1,0 +1,47 @@
+name: Simple Fast Signal
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 18:00 UTC = 22:00 Dubai.
+    # Python waits for Binance's completed 17:59 UTC minute.
+    - cron: "0 18 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: simple-fast-signal
+  cancel-in-progress: false
+
+jobs:
+  signal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate fast Simple signal
+        run: python scripts/simple_signal_fast.py
+
+      - name: Commit fast signal
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add simple_fast/
+
+          if git diff --cached --quiet; then
+            echo "No new fast signal to commit."
+            exit 0
+          fi
+
+          git commit -m "Update Simple fast signal $(date -u +%F)"
+          git push
