@@ -7,7 +7,7 @@
   "btc_ret": 0.0161294186030696,
   "btc_mom3": -0.0021511820330969433,
   "btc_rng3": 0.016600937953534203,
-  "generated_at_utc": "2026-10-01T16:51:42.245997+00:00",
+  "generated_at_utc": "2026-10-01T23:25:01.041961+00:00",
   "canonical_capital_effect": "none",
   "note": "Research only. Qualification read from the immutable signal artifact; execution mechanics reconstructed from later authoritative 1m data. Never promoted to canonical history.",
   "coins": {
@@ -69,8 +69,48 @@
         "B1": 1.25
       },
       "counterfactual_execution": {
-        "status": "DEFERRED",
-        "reason": "trading window has not closed"
+        "R1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-30T19:59:00+00:00",
+          "entry_px": 0.005776,
+          "exit_ts": "2026-10-01T03:31:00+00:00",
+          "exit_px": 0.00568936,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.005759294999999999,
+          "reclaim_threshold": 0.005770813589999999,
+          "hypothetical_net_return": -0.085,
+          "hypothetical_exposure": 5.0
+        },
+        "A1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-30T19:51:00+00:00",
+          "entry_px": 0.005812,
+          "exit_ts": "2026-10-01T00:46:00+00:00",
+          "exit_px": 0.005812,
+          "exit_reason": "TP1+BE",
+          "gross_return": 0.0125,
+          "flush_threshold": 0.00578853,
+          "reclaim_threshold": 0.005794318529999999,
+          "hypothetical_net_return": 0.01575,
+          "hypothetical_exposure": 1.5
+        },
+        "B1": {
+          "status": "FILL",
+          "reason": null,
+          "entry_ts": "2026-09-30T19:51:00+00:00",
+          "entry_px": 0.005812,
+          "exit_ts": "2026-10-01T02:20:00+00:00",
+          "exit_px": 0.00572482,
+          "exit_reason": "SL",
+          "gross_return": -0.015,
+          "flush_threshold": 0.00578853,
+          "reclaim_threshold": 0.00580010706,
+          "hypothetical_net_return": -0.02125,
+          "hypothetical_exposure": 1.25
+        }
       }
     }
   }
