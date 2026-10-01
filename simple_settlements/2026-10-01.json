@@ -1,0 +1,50 @@
+{
+  "status": "OK",
+  "entry_boundary_utc": "2026-09-30T18:00:00+00:00",
+  "expiry_boundary_utc": "2026-10-01T18:00:00+00:00",
+  "source_file": "simple_live/2026-09-30.json",
+  "strategies": {
+    "SimpleP": {
+      "status": "NO_TRADE"
+    },
+    "SimpleP2": {
+      "status": "NO_TRADE"
+    },
+    "SimpleE": {
+      "status": "SL",
+      "exit_time_utc": "2026-09-30T21:24:00+00:00",
+      "entry_price": 0.2662,
+      "exit_price": 0.25954499999999997,
+      "return_pct": -2.5,
+      "tp_price": 0.276848,
+      "sl_price": 0.25954499999999997,
+      "symbol": "ENAUSDT",
+      "tp_pct": 4.0,
+      "sl_pct": 2.5,
+      "path_minutes": 1440,
+      "missing_minutes": 0,
+      "duplicates": 0
+    },
+    "SimpleE2": {
+      "status": "SL",
+      "exit_time_utc": "2026-10-01T15:09:00+00:00",
+      "entry_price": 0.2662,
+      "exit_price": 0.2482315,
+      "return_pct": -6.75,
+      "tp_price": 0.2841685,
+      "sl_price": 0.2482315,
+      "symbol": "ENAUSDT",
+      "tp_pct": 6.75,
+      "sl_pct": 6.75,
+      "path_minutes": 1440,
+      "missing_minutes": 0,
+      "duplicates": 0
+    },
+    "SimpleH": {
+      "status": "NO_TRADE"
+    },
+    "SimpleH2": {
+      "status": "NO_TRADE"
+    }
+  }
+}
