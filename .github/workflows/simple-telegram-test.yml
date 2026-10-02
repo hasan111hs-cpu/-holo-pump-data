@@ -1,0 +1,24 @@
+name: Simple Telegram test
+
+# Sends one test message to Telegram and checks the live-quote endpoints.
+# Needs repository secrets TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID.
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/price-marks-telegram"]
+    paths: [".github/workflows/simple-telegram-test.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Send test message
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 scripts/simple_book.py telegram-test

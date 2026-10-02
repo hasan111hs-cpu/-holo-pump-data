@@ -74,6 +74,9 @@ jobs:
       # rebuild the ledger, write simple_reports/<date>.json. Strategy rules are unchanged.
       - name: Decisions, settlement, ledger and nightly report
         if: always()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python3 scripts/simple_book.py nightly
 
       - name: Commit signal and attempt log (first writer wins)
@@ -132,6 +135,9 @@ jobs:
           fetch-depth: 1
 
       - name: Capture entries at 22:05 Dubai, then update ledger and report
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           # Wait outside the checkout so the commit below is based on fresh history.
           python3 scripts/simple_book.py entry

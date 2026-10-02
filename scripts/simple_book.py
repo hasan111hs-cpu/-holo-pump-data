@@ -12,6 +12,11 @@ Layers (all under simple_book/, named by the UTC date of the 18:00 UTC boundary)
                            TP, SL or time exit at the next 18:00 UTC. Only ENTERED positions
                            can produce P&L; NO TRADE / DATA_ERROR can never be settled.
   ledger.json              rebuilt from the immutable files on every run.
+  marks/<date>_decision.json  immutable, information only. Live Binance bid/ask/last for each
+                           coin captured the moment the decision is made (about 22:00:40
+                           Dubai): the price an automatic order would have met.
+  marks/<date>_minutes.json   immutable, information only. 1m candle OPEN at 22:00, 22:01,
+                           22:02 and 22:05 Dubai for each coin.
 Report:
   simple_reports/<date>.json, <date>.md and latest.json - one file with all six strategies.
 
@@ -20,6 +25,10 @@ Costs: 0.1% fee per side. TP and SL touched in the same 1-minute candle counts a
 Commands:
   simple_book.py nightly   after the signal job: decide, settle anything due, ledger, report
   simple_book.py entry     at/after 18:05 UTC: finalise decision, capture entries, report
+  simple_book.py telegram-test   send a test message (needs TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID)
+
+Telegram alerts are sent only when TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are set, once when
+the decisions are first recorded and once when the entries are first recorded.
 """
 import json
 import os
@@ -33,7 +42,11 @@ from pathlib import Path
 
 UTC = timezone.utc
 DUBAI = timezone(timedelta(hours=4))
-BASE_URL = "https://data-api.binance.vision/api/v3/klines"
+API = "https://data-api.binance.vision/api/v3"
+BASE_URL = f"{API}/klines"
+DECISION_MARK_MAX_AGE = timedelta(minutes=3)   # a later capture is not a decision-time price
+MARK_MINUTES = (0, 1, 2, 5)                    # 22:00, 22:01, 22:02, 22:05 Dubai
+SYMBOLS = ("PUMPUSDT", "ENAUSDT", "HOLOUSDT")
 ROOT = Path(os.environ.get("SIMPLE_ROOT", "."))
 BOOK = ROOT / "simple_book"
 REPORTS = ROOT / "simple_reports"
@@ -57,6 +70,9 @@ STRATEGIES = {
 
 
 # ------------------------------------------------------------------ helpers
+NEW = {"decisions": False, "entries": False}   # set when this run created the record
+
+
 def utcnow():
     return datetime.now(UTC)
 
@@ -211,8 +227,134 @@ def decide(boundary, final):
         "signal_latency_seconds": (sig or {}).get("latency_seconds_after_boundary"),
         "strategies": strategies,
     }
-    write_new(path, doc)
+    NEW["decisions"] = write_new(path, doc)
     return load(path)
+
+
+# -------------------------------------------------------------- price marks
+def record_decision_marks(boundary):
+    """Live bid/ask/last at the moment of decision. Skipped if the run is not live."""
+    path = BOOK / "marks" / f"{day(boundary)}_decision.json"
+    if path.exists():
+        return
+    now = utcnow()
+    if not (boundary <= now <= boundary + DECISION_MARK_MAX_AGE):
+        log("decision-time price mark skipped: run is not within 3 minutes of the boundary")
+        return
+    symbols = {}
+    for sym in SYMBOLS:
+        try:
+            book = http_json(f"{API}/ticker/bookTicker?symbol={sym}", retries=2)
+            last = http_json(f"{API}/ticker/price?symbol={sym}", retries=2)
+            t = utcnow()
+            symbols[sym] = {"status": "OK", "bid": float(book["bidPrice"]), "ask": float(book["askPrice"]),
+                            "last": float(last["price"]), "fetched_at_utc": iso(t),
+                            "seconds_after_boundary": round((t - boundary).total_seconds(), 3)}
+        except Exception as exc:  # noqa: BLE001
+            symbols[sym] = {"status": "DATA_ERROR", "error": type(exc).__name__}
+    write_new(path, {
+        "schema_version": SCHEMA_VERSION, "record": "DECISION_PRICE_MARK", "immutable": True,
+        "information_only": True, "boundary_utc": iso(boundary),
+        "note": "Live Binance Spot quote when the decision was made. An automatic market buy "
+                "would fill at about the ask. Not used by the official ledger.",
+        "symbols": symbols,
+    })
+
+
+def record_minute_marks(boundary):
+    """1m candle OPEN at 22:00 / 22:01 / 22:02 / 22:05 Dubai (deterministic, from klines)."""
+    path = BOOK / "marks" / f"{day(boundary)}_minutes.json"
+    if path.exists() or utcnow() < boundary + ENTRY_OFFSET:
+        return
+    symbols = {}
+    for sym in SYMBOLS:
+        try:
+            bars = klines(sym, boundary, boundary + timedelta(minutes=max(MARK_MINUTES) + 1))
+            row = {}
+            for m in MARK_MINUTES:
+                t = boundary + timedelta(minutes=m)
+                bar = bars.get(int(t.timestamp() * 1000))
+                row[t.astimezone(DUBAI).strftime("%H:%M")] = bar[0] if bar else None
+            symbols[sym] = {"status": "OK", "open_dubai": row}
+        except Exception as exc:  # noqa: BLE001
+            symbols[sym] = {"status": "DATA_ERROR", "error": type(exc).__name__}
+    if all(v["status"] == "OK" for v in symbols.values()):
+        write_new(path, {
+            "schema_version": SCHEMA_VERSION, "record": "MINUTE_PRICE_MARK", "immutable": True,
+            "information_only": True, "boundary_utc": iso(boundary),
+            "note": "Open of the Binance Spot 1m candle at each Dubai time. 22:05 is the official entry.",
+            "symbols": symbols,
+        })
+
+
+def marks_for(boundary, symbol):
+    d = day(boundary)
+    dm = ((load(BOOK / "marks" / f"{d}_decision.json") or {}).get("symbols", {}).get(symbol) or {})
+    mm = ((load(BOOK / "marks" / f"{d}_minutes.json") or {}).get("symbols", {}).get(symbol) or {})
+    out = {}
+    if dm.get("status") == "OK":
+        out["at_decision"] = {k: dm[k] for k in ("bid", "ask", "last", "seconds_after_boundary")}
+    if mm.get("status") == "OK":
+        out["open_dubai"] = mm["open_dubai"]
+    return out or None
+
+
+# ----------------------------------------------------------------- telegram
+def telegram(text):
+    token, chat = os.environ.get("TELEGRAM_BOT_TOKEN"), os.environ.get("TELEGRAM_CHAT_ID")
+    if not token or not chat:
+        log("telegram: not configured, alert skipped")
+        return False
+    try:
+        data = urllib.parse.urlencode({"chat_id": chat, "text": text, "disable_web_page_preview": "true"}).encode()
+        with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/sendMessage", data=data, timeout=10) as r:
+            ok = json.loads(r.read().decode()).get("ok", False)
+        log(f"telegram: sent={ok}")
+        return ok
+    except Exception as exc:  # noqa: BLE001 - never let an alert break the run; never print the token
+        log(f"telegram: failed ({type(exc).__name__})")
+        return False
+
+
+def price(v):
+    return "-" if v is None else f"{v:.8g}"
+
+
+def alert_decisions(report):
+    lines = [f"Simple strategies - {report['report_date']} 22:00 Dubai", ""]
+    buys = [(n, s) for n, s in report["strategies"].items() if s["decision"] == "BUY"]
+    for n, s in buys:
+        m = (s.get("price_marks") or {}).get("at_decision") or {}
+        lines.append(f"BUY {n} ({s['symbol']}): 24h {s['return_pct']:+.2f}%, live ask {price(m.get('ask'))}, "
+                     f"TP +{s['tp_pct']}% / SL -{s['sl_pct']}%")
+    for label in ("NO TRADE", "DATA_ERROR"):
+        names = [n for n, s in report["strategies"].items() if s["decision"] == label]
+        if names:
+            lines.append(f"{label}: {', '.join(names)}")
+    closed = [(n, s["previous_trade"]) for n, s in report["strategies"].items() if s["previous_trade"]]
+    if closed:
+        lines += ["", "Last night:"]
+        for n, p in closed:
+            s = report["strategies"][n]
+            lines.append(f"{n}: {p['status']} {p['net_return_pct']:+.2f}% net, equity ${s['equity']:,.2f}")
+    if buys:
+        lines += ["", "Official paper entry is recorded at 22:05 Dubai."]
+    telegram("\n".join(lines))
+
+
+def alert_entries(report):
+    rows = [(n, s) for n, s in report["strategies"].items() if s["entry"]]
+    if not rows:
+        return
+    lines = [f"Simple entries - {report['report_date']} 22:05 Dubai", ""]
+    for n, s in rows:
+        e = s["entry"]
+        if e.get("status") == "ENTERED":
+            lines.append(f"{n} ({s['symbol']}): entry {price(e['entry_price'])}, "
+                         f"TP {price(e['tp_price'])}, SL {price(e['sl_price'])}")
+        else:
+            lines.append(f"{n} ({s['symbol']}): {e.get('status')} - no position")
+    telegram("\n".join(lines))
 
 
 # -------------------------------------------------------------------- entry
@@ -261,7 +403,7 @@ def capture_entries(boundary, decisions):
         "captured_late": now > entry_time + timedelta(minutes=3),
         "strategies": strategies,
     }
-    write_new(path, doc)
+    NEW["entries"] = write_new(path, doc)
     return load(path)
 
 
@@ -410,12 +552,13 @@ def build_report(boundary, ledger):
             "decision": dec["decision"] if dec else "PENDING",
             "reason": dec["reason"] if dec else "Waiting for a valid signal file (deadline 22:05 Dubai)",
             "return_pct": (dec or {}).get("return_pct"),
-            "entry": None, "previous_trade": None,
+            "entry": None, "price_marks": None, "previous_trade": None,
             "today_realized_net_pnl": last["net_pnl"] if last else 0.0,
             "cumulative_net_pnl": acct["cumulative_net_pnl"], "equity": acct["equity"],
             "trades": acct["trades"], "wins": acct["wins"], "losses": acct["losses"],
             "win_rate_pct": acct["win_rate_pct"], "open_position": acct["open_position"],
         }
+        row["price_marks"] = marks_for(boundary, cfg["symbol"]) if dec and dec["decision"] == "BUY" else None
         if dec and dec["decision"] == "BUY":
             if ent is None:
                 row["entry"] = {"status": "PENDING", "note": "Entry price is recorded at 22:05 Dubai"}
@@ -457,6 +600,16 @@ def render_markdown(r):
         lines.append(f"| {n} | {s['symbol']} | **{s['decision']}** | {ret} | "
                      f"{fmt(e.get('entry_price')) if e.get('status') != 'PENDING' else 'pending'} | "
                      f"{fmt(e.get('tp_price'))} | {fmt(e.get('sl_price'))} |")
+    marked = [(n, s) for n, s in r["strategies"].items() if s.get("price_marks")]
+    if marked:
+        lines += ["", "Prices around the decision (information only):", "",
+                  "| Strategy | Live ask at decision | Seconds after 22:00 | 22:00 | 22:01 | 22:02 | 22:05 |",
+                  "|---|---|---|---|---|---|---|"]
+        for n, s in marked:
+            m = s["price_marks"]
+            a, o = m.get("at_decision") or {}, m.get("open_dubai") or {}
+            lines.append(f"| {n} | {fmt(a.get('ask'))} | {fmt(a.get('seconds_after_boundary'))} | "
+                         f"{fmt(o.get('22:00'))} | {fmt(o.get('22:01'))} | {fmt(o.get('22:02'))} | {fmt(o.get('22:05'))} |")
     lines += ["", "| Strategy | Last trade | Net % | Today P&L | Cum. P&L | Equity | Trades | W/L | Win rate |",
               "|---|---|---|---|---|---|---|---|---|"]
     for n, s in r["strategies"].items():
@@ -474,6 +627,14 @@ def render_markdown(r):
 # --------------------------------------------------------------------- main
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else "nightly"
+    if cmd == "telegram-test":
+        for sym in SYMBOLS:      # also proves the live-quote endpoints work from this runner
+            book = http_json(f"{API}/ticker/bookTicker?symbol={sym}", retries=2)
+            last = http_json(f"{API}/ticker/price?symbol={sym}", retries=2)
+            log(f"{sym} bid={book['bidPrice']} ask={book['askPrice']} last={last['price']}")
+        ok = telegram("Simple strategies: Telegram alerts are connected. This is a test message.")
+        return 0 if ok else 1
+    NEW.update(decisions=False, entries=False)
     now = utcnow()
     boundary = boundary_for(now)
     log(f"cmd={cmd} boundary={iso(boundary)}")
@@ -485,12 +646,19 @@ def main():
             time.sleep(wait)
         decisions = decide(boundary, final=True)
         capture_entries(boundary, decisions)
+        record_minute_marks(boundary)
     elif cmd == "nightly":
         decide(boundary, final=utcnow() >= boundary + ENTRY_OFFSET)
+        if NEW["decisions"]:
+            record_decision_marks(boundary)      # as close to the decision as possible
     else:
         raise SystemExit(f"unknown command {cmd}")
     settle_all(utcnow())
-    build_report(boundary, rebuild_ledger())
+    report = build_report(boundary, rebuild_ledger())
+    if NEW["decisions"]:
+        alert_decisions(report)
+    if NEW["entries"]:
+        alert_entries(report)
     return 0
 
 
