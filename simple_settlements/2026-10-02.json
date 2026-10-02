@@ -1,0 +1,26 @@
+{
+  "status": "OK",
+  "entry_boundary_utc": "2026-10-01T18:00:00+00:00",
+  "expiry_boundary_utc": "2026-10-02T18:00:00+00:00",
+  "source_file": "simple_live/2026-10-01.json",
+  "strategies": {
+    "SimpleP": {
+      "status": "NO_TRADE"
+    },
+    "SimpleP2": {
+      "status": "NO_TRADE"
+    },
+    "SimpleE": {
+      "status": "NO_TRADE"
+    },
+    "SimpleE2": {
+      "status": "NO_TRADE"
+    },
+    "SimpleH": {
+      "status": "NO_TRADE"
+    },
+    "SimpleH2": {
+      "status": "NO_TRADE"
+    }
+  }
+}
