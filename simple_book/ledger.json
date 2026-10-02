@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "record": "LEDGER",
-  "generated_at_utc": "2026-10-02T21:54:59.072023+00:00",
+  "generated_at_utc": "2026-10-02T21:55:09.170672+00:00",
   "start_equity": 10000.0,
   "fee_per_side": 0.001,
   "strategies": {
@@ -59,7 +59,14 @@
       "trades": 0,
       "wins": 0,
       "losses": 0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-02",
+        "entry_price": 0.0663,
+        "entry_time_utc": "2026-10-02T18:05:00+00:00",
+        "tp_price": 0.068952,
+        "sl_price": 0.06464249999999999,
+        "expiry_utc": "2026-10-03T18:00:00+00:00"
+      },
       "history": [],
       "cumulative_net_pnl": 0.0,
       "cumulative_return_pct": 0.0,
@@ -71,7 +78,14 @@
       "trades": 0,
       "wins": 0,
       "losses": 0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-02",
+        "entry_price": 0.0663,
+        "entry_time_utc": "2026-10-02T18:05:00+00:00",
+        "tp_price": 0.07027800000000001,
+        "sl_price": 0.062985,
+        "expiry_utc": "2026-10-03T18:00:00+00:00"
+      },
       "history": [],
       "cumulative_net_pnl": 0.0,
       "cumulative_return_pct": 0.0,

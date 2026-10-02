@@ -4,9 +4,9 @@
   "report_date": "2026-10-02",
   "boundary_utc": "2026-10-02T18:00:00+00:00",
   "boundary_dubai": "2026-10-02T22:00:00+04:00",
-  "generated_at_utc": "2026-10-02T21:54:59.072296+00:00",
-  "stage": "DECISIONS_MADE_ENTRY_PENDING",
-  "final": false,
+  "generated_at_utc": "2026-10-02T21:55:09.171339+00:00",
+  "stage": "FINAL",
+  "final": true,
   "signal_valid": true,
   "signal_generated_at_utc": "2026-10-02T18:00:35.725373+00:00",
   "rules": {
@@ -102,8 +102,13 @@
       "reason": "24h return +2.16% is at or above the +2.0% gate",
       "return_pct": 2.157164869029282,
       "entry": {
-        "status": "PENDING",
-        "note": "Entry price is recorded at 22:05 Dubai"
+        "status": "ENTERED",
+        "entry_price": 0.0663,
+        "entry_time_utc": "2026-10-02T18:05:00+00:00",
+        "entry_time_dubai": "2026-10-02T22:05:00+04:00",
+        "tp_price": 0.068952,
+        "sl_price": 0.06464249999999999,
+        "expiry_utc": "2026-10-03T18:00:00+00:00"
       },
       "previous_trade": null,
       "today_realized_net_pnl": 0.0,
@@ -113,7 +118,14 @@
       "wins": 0,
       "losses": 0,
       "win_rate_pct": null,
-      "open_position": null
+      "open_position": {
+        "entry_date": "2026-10-02",
+        "entry_price": 0.0663,
+        "entry_time_utc": "2026-10-02T18:05:00+00:00",
+        "tp_price": 0.068952,
+        "sl_price": 0.06464249999999999,
+        "expiry_utc": "2026-10-03T18:00:00+00:00"
+      }
     },
     "SimpleH2": {
       "symbol": "HOLOUSDT",
@@ -124,8 +136,13 @@
       "reason": "24h return +2.16% is at or above the +2.0% gate",
       "return_pct": 2.157164869029282,
       "entry": {
-        "status": "PENDING",
-        "note": "Entry price is recorded at 22:05 Dubai"
+        "status": "ENTERED",
+        "entry_price": 0.0663,
+        "entry_time_utc": "2026-10-02T18:05:00+00:00",
+        "entry_time_dubai": "2026-10-02T22:05:00+04:00",
+        "tp_price": 0.07027800000000001,
+        "sl_price": 0.062985,
+        "expiry_utc": "2026-10-03T18:00:00+00:00"
       },
       "previous_trade": null,
       "today_realized_net_pnl": 0.0,
@@ -135,7 +152,14 @@
       "wins": 0,
       "losses": 0,
       "win_rate_pct": null,
-      "open_position": null
+      "open_position": {
+        "entry_date": "2026-10-02",
+        "entry_price": 0.0663,
+        "entry_time_utc": "2026-10-02T18:05:00+00:00",
+        "tp_price": 0.07027800000000001,
+        "sl_price": 0.062985,
+        "expiry_utc": "2026-10-03T18:00:00+00:00"
+      }
     }
   }
 }
