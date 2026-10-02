@@ -4,7 +4,7 @@
   "report_date": "2026-10-02",
   "boundary_utc": "2026-10-02T18:00:00+00:00",
   "boundary_dubai": "2026-10-02T22:00:00+04:00",
-  "generated_at_utc": "2026-10-02T22:23:42.002989+00:00",
+  "generated_at_utc": "2026-10-02T22:34:19.054632+00:00",
   "stage": "FINAL",
   "final": true,
   "signal_valid": true,
@@ -13,8 +13,21 @@
     "entry": "Binance Spot price at 22:05 Dubai (open of the 18:05 UTC 1m candle)",
     "fee_per_side": 0.001,
     "same_minute_tp_sl": "counts as SL",
+    "comparison_track": "instant = entry at the live ask when the decision is made (about 22:00:40 Dubai); same fees and exits",
     "start_equity_each": 10000.0,
     "paper_trading_only": true
+  },
+  "totals": {
+    "entry_2205": {
+      "cumulative_net_pnl": 0.0,
+      "today_realized_net_pnl": 0.0,
+      "trades": 0
+    },
+    "entry_instant": {
+      "cumulative_net_pnl": 0.0,
+      "today_realized_net_pnl": 0.0,
+      "trades": 0
+    }
   },
   "strategies": {
     "SimpleP": {
@@ -35,7 +48,18 @@
       "wins": 0,
       "losses": 0,
       "win_rate_pct": null,
-      "open_position": null
+      "open_position": null,
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": 0.0,
+        "equity": 10000.0,
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_pct": null
+      }
     },
     "SimpleP2": {
       "symbol": "PUMPUSDT",
@@ -55,7 +79,18 @@
       "wins": 0,
       "losses": 0,
       "win_rate_pct": null,
-      "open_position": null
+      "open_position": null,
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": 0.0,
+        "equity": 10000.0,
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_pct": null
+      }
     },
     "SimpleE": {
       "symbol": "ENAUSDT",
@@ -75,7 +110,18 @@
       "wins": 0,
       "losses": 0,
       "win_rate_pct": null,
-      "open_position": null
+      "open_position": null,
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": 0.0,
+        "equity": 10000.0,
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_pct": null
+      }
     },
     "SimpleE2": {
       "symbol": "ENAUSDT",
@@ -95,7 +141,18 @@
       "wins": 0,
       "losses": 0,
       "win_rate_pct": null,
-      "open_position": null
+      "open_position": null,
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": 0.0,
+        "equity": 10000.0,
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_pct": null
+      }
     },
     "SimpleH": {
       "symbol": "HOLOUSDT",
@@ -137,6 +194,17 @@
         "tp_price": 0.068952,
         "sl_price": 0.06464249999999999,
         "expiry_utc": "2026-10-03T18:00:00+00:00"
+      },
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": 0.0,
+        "equity": 10000.0,
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_pct": null
       }
     },
     "SimpleH2": {
@@ -179,6 +247,17 @@
         "tp_price": 0.07027800000000001,
         "sl_price": 0.062985,
         "expiry_utc": "2026-10-03T18:00:00+00:00"
+      },
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": 0.0,
+        "equity": 10000.0,
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate_pct": null
       }
     }
   }
