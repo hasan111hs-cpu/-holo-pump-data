@@ -1,0 +1,29 @@
+name: Research - Binance Vision bundle
+
+on:
+  push:
+    branches: ["claude/research-simple-backtest"]
+    paths: ["research/binance_bundle/**", ".github/workflows/research-binance-bundle.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify original Binance archives
+        run: python3 research/binance_bundle/build_bundle.py
+      - name: Publish as release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG=binance-vision-spot-1m-2025-09_2026-08
+          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+          gh release create "$TAG" bundle_out/*.zip bundle_out/MANIFEST.json \
+            --target "$GITHUB_SHA" \
+            --title "Binance Vision Spot 1m originals (ENA, PUMP, HOLO) 2025-09 to 2026-08" \
+            --notes "Unaltered Binance Vision monthly ZIPs with their official .CHECKSUM files, packed without recompression. Byte transport only. Source: https://data.binance.vision/data/spot/monthly/klines/"
+          gh release view "$TAG" --json assets --jq '.assets[] | "\(.name) \(.size)"'
