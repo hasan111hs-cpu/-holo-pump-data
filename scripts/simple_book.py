@@ -17,6 +17,12 @@ Layers (all under simple_book/, named by the UTC date of the 18:00 UTC boundary)
                            Dubai): the price an automatic order would have met.
   marks/<date>_minutes.json   immutable, information only. 1m candle OPEN at 22:00, 22:01,
                            22:02 and 22:05 Dubai for each coin.
+Second track ("instant", for comparison only - same decisions, fees and exits):
+  instant_entries/<date>.json, instant_settlements/<date>.json
+                           entry = live ask at the moment of decision (about 22:00:40 Dubai),
+                           i.e. what an automatic order would have paid. If that live quote is
+                           missing, the 22:01 Dubai candle open is used and flagged.
+                           The price path is checked from 22:01 Dubai onward.
 Report:
   simple_reports/<date>.json, <date>.md and latest.json - one file with all six strategies.
 
@@ -70,6 +76,12 @@ STRATEGIES = {
 
 
 # ------------------------------------------------------------------ helpers
+INSTANT_SCAN_OFFSET = timedelta(minutes=1)       # instant track: price path from 22:01 Dubai
+TRACKS = {
+    "official": {"entries": "entries", "settlements": "settlements", "scan_offset": ENTRY_OFFSET},
+    "instant":  {"entries": "instant_entries", "settlements": "instant_settlements",
+                 "scan_offset": INSTANT_SCAN_OFFSET},
+}
 NEW = {"decisions": False, "entries": False}   # set when this run created the record
 
 
@@ -407,6 +419,52 @@ def capture_entries(boundary, decisions):
     return load(path)
 
 
+def capture_instant_entries(boundary, decisions):
+    """Comparison track: entry at the live ask recorded when the decision was made."""
+    path = BOOK / "instant_entries" / f"{day(boundary)}.json"
+    if load(path):
+        return
+    d = day(boundary)
+    dmarks = (load(BOOK / "marks" / f"{d}_decision.json") or {}).get("symbols", {})
+    expiry = boundary + timedelta(days=1)
+    fallback_time = boundary + INSTANT_SCAN_OFFSET
+    strategies, fallback = {}, {}
+    for name, cfg in STRATEGIES.items():
+        dec = decisions["strategies"][name]
+        sym = cfg["symbol"]
+        row = {"symbol": sym, "decision": dec["decision"]}
+        if dec["decision"] != "BUY":
+            row["status"] = "NO_POSITION"
+        else:
+            m = dmarks.get(sym) or {}
+            if m.get("status") == "OK":
+                entry, etime, source = m["ask"], m["fetched_at_utc"], "live_ask_at_decision"
+            else:
+                if sym not in fallback:
+                    try:
+                        fallback[sym] = minute_bar(sym, fallback_time, wait_seconds=30)
+                    except Exception as exc:  # noqa: BLE001
+                        log(f"{sym}: instant fallback fetch failed {exc!r}")
+                        fallback[sym] = None
+                bar = fallback[sym]
+                entry, etime, source = (bar[0], iso(fallback_time), "fallback_open_22:01_dubai") if bar else (None, None, None)
+            if entry is None:
+                row.update({"status": "ENTRY_DATA_ERROR", "reason": "no decision-time price available"})
+            else:
+                row.update({"status": "ENTERED", "entry_price": entry, "entry_time_utc": etime,
+                            "entry_source": source,
+                            "tp_price": entry * (1 + cfg["tp_pct"] / 100),
+                            "sl_price": entry * (1 - cfg["sl_pct"] / 100),
+                            "expiry_utc": iso(expiry)})
+        strategies[name] = row
+    write_new(path, {
+        "schema_version": SCHEMA_VERSION, "record": "INSTANT_ENTRY", "immutable": True,
+        "comparison_only": True, "boundary_utc": iso(boundary),
+        "entry_rule": "Live Binance Spot ask when the decision was made (about 22:00:40 Dubai)",
+        "fee_per_side": FEE_PER_SIDE, "captured_at_utc": iso(utcnow()), "strategies": strategies,
+    })
+
+
 # --------------------------------------------------------------- settlement
 def settle_position(row, cfg, bars, expiry_bar, entry_time, expiry):
     entry, tp, sl = row["entry_price"], row["tp_price"], row["sl_price"]
@@ -437,11 +495,12 @@ def settle_position(row, cfg, bars, expiry_bar, entry_time, expiry):
     }
 
 
-def settle_all(now):
+def settle_all(now, track="official"):
     """Settle every entries file whose 24h window has ended and that is not settled yet."""
-    for epath in sorted((BOOK / "entries").glob("*.json")):
+    cfg_t = TRACKS[track]
+    for epath in sorted((BOOK / cfg_t["entries"]).glob("*.json")):
         d = epath.stem
-        spath = BOOK / "settlements" / f"{d}.json"
+        spath = BOOK / cfg_t["settlements"] / f"{d}.json"
         if spath.exists():
             continue
         boundary = boundary_of(d)
@@ -449,7 +508,7 @@ def settle_all(now):
         if now < expiry:
             continue
         entries = load(epath)
-        entry_time = boundary + ENTRY_OFFSET
+        entry_time = boundary + cfg_t["scan_offset"]     # first minute of the price path
         cache, strategies, ok = {}, {}, True
         for name, cfg in STRATEGIES.items():
             row = entries["strategies"][name]
@@ -473,10 +532,10 @@ def settle_all(now):
             strategies[name] = settle_position(row, cfg, bars, xbar, entry_time, expiry)
             strategies[name]["symbol"] = sym
         if not ok:
-            log(f"settlement for {d} postponed: price path incomplete (will retry next run)")
+            log(f"{track} settlement for {d} postponed: price path incomplete (will retry next run)")
             continue
         write_new(spath, {
-            "schema_version": SCHEMA_VERSION, "record": "SETTLEMENT", "immutable": True,
+            "schema_version": SCHEMA_VERSION, "record": "SETTLEMENT", "track": track, "immutable": True,
             "entry_boundary_utc": iso(boundary), "expiry_boundary_utc": iso(expiry),
             "settled_at_utc": iso(utcnow()),
             "rules": "TP if high >= TP; SL if low <= SL; same minute = SL; else exit at OPEN of the "
@@ -486,10 +545,11 @@ def settle_all(now):
 
 
 # ------------------------------------------------------------------- ledger
-def rebuild_ledger():
+def build_accounts(track):
+    cfg_t = TRACKS[track]
     book = {n: {"symbol": c["symbol"], "equity": START_EQUITY, "trades": 0, "wins": 0, "losses": 0,
                 "open_position": None, "history": []} for n, c in STRATEGIES.items()}
-    for spath in sorted((BOOK / "settlements").glob("*.json")):
+    for spath in sorted((BOOK / cfg_t["settlements"]).glob("*.json")):
         s = load(spath)
         for name, r in s["strategies"].items():
             if r["status"] not in ("TP", "SL", "TIME_EXIT"):
@@ -506,8 +566,8 @@ def rebuild_ledger():
                 "net_return_pct": r["net_return_pct"], "net_pnl": round(pnl, 2),
                 "equity_after": round(acct["equity"], 2),
             })
-    for epath in sorted((BOOK / "entries").glob("*.json")):
-        if (BOOK / "settlements" / epath.name).exists():
+    for epath in sorted((BOOK / cfg_t["entries"]).glob("*.json")):
+        if (BOOK / cfg_t["settlements"] / epath.name).exists():
             continue
         e = load(epath)
         for name, r in e["strategies"].items():
@@ -521,8 +581,14 @@ def rebuild_ledger():
         acct["cumulative_net_pnl"] = round(acct["equity"] - START_EQUITY, 2)
         acct["cumulative_return_pct"] = round((acct["equity"] / START_EQUITY - 1) * 100, 4)
         acct["win_rate_pct"] = round(acct["wins"] / acct["trades"] * 100, 2) if acct["trades"] else None
+    return book
+
+
+def rebuild_ledger():
     ledger = {"schema_version": SCHEMA_VERSION, "record": "LEDGER", "generated_at_utc": iso(utcnow()),
-              "start_equity": START_EQUITY, "fee_per_side": FEE_PER_SIDE, "strategies": book}
+              "start_equity": START_EQUITY, "fee_per_side": FEE_PER_SIDE,
+              "strategies": build_accounts("official"),
+              "instant_strategies": build_accounts("instant")}
     write_if_changed(BOOK / "ledger.json", ledger)
     return ledger
 
@@ -570,7 +636,32 @@ def build_report(boundary, ledger):
             row["previous_trade"] = {k: prev[k] for k in
                                      ("status", "ambiguous_same_minute", "entry_price", "exit_price",
                                       "exit_time_dubai", "gross_return_pct", "net_return_pct")}
+        # comparison track: same decision, entry at the moment of decision
+        iacct = ledger["instant_strategies"][name]
+        ient = (load(BOOK / "instant_entries" / f"{d}.json") or {}).get("strategies", {}).get(name)
+        iprev = (load(BOOK / "instant_settlements" / f"{prev_d}.json") or {}).get("strategies", {}).get(name)
+        ilast = iacct["history"][-1] if iacct["history"] and iacct["history"][-1]["entry_date"] == prev_d else None
+        row["instant"] = {
+            "entry": ({k: ient.get(k) for k in ("status", "entry_price", "entry_time_utc", "entry_source",
+                                                "tp_price", "sl_price") if k in ient}
+                      if ient and ient["status"] != "NO_POSITION" else None),
+            "previous_trade": ({k: iprev[k] for k in ("status", "ambiguous_same_minute", "entry_price",
+                                                      "exit_price", "net_return_pct")}
+                               if iprev and iprev["status"] in ("TP", "SL", "TIME_EXIT") else None),
+            "today_realized_net_pnl": ilast["net_pnl"] if ilast else 0.0,
+            "cumulative_net_pnl": iacct["cumulative_net_pnl"], "equity": iacct["equity"],
+            "trades": iacct["trades"], "wins": iacct["wins"], "losses": iacct["losses"],
+            "win_rate_pct": iacct["win_rate_pct"],
+        }
         rows[name] = row
+    totals = {
+        "entry_2205": {"cumulative_net_pnl": round(sum(r["cumulative_net_pnl"] for r in rows.values()), 2),
+                       "today_realized_net_pnl": round(sum(r["today_realized_net_pnl"] for r in rows.values()), 2),
+                       "trades": sum(r["trades"] for r in rows.values())},
+        "entry_instant": {"cumulative_net_pnl": round(sum(r["instant"]["cumulative_net_pnl"] for r in rows.values()), 2),
+                          "today_realized_net_pnl": round(sum(r["instant"]["today_realized_net_pnl"] for r in rows.values()), 2),
+                          "trades": sum(r["instant"]["trades"] for r in rows.values())},
+    }
     report = {
         "schema_version": SCHEMA_VERSION, "record": "REPORT",
         "report_date": d, "boundary_utc": iso(boundary), "boundary_dubai": iso(boundary.astimezone(DUBAI)),
@@ -579,7 +670,10 @@ def build_report(boundary, ledger):
         "signal_generated_at_utc": (decisions or {}).get("signal_generated_at_utc"),
         "rules": {"entry": "Binance Spot price at 22:05 Dubai (open of the 18:05 UTC 1m candle)",
                   "fee_per_side": FEE_PER_SIDE, "same_minute_tp_sl": "counts as SL",
+                  "comparison_track": "instant = entry at the live ask when the decision is made "
+                                      "(about 22:00:40 Dubai); same fees and exits",
                   "start_equity_each": START_EQUITY, "paper_trading_only": True},
+        "totals": totals,
         "strategies": rows,
     }
     changed = write_if_changed(REPORTS / f"{d}.json", report)
@@ -619,6 +713,14 @@ def render_markdown(r):
         lines.append(f"| {n} | {p.get('status', '-')} | {net} | ${s['today_realized_net_pnl']:,.2f} | "
                      f"${s['cumulative_net_pnl']:,.2f} | ${s['equity']:,.2f} | {s['trades']} | "
                      f"{s['wins']}/{s['losses']} | {wr} |")
+    lines += ["", "Accumulated profit by entry timing:", "",
+              "| Strategy | 22:05 entry | Trades | Instant entry | Trades |", "|---|---|---|---|---|"]
+    for n, s in r["strategies"].items():
+        i = s["instant"]
+        lines.append(f"| {n} | ${s['cumulative_net_pnl']:,.2f} | {s['trades']} | ${i['cumulative_net_pnl']:,.2f} | {i['trades']} |")
+    t = r["totals"]
+    lines.append(f"| **All six** | **${t['entry_2205']['cumulative_net_pnl']:,.2f}** | {t['entry_2205']['trades']} | "
+                 f"**${t['entry_instant']['cumulative_net_pnl']:,.2f}** | {t['entry_instant']['trades']} |")
     lines += ["", "Entry = Binance Spot price at 22:05 Dubai. Fees 0.1% per side. "
                   "TP and SL in the same minute counts as SL. Paper trading only.", ""]
     return "\n".join(lines)
@@ -649,13 +751,15 @@ def main():
         decisions = decide(boundary, final=True)
         capture_entries(boundary, decisions)
         record_minute_marks(boundary)
+        capture_instant_entries(boundary, decisions)
     elif cmd == "nightly":
         decide(boundary, final=utcnow() >= boundary + ENTRY_OFFSET)
         if NEW["decisions"]:
             record_decision_marks(boundary)      # as close to the decision as possible
     else:
         raise SystemExit(f"unknown command {cmd}")
-    settle_all(utcnow())
+    settle_all(utcnow(), "official")
+    settle_all(utcnow(), "instant")
     report = build_report(boundary, rebuild_ledger())
     if NEW["decisions"]:
         alert_decisions(report)
