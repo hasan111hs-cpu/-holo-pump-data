@@ -26,20 +26,20 @@ on:
 permissions:
   contents: write
 
-# Serialise, never cancel: a second run starts only after the first has pushed,
-# so it sees the canonical file and becomes a no-op.
-concurrency:
-  group: simple-fast-signal
-  cancel-in-progress: false
-
 jobs:
   signal:
     runs-on: ubuntu-latest
     timeout-minutes: 6
+    # Serialise, never cancel: a second run starts only after the first has pushed,
+    # so it sees the canonical file and becomes a no-op.
+    concurrency:
+      group: simple-fast-signal
+      cancel-in-progress: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.ref_name }}
           fetch-depth: 1
 
       # No setup-python step: the script is stdlib-only and ubuntu-latest ships
@@ -70,6 +70,12 @@ jobs:
         id: gen
         run: python3 scripts/simple_signal_fast.py
 
+      # Six-strategy bookkeeping: immutable decisions, settle positions that are due,
+      # rebuild the ledger, write simple_reports/<date>.json. Strategy rules are unchanged.
+      - name: Decisions, settlement, ledger and nightly report
+        if: always()
+        run: python3 scripts/simple_book.py nightly
+
       - name: Commit signal and attempt log (first writer wins)
         if: always()
         run: |
@@ -86,7 +92,7 @@ jobs:
             fi
           done
 
-          git add simple_fast/
+          git add simple_fast/ simple_book/ simple_reports/ 2>/dev/null || git add simple_fast/
           if git diff --cached --quiet; then
             echo "Nothing to commit."
             exit 0
@@ -102,6 +108,52 @@ jobs:
               exit 0
             fi
             echo "Push rejected (attempt $attempt); rebasing onto origin/$GITHUB_REF_NAME"
+            git pull --rebase -X ours origin "$GITHUB_REF_NAME" || { git rebase --abort; sleep 2; continue; }
+            sleep $((attempt * 2))
+          done
+          echo "::error::Push failed after 6 attempts"
+          exit 1
+
+  # Records the entry price for tonight's BUY decisions at 22:05 Dubai (18:05 UTC):
+  # a price a person could really act on after reading the 22:02 report.
+  entry:
+    needs: signal
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: simple-entry
+      cancel-in-progress: false
+    steps:
+      - name: Checkout latest branch head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 1
+
+      - name: Capture entries at 22:05 Dubai, then update ledger and report
+        run: |
+          # Wait outside the checkout so the commit below is based on fresh history.
+          python3 scripts/simple_book.py entry
+
+      - name: Commit entry records
+        if: always()
+        run: |
+          set -u
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add simple_book/ simple_reports/ 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git commit -m "Update Simple entries and report $(date -u +%F) [run ${GITHUB_RUN_ID}]"
+          for attempt in 1 2 3 4 5 6; do
+            if git push origin "HEAD:$GITHUB_REF_NAME"; then
+              echo "Pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt); rebasing"
             git pull --rebase -X ours origin "$GITHUB_REF_NAME" || { git rebase --abort; sleep 2; continue; }
             sleep $((attempt * 2))
           done
