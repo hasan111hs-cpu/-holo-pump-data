@@ -4,7 +4,7 @@
   "report_date": "2026-10-02",
   "boundary_utc": "2026-10-02T18:00:00+00:00",
   "boundary_dubai": "2026-10-02T22:00:00+04:00",
-  "generated_at_utc": "2026-10-02T22:23:32.700792+00:00",
+  "generated_at_utc": "2026-10-02T22:23:42.002989+00:00",
   "stage": "FINAL",
   "final": true,
   "signal_valid": true,
@@ -114,7 +114,14 @@
         "sl_price": 0.06464249999999999,
         "expiry_utc": "2026-10-03T18:00:00+00:00"
       },
-      "price_marks": null,
+      "price_marks": {
+        "open_dubai": {
+          "22:00": 0.0663,
+          "22:01": 0.0663,
+          "22:02": 0.0663,
+          "22:05": 0.0663
+        }
+      },
       "previous_trade": null,
       "today_realized_net_pnl": 0.0,
       "cumulative_net_pnl": 0.0,
@@ -149,7 +156,14 @@
         "sl_price": 0.062985,
         "expiry_utc": "2026-10-03T18:00:00+00:00"
       },
-      "price_marks": null,
+      "price_marks": {
+        "open_dubai": {
+          "22:00": 0.0663,
+          "22:01": 0.0663,
+          "22:02": 0.0663,
+          "22:05": 0.0663
+        }
+      },
       "previous_trade": null,
       "today_realized_net_pnl": 0.0,
       "cumulative_net_pnl": 0.0,
