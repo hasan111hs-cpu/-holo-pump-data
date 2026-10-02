@@ -17,6 +17,8 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
+      - name: Check live quote endpoints
+        run: python3 scripts/simple_book.py quote-test
       - name: Send test message
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

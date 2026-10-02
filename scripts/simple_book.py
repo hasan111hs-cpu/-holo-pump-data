@@ -627,11 +627,13 @@ def render_markdown(r):
 # --------------------------------------------------------------------- main
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else "nightly"
-    if cmd == "telegram-test":
-        for sym in SYMBOLS:      # also proves the live-quote endpoints work from this runner
+    if cmd == "quote-test":      # proves the live-quote endpoints work from this runner
+        for sym in SYMBOLS:
             book = http_json(f"{API}/ticker/bookTicker?symbol={sym}", retries=2)
             last = http_json(f"{API}/ticker/price?symbol={sym}", retries=2)
-            log(f"{sym} bid={book['bidPrice']} ask={book['askPrice']} last={last['price']}")
+            log(f"{sym} bid={float(book['bidPrice'])} ask={float(book['askPrice'])} last={float(last['price'])}")
+        return 0
+    if cmd == "telegram-test":
         ok = telegram("Simple strategies: Telegram alerts are connected. This is a test message.")
         return 0 if ok else 1
     NEW.update(decisions=False, entries=False)
