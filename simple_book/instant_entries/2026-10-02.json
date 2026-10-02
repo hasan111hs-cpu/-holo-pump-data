@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "record": "INSTANT_ENTRY",
+  "immutable": true,
+  "comparison_only": true,
+  "boundary_utc": "2026-10-02T18:00:00+00:00",
+  "entry_rule": "Live Binance Spot ask when the decision was made (about 22:00:40 Dubai)",
+  "fee_per_side": 0.001,
+  "captured_at_utc": "2026-10-02T22:34:28.895334+00:00",
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0663,
+      "entry_time_utc": "2026-10-02T18:01:00+00:00",
+      "entry_source": "fallback_open_22:01_dubai",
+      "tp_price": 0.068952,
+      "sl_price": 0.06464249999999999,
+      "expiry_utc": "2026-10-03T18:00:00+00:00"
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0663,
+      "entry_time_utc": "2026-10-02T18:01:00+00:00",
+      "entry_source": "fallback_open_22:01_dubai",
+      "tp_price": 0.07027800000000001,
+      "sl_price": 0.062985,
+      "expiry_utc": "2026-10-03T18:00:00+00:00"
+    }
+  }
+}
