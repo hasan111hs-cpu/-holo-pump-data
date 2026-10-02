@@ -4,9 +4,6 @@ name: Simple Telegram test
 # Needs repository secrets TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID.
 on:
   workflow_dispatch:
-  push:
-    branches: ["claude/price-marks-telegram"]
-    paths: [".github/workflows/simple-telegram-test.yml"]
 
 permissions:
   contents: read
