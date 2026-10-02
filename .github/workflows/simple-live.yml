@@ -1,11 +1,11 @@
 name: Simple Live Data
 
+# RETIRED 2026-10-03. Superseded by scripts/simple_book.py (run from simple-fast-signal.yml),
+# which keeps the official record in simple_book/ and simple_reports/.
+# The old files in simple_live/ and simple_settlements/ are kept as history only.
+# The job below is switched off; a manual or external dispatch does nothing.
 on:
   workflow_dispatch:
-  schedule:
-    # BACKUP only. GitHub cron ran ~4h late on 2026-09-30 and 2026-10-01.
-    # Primary trigger = external workflow_dispatch at 18:02 UTC (22:02 Dubai).
-    - cron: "2 18 * * *"
 
 permissions:
   contents: write
@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   collect:
+    if: ${{ false }}   # retired - see note at top
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
