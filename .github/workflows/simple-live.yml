@@ -3,7 +3,8 @@ name: Simple Live Data
 on:
   workflow_dispatch:
   schedule:
-    # 18:02 UTC = 22:02 Dubai (UTC+4 year-round)
+    # BACKUP only. GitHub cron ran ~4h late on 2026-09-30 and 2026-10-01.
+    # Primary trigger = external workflow_dispatch at 18:02 UTC (22:02 Dubai).
     - cron: "2 18 * * *"
 
 permissions:
@@ -43,4 +44,16 @@ jobs:
           fi
 
           git commit -m "Update Simple live data and settlements $(date -u +%F)"
-          git push
+
+          # Other workflows push to this branch too; retry with rebase.
+          for attempt in 1 2 3 4 5 6; do
+            if git push origin "HEAD:$GITHUB_REF_NAME"; then
+              echo "Pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt); rebasing"
+            git pull --rebase origin "$GITHUB_REF_NAME" || { git rebase --abort; sleep 2; continue; }
+            sleep $((attempt * 2))
+          done
+          echo "::error::Push failed after 6 attempts"
+          exit 1

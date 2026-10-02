@@ -1,15 +1,33 @@
 name: Simple Fast Signal
 
+# LIVE PATH  = workflow_dispatch fired by the EXTERNAL scheduler (same one that
+#              already fires the Canonical Signal Engine at 16:48 UTC):
+#                18:00:15 UTC  role=PRIMARY_EXTERNAL
+#                18:02:00 UTC  role=RECOVERY_EXTERNAL   (no-op if canonical exists)
+# BACKUP     = GitHub cron below. GitHub documents that scheduled runs can be
+#              delayed at the top of the hour or dropped under load (this repo saw
+#              ~4h delays on 2026-09-30 and a missing run on 2026-10-01), so cron
+#              runs are audit/backfill only. A late run still produces a canonical
+#              file, but it is stamped live_eligible=false and must not be traded.
+
 on:
   workflow_dispatch:
+    inputs:
+      role:
+        description: "Trigger role"
+        required: true
+        default: MANUAL
+        type: choice
+        options: [PRIMARY_EXTERNAL, RECOVERY_EXTERNAL, MANUAL]
   schedule:
-    # 18:00 UTC = 22:00 Dubai.
-    # Python waits for Binance's completed 17:59 UTC minute.
-    - cron: "0 18 * * *"
+    - cron: "3 18 * * *"    # SCHEDULE_BACKUP (off the top-of-hour peak)
+    - cron: "23 18 * * *"   # SCHEDULE_BACKUP (audit backfill)
 
 permissions:
   contents: write
 
+# Serialise, never cancel: a second run starts only after the first has pushed,
+# so it sees the canonical file and becomes a no-op.
 concurrency:
   group: simple-fast-signal
   cancel-in-progress: false
@@ -17,31 +35,75 @@ concurrency:
 jobs:
   signal:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-
+    timeout-minutes: 6
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          fetch-depth: 1
+
+      # No setup-python step: the script is stdlib-only and ubuntu-latest ships
+      # Python 3, which saves 10-20 s on the critical path.
+
+      - name: Resolve trigger role
+        env:
+          EVENT: ${{ github.event_name }}
+          REQUESTED: ${{ github.event.inputs.role }}
+          ACTOR: ${{ github.actor }}
+          TRIGGERING_ACTOR: ${{ github.triggering_actor }}
+          APPROVED: ${{ vars.SCHEDULER_ACTOR }}
+        run: |
+          ROLE="MANUAL"
+          if [ "$EVENT" = "schedule" ]; then
+            ROLE="SCHEDULE_BACKUP"
+          elif [ "$REQUESTED" = "PRIMARY_EXTERNAL" ] || [ "$REQUESTED" = "RECOVERY_EXTERNAL" ]; then
+            if [ -n "$APPROVED" ] && { [ "$ACTOR" = "$APPROVED" ] || [ "$TRIGGERING_ACTOR" = "$APPROVED" ]; }; then
+              ROLE="$REQUESTED"
+            else
+              echo "Actor '$ACTOR' is not SCHEDULER_ACTOR -> role downgraded to MANUAL"
+            fi
+          fi
+          echo "event=$EVENT requested=$REQUESTED actor=$ACTOR -> role=$ROLE"
+          echo "TRIGGER_ROLE=$ROLE" >> "$GITHUB_ENV"
 
       - name: Generate fast Simple signal
-        run: python scripts/simple_signal_fast.py
+        id: gen
+        run: python3 scripts/simple_signal_fast.py
 
-      - name: Commit fast signal
+      - name: Commit signal and attempt log (first writer wins)
+        if: always()
         run: |
+          set -u
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add simple_fast/
+          # Never commit a canonical file if one already exists upstream.
+          git fetch --depth=1 origin "$GITHUB_REF_NAME"
+          for f in $(git ls-files --others --exclude-standard -- 'simple_fast/*.json' ':!simple_fast/attempts/**'); do
+            if git cat-file -e "FETCH_HEAD:$f" 2>/dev/null; then
+              echo "Upstream already has $f -> discarding local copy (immutable)."
+              rm -f "$f"
+            fi
+          done
 
+          git add simple_fast/
           if git diff --cached --quiet; then
-            echo "No new fast signal to commit."
+            echo "Nothing to commit."
             exit 0
           fi
+          git commit -m "Update Simple fast signal $(date -u +%F) [$TRIGGER_ROLE run ${GITHUB_RUN_ID}]"
 
-          git commit -m "Update Simple fast signal $(date -u +%F)"
-          git push
+          # Other workflows push to main too; retry with rebase. During a rebase
+          # '-X ours' means UPSTREAM wins any conflict, so an existing canonical
+          # file can never be replaced.
+          for attempt in 1 2 3 4 5 6; do
+            if git push origin "HEAD:$GITHUB_REF_NAME"; then
+              echo "Pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt); rebasing onto origin/$GITHUB_REF_NAME"
+            git pull --rebase -X ours origin "$GITHUB_REF_NAME" || { git rebase --abort; sleep 2; continue; }
+            sleep $((attempt * 2))
+          done
+          echo "::error::Push failed after 6 attempts"
+          exit 1
