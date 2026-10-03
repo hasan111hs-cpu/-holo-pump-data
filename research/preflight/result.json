@@ -1,0 +1,45 @@
+{
+ "checked_at_utc": "2026-10-03T16:46:06.629346+00:00",
+ "tracks": {
+  "official": {
+   "minutes_expected": 1360,
+   "minutes_fetched": 1360,
+   "strategies": {
+    "SimpleH": {
+     "so_far": "SL",
+     "entry": 0.0663,
+     "last_price": 0.0659,
+     "exit_time_dubai": "2026-10-02T22:39:00+04:00",
+     "net_return_pct_if_closed_now": -2.6948
+    },
+    "SimpleH2": {
+     "so_far": "STILL_OPEN",
+     "entry": 0.0663,
+     "last_price": 0.0659,
+     "exit_time_dubai": null,
+     "net_return_pct_if_closed_now": -0.8019
+    }
+   }
+  },
+  "instant": {
+   "minutes_expected": 1364,
+   "minutes_fetched": 1364,
+   "strategies": {
+    "SimpleH": {
+     "so_far": "SL",
+     "entry": 0.0663,
+     "last_price": 0.0659,
+     "exit_time_dubai": "2026-10-02T22:39:00+04:00",
+     "net_return_pct_if_closed_now": -2.6948
+    },
+    "SimpleH2": {
+     "so_far": "STILL_OPEN",
+     "entry": 0.0663,
+     "last_price": 0.0659,
+     "exit_time_dubai": null,
+     "net_return_pct_if_closed_now": -0.8019
+    }
+   }
+  }
+ }
+}
