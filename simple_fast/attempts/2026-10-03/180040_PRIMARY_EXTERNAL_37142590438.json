@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-10-03T18:00:40.700365+00:00",
+  "boundary_utc": "2026-10-03T18:00:00+00:00",
+  "boundary_dubai": "2026-10-03T22:00:00+04:00",
+  "signal_window_start_utc": "2026-10-02T18:00:00+00:00",
+  "signal_window_end_utc": "2026-10-03T18:00:00+00:00",
+  "latency_seconds_after_boundary": 40.7,
+  "live_deadline_utc": "2026-10-03T18:05:00+00:00",
+  "live_eligible": true,
+  "immutable": true,
+  "status": "OK",
+  "trigger_role": "PRIMARY_EXTERNAL",
+  "github_run_id": "37142590438",
+  "github_run_attempt": "1",
+  "script_started_at_utc": "2026-10-03T18:00:36.997279+00:00",
+  "symbols": {
+    "PUMPUSDT": {
+      "status": "OK",
+      "open": 0.005798,
+      "close": 0.006056,
+      "return_pct": 4.449810279406674,
+      "threshold_pct": 6.5,
+      "qualified": false,
+      "decision": "NO TRADE",
+      "open_minute_utc": "2026-10-02T18:00:00+00:00",
+      "close_minute_utc": "2026-10-03T17:59:00+00:00",
+      "final_minute_close_time_ms": 1791050399999
+    },
+    "ENAUSDT": {
+      "status": "OK",
+      "open": 0.2426,
+      "close": 0.2368,
+      "return_pct": -2.39076669414674,
+      "threshold_pct": 1.0,
+      "qualified": false,
+      "decision": "NO TRADE",
+      "open_minute_utc": "2026-10-02T18:00:00+00:00",
+      "close_minute_utc": "2026-10-03T17:59:00+00:00",
+      "final_minute_close_time_ms": 1791050399999
+    },
+    "HOLOUSDT": {
+      "status": "OK",
+      "open": 0.0663,
+      "close": 0.0657,
+      "return_pct": -0.9049773755656187,
+      "threshold_pct": 2.0,
+      "qualified": false,
+      "decision": "NO TRADE",
+      "open_minute_utc": "2026-10-02T18:00:00+00:00",
+      "close_minute_utc": "2026-10-03T17:59:00+00:00",
+      "final_minute_close_time_ms": 1791050399999
+    }
+  },
+  "outcome": "CANONICAL_WRITTEN"
+}
