@@ -1,0 +1,18 @@
+name: Research - preflight
+on:
+  push:
+    branches: ["claude/preflight"]
+    paths: ["research/preflight/check.py"]
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 research/preflight/check.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/preflight/result.json && git commit -m "Preflight result" && git push origin "HEAD:$GITHUB_REF_NAME"
