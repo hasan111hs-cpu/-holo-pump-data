@@ -2778,5 +2778,15 @@
     "total_volume_usd": 47023133171.03769,
     "market_cap_change_percentage_24h_usd": -1.8082318309312093,
     "source": "CoinGecko /api/v3/global"
+  },
+  {
+    "fetched_at_utc": "2026-10-04T23:21:52.564411+00:00",
+    "source_updated_at_unix": 1791155989,
+    "source_updated_at_utc": "2026-10-04T23:19:49+00:00",
+    "btc_dominance_pct": 59.302358710670525,
+    "total_market_cap_usd": 2926710802457.2466,
+    "total_volume_usd": 88687373251.83304,
+    "market_cap_change_percentage_24h_usd": -1.8484871456702305,
+    "source": "CoinGecko /api/v3/global"
   }
 ]
