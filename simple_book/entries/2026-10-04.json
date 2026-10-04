@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "record": "ENTRY",
+  "immutable": true,
+  "boundary_utc": "2026-10-04T18:00:00+00:00",
+  "entry_rule": "OPEN of the Binance Spot 1m candle at 18:05 UTC (22:05 Dubai)",
+  "fee_per_side": 0.001,
+  "captured_at_utc": "2026-10-04T18:05:03.647421+00:00",
+  "captured_late": false,
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.006603,
+      "entry_time_utc": "2026-10-04T18:05:00+00:00",
+      "entry_time_dubai": "2026-10-04T22:05:00+04:00",
+      "tp_price": 0.006867120000000001,
+      "sl_price": 0.006437925000000001,
+      "expiry_utc": "2026-10-05T18:00:00+00:00"
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.006603,
+      "entry_time_utc": "2026-10-04T18:05:00+00:00",
+      "entry_time_dubai": "2026-10-04T22:05:00+04:00",
+      "tp_price": 0.006768075,
+      "sl_price": 0.006239835,
+      "expiry_utc": "2026-10-05T18:00:00+00:00"
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2402,
+      "entry_time_utc": "2026-10-04T18:05:00+00:00",
+      "entry_time_dubai": "2026-10-04T22:05:00+04:00",
+      "tp_price": 0.249808,
+      "sl_price": 0.234195,
+      "expiry_utc": "2026-10-05T18:00:00+00:00"
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2402,
+      "entry_time_utc": "2026-10-04T18:05:00+00:00",
+      "entry_time_dubai": "2026-10-04T22:05:00+04:00",
+      "tp_price": 0.25641349999999996,
+      "sl_price": 0.2239865,
+      "expiry_utc": "2026-10-05T18:00:00+00:00"
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    }
+  }
+}

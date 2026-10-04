@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "record": "LEDGER",
-  "generated_at_utc": "2026-10-03T18:00:48.722062+00:00",
+  "generated_at_utc": "2026-10-04T18:05:05.716356+00:00",
   "start_equity": 10000.0,
   "fee_per_side": 0.001,
   "strategies": {
@@ -11,7 +11,14 @@
       "trades": 0,
       "wins": 0,
       "losses": 0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-04",
+        "entry_price": 0.006603,
+        "entry_time_utc": "2026-10-04T18:05:00+00:00",
+        "tp_price": 0.006867120000000001,
+        "sl_price": 0.006437925000000001,
+        "expiry_utc": "2026-10-05T18:00:00+00:00"
+      },
       "history": [],
       "cumulative_net_pnl": 0.0,
       "cumulative_return_pct": 0.0,
@@ -23,7 +30,14 @@
       "trades": 0,
       "wins": 0,
       "losses": 0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-04",
+        "entry_price": 0.006603,
+        "entry_time_utc": "2026-10-04T18:05:00+00:00",
+        "tp_price": 0.006768075,
+        "sl_price": 0.006239835,
+        "expiry_utc": "2026-10-05T18:00:00+00:00"
+      },
       "history": [],
       "cumulative_net_pnl": 0.0,
       "cumulative_return_pct": 0.0,
@@ -35,7 +49,14 @@
       "trades": 0,
       "wins": 0,
       "losses": 0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-04",
+        "entry_price": 0.2402,
+        "entry_time_utc": "2026-10-04T18:05:00+00:00",
+        "tp_price": 0.249808,
+        "sl_price": 0.234195,
+        "expiry_utc": "2026-10-05T18:00:00+00:00"
+      },
       "history": [],
       "cumulative_net_pnl": 0.0,
       "cumulative_return_pct": 0.0,
@@ -47,7 +68,14 @@
       "trades": 0,
       "wins": 0,
       "losses": 0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-04",
+        "entry_price": 0.2402,
+        "entry_time_utc": "2026-10-04T18:05:00+00:00",
+        "tp_price": 0.25641349999999996,
+        "sl_price": 0.2239865,
+        "expiry_utc": "2026-10-05T18:00:00+00:00"
+      },
       "history": [],
       "cumulative_net_pnl": 0.0,
       "cumulative_return_pct": 0.0,
@@ -105,7 +133,14 @@
       "trades": 0,
       "wins": 0,
       "losses": 0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-04",
+        "entry_price": 0.006628,
+        "entry_time_utc": "2026-10-04T18:00:35.127839+00:00",
+        "tp_price": 0.006893120000000001,
+        "sl_price": 0.0064623,
+        "expiry_utc": "2026-10-05T18:00:00+00:00"
+      },
       "history": [],
       "cumulative_net_pnl": 0.0,
       "cumulative_return_pct": 0.0,
@@ -117,7 +152,14 @@
       "trades": 0,
       "wins": 0,
       "losses": 0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-04",
+        "entry_price": 0.006628,
+        "entry_time_utc": "2026-10-04T18:00:35.127839+00:00",
+        "tp_price": 0.0067937,
+        "sl_price": 0.00626346,
+        "expiry_utc": "2026-10-05T18:00:00+00:00"
+      },
       "history": [],
       "cumulative_net_pnl": 0.0,
       "cumulative_return_pct": 0.0,
@@ -129,7 +171,14 @@
       "trades": 0,
       "wins": 0,
       "losses": 0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-04",
+        "entry_price": 0.2407,
+        "entry_time_utc": "2026-10-04T18:00:36.305268+00:00",
+        "tp_price": 0.250328,
+        "sl_price": 0.2346825,
+        "expiry_utc": "2026-10-05T18:00:00+00:00"
+      },
       "history": [],
       "cumulative_net_pnl": 0.0,
       "cumulative_return_pct": 0.0,
@@ -141,7 +190,14 @@
       "trades": 0,
       "wins": 0,
       "losses": 0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-04",
+        "entry_price": 0.2407,
+        "entry_time_utc": "2026-10-04T18:00:36.305268+00:00",
+        "tp_price": 0.25694724999999996,
+        "sl_price": 0.22445275,
+        "expiry_utc": "2026-10-05T18:00:00+00:00"
+      },
       "history": [],
       "cumulative_net_pnl": 0.0,
       "cumulative_return_pct": 0.0,
