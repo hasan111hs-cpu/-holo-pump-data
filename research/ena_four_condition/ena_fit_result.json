@@ -1,0 +1,249 @@
+{
+  "label": "NEW_STRATEGY_RESEARCH",
+  "symbol": "ENAUSDT",
+  "cutoff_dubai": "22:00",
+  "entry_dubai": "22:05",
+  "exits": {
+    "tp": 0.04,
+    "sl": -0.025,
+    "time_exit_hours": 24,
+    "friction_per_side": 0.001
+  },
+  "fit_window": [
+    "2024-04-09",
+    "2025-10-06"
+  ],
+  "holdout_window": [
+    "2025-10-07",
+    "2026-10-05"
+  ],
+  "chosen_thresholds": {
+    "x_ret": 0.03,
+    "x_clv": 0.3,
+    "x_vol": 0.0,
+    "x_dfh": 0.05
+  },
+  "fit_result": {
+    "fills": 54,
+    "total_return": 0.4085410359177206,
+    "profit_factor": 1.552790230844969,
+    "max_drawdown": 0.12790418714390717,
+    "win_rate": 0.5185185185185185,
+    "largest_win": 0.038,
+    "largest_loss": -0.027000000000000003,
+    "excl_best_1": 0.35697594982439296
+  },
+  "holdout_result": {
+    "fills": 71,
+    "total_return": -0.25470914311576465,
+    "profit_factor": 0.7737544135323396,
+    "max_drawdown": 0.3466989663865477,
+    "win_rate": 0.352112676056338,
+    "largest_win": 0.038,
+    "largest_loss": -0.027000000000000003,
+    "excl_best_1": -0.2819933941385019
+  },
+  "top_20_fit_cells": [
+    {
+      "x_ret": 0.03,
+      "x_clv": 0.3,
+      "x_vol": 0.0,
+      "x_dfh": 0.05,
+      "fills": 54,
+      "total_return": 0.408541,
+      "profit_factor": 1.5528,
+      "max_drawdown": 0.127904
+    },
+    {
+      "x_ret": 0.03,
+      "x_clv": 0.0,
+      "x_vol": 0.0,
+      "x_dfh": 0.05,
+      "fills": 59,
+      "total_return": 0.397986,
+      "profit_factor": 1.4866,
+      "max_drawdown": 0.132299
+    },
+    {
+      "x_ret": 0.06,
+      "x_clv": 0.3,
+      "x_vol": 0.0,
+      "x_dfh": 1.0,
+      "fills": 146,
+      "total_return": 0.343882,
+      "profit_factor": 1.177,
+      "max_drawdown": 0.266293
+    },
+    {
+      "x_ret": 0.06,
+      "x_clv": 0.5,
+      "x_vol": 0.0,
+      "x_dfh": 1.0,
+      "fills": 106,
+      "total_return": 0.332502,
+      "profit_factor": 1.2317,
+      "max_drawdown": 0.200756
+    },
+    {
+      "x_ret": 0.02,
+      "x_clv": 0.3,
+      "x_vol": 0.0,
+      "x_dfh": 0.05,
+      "fills": 41,
+      "total_return": 0.32107,
+      "profit_factor": 1.5856,
+      "max_drawdown": 0.080823
+    },
+    {
+      "x_ret": 0.02,
+      "x_clv": 0.0,
+      "x_vol": 0.0,
+      "x_dfh": 0.05,
+      "fills": 46,
+      "total_return": 0.31117,
+      "profit_factor": 1.4973,
+      "max_drawdown": 0.085736
+    },
+    {
+      "x_ret": 0.03,
+      "x_clv": 0.5,
+      "x_vol": 0.0,
+      "x_dfh": 0.05,
+      "fills": 38,
+      "total_return": 0.301032,
+      "profit_factor": 1.6219,
+      "max_drawdown": 0.103704
+    },
+    {
+      "x_ret": 0.03,
+      "x_clv": 0.5,
+      "x_vol": 0.0,
+      "x_dfh": 1.0,
+      "fills": 43,
+      "total_return": 0.291282,
+      "profit_factor": 1.5185,
+      "max_drawdown": 0.103704
+    },
+    {
+      "x_ret": 0.02,
+      "x_clv": 0.3,
+      "x_vol": 0.9,
+      "x_dfh": 1.0,
+      "fills": 24,
+      "total_return": 0.28201,
+      "profit_factor": 1.9704,
+      "max_drawdown": 0.078833
+    },
+    {
+      "x_ret": 0.12,
+      "x_clv": 0.3,
+      "x_vol": 0.9,
+      "x_dfh": 1.0,
+      "fills": 118,
+      "total_return": 0.280014,
+      "profit_factor": 1.18,
+      "max_drawdown": 0.243211
+    },
+    {
+      "x_ret": 0.03,
+      "x_clv": 0.3,
+      "x_vol": 0.6,
+      "x_dfh": 0.05,
+      "fills": 37,
+      "total_return": 0.265517,
+      "profit_factor": 1.5467,
+      "max_drawdown": 0.094765
+    },
+    {
+      "x_ret": 0.06,
+      "x_clv": 0.3,
+      "x_vol": 0.0,
+      "x_dfh": 0.05,
+      "fills": 113,
+      "total_return": 0.257099,
+      "profit_factor": 1.1783,
+      "max_drawdown": 0.225008
+    },
+    {
+      "x_ret": 0.06,
+      "x_clv": 0.0,
+      "x_vol": 0.0,
+      "x_dfh": 0.05,
+      "fills": 118,
+      "total_return": 0.247679,
+      "profit_factor": 1.1667,
+      "max_drawdown": 0.245933
+    },
+    {
+      "x_ret": 0.03,
+      "x_clv": 0.3,
+      "x_vol": 0.0,
+      "x_dfh": 1.0,
+      "fills": 75,
+      "total_return": 0.24661,
+      "profit_factor": 1.2467,
+      "max_drawdown": 0.18669
+    },
+    {
+      "x_ret": 0.03,
+      "x_clv": 0.0,
+      "x_vol": 0.6,
+      "x_dfh": 0.05,
+      "fills": 40,
+      "total_return": 0.243629,
+      "profit_factor": 1.4593,
+      "max_drawdown": 0.094765
+    },
+    {
+      "x_ret": 0.03,
+      "x_clv": 0.0,
+      "x_vol": 0.9,
+      "x_dfh": 0.05,
+      "fills": 23,
+      "total_return": 0.235077,
+      "profit_factor": 1.8296,
+      "max_drawdown": 0.078833
+    },
+    {
+      "x_ret": 0.02,
+      "x_clv": 0.3,
+      "x_vol": 0.0,
+      "x_dfh": 1.0,
+      "fills": 53,
+      "total_return": 0.23202,
+      "profit_factor": 1.3243,
+      "max_drawdown": 0.125806
+    },
+    {
+      "x_ret": 0.03,
+      "x_clv": 0.3,
+      "x_vol": 0.9,
+      "x_dfh": 0.05,
+      "fills": 21,
+      "total_return": 0.22288,
+      "profit_factor": 1.8765,
+      "max_drawdown": 0.078833
+    },
+    {
+      "x_ret": 0.02,
+      "x_clv": 0.3,
+      "x_vol": 0.6,
+      "x_dfh": 0.05,
+      "fills": 26,
+      "total_return": 0.213716,
+      "profit_factor": 1.642,
+      "max_drawdown": 0.053271
+    },
+    {
+      "x_ret": 0.08,
+      "x_clv": 0.3,
+      "x_vol": 1.2,
+      "x_dfh": 1.0,
+      "fills": 51,
+      "total_return": 0.204435,
+      "profit_factor": 1.3028,
+      "max_drawdown": 0.15781
+    }
+  ],
+  "caveat": "Thresholds were chosen to maximise FIT return. The FIT figure is therefore not a prediction. HOLDOUT was evaluated once with the chosen thresholds and never searched."
+}
