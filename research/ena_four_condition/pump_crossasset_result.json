@@ -1,0 +1,549 @@
+{
+  "label": "CROSS_ASSET_TEST",
+  "symbol": "PUMPUSDT",
+  "thresholds_source": "fitted on ENA FIT window; applied unchanged, never re-searched",
+  "thresholds": {
+    "x_ret": 0.03,
+    "x_clv": 0.3,
+    "x_vol": 0.0,
+    "x_dfh": 0.05
+  },
+  "exits": {
+    "tp": 0.04,
+    "sl": -0.025,
+    "time_exit_hours": 24,
+    "friction_per_side": 0.001
+  },
+  "pre_registered_criteria": {
+    "min_fills": 15,
+    "pass_pf": 1.3,
+    "ambiguous_pf_floor": 1.0,
+    "fixed_before_run": true
+  },
+  "window": [
+    "2025-09-11",
+    "2026-10-06"
+  ],
+  "days_evaluated": 383,
+  "days_qualified": 63,
+  "fills": 63,
+  "wins": 27,
+  "win_rate": 0.4286,
+  "total_return": 0.00058,
+  "profit_factor": 1.0325,
+  "max_drawdown": 0.227614,
+  "excl_best_1": -0.036051,
+  "excl_best_2": -0.07134,
+  "excl_best_3": -0.105337,
+  "verdict": "AMBIGUOUS",
+  "verdict_reasons": [
+    "PF 1.032 in [1.0, 1.3) with positive return"
+  ],
+  "trades": [
+    {
+      "date": "2025-09-20",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.017635,
+      "clv": 0.6721,
+      "dfh": 0.034921
+    },
+    {
+      "date": "2025-10-07",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.00482,
+      "clv": 0.654,
+      "dfh": 0.032775
+    },
+    {
+      "date": "2025-11-15",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.01916,
+      "clv": 0.6977,
+      "dfh": 0.02111
+    },
+    {
+      "date": "2025-11-27",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.017651,
+      "clv": 0.7257,
+      "dfh": 0.015758
+    },
+    {
+      "date": "2025-12-07",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.004601,
+      "clv": 0.8795,
+      "dfh": 0.009718
+    },
+    {
+      "date": "2025-12-08",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.006215,
+      "clv": 0.7061,
+      "dfh": 0.027506
+    },
+    {
+      "date": "2025-12-13",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.013833,
+      "clv": 0.7143,
+      "dfh": 0.01136
+    },
+    {
+      "date": "2025-12-20",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.02,
+      "clv": 0.5109,
+      "dfh": 0.022124
+    },
+    {
+      "date": "2025-12-22",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.005123,
+      "clv": 0.3448,
+      "dfh": 0.037291
+    },
+    {
+      "date": "2025-12-24",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.027453,
+      "clv": 0.7105,
+      "dfh": 0.018415
+    },
+    {
+      "date": "2025-12-28",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.018438,
+      "clv": 0.5949,
+      "dfh": 0.016754
+    },
+    {
+      "date": "2026-01-13",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.0,
+      "clv": 0.6493,
+      "dfh": 0.037533
+    },
+    {
+      "date": "2026-02-06",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.01913,
+      "clv": 0.8706,
+      "dfh": 0.031804
+    },
+    {
+      "date": "2026-02-08",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.027965,
+      "clv": 0.4924,
+      "dfh": 0.030468
+    },
+    {
+      "date": "2026-02-17",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.009633,
+      "clv": 0.5541,
+      "dfh": 0.029113
+    },
+    {
+      "date": "2026-03-08",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.008873,
+      "clv": 0.8298,
+      "dfh": 0.008209
+    },
+    {
+      "date": "2026-03-09",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.018097,
+      "clv": 0.6476,
+      "dfh": 0.018445
+    },
+    {
+      "date": "2026-03-20",
+      "net_return": -0.006787,
+      "exit": "TIME",
+      "day_ret": 0.009693,
+      "clv": 0.4792,
+      "dfh": 0.025974
+    },
+    {
+      "date": "2026-03-23",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.013378,
+      "clv": 0.6051,
+      "dfh": 0.032979
+    },
+    {
+      "date": "2026-03-28",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.016422,
+      "clv": 0.5698,
+      "dfh": 0.020904
+    },
+    {
+      "date": "2026-04-01",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.024595,
+      "clv": 0.6442,
+      "dfh": 0.021203
+    },
+    {
+      "date": "2026-04-04",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.007846,
+      "clv": 0.8462,
+      "dfh": 0.00358
+    },
+    {
+      "date": "2026-04-07",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.0023,
+      "clv": 0.9036,
+      "dfh": 0.004569
+    },
+    {
+      "date": "2026-04-08",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.028686,
+      "clv": 0.4512,
+      "dfh": 0.047796
+    },
+    {
+      "date": "2026-04-09",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.007254,
+      "clv": 0.8111,
+      "dfh": 0.00933
+    },
+    {
+      "date": "2026-04-10",
+      "net_return": 0.010541,
+      "exit": "TIME",
+      "day_ret": 0.022148,
+      "clv": 0.5392,
+      "dfh": 0.024828
+    },
+    {
+      "date": "2026-04-11",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.004873,
+      "clv": 0.7742,
+      "dfh": 0.007487
+    },
+    {
+      "date": "2026-04-13",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.001661,
+      "clv": 0.5147,
+      "dfh": 0.017915
+    },
+    {
+      "date": "2026-04-15",
+      "net_return": 0.019376,
+      "exit": "TIME",
+      "day_ret": 0.024116,
+      "clv": 0.886,
+      "dfh": 0.006757
+    },
+    {
+      "date": "2026-04-16",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.021455,
+      "clv": 0.6979,
+      "dfh": 0.014639
+    },
+    {
+      "date": "2026-04-20",
+      "net_return": -0.007456,
+      "exit": "TIME",
+      "day_ret": 0.008283,
+      "clv": 0.7895,
+      "dfh": 0.008686
+    },
+    {
+      "date": "2026-04-24",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.002809,
+      "clv": 0.4048,
+      "dfh": 0.013812
+    },
+    {
+      "date": "2026-04-26",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.015029,
+      "clv": 0.675,
+      "dfh": 0.007349
+    },
+    {
+      "date": "2026-04-28",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.012,
+      "clv": 0.6795,
+      "dfh": 0.01392
+    },
+    {
+      "date": "2026-04-30",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.008028,
+      "clv": 0.6077,
+      "dfh": 0.028192
+    },
+    {
+      "date": "2026-05-04",
+      "net_return": -0.011777,
+      "exit": "TIME",
+      "day_ret": 0.017709,
+      "clv": 0.5545,
+      "dfh": 0.023885
+    },
+    {
+      "date": "2026-05-07",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.002532,
+      "clv": 0.4831,
+      "dfh": 0.044402
+    },
+    {
+      "date": "2026-05-09",
+      "net_return": 0.023357,
+      "exit": "TIME",
+      "day_ret": 0.015947,
+      "clv": 0.3972,
+      "dfh": 0.037761
+    },
+    {
+      "date": "2026-05-10",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.028624,
+      "clv": 0.8889,
+      "dfh": 0.005801
+    },
+    {
+      "date": "2026-05-14",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.025505,
+      "clv": 0.9273,
+      "dfh": 0.004128
+    },
+    {
+      "date": "2026-05-19",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.005935,
+      "clv": 0.473,
+      "dfh": 0.022491
+    },
+    {
+      "date": "2026-05-27",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.012907,
+      "clv": 0.4561,
+      "dfh": 0.033208
+    },
+    {
+      "date": "2026-05-30",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.017574,
+      "clv": 0.9565,
+      "dfh": 0.002223
+    },
+    {
+      "date": "2026-06-01",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.016534,
+      "clv": 0.6803,
+      "dfh": 0.021405
+    },
+    {
+      "date": "2026-06-03",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.024899,
+      "clv": 0.7522,
+      "dfh": 0.030668
+    },
+    {
+      "date": "2026-06-12",
+      "net_return": 0.010541,
+      "exit": "TIME",
+      "day_ret": 0.022942,
+      "clv": 0.7232,
+      "dfh": 0.020039
+    },
+    {
+      "date": "2026-06-13",
+      "net_return": -0.018287,
+      "exit": "TIME",
+      "day_ret": 0.011866,
+      "clv": 0.5854,
+      "dfh": 0.02167
+    },
+    {
+      "date": "2026-06-17",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.005894,
+      "clv": 0.7959,
+      "dfh": 0.012853
+    },
+    {
+      "date": "2026-07-01",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.029006,
+      "clv": 0.8012,
+      "dfh": 0.021668
+    },
+    {
+      "date": "2026-07-02",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.026192,
+      "clv": 0.692,
+      "dfh": 0.043206
+    },
+    {
+      "date": "2026-07-05",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.008696,
+      "clv": 0.7126,
+      "dfh": 0.028708
+    },
+    {
+      "date": "2026-07-06",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.009858,
+      "clv": 0.6323,
+      "dfh": 0.033608
+    },
+    {
+      "date": "2026-07-13",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.022207,
+      "clv": 0.3814,
+      "dfh": 0.039139
+    },
+    {
+      "date": "2026-07-16",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.025857,
+      "clv": 0.5873,
+      "dfh": 0.043722
+    },
+    {
+      "date": "2026-07-19",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.027289,
+      "clv": 0.9014,
+      "dfh": 0.004115
+    },
+    {
+      "date": "2026-07-21",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.001496,
+      "clv": 0.4506,
+      "dfh": 0.042442
+    },
+    {
+      "date": "2026-08-04",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.010811,
+      "clv": 0.7368,
+      "dfh": 0.021796
+    },
+    {
+      "date": "2026-08-12",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.011128,
+      "clv": 0.5193,
+      "dfh": 0.030928
+    },
+    {
+      "date": "2026-08-13",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.029358,
+      "clv": 0.5225,
+      "dfh": 0.046891
+    },
+    {
+      "date": "2026-08-27",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.007449,
+      "clv": 0.7093,
+      "dfh": 0.033353
+    },
+    {
+      "date": "2026-08-29",
+      "net_return": 0.038,
+      "exit": "TP",
+      "day_ret": 0.01962,
+      "clv": 0.8251,
+      "dfh": 0.016053
+    },
+    {
+      "date": "2026-09-14",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.027594,
+      "clv": 0.7459,
+      "dfh": 0.024109
+    },
+    {
+      "date": "2026-09-16",
+      "net_return": -0.027,
+      "exit": "SL",
+      "day_ret": 0.025497,
+      "clv": 0.8808,
+      "dfh": 0.00974
+    }
+  ],
+  "note": "Cross-asset test. Thresholds were fixed on ENA before any PUMP data was examined, so this is a genuine out-of-sample evaluation on a new asset. No search, no re-fitting. The ENA holdout for these thresholds was FAIL (-25.5%, PF 0.774)."
+}
