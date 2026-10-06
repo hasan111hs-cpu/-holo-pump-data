@@ -1,0 +1,41 @@
+name: PUMP Cross-Asset Test
+
+# NEW_STRATEGY_RESEARCH. Separate from the canonical R1/A1/B1 pipeline.
+# Writes only to research/ena_four_condition/. Touches no canonical artifact.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pump-crossasset
+  cancel-in-progress: false
+
+jobs:
+  ena:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cross-asset test — ENA thresholds applied to PUMP
+        run: python pump_crossasset_test.py
+
+      - name: Commit research artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config pull.rebase true
+          git add research/ena_four_condition/
+          git diff --cached --quiet && exit 0
+          git commit -m "CROSS_ASSET_TEST: ENA thresholds applied to PUMP"
+          for a in 1 2 3 4 5; do
+            git push && exit 0
+            git pull --rebase --autostash origin main || true
+            sleep $((a * 5))
+          done
+          exit 1
