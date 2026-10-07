@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "record": "DECISION",
+  "immutable": true,
+  "boundary_utc": "2026-10-07T18:00:00+00:00",
+  "boundary_dubai": "2026-10-07T22:00:00+04:00",
+  "decided_at_utc": "2026-10-07T18:00:37.940900+00:00",
+  "signal_file": "simple_fast/2026-10-07.json",
+  "signal_valid": true,
+  "signal_check": "valid",
+  "signal_generated_at_utc": "2026-10-07T18:00:37.864195+00:00",
+  "signal_latency_seconds": 37.864,
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "gate_pct": 6.5,
+      "tp_pct": 4.0,
+      "sl_pct": 2.5,
+      "decision": "NO TRADE",
+      "return_pct": -1.24501197126895,
+      "reason": "24h return -1.25% is below the +6.5% gate"
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "gate_pct": 6.5,
+      "tp_pct": 2.5,
+      "sl_pct": 5.5,
+      "decision": "NO TRADE",
+      "return_pct": -1.24501197126895,
+      "reason": "24h return -1.25% is below the +6.5% gate"
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "gate_pct": 1.0,
+      "tp_pct": 4.0,
+      "sl_pct": 2.5,
+      "decision": "NO TRADE",
+      "return_pct": -5.354131534569984,
+      "reason": "24h return -5.35% is below the +1.0% gate"
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "gate_pct": 1.0,
+      "tp_pct": 6.75,
+      "sl_pct": 6.75,
+      "decision": "NO TRADE",
+      "return_pct": -5.354131534569984,
+      "reason": "24h return -5.35% is below the +1.0% gate"
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "gate_pct": 2.0,
+      "tp_pct": 4.0,
+      "sl_pct": 2.5,
+      "decision": "NO TRADE",
+      "return_pct": -6.412213740458017,
+      "reason": "24h return -6.41% is below the +2.0% gate"
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "gate_pct": 2.0,
+      "tp_pct": 6.0,
+      "sl_pct": 5.0,
+      "decision": "NO TRADE",
+      "return_pct": -6.412213740458017,
+      "reason": "24h return -6.41% is below the +2.0% gate"
+    }
+  }
+}
