@@ -1,0 +1,1219 @@
+{
+  "label": "CLV_ONLY_SEARCH",
+  "entry_rule": "CLV >= X on the completed 22:00-22:00 Dubai candle. No other entry condition.",
+  "target": {
+    "quarterly": 0.15,
+    "annual_equivalent": 0.7490062499999994,
+    "required_on": "every asset independently"
+  },
+  "years_of_data": {
+    "ENAUSDT": 2.48,
+    "PUMPUSDT": 1.038,
+    "HOLOUSDT": 1.038
+  },
+  "configurations_evaluated": 480,
+  "meeting_target": 0,
+  "top_30": [
+    {
+      "clv_min": 0.7,
+      "hold_days": 1,
+      "exit": "atr_8.0_-4.0",
+      "worst_quarterly": 0.044532,
+      "worst_annual": 0.190384,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 224,
+          "win_rate": 0.5,
+          "total_return": 0.540782,
+          "annual_return": 0.190384,
+          "quarterly_return": 0.044532,
+          "max_drawdown": 0.523552,
+          "profit_factor": 1.1843,
+          "median_trade": 0.000258
+        },
+        "PUMPUSDT": {
+          "fills": 108,
+          "win_rate": 0.5278,
+          "total_return": 0.352271,
+          "annual_return": 0.337547,
+          "quarterly_return": 0.075418,
+          "max_drawdown": 0.583383,
+          "profit_factor": 1.2166,
+          "median_trade": 0.001984
+        },
+        "HOLOUSDT": {
+          "fills": 91,
+          "win_rate": 0.4835,
+          "total_return": 0.321833,
+          "annual_return": 0.30852,
+          "quarterly_return": 0.069535,
+          "max_drawdown": 0.311289,
+          "profit_factor": 1.2673,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.65,
+      "hold_days": 1,
+      "exit": "atr_6.0_-3.0",
+      "worst_quarterly": 0.042026,
+      "worst_annual": 0.179003,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 270,
+          "win_rate": 0.4926,
+          "total_return": 0.504499,
+          "annual_return": 0.179003,
+          "quarterly_return": 0.042026,
+          "max_drawdown": 0.500003,
+          "profit_factor": 1.1585,
+          "median_trade": -0.002
+        },
+        "PUMPUSDT": {
+          "fills": 130,
+          "win_rate": 0.5231,
+          "total_return": 0.384409,
+          "annual_return": 0.368168,
+          "quarterly_return": 0.081521,
+          "max_drawdown": 0.635084,
+          "profit_factor": 1.2049,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 113,
+          "win_rate": 0.4779,
+          "total_return": 0.6424,
+          "annual_return": 0.6131,
+          "quarterly_return": 0.126978,
+          "max_drawdown": 0.330575,
+          "profit_factor": 1.3895,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.65,
+      "hold_days": 1,
+      "exit": "atr_8.0_-4.0",
+      "worst_quarterly": 0.039107,
+      "worst_annual": 0.165844,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 270,
+          "win_rate": 0.4926,
+          "total_return": 0.623071,
+          "annual_return": 0.215617,
+          "quarterly_return": 0.050024,
+          "max_drawdown": 0.500003,
+          "profit_factor": 1.1753,
+          "median_trade": -0.002
+        },
+        "PUMPUSDT": {
+          "fills": 130,
+          "win_rate": 0.5231,
+          "total_return": 0.384409,
+          "annual_return": 0.368168,
+          "quarterly_return": 0.081521,
+          "max_drawdown": 0.635084,
+          "profit_factor": 1.2049,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 113,
+          "win_rate": 0.4779,
+          "total_return": 0.172598,
+          "annual_return": 0.165844,
+          "quarterly_return": 0.039107,
+          "max_drawdown": 0.330575,
+          "profit_factor": 1.1619,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.65,
+      "hold_days": 1,
+      "exit": "trail_3.0",
+      "worst_quarterly": 0.038556,
+      "worst_annual": 0.163373,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 270,
+          "win_rate": 0.4889,
+          "total_return": 0.455511,
+          "annual_return": 0.163373,
+          "quarterly_return": 0.038556,
+          "max_drawdown": 0.500003,
+          "profit_factor": 1.1552,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 130,
+          "win_rate": 0.5231,
+          "total_return": 0.384409,
+          "annual_return": 0.368168,
+          "quarterly_return": 0.081521,
+          "max_drawdown": 0.635084,
+          "profit_factor": 1.2049,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 113,
+          "win_rate": 0.4867,
+          "total_return": 0.42146,
+          "annual_return": 0.403439,
+          "quarterly_return": 0.088425,
+          "max_drawdown": 0.371256,
+          "profit_factor": 1.2751,
+          "median_trade": -0.000615
+        }
+      }
+    },
+    {
+      "clv_min": 0.65,
+      "hold_days": 1,
+      "exit": "atr_5.0_-3.0",
+      "worst_quarterly": 0.037813,
+      "worst_annual": 0.160048,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 270,
+          "win_rate": 0.4926,
+          "total_return": 0.445214,
+          "annual_return": 0.160048,
+          "quarterly_return": 0.037813,
+          "max_drawdown": 0.500003,
+          "profit_factor": 1.1501,
+          "median_trade": -0.002
+        },
+        "PUMPUSDT": {
+          "fills": 130,
+          "win_rate": 0.5231,
+          "total_return": 0.384409,
+          "annual_return": 0.368168,
+          "quarterly_return": 0.081521,
+          "max_drawdown": 0.635084,
+          "profit_factor": 1.2049,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 113,
+          "win_rate": 0.4779,
+          "total_return": 0.481118,
+          "annual_return": 0.460161,
+          "quarterly_return": 0.099259,
+          "max_drawdown": 0.330575,
+          "profit_factor": 1.315,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "trail_2.0",
+      "worst_quarterly": 0.036651,
+      "worst_annual": 0.154862,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.487,
+          "total_return": 0.42924,
+          "annual_return": 0.154862,
+          "quarterly_return": 0.036651,
+          "max_drawdown": 0.550837,
+          "profit_factor": 1.1398,
+          "median_trade": -0.003879
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.52,
+          "total_return": 0.168302,
+          "annual_return": 0.161728,
+          "quarterly_return": 0.038188,
+          "max_drawdown": 0.6651,
+          "profit_factor": 1.1338,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4806,
+          "total_return": 0.970201,
+          "annual_return": 0.92232,
+          "quarterly_return": 0.177488,
+          "max_drawdown": 0.302916,
+          "profit_factor": 1.425,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.7,
+      "hold_days": 1,
+      "exit": "atr_6.0_-3.0",
+      "worst_quarterly": 0.036576,
+      "worst_annual": 0.15453,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 224,
+          "win_rate": 0.5,
+          "total_return": 0.428221,
+          "annual_return": 0.15453,
+          "quarterly_return": 0.036576,
+          "max_drawdown": 0.523552,
+          "profit_factor": 1.164,
+          "median_trade": 0.000258
+        },
+        "PUMPUSDT": {
+          "fills": 108,
+          "win_rate": 0.5278,
+          "total_return": 0.352271,
+          "annual_return": 0.337547,
+          "quarterly_return": 0.075418,
+          "max_drawdown": 0.583383,
+          "profit_factor": 1.2166,
+          "median_trade": 0.001984
+        },
+        "HOLOUSDT": {
+          "fills": 91,
+          "win_rate": 0.4835,
+          "total_return": 0.851426,
+          "annual_return": 0.810512,
+          "quarterly_return": 0.15998,
+          "max_drawdown": 0.311289,
+          "profit_factor": 1.553,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "atr_3.0_-1.5",
+      "worst_quarterly": 0.033906,
+      "worst_annual": 0.14268,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.4903,
+          "total_return": 0.426229,
+          "annual_return": 0.15388,
+          "quarterly_return": 0.03643,
+          "max_drawdown": 0.550138,
+          "profit_factor": 1.1385,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.5133,
+          "total_return": 0.148432,
+          "annual_return": 0.14268,
+          "quarterly_return": 0.033906,
+          "max_drawdown": 0.683064,
+          "profit_factor": 1.1272,
+          "median_trade": 0.00141
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4806,
+          "total_return": 0.85503,
+          "annual_return": 0.813908,
+          "quarterly_return": 0.160523,
+          "max_drawdown": 0.254039,
+          "profit_factor": 1.3784,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.7,
+      "hold_days": 1,
+      "exit": "trail_3.0",
+      "worst_quarterly": 0.033124,
+      "worst_annual": 0.139224,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 224,
+          "win_rate": 0.4955,
+          "total_return": 0.381717,
+          "annual_return": 0.139224,
+          "quarterly_return": 0.033124,
+          "max_drawdown": 0.523552,
+          "profit_factor": 1.16,
+          "median_trade": -0.001307
+        },
+        "PUMPUSDT": {
+          "fills": 108,
+          "win_rate": 0.5278,
+          "total_return": 0.352271,
+          "annual_return": 0.337547,
+          "quarterly_return": 0.075418,
+          "max_drawdown": 0.583383,
+          "profit_factor": 1.2166,
+          "median_trade": 0.001984
+        },
+        "HOLOUSDT": {
+          "fills": 91,
+          "win_rate": 0.4945,
+          "total_return": 0.602368,
+          "annual_return": 0.575192,
+          "quarterly_return": 0.120298,
+          "max_drawdown": 0.353142,
+          "profit_factor": 1.4133,
+          "median_trade": -0.000405
+        }
+      }
+    },
+    {
+      "clv_min": 0.65,
+      "hold_days": 1,
+      "exit": "trail_2.0",
+      "worst_quarterly": 0.032864,
+      "worst_annual": 0.138081,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 270,
+          "win_rate": 0.4889,
+          "total_return": 0.378279,
+          "annual_return": 0.138081,
+          "quarterly_return": 0.032864,
+          "max_drawdown": 0.507865,
+          "profit_factor": 1.1423,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 130,
+          "win_rate": 0.5308,
+          "total_return": 0.448192,
+          "annual_return": 0.428866,
+          "quarterly_return": 0.093321,
+          "max_drawdown": 0.6144,
+          "profit_factor": 1.2224,
+          "median_trade": 0.001984
+        },
+        "HOLOUSDT": {
+          "fills": 113,
+          "win_rate": 0.4867,
+          "total_return": 1.106137,
+          "annual_return": 1.049985,
+          "quarterly_return": 0.196569,
+          "max_drawdown": 0.323188,
+          "profit_factor": 1.5243,
+          "median_trade": -0.000615
+        }
+      }
+    },
+    {
+      "clv_min": 0.65,
+      "hold_days": 1,
+      "exit": "atr_3.0_-1.5",
+      "worst_quarterly": 0.032645,
+      "worst_annual": 0.137114,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 270,
+          "win_rate": 0.4926,
+          "total_return": 0.375375,
+          "annual_return": 0.137114,
+          "quarterly_return": 0.032645,
+          "max_drawdown": 0.507099,
+          "profit_factor": 1.1409,
+          "median_trade": -0.002
+        },
+        "PUMPUSDT": {
+          "fills": 130,
+          "win_rate": 0.5231,
+          "total_return": 0.423561,
+          "annual_return": 0.405438,
+          "quarterly_return": 0.088812,
+          "max_drawdown": 0.635084,
+          "profit_factor": 1.2145,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 113,
+          "win_rate": 0.4867,
+          "total_return": 0.98302,
+          "annual_return": 0.934373,
+          "quarterly_return": 0.179329,
+          "max_drawdown": 0.266725,
+          "profit_factor": 1.4652,
+          "median_trade": -0.000615
+        }
+      }
+    },
+    {
+      "clv_min": 0.7,
+      "hold_days": 1,
+      "exit": "atr_5.0_-3.0",
+      "worst_quarterly": 0.032385,
+      "worst_annual": 0.135968,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 224,
+          "win_rate": 0.5,
+          "total_return": 0.371941,
+          "annual_return": 0.135968,
+          "quarterly_return": 0.032385,
+          "max_drawdown": 0.523552,
+          "profit_factor": 1.1539,
+          "median_trade": 0.000258
+        },
+        "PUMPUSDT": {
+          "fills": 108,
+          "win_rate": 0.5278,
+          "total_return": 0.352271,
+          "annual_return": 0.337547,
+          "quarterly_return": 0.075418,
+          "max_drawdown": 0.583383,
+          "profit_factor": 1.2166,
+          "median_trade": 0.001984
+        },
+        "HOLOUSDT": {
+          "fills": 91,
+          "win_rate": 0.4835,
+          "total_return": 0.669618,
+          "annual_return": 0.638855,
+          "quarterly_return": 0.131449,
+          "max_drawdown": 0.311289,
+          "profit_factor": 1.4594,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.65,
+      "hold_days": 1,
+      "exit": "atr_4.0_-2.5",
+      "worst_quarterly": 0.03154,
+      "worst_annual": 0.132256,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 270,
+          "win_rate": 0.4926,
+          "total_return": 0.360846,
+          "annual_return": 0.132256,
+          "quarterly_return": 0.03154,
+          "max_drawdown": 0.500003,
+          "profit_factor": 1.1381,
+          "median_trade": -0.002
+        },
+        "PUMPUSDT": {
+          "fills": 130,
+          "win_rate": 0.5231,
+          "total_return": 0.384409,
+          "annual_return": 0.368168,
+          "quarterly_return": 0.081521,
+          "max_drawdown": 0.635084,
+          "profit_factor": 1.2049,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 113,
+          "win_rate": 0.4867,
+          "total_return": 0.850302,
+          "annual_return": 0.809453,
+          "quarterly_return": 0.15981,
+          "max_drawdown": 0.330575,
+          "profit_factor": 1.4412,
+          "median_trade": -0.000615
+        }
+      }
+    },
+    {
+      "clv_min": 0.65,
+      "hold_days": 1,
+      "exit": "atr_3.0_-2.0",
+      "worst_quarterly": 0.028007,
+      "worst_annual": 0.116822,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 270,
+          "win_rate": 0.4926,
+          "total_return": 0.315297,
+          "annual_return": 0.116822,
+          "quarterly_return": 0.028007,
+          "max_drawdown": 0.52863,
+          "profit_factor": 1.1337,
+          "median_trade": -0.002
+        },
+        "PUMPUSDT": {
+          "fills": 130,
+          "win_rate": 0.5231,
+          "total_return": 0.384409,
+          "annual_return": 0.368168,
+          "quarterly_return": 0.081521,
+          "max_drawdown": 0.635084,
+          "profit_factor": 1.2049,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 113,
+          "win_rate": 0.4867,
+          "total_return": 1.0384,
+          "annual_return": 0.986408,
+          "quarterly_return": 0.187182,
+          "max_drawdown": 0.266725,
+          "profit_factor": 1.4856,
+          "median_trade": -0.000615
+        }
+      }
+    },
+    {
+      "clv_min": 0.7,
+      "hold_days": 1,
+      "exit": "trail_2.0",
+      "worst_quarterly": 0.027462,
+      "worst_annual": 0.114457,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 224,
+          "win_rate": 0.4955,
+          "total_return": 0.3084,
+          "annual_return": 0.114457,
+          "quarterly_return": 0.027462,
+          "max_drawdown": 0.517284,
+          "profit_factor": 1.1446,
+          "median_trade": -0.001307
+        },
+        "PUMPUSDT": {
+          "fills": 108,
+          "win_rate": 0.5278,
+          "total_return": 0.343468,
+          "annual_return": 0.329154,
+          "quarterly_return": 0.073727,
+          "max_drawdown": 0.581897,
+          "profit_factor": 1.2141,
+          "median_trade": 0.001984
+        },
+        "HOLOUSDT": {
+          "fills": 91,
+          "win_rate": 0.4945,
+          "total_return": 1.374183,
+          "annual_return": 1.300862,
+          "quarterly_return": 0.231608,
+          "max_drawdown": 0.30369,
+          "profit_factor": 1.7376,
+          "median_trade": -0.000405
+        }
+      }
+    },
+    {
+      "clv_min": 0.7,
+      "hold_days": 1,
+      "exit": "atr_3.0_-1.5",
+      "worst_quarterly": 0.027244,
+      "worst_annual": 0.11351,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 224,
+          "win_rate": 0.5,
+          "total_return": 0.305644,
+          "annual_return": 0.11351,
+          "quarterly_return": 0.027244,
+          "max_drawdown": 0.523552,
+          "profit_factor": 1.1428,
+          "median_trade": 0.000258
+        },
+        "PUMPUSDT": {
+          "fills": 108,
+          "win_rate": 0.5278,
+          "total_return": 0.390515,
+          "annual_return": 0.373982,
+          "quarterly_return": 0.082668,
+          "max_drawdown": 0.583383,
+          "profit_factor": 1.2276,
+          "median_trade": 0.001984
+        },
+        "HOLOUSDT": {
+          "fills": 91,
+          "win_rate": 0.4945,
+          "total_return": 1.235397,
+          "annual_return": 1.171102,
+          "quarterly_return": 0.213864,
+          "max_drawdown": 0.302139,
+          "profit_factor": 1.65,
+          "median_trade": -0.000405
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "atr_3.0_-2.0",
+      "worst_quarterly": 0.026983,
+      "worst_annual": 0.112378,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.4903,
+          "total_return": 0.363929,
+          "annual_return": 0.133289,
+          "quarterly_return": 0.031775,
+          "max_drawdown": 0.569788,
+          "profit_factor": 1.1325,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.5133,
+          "total_return": 0.116847,
+          "annual_return": 0.112378,
+          "quarterly_return": 0.026983,
+          "max_drawdown": 0.683064,
+          "profit_factor": 1.1198,
+          "median_trade": 0.00141
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4806,
+          "total_return": 0.906836,
+          "annual_return": 0.862703,
+          "quarterly_return": 0.16825,
+          "max_drawdown": 0.254039,
+          "profit_factor": 1.3949,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "atr_4.0_-2.0",
+      "worst_quarterly": 0.026983,
+      "worst_annual": 0.112378,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.4903,
+          "total_return": 0.330369,
+          "annual_return": 0.121964,
+          "quarterly_return": 0.029188,
+          "max_drawdown": 0.569788,
+          "profit_factor": 1.1282,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.5133,
+          "total_return": 0.116847,
+          "annual_return": 0.112378,
+          "quarterly_return": 0.026983,
+          "max_drawdown": 0.683064,
+          "profit_factor": 1.1198,
+          "median_trade": 0.00141
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4806,
+          "total_return": 0.730878,
+          "annual_return": 0.696767,
+          "quarterly_return": 0.141315,
+          "max_drawdown": 0.310524,
+          "profit_factor": 1.3567,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "atr_4.0_-2.5",
+      "worst_quarterly": 0.026983,
+      "worst_annual": 0.112378,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.4903,
+          "total_return": 0.411162,
+          "annual_return": 0.14895,
+          "quarterly_return": 0.035322,
+          "max_drawdown": 0.543662,
+          "profit_factor": 1.1362,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.5133,
+          "total_return": 0.116847,
+          "annual_return": 0.112378,
+          "quarterly_return": 0.026983,
+          "max_drawdown": 0.683064,
+          "profit_factor": 1.1198,
+          "median_trade": 0.00141
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4806,
+          "total_return": 0.730878,
+          "annual_return": 0.696767,
+          "quarterly_return": 0.141315,
+          "max_drawdown": 0.310524,
+          "profit_factor": 1.3567,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "atr_5.0_-3.0",
+      "worst_quarterly": 0.026983,
+      "worst_annual": 0.112378,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.4903,
+          "total_return": 0.498649,
+          "annual_return": 0.177152,
+          "quarterly_return": 0.041617,
+          "max_drawdown": 0.543662,
+          "profit_factor": 1.1464,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.5133,
+          "total_return": 0.116847,
+          "annual_return": 0.112378,
+          "quarterly_return": 0.026983,
+          "max_drawdown": 0.683064,
+          "profit_factor": 1.1198,
+          "median_trade": 0.00141
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4729,
+          "total_return": 0.385522,
+          "annual_return": 0.369228,
+          "quarterly_return": 0.08173,
+          "max_drawdown": 0.310524,
+          "profit_factor": 1.2493,
+          "median_trade": -0.000794
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "atr_6.0_-3.0",
+      "worst_quarterly": 0.026983,
+      "worst_annual": 0.112378,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.4903,
+          "total_return": 0.560127,
+          "annual_return": 0.196387,
+          "quarterly_return": 0.045846,
+          "max_drawdown": 0.543662,
+          "profit_factor": 1.1535,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.5133,
+          "total_return": 0.116847,
+          "annual_return": 0.112378,
+          "quarterly_return": 0.026983,
+          "max_drawdown": 0.683064,
+          "profit_factor": 1.1198,
+          "median_trade": 0.00141
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4729,
+          "total_return": 0.536395,
+          "annual_return": 0.512643,
+          "quarterly_return": 0.109007,
+          "max_drawdown": 0.310524,
+          "profit_factor": 1.3136,
+          "median_trade": -0.000794
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "trail_3.0",
+      "worst_quarterly": 0.026983,
+      "worst_annual": 0.112378,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.487,
+          "total_return": 0.509327,
+          "annual_return": 0.180527,
+          "quarterly_return": 0.042363,
+          "max_drawdown": 0.543662,
+          "profit_factor": 1.1508,
+          "median_trade": -0.003879
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.5133,
+          "total_return": 0.116847,
+          "annual_return": 0.112378,
+          "quarterly_return": 0.026983,
+          "max_drawdown": 0.683064,
+          "profit_factor": 1.1198,
+          "median_trade": 0.00141
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4806,
+          "total_return": 0.329715,
+          "annual_return": 0.316039,
+          "quarterly_return": 0.071068,
+          "max_drawdown": 0.352423,
+          "profit_factor": 1.2138,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.7,
+      "hold_days": 1,
+      "exit": "atr_4.0_-2.5",
+      "worst_quarterly": 0.026145,
+      "worst_annual": 0.108753,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 224,
+          "win_rate": 0.5,
+          "total_return": 0.291851,
+          "annual_return": 0.108753,
+          "quarterly_return": 0.026145,
+          "max_drawdown": 0.523552,
+          "profit_factor": 1.1395,
+          "median_trade": 0.000258
+        },
+        "PUMPUSDT": {
+          "fills": 108,
+          "win_rate": 0.5278,
+          "total_return": 0.352271,
+          "annual_return": 0.337547,
+          "quarterly_return": 0.075418,
+          "max_drawdown": 0.583383,
+          "profit_factor": 1.2166,
+          "median_trade": 0.001984
+        },
+        "HOLOUSDT": {
+          "fills": 91,
+          "win_rate": 0.4945,
+          "total_return": 1.085788,
+          "annual_return": 1.030894,
+          "quarterly_return": 0.193773,
+          "max_drawdown": 0.311289,
+          "profit_factor": 1.6229,
+          "median_trade": -0.000405
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "trail_2.5",
+      "worst_quarterly": 0.025897,
+      "worst_annual": 0.10768,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.487,
+          "total_return": 0.288753,
+          "annual_return": 0.10768,
+          "quarterly_return": 0.025897,
+          "max_drawdown": 0.57632,
+          "profit_factor": 1.1246,
+          "median_trade": -0.003879
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.5133,
+          "total_return": 0.14228,
+          "annual_return": 0.136781,
+          "quarterly_return": 0.032569,
+          "max_drawdown": 0.675847,
+          "profit_factor": 1.127,
+          "median_trade": 0.00141
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4806,
+          "total_return": 0.614696,
+          "annual_return": 0.58687,
+          "quarterly_return": 0.122368,
+          "max_drawdown": 0.327669,
+          "profit_factor": 1.315,
+          "median_trade": -0.000723
+        }
+      }
+    },
+    {
+      "clv_min": 0.65,
+      "hold_days": 1,
+      "exit": "atr_4.0_-2.0",
+      "worst_quarterly": 0.025429,
+      "worst_annual": 0.105661,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 270,
+          "win_rate": 0.4926,
+          "total_return": 0.282933,
+          "annual_return": 0.105661,
+          "quarterly_return": 0.025429,
+          "max_drawdown": 0.52863,
+          "profit_factor": 1.1287,
+          "median_trade": -0.002
+        },
+        "PUMPUSDT": {
+          "fills": 130,
+          "win_rate": 0.5231,
+          "total_return": 0.384409,
+          "annual_return": 0.368168,
+          "quarterly_return": 0.081521,
+          "max_drawdown": 0.635084,
+          "profit_factor": 1.2049,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 113,
+          "win_rate": 0.4867,
+          "total_return": 0.850302,
+          "annual_return": 0.809453,
+          "quarterly_return": 0.15981,
+          "max_drawdown": 0.330575,
+          "profit_factor": 1.4412,
+          "median_trade": -0.000615
+        }
+      }
+    },
+    {
+      "clv_min": 0.7,
+      "hold_days": 1,
+      "exit": "atr_3.0_-2.0",
+      "worst_quarterly": 0.02263,
+      "worst_annual": 0.09364,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 224,
+          "win_rate": 0.5,
+          "total_return": 0.248611,
+          "annual_return": 0.09364,
+          "quarterly_return": 0.02263,
+          "max_drawdown": 0.523552,
+          "profit_factor": 1.1342,
+          "median_trade": 0.000258
+        },
+        "PUMPUSDT": {
+          "fills": 108,
+          "win_rate": 0.5278,
+          "total_return": 0.352271,
+          "annual_return": 0.337547,
+          "quarterly_return": 0.075418,
+          "max_drawdown": 0.583383,
+          "profit_factor": 1.2166,
+          "median_trade": 0.001984
+        },
+        "HOLOUSDT": {
+          "fills": 91,
+          "win_rate": 0.4945,
+          "total_return": 1.297825,
+          "annual_return": 1.229505,
+          "quarterly_return": 0.221946,
+          "max_drawdown": 0.302139,
+          "profit_factor": 1.679,
+          "median_trade": -0.000405
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "atr_8.0_-4.0",
+      "worst_quarterly": 0.022537,
+      "worst_annual": 0.09324,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.4903,
+          "total_return": 0.683083,
+          "annual_return": 0.233541,
+          "quarterly_return": 0.053873,
+          "max_drawdown": 0.543662,
+          "profit_factor": 1.1678,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.5133,
+          "total_return": 0.116847,
+          "annual_return": 0.112378,
+          "quarterly_return": 0.026983,
+          "max_drawdown": 0.683064,
+          "profit_factor": 1.1198,
+          "median_trade": 0.00141
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4729,
+          "total_return": 0.096915,
+          "annual_return": 0.09324,
+          "quarterly_return": 0.022537,
+          "max_drawdown": 0.310524,
+          "profit_factor": 1.1172,
+          "median_trade": -0.000794
+        }
+      }
+    },
+    {
+      "clv_min": 0.65,
+      "hold_days": 1,
+      "exit": "trail_2.5",
+      "worst_quarterly": 0.022149,
+      "worst_annual": 0.091585,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 270,
+          "win_rate": 0.4889,
+          "total_return": 0.242802,
+          "annual_return": 0.091585,
+          "quarterly_return": 0.022149,
+          "max_drawdown": 0.535786,
+          "profit_factor": 1.1245,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 130,
+          "win_rate": 0.5231,
+          "total_return": 0.415936,
+          "annual_return": 0.398182,
+          "quarterly_return": 0.087404,
+          "max_drawdown": 0.626774,
+          "profit_factor": 1.2143,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 113,
+          "win_rate": 0.4867,
+          "total_return": 0.726104,
+          "annual_return": 0.692256,
+          "quarterly_return": 0.140556,
+          "max_drawdown": 0.347222,
+          "profit_factor": 1.3942,
+          "median_trade": -0.000615
+        }
+      }
+    },
+    {
+      "clv_min": 0.7,
+      "hold_days": 1,
+      "exit": "atr_4.0_-2.0",
+      "worst_quarterly": 0.020066,
+      "worst_annual": 0.082711,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 224,
+          "win_rate": 0.5,
+          "total_return": 0.217889,
+          "annual_return": 0.082711,
+          "quarterly_return": 0.020066,
+          "max_drawdown": 0.523552,
+          "profit_factor": 1.1281,
+          "median_trade": 0.000258
+        },
+        "PUMPUSDT": {
+          "fills": 108,
+          "win_rate": 0.5278,
+          "total_return": 0.352271,
+          "annual_return": 0.337547,
+          "quarterly_return": 0.075418,
+          "max_drawdown": 0.583383,
+          "profit_factor": 1.2166,
+          "median_trade": 0.001984
+        },
+        "HOLOUSDT": {
+          "fills": 91,
+          "win_rate": 0.4945,
+          "total_return": 1.085788,
+          "annual_return": 1.030894,
+          "quarterly_return": 0.193773,
+          "max_drawdown": 0.311289,
+          "profit_factor": 1.6229,
+          "median_trade": -0.000405
+        }
+      }
+    },
+    {
+      "clv_min": 0.6,
+      "hold_days": 1,
+      "exit": "atr_2.0_-1.5",
+      "worst_quarterly": 0.019847,
+      "worst_annual": 0.081781,
+      "meets_target_all_assets": false,
+      "per_asset": {
+        "ENAUSDT": {
+          "fills": 308,
+          "win_rate": 0.4903,
+          "total_return": 0.215298,
+          "annual_return": 0.081781,
+          "quarterly_return": 0.019847,
+          "max_drawdown": 0.529443,
+          "profit_factor": 1.1124,
+          "median_trade": -0.003185
+        },
+        "PUMPUSDT": {
+          "fills": 150,
+          "win_rate": 0.52,
+          "total_return": 0.269762,
+          "annual_return": 0.258807,
+          "quarterly_return": 0.059229,
+          "max_drawdown": 0.638259,
+          "profit_factor": 1.1572,
+          "median_trade": 0.001904
+        },
+        "HOLOUSDT": {
+          "fills": 129,
+          "win_rate": 0.4806,
+          "total_return": 0.308112,
+          "annual_return": 0.295427,
+          "quarterly_return": 0.06685,
+          "max_drawdown": 0.289297,
+          "profit_factor": 1.1948,
+          "median_trade": -0.000723
+        }
+      }
+    }
+  ],
+  "caveat": "An in-sample return threshold measures how hard the search looked, not whether an edge exists. Not predictions."
+}
