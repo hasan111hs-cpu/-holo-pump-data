@@ -1,0 +1,42 @@
+name: Strategy Design Search
+
+# IN_SAMPLE_DESIGN_SEARCH. Maximal fit across HOLO/PUMP/ENA, to be FROZEN and
+# forward-tested. In-sample figures are not evidence. Writes only to research/.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: design-search
+  cancel-in-progress: false
+
+jobs:
+  design:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Search configurations across all three assets
+        run: python design_search.py
+
+      - name: Commit research artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config pull.rebase true
+          git add research/design_search/
+          git diff --cached --quiet && exit 0
+          git commit -m "IN_SAMPLE_DESIGN_SEARCH: best-fit configuration across HOLO/PUMP/ENA"
+          for a in 1 2 3 4 5; do
+            git push && exit 0
+            git pull --rebase --autostash origin main || true
+            sleep $((a * 5))
+          done
+          exit 1
