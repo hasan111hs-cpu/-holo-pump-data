@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "record": "ENTRY",
+  "immutable": true,
+  "boundary_utc": "2026-10-07T18:00:00+00:00",
+  "entry_rule": "OPEN of the Binance Spot 1m candle at 18:05 UTC (22:05 Dubai)",
+  "fee_per_side": 0.001,
+  "captured_at_utc": "2026-10-07T18:05:02.000559+00:00",
+  "captured_late": false,
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    }
+  }
+}
