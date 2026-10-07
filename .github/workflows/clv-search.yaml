@@ -1,0 +1,42 @@
+name: CLV-Only Search
+
+# CLV_ONLY_SEARCH. Entry on CLV alone. Target 15% per quarter on every asset.
+# In-sample only. Writes to research/clv_search/.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: clv-search
+  cancel-in-progress: false
+
+jobs:
+  clv:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Search CLV thresholds, exits and hold periods
+        run: python clv_search.py
+
+      - name: Commit research artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config pull.rebase true
+          git add research/clv_search/
+          git diff --cached --quiet && exit 0
+          git commit -m "CLV_ONLY_SEARCH: CLV-only entry, 15%/quarter target"
+          for a in 1 2 3 4 5; do
+            git push && exit 0
+            git pull --rebase --autostash origin main || true
+            sleep $((a * 5))
+          done
+          exit 1
