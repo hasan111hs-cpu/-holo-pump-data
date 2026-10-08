@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "record": "SETTLEMENT",
+  "track": "official",
+  "immutable": true,
+  "entry_boundary_utc": "2026-10-07T18:00:00+00:00",
+  "expiry_boundary_utc": "2026-10-08T18:00:00+00:00",
+  "settled_at_utc": "2026-10-08T18:00:40.654049+00:00",
+  "rules": "TP if high >= TP; SL if low <= SL; same minute = SL; else exit at OPEN of the next 18:00 UTC minute; net = exit*(1-fee)/(entry*(1+fee))-1",
+  "strategies": {
+    "SimpleP": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    },
+    "SimpleP2": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    },
+    "SimpleE": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    },
+    "SimpleE2": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    },
+    "SimpleH": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    },
+    "SimpleH2": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    }
+  }
+}
