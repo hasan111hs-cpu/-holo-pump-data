@@ -1,0 +1,1200 @@
+{
+  "label": "FRICTION_DECOMPOSITION_AND_ACCOUNTING_AUDIT",
+  "authorised": "Methodology ruling 8 Oct 2026 - accounting audit only",
+  "code_version": "friction_audit.py r2 (full ruling scope)",
+  "run_utc": "2026-10-09T18:58:43.778841+00:00",
+  "data_boundary": {
+    "start": "2024-01-01",
+    "hard_cutoff": "2026-10-07",
+    "bars_beyond_cutoff_included": false
+  },
+  "integrity": {
+    "new_historical_period": false,
+    "sealed_dataset_used": false,
+    "thresholds_changed": false,
+    "winner_reselected": false,
+    "frozen_specs_modified": false,
+    "reversal_test_run": false
+  },
+  "configuration": {
+    "clv_min": 0.8,
+    "max_positions": 20,
+    "exit": "atr_8.0_-4.0",
+    "source": "archive top_30[0]",
+    "archive_provenance": {
+      "archive_sha256": "4fb2e8637e10a2f21ba6a04e3ec51ec7079ff755a3f4e4f2b11620b01f9f494d",
+      "archive_bytes": 14834,
+      "top_30_rows": 30,
+      "configurations_recorded": 240,
+      "top0_archived_row": {
+        "trades": 6238,
+        "trading_days": 715,
+        "years": 2.73,
+        "total_return": -0.514073,
+        "annual_return": -0.232125,
+        "quarterly_return": -0.063899,
+        "max_drawdown": 0.656544,
+        "day_win_rate": 0.435,
+        "profit_factor": 0.8669,
+        "max_safe_leverage_25pct_dd": 0.38,
+        "clv_min": 0.8,
+        "max_positions": 20,
+        "exit": "atr_8.0_-4.0",
+        "meets_target": false
+      },
+      "recovered": true
+    },
+    "replay": null
+  },
+  "data_provenance": [
+    {
+      "symbol": "BTCUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "94b8bf8f8baa356fad666af4ac4c43bf01c6e5dfa2d6fd897f65619a370f96af"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "6685e6db1735574e4f13e2e66a6ebbdd5dcb7d4764757dbac5831fc2774ef175"
+    },
+    {
+      "symbol": "BNBUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "3867ccdde1045546f27c1cc589d7d1130d997378df076940566534b488098cf9"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "a857b651faf13e2ad658faae8ed4cc3a332a675b9e9b5eac9983e807f09e5061"
+    },
+    {
+      "symbol": "XRPUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "27bb9409d8ea9ec1a06db74652aa5b251a2d566c125e308ab2e882eec18fbe19"
+    },
+    {
+      "symbol": "ADAUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "63705e24bff3c3adaaccf786c5d271ddd3ce958cb4c39b245ba857e864dcd0d9"
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "cc42de12005c46d24ef27cd32182dd77751a10ac3a709cc1e1b5bf4f087ec397"
+    },
+    {
+      "symbol": "AVAXUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "51709d5c9f5070acfea9cadf0a5dd8263f3981e0082f27e7119e15cc67248c3b"
+    },
+    {
+      "symbol": "DOTUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "cb92686ad98819d615f6891220128a022bd02340af244e9735bae4d186e9583b"
+    },
+    {
+      "symbol": "LINKUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "4e0bd491001dfe631006313d096ced4717d643df59b378c07173ba1544cd8651"
+    },
+    {
+      "symbol": "LTCUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "45235196b0531ce97e8f12b2d61f73f0d7e44bfad264fa2a937f07949de8a46f"
+    },
+    {
+      "symbol": "TRXUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "bfef7e0da5b992dbe58155e1f274584eceeea470680ddaf32ceb228ee600578a"
+    },
+    {
+      "symbol": "UNIUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "50f63f787d02791787a3456b1614f463ef685cc3aa8f92ee4c18446cda4ded77"
+    },
+    {
+      "symbol": "ATOMUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "47e0b6310a5652d85e9621a515e357d48335ff00d4f8b086d7abe56e81a337c9"
+    },
+    {
+      "symbol": "ETCUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "0d0d2a36fe231457f77b7df61545f24450c3617d4e30ba2fb267473d36691a9c"
+    },
+    {
+      "symbol": "NEARUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "e0be88a134f398d6b8ad0ef2affff279e03a37e95d7c1503ef3c98a3e2b8b04b"
+    },
+    {
+      "symbol": "APTUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "e0d27b10373d3d5ee0b6a7126ecb312ad5769d03d77bcb9f6c40181c3034847f"
+    },
+    {
+      "symbol": "FILUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "62a8113d3ad1fdc38a8de1c9df2d26f1ecdaa3edbd61235f96adc3487898c1cf"
+    },
+    {
+      "symbol": "ARBUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "b728e482e04b88bb53ec66bf483790f3f62d2974569ae5b8f7c2ba49c84fd631"
+    },
+    {
+      "symbol": "OPUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "508db82f1cfb3d2a7939a1a1296dff6f8dc23e0b991a88307b55a9bb393b5ecd"
+    },
+    {
+      "symbol": "INJUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "56393a0e23efc19955d97538f0b094ab6219e2433af354820bc5ecb597f522a3"
+    },
+    {
+      "symbol": "SUIUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "91cdbbb843a929de5f330e6951d46b26d22c209b2c741ce8507c68d5a875c43e"
+    },
+    {
+      "symbol": "SEIUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "a49096020b16a1389637be7167d9b85e9132d904bb27d9249a458d4d22d1b629"
+    },
+    {
+      "symbol": "TIAUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "2ee04baf8c116a47b01d9c47653a7d93baf9a04b872b2ed1ce4cf476e2544e0b"
+    },
+    {
+      "symbol": "RUNEUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "9e719591efe2581aac6e856c218553270f61d0445778868bc3fc0162c63fee8a"
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "d58b243ec30e581bf6713347e47513d413fbf90940810cd9ec198ce5c23e2b16"
+    },
+    {
+      "symbol": "SANDUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "c04363946f80f19908a6b92c8fd81912d38f09ccf0ad04d254ea821fc47dda04"
+    },
+    {
+      "symbol": "MANAUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "72ebea6b31586f15cdcedcedacf2fe9af4ff95f023d6078ad4f7009e0ff22ca7"
+    },
+    {
+      "symbol": "AXSUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "47d6aa308d66f5325894ed3f4f84b1badcc8dd98a4a25c7da5665b2eb80cc87e"
+    },
+    {
+      "symbol": "GALAUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "1f9897b2cc967125a613e6b10d6fd6033dee6b0c09bd2c74011fa53e26deadca"
+    },
+    {
+      "symbol": "ALGOUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "1e04d84b647288b4f58af8b9e7a58d184d2a4115104f47f5fddcfbf0b77c010a"
+    },
+    {
+      "symbol": "EOSUSDT",
+      "bars": 49068,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2025-05-26T02:45:00+00:00",
+      "sha256": "3d7b2cb787bbf389e582c22a869de2b226129605e40d8bd53fc51793564d500e"
+    },
+    {
+      "symbol": "XLMUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "7b100f429ff6e7520a6faae9ea311e3ccea7a98d2f7b665ddbf66bb56e63a156"
+    },
+    {
+      "symbol": "VETUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "988d33ffc95d33355c35cae21eadfc97827229e5dc5d9e0ab7e4e759552d6205"
+    },
+    {
+      "symbol": "ICPUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "32097b3b1ba7ad91219b71f205fa129e8905b5ae922e0765fa6f65330eddf340"
+    },
+    {
+      "symbol": "FTMUSDT",
+      "bars": 36300,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2025-01-13T02:45:00+00:00",
+      "sha256": "f771fef053f21a16d4d9d159e0a0d39e53fe388eab09b92eef75f82ea35e4e76"
+    },
+    {
+      "symbol": "THETAUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "e124c7f4de99b7e591a801cbca627bc5a3975d94ca4c248ad11819f6b5ed3a65"
+    },
+    {
+      "symbol": "GRTUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "3e43e1fdb81ba3b838aa733adf88e269c14af869392c889a0cc773079292f9b0"
+    },
+    {
+      "symbol": "CHZUSDT",
+      "bars": 96960,
+      "first_bar_utc": "2024-01-01T00:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "3bd26a4e969375e5d1ed47200d2ba091a7fa400653904c3db17b9ff0846a96c9"
+    },
+    {
+      "symbol": "ENAUSDT",
+      "bars": 88096,
+      "first_bar_utc": "2024-04-02T08:00:00+00:00",
+      "last_bar_utc": "2026-10-06T23:45:00+00:00",
+      "sha256": "5c2211b66cb2b9fc27f9bf8ea6dfcdd80e43a6bf455142645acf1cbe93e90d45"
+    }
+  ],
+  "universe_used": [
+    "AAVEUSDT",
+    "ADAUSDT",
+    "ALGOUSDT",
+    "APTUSDT",
+    "ARBUSDT",
+    "ATOMUSDT",
+    "AVAXUSDT",
+    "AXSUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "CHZUSDT",
+    "DOGEUSDT",
+    "DOTUSDT",
+    "ENAUSDT",
+    "EOSUSDT",
+    "ETCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "FTMUSDT",
+    "GALAUSDT",
+    "GRTUSDT",
+    "ICPUSDT",
+    "INJUSDT",
+    "LINKUSDT",
+    "LTCUSDT",
+    "MANAUSDT",
+    "NEARUSDT",
+    "OPUSDT",
+    "RUNEUSDT",
+    "SANDUSDT",
+    "SEIUSDT",
+    "SOLUSDT",
+    "SUIUSDT",
+    "THETAUSDT",
+    "TIAUSDT",
+    "TRXUSDT",
+    "UNIUSDT",
+    "VETUSDT",
+    "XLMUSDT",
+    "XRPUSDT"
+  ],
+  "skipped": [],
+  "reconciliation": {
+    "reference_figures": {
+      "trades": 6238,
+      "annual_return": -0.232,
+      "profit_factor_day": 0.867,
+      "max_drawdown": 0.657
+    },
+    "tolerances": {
+      "trades": {
+        "value": 0.005,
+        "unit": "relative fraction of archived trade count"
+      },
+      "annual_return": {
+        "value": 0.004,
+        "unit": "absolute, return fraction (0.004 = 0.40 pp)"
+      },
+      "profit_factor": {
+        "value": 0.01,
+        "unit": "absolute, dimensionless ratio units"
+      },
+      "max_drawdown": {
+        "value": 0.01,
+        "unit": "absolute, return fraction (0.010 = 1.00 pp)"
+      }
+    },
+    "metric_differences": {
+      "trades": {
+        "archived": 6238,
+        "reproduced": 6238,
+        "difference": 0,
+        "relative": 0.0,
+        "tolerance": {
+          "value": 0.005,
+          "unit": "relative fraction of archived trade count"
+        },
+        "within": true
+      },
+      "annual_return": {
+        "archived": -0.232,
+        "reproduced": -0.232125,
+        "difference": -0.000125,
+        "tolerance": {
+          "value": 0.004,
+          "unit": "absolute, return fraction (0.004 = 0.40 pp)"
+        },
+        "within": true
+      },
+      "profit_factor_day": {
+        "archived": 0.867,
+        "reproduced": 0.8669,
+        "difference": -0.0001,
+        "tolerance": {
+          "value": 0.01,
+          "unit": "absolute, dimensionless ratio units"
+        },
+        "within": true
+      },
+      "max_drawdown": {
+        "archived": 0.657,
+        "reproduced": 0.656544,
+        "difference": -0.000456,
+        "tolerance": {
+          "value": 0.01,
+          "unit": "absolute, return fraction (0.010 = 1.00 pp)"
+        },
+        "within": true
+      }
+    },
+    "ledger_to_series_gap": 6.7053029795260954e-12,
+    "ledger_reconciles": true,
+    "verdict": "RECONCILED"
+  },
+  "original_mode": {
+    "clv_min": 0.8,
+    "max_positions": 20,
+    "exit": "atr_8.0_-4.0",
+    "fee_per_side": 0.001,
+    "fee_mode": "ORIGINAL",
+    "trades": 6238,
+    "calendar_days": 998,
+    "trading_days": 715,
+    "years": 2.73,
+    "net_total_return": -0.514073,
+    "net_annual_return": -0.232125,
+    "net_quarterly_annualised": -0.063899,
+    "net_max_drawdown": 0.656544,
+    "net_profit_factor_DAY": 0.8669,
+    "gross_total_return": -0.092253,
+    "gross_annual_return": -0.034803,
+    "gross_max_drawdown": 0.505205,
+    "gross_profit_factor_DAY": 1.0098,
+    "final_net_equity": 4859.27,
+    "final_gross_equity": 9077.47,
+    "total_entry_fees": 2306.71,
+    "total_exit_fees": 2306.71,
+    "total_fees": 4613.42,
+    "fee_drag_vs_start_capital": 0.4613,
+    "capital_utilisation_mean": 0.3125,
+    "capital_idle_mean": 0.6875,
+    "turnover_x_capital": 311.9,
+    "trade_profit_factor_GROSS": 1.008,
+    "trade_profit_factor_NET": 0.889,
+    "trade_expectancy_GROSS": 0.0001268573,
+    "trade_expectancy_NET": -0.0018731427,
+    "trade_win_rate_GROSS": 0.4545,
+    "trade_win_rate_NET": 0.4317,
+    "portfolio_day_expectancy_GROSS": 5.53382e-05,
+    "portfolio_day_expectancy_NET": -0.0008171094,
+    "avg_hold_hours": 24.0,
+    "exit_mix": {
+      "SL": 0.0002,
+      "TIME": 0.999,
+      "TP": 0.0008
+    }
+  },
+  "exact_accounting_variant": {
+    "clv_min": 0.8,
+    "max_positions": 20,
+    "exit": "atr_8.0_-4.0",
+    "fee_per_side": 0.001,
+    "fee_mode": "EXACT",
+    "trades": 6238,
+    "calendar_days": 998,
+    "trading_days": 715,
+    "years": 2.73,
+    "net_total_return": -0.51396,
+    "net_annual_return": -0.232059,
+    "net_quarterly_annualised": -0.063879,
+    "net_max_drawdown": 0.656324,
+    "net_profit_factor_DAY": 0.8668,
+    "gross_total_return": -0.092253,
+    "gross_annual_return": -0.034803,
+    "gross_max_drawdown": 0.505205,
+    "gross_profit_factor_DAY": 1.0098,
+    "final_net_equity": 4860.4,
+    "final_gross_equity": 9077.47,
+    "total_entry_fees": 2306.82,
+    "total_exit_fees": 2306.29,
+    "total_fees": 4613.1,
+    "fee_drag_vs_start_capital": 0.4613,
+    "capital_utilisation_mean": 0.3125,
+    "capital_idle_mean": 0.6875,
+    "turnover_x_capital": 311.9
+  },
+  "accounting_variant_delta": {
+    "net_annual_return_ORIGINAL": -0.232125,
+    "net_annual_return_EXACT": -0.232059,
+    "difference": 6.6e-05,
+    "total_exit_fees_ORIGINAL": 2306.71,
+    "total_exit_fees_EXACT": 2306.29,
+    "attribution": "ORIGINAL charged the exit fee on entry notional; EXACT charges it on realised exit notional. EXACT does not overwrite ORIGINAL."
+  },
+  "decomposition_table": [
+    {
+      "metric": "Total return",
+      "gross": -0.092253,
+      "net": -0.514073,
+      "fee_impact": 0.42182
+    },
+    {
+      "metric": "Annualised return",
+      "gross": -0.034803,
+      "net": -0.232125,
+      "fee_impact": "difference is not the fee rate: costs compound daily across the path"
+    },
+    {
+      "metric": "Profit factor - trade level",
+      "gross": 1.008,
+      "net": 0.889,
+      "fee_impact": "non-additive (ratio)"
+    },
+    {
+      "metric": "Profit factor - portfolio-day",
+      "gross": 1.0098,
+      "net": 0.8669,
+      "fee_impact": "non-additive (ratio)"
+    },
+    {
+      "metric": "Average return per trade",
+      "gross": 0.0001268573,
+      "net": -0.0018731427,
+      "fee_impact": 0.002
+    },
+    {
+      "metric": "Average return per portfolio-day",
+      "gross": 5.53382e-05,
+      "net": -0.0008171094,
+      "fee_impact": 0.0008724476
+    },
+    {
+      "metric": "Maximum drawdown",
+      "gross": 0.505205,
+      "net": 0.656544,
+      "fee_impact": "non-additive (path dependent)"
+    }
+  ],
+  "fee_sensitivity": {
+    "zero_fee": {
+      "fee_per_side": 0.0,
+      "hypothetical": true,
+      "annual_return": -0.034803,
+      "total_return": -0.092253,
+      "profit_factor_day": 1.0098,
+      "max_drawdown": 0.505205,
+      "total_fees": 0.0
+    },
+    "hypothetical_0.05pct": {
+      "fee_per_side": 0.0005,
+      "hypothetical": true,
+      "annual_return": -0.139061,
+      "total_return": -0.335768,
+      "profit_factor_day": 0.9355,
+      "max_drawdown": 0.577083,
+      "total_fees": 2646.75
+    },
+    "hypothetical_0.075pct": {
+      "fee_per_side": 0.00075,
+      "hypothetical": true,
+      "annual_return": -0.186915,
+      "total_return": -0.431856,
+      "profit_factor_day": 0.9005,
+      "max_drawdown": 0.609024,
+      "total_fees": 3702.97
+    },
+    "ORIGINAL_MODEL_0.10pct": {
+      "fee_per_side": 0.001,
+      "hypothetical": false,
+      "annual_return": -0.232125,
+      "total_return": -0.514073,
+      "profit_factor_day": 0.8669,
+      "max_drawdown": 0.656544,
+      "total_fees": 4613.42
+    },
+    "plus_spread_0.15pct": {
+      "fee_per_side": 0.0015,
+      "hypothetical": true,
+      "annual_return": -0.315189,
+      "total_return": -0.6446,
+      "profit_factor_day": 0.8035,
+      "max_drawdown": 0.73915,
+      "total_fees": 6074.55
+    },
+    "plus_spread_0.20pct": {
+      "fee_per_side": 0.002,
+      "hypothetical": true,
+      "annual_return": -0.389321,
+      "total_return": -0.740128,
+      "profit_factor_day": 0.745,
+      "max_drawdown": 0.801931,
+      "total_fees": 7159.75
+    }
+  },
+  "robustness": {
+    "per_asset": {
+      "AAVEUSDT": {
+        "trades": 152,
+        "gross_mean_return": 0.00423616,
+        "net_mean_return": 0.00223616,
+        "gross_pnl": 244.92,
+        "net_pnl": 136.48
+      },
+      "ADAUSDT": {
+        "trades": 141,
+        "gross_mean_return": -0.00169058,
+        "net_mean_return": -0.00369058,
+        "gross_pnl": -127.28,
+        "net_pnl": -228.79
+      },
+      "ALGOUSDT": {
+        "trades": 159,
+        "gross_mean_return": 0.00645908,
+        "net_mean_return": 0.00445908,
+        "gross_pnl": 429.21,
+        "net_pnl": 308.1
+      },
+      "APTUSDT": {
+        "trades": 157,
+        "gross_mean_return": -0.00940204,
+        "net_mean_return": -0.01140204,
+        "gross_pnl": -565.34,
+        "net_pnl": -681.45
+      },
+      "ARBUSDT": {
+        "trades": 152,
+        "gross_mean_return": 0.00480122,
+        "net_mean_return": 0.00280122,
+        "gross_pnl": 123.22,
+        "net_pnl": 13.07
+      },
+      "ATOMUSDT": {
+        "trades": 169,
+        "gross_mean_return": 0.00139596,
+        "net_mean_return": -0.00060404,
+        "gross_pnl": 63.8,
+        "net_pnl": -61.94
+      },
+      "AVAXUSDT": {
+        "trades": 153,
+        "gross_mean_return": -0.00067402,
+        "net_mean_return": -0.00267402,
+        "gross_pnl": -115.32,
+        "net_pnl": -229.55
+      },
+      "AXSUSDT": {
+        "trades": 158,
+        "gross_mean_return": 0.00222084,
+        "net_mean_return": 0.00022084,
+        "gross_pnl": 68.62,
+        "net_pnl": -54.91
+      },
+      "BNBUSDT": {
+        "trades": 183,
+        "gross_mean_return": 0.00274088,
+        "net_mean_return": 0.00074088,
+        "gross_pnl": 182.45,
+        "net_pnl": 48.06
+      },
+      "BTCUSDT": {
+        "trades": 192,
+        "gross_mean_return": -0.00131138,
+        "net_mean_return": -0.00331138,
+        "gross_pnl": -77.09,
+        "net_pnl": -217.14
+      },
+      "CHZUSDT": {
+        "trades": 160,
+        "gross_mean_return": -0.00274998,
+        "net_mean_return": -0.00474998,
+        "gross_pnl": -194.84,
+        "net_pnl": -315.12
+      },
+      "DOGEUSDT": {
+        "trades": 146,
+        "gross_mean_return": 0.00264386,
+        "net_mean_return": 0.00064386,
+        "gross_pnl": 216.77,
+        "net_pnl": 110.91
+      },
+      "DOTUSDT": {
+        "trades": 161,
+        "gross_mean_return": 0.00313309,
+        "net_mean_return": 0.00113309,
+        "gross_pnl": 227.23,
+        "net_pnl": 108.24
+      },
+      "ENAUSDT": {
+        "trades": 118,
+        "gross_mean_return": 0.00575187,
+        "net_mean_return": 0.00375187,
+        "gross_pnl": 132.75,
+        "net_pnl": 54.99
+      },
+      "EOSUSDT": {
+        "trades": 92,
+        "gross_mean_return": 0.00230022,
+        "net_mean_return": 0.00030022,
+        "gross_pnl": 88.42,
+        "net_pnl": 8.35
+      },
+      "ETCUSDT": {
+        "trades": 152,
+        "gross_mean_return": -0.00048714,
+        "net_mean_return": -0.00248714,
+        "gross_pnl": -70.6,
+        "net_pnl": -184.29
+      },
+      "ETHUSDT": {
+        "trades": 172,
+        "gross_mean_return": -0.00258373,
+        "net_mean_return": -0.00458373,
+        "gross_pnl": -170.39,
+        "net_pnl": -298.19
+      },
+      "FILUSDT": {
+        "trades": 174,
+        "gross_mean_return": -0.00323535,
+        "net_mean_return": -0.00523535,
+        "gross_pnl": -362.74,
+        "net_pnl": -494.04
+      },
+      "FTMUSDT": {
+        "trades": 53,
+        "gross_mean_return": 0.00164714,
+        "net_mean_return": -0.00035286,
+        "gross_pnl": 55.99,
+        "net_pnl": 7.92
+      },
+      "GALAUSDT": {
+        "trades": 152,
+        "gross_mean_return": 0.0002681,
+        "net_mean_return": -0.0017319,
+        "gross_pnl": 66.49,
+        "net_pnl": -44.63
+      },
+      "GRTUSDT": {
+        "trades": 153,
+        "gross_mean_return": 0.00172095,
+        "net_mean_return": -0.00027905,
+        "gross_pnl": 77.84,
+        "net_pnl": -37.76
+      },
+      "ICPUSDT": {
+        "trades": 144,
+        "gross_mean_return": -9.067e-05,
+        "net_mean_return": -0.00209067,
+        "gross_pnl": -34.23,
+        "net_pnl": -141.54
+      },
+      "INJUSDT": {
+        "trades": 169,
+        "gross_mean_return": 0.00143012,
+        "net_mean_return": -0.00056988,
+        "gross_pnl": 14.97,
+        "net_pnl": -107.55
+      },
+      "LINKUSDT": {
+        "trades": 170,
+        "gross_mean_return": 3.078e-05,
+        "net_mean_return": -0.00196922,
+        "gross_pnl": 34.59,
+        "net_pnl": -89.93
+      },
+      "LTCUSDT": {
+        "trades": 177,
+        "gross_mean_return": -0.00273884,
+        "net_mean_return": -0.00473884,
+        "gross_pnl": -245.25,
+        "net_pnl": -374.1
+      },
+      "MANAUSDT": {
+        "trades": 169,
+        "gross_mean_return": -0.00214422,
+        "net_mean_return": -0.00414422,
+        "gross_pnl": -166.29,
+        "net_pnl": -296.63
+      },
+      "NEARUSDT": {
+        "trades": 173,
+        "gross_mean_return": -0.00405223,
+        "net_mean_return": -0.00605223,
+        "gross_pnl": -331.08,
+        "net_pnl": -454.39
+      },
+      "OPUSDT": {
+        "trades": 173,
+        "gross_mean_return": -0.00478535,
+        "net_mean_return": -0.00678535,
+        "gross_pnl": -387.02,
+        "net_pnl": -512.31
+      },
+      "RUNEUSDT": {
+        "trades": 157,
+        "gross_mean_return": -0.00154482,
+        "net_mean_return": -0.00354482,
+        "gross_pnl": -91.31,
+        "net_pnl": -205.84
+      },
+      "SANDUSDT": {
+        "trades": 169,
+        "gross_mean_return": -0.00108292,
+        "net_mean_return": -0.00308292,
+        "gross_pnl": -70.7,
+        "net_pnl": -198.73
+      },
+      "SEIUSDT": {
+        "trades": 157,
+        "gross_mean_return": -0.00284915,
+        "net_mean_return": -0.00484915,
+        "gross_pnl": -260.67,
+        "net_pnl": -374.11
+      },
+      "SOLUSDT": {
+        "trades": 164,
+        "gross_mean_return": -0.00080678,
+        "net_mean_return": -0.00280678,
+        "gross_pnl": -19.97,
+        "net_pnl": -136.26
+      },
+      "SUIUSDT": {
+        "trades": 150,
+        "gross_mean_return": -0.00062745,
+        "net_mean_return": -0.00262745,
+        "gross_pnl": -34.82,
+        "net_pnl": -145.56
+      },
+      "THETAUSDT": {
+        "trades": 150,
+        "gross_mean_return": -0.000695,
+        "net_mean_return": -0.002695,
+        "gross_pnl": 72.88,
+        "net_pnl": -36.41
+      },
+      "TIAUSDT": {
+        "trades": 131,
+        "gross_mean_return": 0.00077109,
+        "net_mean_return": -0.00122891,
+        "gross_pnl": -1.81,
+        "net_pnl": -96.68
+      },
+      "TRXUSDT": {
+        "trades": 262,
+        "gross_mean_return": 0.00460429,
+        "net_mean_return": 0.00260429,
+        "gross_pnl": 506.31,
+        "net_pnl": 315.75
+      },
+      "UNIUSDT": {
+        "trades": 140,
+        "gross_mean_return": 0.00028989,
+        "net_mean_return": -0.00171011,
+        "gross_pnl": -87.69,
+        "net_pnl": -194.02
+      },
+      "VETUSDT": {
+        "trades": 157,
+        "gross_mean_return": 0.00058248,
+        "net_mean_return": -0.00141752,
+        "gross_pnl": 27.81,
+        "net_pnl": -89.29
+      },
+      "XLMUSDT": {
+        "trades": 134,
+        "gross_mean_return": 0.00411193,
+        "net_mean_return": 0.00211193,
+        "gross_pnl": 210.8,
+        "net_pnl": 110.61
+      },
+      "XRPUSDT": {
+        "trades": 143,
+        "gross_mean_return": 0.00053353,
+        "net_mean_return": -0.00146647,
+        "gross_pnl": 42.05,
+        "net_pnl": -62.06
+      }
+    },
+    "assets_total": 40,
+    "assets_gross_positive": 21,
+    "assets_gross_positive_pct": 0.525,
+    "assets_net_positive": 11,
+    "assets_net_positive_pct": 0.275,
+    "per_quarter": {
+      "2024Q1": {
+        "days": 80,
+        "trades": 520,
+        "observed_gross_return": 0.064037,
+        "observed_net_return": 0.010148
+      },
+      "2024Q2": {
+        "days": 91,
+        "trades": 611,
+        "observed_gross_return": -0.126086,
+        "observed_net_return": -0.178026
+      },
+      "2024Q3": {
+        "days": 92,
+        "trades": 641,
+        "observed_gross_return": -0.016501,
+        "observed_net_return": -0.077687
+      },
+      "2024Q4": {
+        "days": 92,
+        "trades": 589,
+        "observed_gross_return": 0.312916,
+        "observed_net_return": 0.238108
+      },
+      "2025Q1": {
+        "days": 90,
+        "trades": 559,
+        "observed_gross_return": -0.193615,
+        "observed_net_return": -0.237752
+      },
+      "2025Q2": {
+        "days": 91,
+        "trades": 538,
+        "observed_gross_return": 0.126498,
+        "observed_net_return": 0.06763
+      },
+      "2025Q3": {
+        "days": 92,
+        "trades": 645,
+        "observed_gross_return": 0.003438,
+        "observed_net_return": -0.059282
+      },
+      "2025Q4": {
+        "days": 92,
+        "trades": 574,
+        "observed_gross_return": -0.287744,
+        "observed_net_return": -0.327994
+      },
+      "2026Q1": {
+        "days": 90,
+        "trades": 438,
+        "observed_gross_return": -0.013597,
+        "observed_net_return": -0.055978
+      },
+      "2026Q2": {
+        "days": 91,
+        "trades": 485,
+        "observed_gross_return": -0.108695,
+        "observed_net_return": -0.151071
+      },
+      "2026Q3": {
+        "days": 92,
+        "trades": 614,
+        "observed_gross_return": 0.319695,
+        "observed_net_return": 0.241523
+      },
+      "2026Q4": {
+        "days": 5,
+        "trades": 24,
+        "observed_gross_return": 0.003632,
+        "observed_net_return": 0.001228
+      }
+    },
+    "quarters_total": 12,
+    "quarters_gross_positive": 6,
+    "quarters_gross_positive_pct": 0.5,
+    "quarters_net_positive": 5,
+    "excluding_best_n_trades": {
+      "0": {
+        "gross_mean": 0.0001268573,
+        "net_mean": -0.0018731427
+      },
+      "1": {
+        "gross_mean": 1.0945e-05,
+        "net_mean": -0.001989055
+      },
+      "5": {
+        "gross_mean": -0.0003244271,
+        "net_mean": -0.0023244271
+      },
+      "10": {
+        "gross_mean": -0.0006146808,
+        "net_mean": -0.0026146808
+      },
+      "25": {
+        "gross_mean": -0.0012467307,
+        "net_mean": -0.0032467307
+      },
+      "50": {
+        "gross_mean": -0.0020302926,
+        "net_mean": -0.0040302926
+      }
+    },
+    "excluding_worst_n_trades": {
+      "0": {
+        "gross_mean": 0.0001268573,
+        "net_mean": -0.0018731427
+      },
+      "1": {
+        "gross_mean": 0.0001582224,
+        "net_mean": -0.0018417776
+      },
+      "5": {
+        "gross_mean": 0.0002572502,
+        "net_mean": -0.0017427498
+      },
+      "10": {
+        "gross_mean": 0.0003685151,
+        "net_mean": -0.0016314849
+      },
+      "25": {
+        "gross_mean": 0.0006758321,
+        "net_mean": -0.0013241679
+      },
+      "50": {
+        "gross_mean": 0.0011212796,
+        "net_mean": -0.0008787204
+      }
+    },
+    "concentration": {
+      "top_1pct_share_of_gross_profit": 0.1557,
+      "top_5pct_share_of_gross_profit": 0.4049,
+      "worst_1pct_share_of_gross_loss": 0.0749,
+      "worst_5pct_share_of_gross_loss": 0.2713
+    },
+    "disproportionate_drivers": {
+      "worst_5_assets_by_net_pnl": [
+        {
+          "symbol": "APTUSDT",
+          "trades": 157,
+          "gross_mean_return": -0.00940204,
+          "net_mean_return": -0.01140204,
+          "gross_pnl": -565.34,
+          "net_pnl": -681.45
+        },
+        {
+          "symbol": "OPUSDT",
+          "trades": 173,
+          "gross_mean_return": -0.00478535,
+          "net_mean_return": -0.00678535,
+          "gross_pnl": -387.02,
+          "net_pnl": -512.31
+        },
+        {
+          "symbol": "FILUSDT",
+          "trades": 174,
+          "gross_mean_return": -0.00323535,
+          "net_mean_return": -0.00523535,
+          "gross_pnl": -362.74,
+          "net_pnl": -494.04
+        },
+        {
+          "symbol": "NEARUSDT",
+          "trades": 173,
+          "gross_mean_return": -0.00405223,
+          "net_mean_return": -0.00605223,
+          "gross_pnl": -331.08,
+          "net_pnl": -454.39
+        },
+        {
+          "symbol": "SEIUSDT",
+          "trades": 157,
+          "gross_mean_return": -0.00284915,
+          "net_mean_return": -0.00484915,
+          "gross_pnl": -260.67,
+          "net_pnl": -374.11
+        }
+      ],
+      "best_5_assets_by_net_pnl": [
+        {
+          "symbol": "TRXUSDT",
+          "trades": 262,
+          "gross_mean_return": 0.00460429,
+          "net_mean_return": 0.00260429,
+          "gross_pnl": 506.31,
+          "net_pnl": 315.75
+        },
+        {
+          "symbol": "ALGOUSDT",
+          "trades": 159,
+          "gross_mean_return": 0.00645908,
+          "net_mean_return": 0.00445908,
+          "gross_pnl": 429.21,
+          "net_pnl": 308.1
+        },
+        {
+          "symbol": "AAVEUSDT",
+          "trades": 152,
+          "gross_mean_return": 0.00423616,
+          "net_mean_return": 0.00223616,
+          "gross_pnl": 244.92,
+          "net_pnl": 136.48
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "trades": 146,
+          "gross_mean_return": 0.00264386,
+          "net_mean_return": 0.00064386,
+          "gross_pnl": 216.77,
+          "net_pnl": 110.91
+        },
+        {
+          "symbol": "XLMUSDT",
+          "trades": 134,
+          "gross_mean_return": 0.00411193,
+          "net_mean_return": 0.00211193,
+          "gross_pnl": 210.8,
+          "net_pnl": 110.61
+        }
+      ],
+      "worst_3_quarters_by_net": [
+        {
+          "quarter": "2025Q4",
+          "days": 92,
+          "trades": 574,
+          "observed_gross_return": -0.287744,
+          "observed_net_return": -0.327994
+        },
+        {
+          "quarter": "2025Q1",
+          "days": 90,
+          "trades": 559,
+          "observed_gross_return": -0.193615,
+          "observed_net_return": -0.237752
+        },
+        {
+          "quarter": "2024Q2",
+          "days": 91,
+          "trades": 611,
+          "observed_gross_return": -0.126086,
+          "observed_net_return": -0.178026
+        }
+      ],
+      "best_3_quarters_by_net": [
+        {
+          "quarter": "2026Q3",
+          "days": 92,
+          "trades": 614,
+          "observed_gross_return": 0.319695,
+          "observed_net_return": 0.241523
+        },
+        {
+          "quarter": "2024Q4",
+          "days": 92,
+          "trades": 589,
+          "observed_gross_return": 0.312916,
+          "observed_net_return": 0.238108
+        },
+        {
+          "quarter": "2025Q2",
+          "days": 91,
+          "trades": 538,
+          "observed_gross_return": 0.126498,
+          "observed_net_return": 0.06763
+        }
+      ]
+    },
+    "note": "Descriptive only. Not criteria for parameter selection."
+  },
+  "scenario_classification": "SCENARIO_B_GROSS_APPROXIMATELY_ZERO",
+  "classification_boundary": {
+    "gross_per_trade_band": 0.0002,
+    "nature": "practical descriptive boundary, NOT a statistical significance test"
+  },
+  "execution_limitations": [
+    "Modelled friction is EXCHANGE FEES ONLY.",
+    "Bid-ask spread: NOT modelled. Slippage: NOT modelled. Market impact: NOT modelled. Partial fills and liquidity constraints: NOT modelled.",
+    "Entry assumed filled at the exact open of the 22:00 15m bar, simultaneously across up to n_max symbols.",
+    "Exit prices for TP/SL/TRAIL are threshold prices, not observed fills.",
+    "15-minute resolution: touches resolved to the nearest 15 minutes; SL wins ties, so exit timing is conservative.",
+    "Time exit extends to the 22:00-22:15 bar close, 15 minutes past the next day's entry: consecutive baskets overlap by one bar (~1% of the hold). Retained because the ruling requires original overlap handling.",
+    "TRUE FRICTION IS THEREFORE UNDERSTATED; real-world results would be worse than the net figures reported here.",
+    "Universe drawn from pairs still trading at the cutoff: survivorship bias present and not eliminated.",
+    "In-sample reconstruction throughout. Not a prediction or a forecast."
+  ]
+}
