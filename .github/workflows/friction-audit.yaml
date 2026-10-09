@@ -1,0 +1,109 @@
+name: Friction Decomposition Audit
+
+# FRICTION_DECOMPOSITION_AND_ACCOUNTING_AUDIT
+# Authorised: methodology ruling 8 Oct 2026 — accounting audit only.
+#
+# This is an AUDIT, not research. It:
+#   - enforces a hard data cutoff of 2026-10-07 (no newer observation can enter)
+#   - recovers the original configuration from research/universe_search/
+#     universe_result.json top_30[0]; replays the 240-grid only as a fallback
+#   - reproduces the ORIGINAL net result first (mandatory reconciliation gate)
+#   - emits the trade ledger and equity curve the original never persisted
+#   - computes the EXACT accounting variant separately, never overwriting ORIGINAL
+#
+# No optimisation. No threshold change. No new winner. No reversal test.
+# No sealed data. No frozen prospective strategy touched.
+# Writes to research/friction_audit/.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: friction-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Confirm the archived result is present for configuration recovery
+        run: |
+          F=research/universe_search/universe_result.json
+          if [ -f "$F" ]; then
+            echo "archive present: $F"
+            sha256sum "$F"
+            python -c "import json;d=json.load(open('$F'));r=(d.get('top_30') or [{}])[0];print('top_30[0] config fields:',{k:r.get(k) for k in ('clv_min','max_positions','exit')})"
+          else
+            echo "WARNING: $F absent - audit will fall back to the 240-config replay"
+          fi
+
+      - name: Run friction decomposition and accounting reconciliation
+        run: python friction_audit.py
+
+      - name: Reconciliation gate summary
+        if: always()
+        run: |
+          F=research/friction_audit/friction_audit.json
+          [ -f "$F" ] || { echo "audit output missing"; exit 1; }
+          python - <<'PY'
+          import json
+          d = json.load(open("research/friction_audit/friction_audit.json"))
+          r, o = d["reconciliation"], d["original_mode"]
+          print("=" * 64)
+          print("VERDICT :", r["verdict"])
+          print("SCENARIO:", d["scenario_classification"])
+          print("=" * 64)
+          print("config  :", d["configuration"]["clv_min"],
+                d["configuration"]["max_positions"], d["configuration"]["exit"],
+                "| source:", d["configuration"]["source"])
+          for k, v in r["metric_differences"].items():
+              print(f"  {k:<18} archived {v['archived']!s:>10}  reproduced "
+                    f"{v['reproduced']!s:>10}  {'PASS' if v['within'] else 'FAIL'}")
+          print(f"  ledger<->series gap {r['ledger_to_series_gap']:.2e}  "
+                f"{'PASS' if r['ledger_reconciles'] else 'FAIL'}")
+          print("-" * 64)
+          print("gross/trade :", o["trade_expectancy_GROSS"])
+          print("net/trade   :", o["trade_expectancy_NET"])
+          print("gross annual:", o["gross_annual_return"],
+                " net annual:", o["net_annual_return"])
+          print("total fees  :", o["total_fees"],
+                " fee drag vs capital:", o["fee_drag_vs_start_capital"])
+          print("exit mix    :", o["exit_mix"])
+          if r["verdict"] != "RECONCILED":
+              print()
+              print("!! ACCOUNTING RECONCILIATION FAILURE - gross interpretation withheld")
+          PY
+
+      - name: Upload audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: friction-audit
+          path: research/friction_audit/
+          if-no-files-found: error
+
+      - name: Commit audit artifacts
+        if: always()
+        run: |
+          [ -d research/friction_audit ] || exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config pull.rebase true
+          git add research/friction_audit/
+          git diff --cached --quiet && exit 0
+          git commit -m "FRICTION_AUDIT: gross vs net reconciliation, trade ledger, equity curve"
+          for a in 1 2 3 4 5; do
+            git push && exit 0
+            git pull --rebase --autostash origin main || true
+            sleep $((a * 5))
+          done
+          exit 1
