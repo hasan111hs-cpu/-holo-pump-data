@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "record": "INSTANT_ENTRY",
+  "immutable": true,
+  "comparison_only": true,
+  "boundary_utc": "2026-10-09T18:00:00+00:00",
+  "entry_rule": "Live Binance Spot ask when the decision was made (about 22:00:40 Dubai)",
+  "fee_per_side": 0.001,
+  "captured_at_utc": "2026-10-09T18:05:05.420100+00:00",
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2149,
+      "entry_time_utc": "2026-10-09T18:00:40.961999+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.22349600000000003,
+      "sl_price": 0.2095275,
+      "expiry_utc": "2026-10-10T18:00:00+00:00"
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2149,
+      "entry_time_utc": "2026-10-09T18:00:40.961999+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.22940575,
+      "sl_price": 0.20039425,
+      "expiry_utc": "2026-10-10T18:00:00+00:00"
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0602,
+      "entry_time_utc": "2026-10-09T18:00:42.276416+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.062608,
+      "sl_price": 0.058695,
+      "expiry_utc": "2026-10-10T18:00:00+00:00"
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0602,
+      "entry_time_utc": "2026-10-09T18:00:42.276416+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.063812,
+      "sl_price": 0.05718999999999999,
+      "expiry_utc": "2026-10-10T18:00:00+00:00"
+    }
+  }
+}

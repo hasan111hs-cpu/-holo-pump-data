@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "record": "LEDGER",
-  "generated_at_utc": "2026-10-06T18:00:45.643284+00:00",
+  "generated_at_utc": "2026-10-09T18:05:05.422097+00:00",
   "start_equity": 10000.0,
   "fee_per_side": 0.001,
   "strategies": {
@@ -55,7 +55,14 @@
       "trades": 2,
       "wins": 1,
       "losses": 1,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-09",
+        "entry_price": 0.2145,
+        "entry_time_utc": "2026-10-09T18:05:00+00:00",
+        "tp_price": 0.22308,
+        "sl_price": 0.2091375,
+        "expiry_utc": "2026-10-10T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -86,7 +93,14 @@
       "trades": 2,
       "wins": 1,
       "losses": 1,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-09",
+        "entry_price": 0.2145,
+        "entry_time_utc": "2026-10-09T18:05:00+00:00",
+        "tp_price": 0.22897874999999998,
+        "sl_price": 0.20002124999999998,
+        "expiry_utc": "2026-10-10T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -117,7 +131,14 @@
       "trades": 1,
       "wins": 0,
       "losses": 1,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-09",
+        "entry_price": 0.06,
+        "entry_time_utc": "2026-10-09T18:05:00+00:00",
+        "tp_price": 0.0624,
+        "sl_price": 0.058499999999999996,
+        "expiry_utc": "2026-10-10T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-02",
@@ -139,7 +160,14 @@
       "trades": 1,
       "wins": 0,
       "losses": 1,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-09",
+        "entry_price": 0.06,
+        "entry_time_utc": "2026-10-09T18:05:00+00:00",
+        "tp_price": 0.0636,
+        "sl_price": 0.056999999999999995,
+        "expiry_utc": "2026-10-10T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-02",
@@ -207,7 +235,14 @@
       "trades": 2,
       "wins": 1,
       "losses": 1,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-09",
+        "entry_price": 0.2149,
+        "entry_time_utc": "2026-10-09T18:00:40.961999+00:00",
+        "tp_price": 0.22349600000000003,
+        "sl_price": 0.2095275,
+        "expiry_utc": "2026-10-10T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -238,7 +273,14 @@
       "trades": 2,
       "wins": 1,
       "losses": 1,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-09",
+        "entry_price": 0.2149,
+        "entry_time_utc": "2026-10-09T18:00:40.961999+00:00",
+        "tp_price": 0.22940575,
+        "sl_price": 0.20039425,
+        "expiry_utc": "2026-10-10T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -269,7 +311,14 @@
       "trades": 1,
       "wins": 0,
       "losses": 1,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-09",
+        "entry_price": 0.0602,
+        "entry_time_utc": "2026-10-09T18:00:42.276416+00:00",
+        "tp_price": 0.062608,
+        "sl_price": 0.058695,
+        "expiry_utc": "2026-10-10T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-02",
@@ -291,7 +340,14 @@
       "trades": 1,
       "wins": 0,
       "losses": 1,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-10-09",
+        "entry_price": 0.0602,
+        "entry_time_utc": "2026-10-09T18:00:42.276416+00:00",
+        "tp_price": 0.063812,
+        "sl_price": 0.05718999999999999,
+        "expiry_utc": "2026-10-10T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-02",
