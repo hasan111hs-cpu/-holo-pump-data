@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "record": "INSTANT_ENTRY",
+  "immutable": true,
+  "comparison_only": true,
+  "boundary_utc": "2026-10-10T18:00:00+00:00",
+  "entry_rule": "Live Binance Spot ask when the decision was made (about 22:00:40 Dubai)",
+  "fee_per_side": 0.001,
+  "captured_at_utc": "2026-10-10T18:05:05.494125+00:00",
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2213,
+      "entry_time_utc": "2026-10-10T18:00:37.424749+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.230152,
+      "sl_price": 0.2157675,
+      "expiry_utc": "2026-10-11T18:00:00+00:00"
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2213,
+      "entry_time_utc": "2026-10-10T18:00:37.424749+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.23623774999999997,
+      "sl_price": 0.20636225,
+      "expiry_utc": "2026-10-11T18:00:00+00:00"
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0618,
+      "entry_time_utc": "2026-10-10T18:00:38.335347+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.06427200000000001,
+      "sl_price": 0.060254999999999996,
+      "expiry_utc": "2026-10-11T18:00:00+00:00"
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0618,
+      "entry_time_utc": "2026-10-10T18:00:38.335347+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.06550800000000001,
+      "sl_price": 0.05871,
+      "expiry_utc": "2026-10-11T18:00:00+00:00"
+    }
+  }
+}
