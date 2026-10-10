@@ -1,0 +1,94 @@
+name: Hour-of-Day Timing Analysis
+
+# HOUR_OF_DAY_TIMING_ANALYSIS — PUMP / ENA / HOLO
+#
+# Answers: what hour should an automated bot use, instead of 22:00 Dubai?
+#
+# PART A  does the hour change the SIGNAL?   24-way search, pre-registered
+#         fit/holdout persistence test, criteria calibrated against synthetic
+#         noise before any real data was touched.
+# PART B  does the hour change the COST?     structural liquidity and price-impact
+#         profile by hour, with a split-sample stability check. Not a search.
+#
+# Frozen Simple thresholds are NOT re-fitted (PUMP 6.5%, ENA 1.0%, HOLO 2.0%).
+# Only the boundary hour varies. No frozen specification is modified: the six
+# Simple strategies and their October forward test are untouched by this job.
+#
+# Writes to research/timing_analysis/.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: timing-analysis
+  cancel-in-progress: false
+
+jobs:
+  timing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run hour-of-day timing analysis
+        run: python timing_analysis.py
+
+      - name: Summarise to the run log
+        if: always()
+        run: |
+          F=research/timing_analysis/timing_analysis.json
+          [ -f "$F" ] || { echo "output missing"; exit 1; }
+          python - <<'PY'
+          import json
+          d = json.load(open("research/timing_analysis/timing_analysis.json"))
+          for sym, c in d["coins"].items():
+              print("=" * 66)
+              print(sym, c.get("status"))
+              if c.get("status") != "OK":
+                  continue
+              a = c["part_A_signal_by_hour"]
+              b = c["part_B_execution_by_hour"]
+              print("  PART A verdict :", a.get("verdict"))
+              if "rank_correlation_fit_vs_holdout" in a:
+                  print("    rank corr fit/holdout :", a["rank_correlation_fit_vs_holdout"])
+                  print("    fit-best hour         :", a["fit_best_dubai_hour"])
+                  print("    its holdout return    :", a["fit_best_holdout_return"])
+                  print("    22:00 holdout return  :", a["baseline_22_holdout_return"])
+                  print("    conditions            :", a["conditions"])
+              if a.get("dispersion"):
+                  print("    dispersion ratio      :", a["dispersion"]["ratio"])
+              print("  PART B cheapest hours   :", b["cheapest_5_hours_dubai"])
+              print("  PART B dearest hours    :", b["most_expensive_5_hours_dubai"])
+              print("  PART B stability        :", b["stability"])
+          PY
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: timing-analysis
+          path: research/timing_analysis/
+          if-no-files-found: error
+
+      - name: Commit artifacts
+        if: always()
+        run: |
+          [ -d research/timing_analysis ] || exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config pull.rebase true
+          git add research/timing_analysis/
+          git diff --cached --quiet && exit 0
+          git commit -m "TIMING_ANALYSIS: hour-of-day signal persistence and execution cost by hour"
+          for a in 1 2 3 4 5; do
+            git push && exit 0
+            git pull --rebase --autostash origin main || true
+            sleep $((a * 5))
+          done
+          exit 1
