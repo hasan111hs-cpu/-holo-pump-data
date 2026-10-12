@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "record": "REPORT",
-  "report_date": "2026-10-11",
-  "boundary_utc": "2026-10-11T18:00:00+00:00",
-  "boundary_dubai": "2026-10-11T22:00:00+04:00",
-  "generated_at_utc": "2026-10-11T18:05:04.863379+00:00",
+  "report_date": "2026-10-12",
+  "boundary_utc": "2026-10-12T18:00:00+00:00",
+  "boundary_dubai": "2026-10-12T22:00:00+04:00",
+  "generated_at_utc": "2026-10-12T18:00:43.002197+00:00",
   "stage": "FINAL",
   "final": true,
   "signal_valid": true,
-  "signal_generated_at_utc": "2026-10-11T18:00:37.419299+00:00",
+  "signal_generated_at_utc": "2026-10-12T18:00:35.312831+00:00",
   "rules": {
     "entry": "Binance Spot price at 22:05 Dubai (open of the 18:05 UTC 1m candle)",
     "fee_per_side": 0.001,
@@ -19,14 +19,14 @@
   },
   "totals": {
     "entry_2205": {
-      "cumulative_net_pnl": 1458.8,
-      "today_realized_net_pnl": 1296.51,
-      "trades": 16
+      "cumulative_net_pnl": 398.39,
+      "today_realized_net_pnl": -1060.42,
+      "trades": 18
     },
     "entry_instant": {
-      "cumulative_net_pnl": 1315.7,
-      "today_realized_net_pnl": 1260.33,
-      "trades": 16
+      "cumulative_net_pnl": 258.25,
+      "today_realized_net_pnl": -1057.47,
+      "trades": 18
     }
   },
   "strategies": {
@@ -36,8 +36,8 @@
       "tp_pct": 4.0,
       "sl_pct": 2.5,
       "decision": "NO TRADE",
-      "reason": "24h return +3.76% is below the +6.5% gate",
-      "return_pct": 3.7573805689747664,
+      "reason": "24h return -9.62% is below the +6.5% gate",
+      "return_pct": -9.622348680807036,
       "entry": null,
       "price_marks": null,
       "previous_trade": null,
@@ -67,8 +67,8 @@
       "tp_pct": 2.5,
       "sl_pct": 5.5,
       "decision": "NO TRADE",
-      "reason": "24h return +3.76% is below the +6.5% gate",
-      "return_pct": 3.7573805689747664,
+      "reason": "24h return -9.62% is below the +6.5% gate",
+      "return_pct": -9.622348680807036,
       "entry": null,
       "price_marks": null,
       "previous_trade": null,
@@ -97,79 +97,44 @@
       "gate_pct": 1.0,
       "tp_pct": 4.0,
       "sl_pct": 2.5,
-      "decision": "BUY",
-      "reason": "24h return +7.91% is at or above the +1.0% gate",
-      "return_pct": 7.911392405063289,
-      "entry": {
-        "status": "ENTERED",
-        "entry_price": 0.2388,
-        "entry_time_utc": "2026-10-11T18:05:00+00:00",
-        "entry_time_dubai": "2026-10-11T22:05:00+04:00",
-        "tp_price": 0.24835200000000002,
-        "sl_price": 0.23283,
-        "expiry_utc": "2026-10-12T18:00:00+00:00"
-      },
-      "price_marks": {
-        "at_decision": {
-          "bid": 0.2394,
-          "ask": 0.2395,
-          "last": 0.2394,
-          "seconds_after_boundary": 39.33
-        },
-        "open_dubai": {
-          "22:00": 0.2387,
-          "22:01": 0.2391,
-          "22:02": 0.2391,
-          "22:05": 0.2388
-        }
-      },
+      "decision": "NO TRADE",
+      "reason": "24h return -7.96% is below the +1.0% gate",
+      "return_pct": -7.959782153330542,
+      "entry": null,
+      "price_marks": null,
       "previous_trade": {
-        "status": "TP",
+        "status": "SL",
         "ambiguous_same_minute": false,
-        "entry_price": 0.221,
-        "exit_price": 0.22984000000000002,
-        "exit_time_dubai": "2026-10-11T19:55:00+04:00",
-        "gross_return_pct": 4.0,
-        "net_return_pct": 3.7922
-      },
-      "today_realized_net_pnl": 397.52,
-      "cumulative_net_pnl": 880.03,
-      "equity": 10880.03,
-      "trades": 4,
-      "wins": 3,
-      "losses": 1,
-      "win_rate_pct": 75.0,
-      "open_position": {
-        "entry_date": "2026-10-11",
         "entry_price": 0.2388,
-        "entry_time_utc": "2026-10-11T18:05:00+00:00",
-        "tp_price": 0.24835200000000002,
-        "sl_price": 0.23283,
-        "expiry_utc": "2026-10-12T18:00:00+00:00"
+        "exit_price": 0.23283,
+        "exit_time_dubai": "2026-10-12T01:16:00+04:00",
+        "gross_return_pct": -2.5,
+        "net_return_pct": -2.6948
       },
+      "today_realized_net_pnl": -293.2,
+      "cumulative_net_pnl": 586.84,
+      "equity": 10586.84,
+      "trades": 5,
+      "wins": 3,
+      "losses": 2,
+      "win_rate_pct": 60.0,
+      "open_position": null,
       "instant": {
-        "entry": {
-          "status": "ENTERED",
-          "entry_price": 0.2395,
-          "entry_time_utc": "2026-10-11T18:00:39.330202+00:00",
-          "entry_source": "live_ask_at_decision",
-          "tp_price": 0.24908,
-          "sl_price": 0.23351249999999998
-        },
+        "entry": null,
         "previous_trade": {
-          "status": "TP",
+          "status": "SL",
           "ambiguous_same_minute": false,
-          "entry_price": 0.2213,
-          "exit_price": 0.230152,
-          "net_return_pct": 3.7922
+          "entry_price": 0.2395,
+          "exit_price": 0.23351249999999998,
+          "net_return_pct": -2.6948
         },
-        "today_realized_net_pnl": 397.52,
-        "cumulative_net_pnl": 880.03,
-        "equity": 10880.03,
-        "trades": 4,
+        "today_realized_net_pnl": -293.2,
+        "cumulative_net_pnl": 586.84,
+        "equity": 10586.84,
+        "trades": 5,
         "wins": 3,
-        "losses": 1,
-        "win_rate_pct": 75.0
+        "losses": 2,
+        "win_rate_pct": 60.0
       }
     },
     "SimpleE2": {
@@ -177,79 +142,44 @@
       "gate_pct": 1.0,
       "tp_pct": 6.75,
       "sl_pct": 6.75,
-      "decision": "BUY",
-      "reason": "24h return +7.91% is at or above the +1.0% gate",
-      "return_pct": 7.911392405063289,
-      "entry": {
-        "status": "ENTERED",
-        "entry_price": 0.2388,
-        "entry_time_utc": "2026-10-11T18:05:00+00:00",
-        "entry_time_dubai": "2026-10-11T22:05:00+04:00",
-        "tp_price": 0.254919,
-        "sl_price": 0.22268100000000002,
-        "expiry_utc": "2026-10-12T18:00:00+00:00"
-      },
-      "price_marks": {
-        "at_decision": {
-          "bid": 0.2394,
-          "ask": 0.2395,
-          "last": 0.2394,
-          "seconds_after_boundary": 39.33
-        },
-        "open_dubai": {
-          "22:00": 0.2387,
-          "22:01": 0.2391,
-          "22:02": 0.2391,
-          "22:05": 0.2388
-        }
-      },
+      "decision": "NO TRADE",
+      "reason": "24h return -7.96% is below the +1.0% gate",
+      "return_pct": -7.959782153330542,
+      "entry": null,
+      "price_marks": null,
       "previous_trade": {
-        "status": "TP",
+        "status": "SL",
         "ambiguous_same_minute": false,
-        "entry_price": 0.221,
-        "exit_price": 0.23591749999999997,
-        "exit_time_dubai": "2026-10-11T20:22:00+04:00",
-        "gross_return_pct": 6.75,
-        "net_return_pct": 6.5367
-      },
-      "today_realized_net_pnl": 678.66,
-      "cumulative_net_pnl": 1060.98,
-      "equity": 11060.98,
-      "trades": 4,
-      "wins": 3,
-      "losses": 1,
-      "win_rate_pct": 75.0,
-      "open_position": {
-        "entry_date": "2026-10-11",
         "entry_price": 0.2388,
-        "entry_time_utc": "2026-10-11T18:05:00+00:00",
-        "tp_price": 0.254919,
-        "sl_price": 0.22268100000000002,
-        "expiry_utc": "2026-10-12T18:00:00+00:00"
+        "exit_price": 0.22268100000000002,
+        "exit_time_dubai": "2026-10-12T18:38:00+04:00",
+        "gross_return_pct": -6.75,
+        "net_return_pct": -6.9363
       },
+      "today_realized_net_pnl": -767.22,
+      "cumulative_net_pnl": 293.76,
+      "equity": 10293.76,
+      "trades": 5,
+      "wins": 3,
+      "losses": 2,
+      "win_rate_pct": 60.0,
+      "open_position": null,
       "instant": {
-        "entry": {
-          "status": "ENTERED",
-          "entry_price": 0.2395,
-          "entry_time_utc": "2026-10-11T18:00:39.330202+00:00",
-          "entry_source": "live_ask_at_decision",
-          "tp_price": 0.25566625,
-          "sl_price": 0.22333375
-        },
+        "entry": null,
         "previous_trade": {
-          "status": "TP",
+          "status": "SL",
           "ambiguous_same_minute": false,
-          "entry_price": 0.2213,
-          "exit_price": 0.23623774999999997,
-          "net_return_pct": 6.5367
+          "entry_price": 0.2395,
+          "exit_price": 0.22333375,
+          "net_return_pct": -6.9363
         },
-        "today_realized_net_pnl": 676.05,
-        "cumulative_net_pnl": 1018.35,
-        "equity": 11018.35,
-        "trades": 4,
+        "today_realized_net_pnl": -764.27,
+        "cumulative_net_pnl": 254.09,
+        "equity": 10254.09,
+        "trades": 5,
         "wins": 3,
-        "losses": 1,
-        "win_rate_pct": 75.0
+        "losses": 2,
+        "win_rate_pct": 60.0
       }
     },
     "SimpleH": {
@@ -258,20 +188,12 @@
       "tp_pct": 4.0,
       "sl_pct": 2.5,
       "decision": "NO TRADE",
-      "reason": "24h return +1.30% is below the +2.0% gate",
-      "return_pct": 1.296596434359798,
+      "reason": "24h return -4.32% is below the +2.0% gate",
+      "return_pct": -4.320000000000002,
       "entry": null,
       "price_marks": null,
-      "previous_trade": {
-        "status": "TIME_EXIT",
-        "ambiguous_same_minute": false,
-        "entry_price": 0.0617,
-        "exit_price": 0.0625,
-        "exit_time_dubai": "2026-10-11T22:00:00+04:00",
-        "gross_return_pct": 1.2966,
-        "net_return_pct": 1.0942
-      },
-      "today_realized_net_pnl": 109.27,
+      "previous_trade": null,
+      "today_realized_net_pnl": 0.0,
       "cumulative_net_pnl": 95.5,
       "equity": 10095.5,
       "trades": 3,
@@ -281,14 +203,8 @@
       "open_position": null,
       "instant": {
         "entry": null,
-        "previous_trade": {
-          "status": "TIME_EXIT",
-          "ambiguous_same_minute": false,
-          "entry_price": 0.0618,
-          "exit_price": 0.0625,
-          "net_return_pct": 0.9306
-        },
-        "today_realized_net_pnl": 92.62,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
         "cumulative_net_pnl": 45.67,
         "equity": 10045.67,
         "trades": 3,
@@ -303,20 +219,12 @@
       "tp_pct": 6.0,
       "sl_pct": 5.0,
       "decision": "NO TRADE",
-      "reason": "24h return +1.30% is below the +2.0% gate",
-      "return_pct": 1.296596434359798,
+      "reason": "24h return -4.32% is below the +2.0% gate",
+      "return_pct": -4.320000000000002,
       "entry": null,
       "price_marks": null,
-      "previous_trade": {
-        "status": "TIME_EXIT",
-        "ambiguous_same_minute": false,
-        "entry_price": 0.0617,
-        "exit_price": 0.0625,
-        "exit_time_dubai": "2026-10-11T22:00:00+04:00",
-        "gross_return_pct": 1.2966,
-        "net_return_pct": 1.0942
-      },
-      "today_realized_net_pnl": 111.06,
+      "previous_trade": null,
+      "today_realized_net_pnl": 0.0,
       "cumulative_net_pnl": 260.65,
       "equity": 10260.65,
       "trades": 3,
@@ -326,14 +234,8 @@
       "open_position": null,
       "instant": {
         "entry": null,
-        "previous_trade": {
-          "status": "TIME_EXIT",
-          "ambiguous_same_minute": false,
-          "entry_price": 0.0618,
-          "exit_price": 0.0625,
-          "net_return_pct": 0.9306
-        },
-        "today_realized_net_pnl": 94.14,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
         "cumulative_net_pnl": 210.01,
         "equity": 10210.01,
         "trades": 3,
