@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "boundary_utc": "2026-10-12T18:00:00+00:00",
+  "outcome": "SKIPPED_EXISTS",
+  "trigger_role": "RECOVERY_EXTERNAL",
+  "github_run_id": "38288202969",
+  "github_run_attempt": "1",
+  "script_started_at_utc": "2026-10-12T18:02:13.371006+00:00"
+}
