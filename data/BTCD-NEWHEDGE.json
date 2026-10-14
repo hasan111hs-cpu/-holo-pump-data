@@ -723,6 +723,15 @@
       "response_sha256": "090521ad40e3ca3a0a962058e26eeed85e8cc6a5224e80f134bd2991b8618a19",
       "source_status": "ok",
       "canonical_for_execution_date": "2026-10-13"
+    },
+    {
+      "retrieved_at_utc": "2026-10-14T00:13:09.321071+00:00",
+      "attempt": 1,
+      "observation_count": 364,
+      "latest_observation_date": "2026-10-12",
+      "response_sha256": "0d23c9f4264b047e5e787688363ca97b4309198e927e2ff6b8f13637428f60aa",
+      "source_status": "ok",
+      "canonical_for_execution_date": "2026-10-14"
     }
   ],
   "canonical": {
