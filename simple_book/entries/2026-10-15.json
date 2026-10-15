@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "record": "ENTRY",
+  "immutable": true,
+  "boundary_utc": "2026-10-15T18:00:00+00:00",
+  "entry_rule": "OPEN of the Binance Spot 1m candle at 18:05 UTC (22:05 Dubai)",
+  "fee_per_side": 0.001,
+  "captured_at_utc": "2026-10-15T18:05:04.035799+00:00",
+  "captured_late": false,
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2017,
+      "entry_time_utc": "2026-10-15T18:05:00+00:00",
+      "entry_time_dubai": "2026-10-15T22:05:00+04:00",
+      "tp_price": 0.209768,
+      "sl_price": 0.19665749999999999,
+      "expiry_utc": "2026-10-16T18:00:00+00:00"
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2017,
+      "entry_time_utc": "2026-10-15T18:05:00+00:00",
+      "entry_time_dubai": "2026-10-15T22:05:00+04:00",
+      "tp_price": 0.21531474999999997,
+      "sl_price": 0.18808524999999998,
+      "expiry_utc": "2026-10-16T18:00:00+00:00"
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0596,
+      "entry_time_utc": "2026-10-15T18:05:00+00:00",
+      "entry_time_dubai": "2026-10-15T22:05:00+04:00",
+      "tp_price": 0.061984000000000004,
+      "sl_price": 0.05811,
+      "expiry_utc": "2026-10-16T18:00:00+00:00"
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0596,
+      "entry_time_utc": "2026-10-15T18:05:00+00:00",
+      "entry_time_dubai": "2026-10-15T22:05:00+04:00",
+      "tp_price": 0.06317600000000001,
+      "sl_price": 0.05662,
+      "expiry_utc": "2026-10-16T18:00:00+00:00"
+    }
+  }
+}
