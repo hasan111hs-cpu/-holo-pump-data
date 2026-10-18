@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "record": "MINUTE_PRICE_MARK",
+  "immutable": true,
+  "information_only": true,
+  "boundary_utc": "2026-10-18T18:00:00+00:00",
+  "note": "Open of the Binance Spot 1m candle at each Dubai time. 22:05 is the official entry.",
+  "symbols": {
+    "PUMPUSDT": {
+      "status": "OK",
+      "open_dubai": {
+        "22:00": 0.004131,
+        "22:01": 0.004137,
+        "22:02": 0.004137,
+        "22:05": 0.004128
+      }
+    },
+    "ENAUSDT": {
+      "status": "OK",
+      "open_dubai": {
+        "22:00": 0.1821,
+        "22:01": 0.1824,
+        "22:02": 0.1824,
+        "22:05": 0.1818
+      }
+    },
+    "HOLOUSDT": {
+      "status": "OK",
+      "open_dubai": {
+        "22:00": 0.0549,
+        "22:01": 0.055,
+        "22:02": 0.055,
+        "22:05": 0.055
+      }
+    }
+  }
+}
