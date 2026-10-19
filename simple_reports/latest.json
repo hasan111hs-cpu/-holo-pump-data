@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "record": "REPORT",
-  "report_date": "2026-10-18",
-  "boundary_utc": "2026-10-18T18:00:00+00:00",
-  "boundary_dubai": "2026-10-18T22:00:00+04:00",
-  "generated_at_utc": "2026-10-18T18:00:39.476779+00:00",
-  "stage": "FINAL",
-  "final": true,
+  "report_date": "2026-10-19",
+  "boundary_utc": "2026-10-19T18:00:00+00:00",
+  "boundary_dubai": "2026-10-19T22:00:00+04:00",
+  "generated_at_utc": "2026-10-19T18:00:41.842705+00:00",
+  "stage": "DECISIONS_MADE_ENTRY_PENDING",
+  "final": false,
   "signal_valid": true,
-  "signal_generated_at_utc": "2026-10-18T18:00:36.337153+00:00",
+  "signal_generated_at_utc": "2026-10-19T18:00:38.165828+00:00",
   "rules": {
     "entry": "Binance Spot price at 22:05 Dubai (open of the 18:05 UTC 1m candle)",
     "fee_per_side": 0.001,
@@ -35,11 +35,21 @@
       "gate_pct": 6.5,
       "tp_pct": 4.0,
       "sl_pct": 2.5,
-      "decision": "NO TRADE",
-      "reason": "24h return -6.24% is below the +6.5% gate",
-      "return_pct": -6.242905788876274,
-      "entry": null,
-      "price_marks": null,
+      "decision": "BUY",
+      "reason": "24h return +6.51% is at or above the +6.5% gate",
+      "return_pct": 6.511740498668606,
+      "entry": {
+        "status": "PENDING",
+        "note": "Entry price is recorded at 22:05 Dubai"
+      },
+      "price_marks": {
+        "at_decision": {
+          "bid": 0.004406,
+          "ask": 0.004407,
+          "last": 0.004407,
+          "seconds_after_boundary": 39.441
+        }
+      },
       "previous_trade": null,
       "today_realized_net_pnl": 0.0,
       "cumulative_net_pnl": -269.48,
@@ -66,11 +76,21 @@
       "gate_pct": 6.5,
       "tp_pct": 2.5,
       "sl_pct": 5.5,
-      "decision": "NO TRADE",
-      "reason": "24h return -6.24% is below the +6.5% gate",
-      "return_pct": -6.242905788876274,
-      "entry": null,
-      "price_marks": null,
+      "decision": "BUY",
+      "reason": "24h return +6.51% is at or above the +6.5% gate",
+      "return_pct": 6.511740498668606,
+      "entry": {
+        "status": "PENDING",
+        "note": "Entry price is recorded at 22:05 Dubai"
+      },
+      "price_marks": {
+        "at_decision": {
+          "bid": 0.004406,
+          "ask": 0.004407,
+          "last": 0.004407,
+          "seconds_after_boundary": 39.441
+        }
+      },
       "previous_trade": null,
       "today_realized_net_pnl": 0.0,
       "cumulative_net_pnl": -568.88,
@@ -97,11 +117,21 @@
       "gate_pct": 1.0,
       "tp_pct": 4.0,
       "sl_pct": 2.5,
-      "decision": "NO TRADE",
-      "reason": "24h return -3.09% is below the +1.0% gate",
-      "return_pct": -3.0867482703565763,
-      "entry": null,
-      "price_marks": null,
+      "decision": "BUY",
+      "reason": "24h return +2.20% is at or above the +1.0% gate",
+      "return_pct": 2.196595277320146,
+      "entry": {
+        "status": "PENDING",
+        "note": "Entry price is recorded at 22:05 Dubai"
+      },
+      "price_marks": {
+        "at_decision": {
+          "bid": 0.1862,
+          "ask": 0.1863,
+          "last": 0.1863,
+          "seconds_after_boundary": 40.617
+        }
+      },
       "previous_trade": null,
       "today_realized_net_pnl": 0.0,
       "cumulative_net_pnl": 301.54,
@@ -128,11 +158,21 @@
       "gate_pct": 1.0,
       "tp_pct": 6.75,
       "sl_pct": 6.75,
-      "decision": "NO TRADE",
-      "reason": "24h return -3.09% is below the +1.0% gate",
-      "return_pct": -3.0867482703565763,
-      "entry": null,
-      "price_marks": null,
+      "decision": "BUY",
+      "reason": "24h return +2.20% is at or above the +1.0% gate",
+      "return_pct": 2.196595277320146,
+      "entry": {
+        "status": "PENDING",
+        "note": "Entry price is recorded at 22:05 Dubai"
+      },
+      "price_marks": {
+        "at_decision": {
+          "bid": 0.1862,
+          "ask": 0.1863,
+          "last": 0.1863,
+          "seconds_after_boundary": 40.617
+        }
+      },
       "previous_trade": null,
       "today_realized_net_pnl": 0.0,
       "cumulative_net_pnl": 33.81,
@@ -160,8 +200,8 @@
       "tp_pct": 4.0,
       "sl_pct": 2.5,
       "decision": "NO TRADE",
-      "reason": "24h return -4.19% is below the +2.0% gate",
-      "return_pct": -4.188481675392675,
+      "reason": "24h return +1.82% is below the +2.0% gate",
+      "return_pct": 1.821493624772308,
       "entry": null,
       "price_marks": null,
       "previous_trade": null,
@@ -191,8 +231,8 @@
       "tp_pct": 6.0,
       "sl_pct": 5.0,
       "decision": "NO TRADE",
-      "reason": "24h return -4.19% is below the +2.0% gate",
-      "return_pct": -4.188481675392675,
+      "reason": "24h return +1.82% is below the +2.0% gate",
+      "return_pct": 1.821493624772308,
       "entry": null,
       "price_marks": null,
       "previous_trade": null,
