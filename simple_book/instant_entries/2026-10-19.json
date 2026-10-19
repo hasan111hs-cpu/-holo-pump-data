@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "record": "INSTANT_ENTRY",
+  "immutable": true,
+  "comparison_only": true,
+  "boundary_utc": "2026-10-19T18:00:00+00:00",
+  "entry_rule": "Live Binance Spot ask when the decision was made (about 22:00:40 Dubai)",
+  "fee_per_side": 0.001,
+  "captured_at_utc": "2026-10-19T18:05:06.113001+00:00",
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.004407,
+      "entry_time_utc": "2026-10-19T18:00:39.441444+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.00458328,
+      "sl_price": 0.004296825000000001,
+      "expiry_utc": "2026-10-20T18:00:00+00:00"
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.004407,
+      "entry_time_utc": "2026-10-19T18:00:39.441444+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.004517175,
+      "sl_price": 0.004164615,
+      "expiry_utc": "2026-10-20T18:00:00+00:00"
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.1863,
+      "entry_time_utc": "2026-10-19T18:00:40.617003+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.193752,
+      "sl_price": 0.18164249999999998,
+      "expiry_utc": "2026-10-20T18:00:00+00:00"
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.1863,
+      "entry_time_utc": "2026-10-19T18:00:40.617003+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.19887524999999998,
+      "sl_price": 0.17372474999999998,
+      "expiry_utc": "2026-10-20T18:00:00+00:00"
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    }
+  }
+}
