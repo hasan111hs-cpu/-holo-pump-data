@@ -792,6 +792,15 @@
       "response_sha256": "508e4e827d7c54d2b465caf236dedad37d810384f5f3d886b22b3da2f86505e9",
       "source_status": "ok",
       "canonical_for_execution_date": "2026-10-19"
+    },
+    {
+      "retrieved_at_utc": "2026-10-20T00:11:41.937896+00:00",
+      "attempt": 1,
+      "observation_count": 364,
+      "latest_observation_date": "2026-10-18",
+      "response_sha256": "2c98f7431da4439fc7e52b96bb98dfe45933454db615cd1c992407453d958c2a",
+      "source_status": "ok",
+      "canonical_for_execution_date": "2026-10-20"
     }
   ],
   "canonical": {
