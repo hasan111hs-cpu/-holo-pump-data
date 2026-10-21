@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "record": "INSTANT_ENTRY",
+  "immutable": true,
+  "comparison_only": true,
+  "boundary_utc": "2026-10-21T18:00:00+00:00",
+  "entry_rule": "Live Binance Spot ask when the decision was made (about 22:00:40 Dubai)",
+  "fee_per_side": 0.001,
+  "captured_at_utc": "2026-10-21T18:05:06.117991+00:00",
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.00501,
+      "entry_time_utc": "2026-10-21T18:00:39.215913+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.0052104,
+      "sl_price": 0.004884749999999999,
+      "expiry_utc": "2026-10-22T18:00:00+00:00"
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.00501,
+      "entry_time_utc": "2026-10-21T18:00:39.215913+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.005135249999999999,
+      "sl_price": 0.004734449999999999,
+      "expiry_utc": "2026-10-22T18:00:00+00:00"
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2231,
+      "entry_time_utc": "2026-10-21T18:00:40.213105+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.232024,
+      "sl_price": 0.21752249999999998,
+      "expiry_utc": "2026-10-22T18:00:00+00:00"
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2231,
+      "entry_time_utc": "2026-10-21T18:00:40.213105+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.23815924999999996,
+      "sl_price": 0.20804075,
+      "expiry_utc": "2026-10-22T18:00:00+00:00"
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0598,
+      "entry_time_utc": "2026-10-21T18:00:41.185219+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.062192000000000004,
+      "sl_price": 0.058304999999999996,
+      "expiry_utc": "2026-10-22T18:00:00+00:00"
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0598,
+      "entry_time_utc": "2026-10-21T18:00:41.185219+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.063388,
+      "sl_price": 0.05681,
+      "expiry_utc": "2026-10-22T18:00:00+00:00"
+    }
+  }
+}
