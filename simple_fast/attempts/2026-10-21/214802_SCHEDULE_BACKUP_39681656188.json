@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "boundary_utc": "2026-10-21T18:00:00+00:00",
+  "outcome": "SKIPPED_EXISTS",
+  "trigger_role": "SCHEDULE_BACKUP",
+  "github_run_id": "39681656188",
+  "github_run_attempt": "1",
+  "script_started_at_utc": "2026-10-21T21:48:02.966959+00:00"
+}
