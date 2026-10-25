@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "record": "INSTANT_ENTRY",
+  "immutable": true,
+  "comparison_only": true,
+  "boundary_utc": "2026-10-25T18:00:00+00:00",
+  "entry_rule": "Live Binance Spot ask when the decision was made (about 22:00:40 Dubai)",
+  "fee_per_side": 0.001,
+  "captured_at_utc": "2026-10-25T18:05:05.785263+00:00",
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "decision": "NO TRADE",
+      "status": "NO_POSITION"
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2077,
+      "entry_time_utc": "2026-10-25T18:00:39.456347+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.216008,
+      "sl_price": 0.20250749999999998,
+      "expiry_utc": "2026-10-26T18:00:00+00:00"
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.2077,
+      "entry_time_utc": "2026-10-25T18:00:39.456347+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.22171974999999997,
+      "sl_price": 0.19368025,
+      "expiry_utc": "2026-10-26T18:00:00+00:00"
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0601,
+      "entry_time_utc": "2026-10-25T18:00:40.318568+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.062504,
+      "sl_price": 0.0585975,
+      "expiry_utc": "2026-10-26T18:00:00+00:00"
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "decision": "BUY",
+      "status": "ENTERED",
+      "entry_price": 0.0601,
+      "entry_time_utc": "2026-10-25T18:00:40.318568+00:00",
+      "entry_source": "live_ask_at_decision",
+      "tp_price": 0.063706,
+      "sl_price": 0.057095,
+      "expiry_utc": "2026-10-26T18:00:00+00:00"
+    }
+  }
+}
