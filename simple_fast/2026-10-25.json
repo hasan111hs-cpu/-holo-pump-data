@@ -1,0 +1,55 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-10-25T18:00:37.578999+00:00",
+  "boundary_utc": "2026-10-25T18:00:00+00:00",
+  "boundary_dubai": "2026-10-25T22:00:00+04:00",
+  "signal_window_start_utc": "2026-10-24T18:00:00+00:00",
+  "signal_window_end_utc": "2026-10-25T18:00:00+00:00",
+  "latency_seconds_after_boundary": 37.579,
+  "live_deadline_utc": "2026-10-25T18:05:00+00:00",
+  "live_eligible": true,
+  "immutable": true,
+  "status": "OK",
+  "trigger_role": "PRIMARY_EXTERNAL",
+  "github_run_id": "40219170802",
+  "github_run_attempt": "1",
+  "script_started_at_utc": "2026-10-25T18:00:34.636396+00:00",
+  "symbols": {
+    "PUMPUSDT": {
+      "status": "OK",
+      "open": 0.004164,
+      "close": 0.004372,
+      "return_pct": 4.995196926032652,
+      "threshold_pct": 6.5,
+      "qualified": false,
+      "decision": "NO TRADE",
+      "open_minute_utc": "2026-10-24T18:00:00+00:00",
+      "close_minute_utc": "2026-10-25T17:59:00+00:00",
+      "final_minute_close_time_ms": 1792951199999
+    },
+    "ENAUSDT": {
+      "status": "OK",
+      "open": 0.1859,
+      "close": 0.2077,
+      "return_pct": 11.726734803657868,
+      "threshold_pct": 1.0,
+      "qualified": true,
+      "decision": "BUY",
+      "open_minute_utc": "2026-10-24T18:00:00+00:00",
+      "close_minute_utc": "2026-10-25T17:59:00+00:00",
+      "final_minute_close_time_ms": 1792951199999
+    },
+    "HOLOUSDT": {
+      "status": "OK",
+      "open": 0.0584,
+      "close": 0.0601,
+      "return_pct": 2.910958904109595,
+      "threshold_pct": 2.0,
+      "qualified": true,
+      "decision": "BUY",
+      "open_minute_utc": "2026-10-24T18:00:00+00:00",
+      "close_minute_utc": "2026-10-25T17:59:00+00:00",
+      "final_minute_close_time_ms": 1792951199999
+    }
+  }
+}
