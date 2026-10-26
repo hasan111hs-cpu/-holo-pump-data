@@ -1,0 +1,123 @@
+{
+  "execution_date": "2026-10-26",
+  "events": [
+    {
+      "stage": "SIGNAL_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "16:47 UTC cutoff",
+      "recorded_at_utc": "2026-10-26T23:15:18.067129+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-10-26T16:47:00+00:00"
+    },
+    {
+      "stage": "SIGNAL_JOB_STARTED",
+      "status": "ok",
+      "detail": "run 172 schedule role=POST_DEADLINE_AUDIT",
+      "recorded_at_utc": "2026-10-26T23:15:18.114803+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "COLLECTOR_HEALTH_CHECK",
+      "status": "ok",
+      "detail": "collector + btc_d completed",
+      "recorded_at_utc": "2026-10-26T23:18:24.306403+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "EXECUTION_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "18:05 UTC activation",
+      "recorded_at_utc": "2026-10-26T23:18:24.497825+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-10-26T18:05:00+00:00"
+    },
+    {
+      "stage": "EXECUTION_JOB_STARTED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-10-26T23:18:24.544935+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "REPORT_GENERATED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-10-26T23:18:24.653011+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
+      "status": "ok",
+      "detail": "exact match both symbols",
+      "recorded_at_utc": "2026-10-26T23:18:28.600516+00:00"
+    }
+  ],
+  "final_status": "OPERATIONAL FAILURE",
+  "t1_reconciliation": {
+    "HOLO": {
+      "window_group_day": "2026-10-24",
+      "binance_quote_volume": 1199373.8480999998,
+      "collector_quote_volume": 1199373.8480999998,
+      "abs_difference": 0.0,
+      "binance_minutes": 1367,
+      "collector_minutes": 1367,
+      "match": true
+    },
+    "PUMP": {
+      "window_group_day": "2026-10-24",
+      "binance_quote_volume": 6769932.610388008,
+      "collector_quote_volume": 6769932.610388008,
+      "abs_difference": 0.0,
+      "binance_minutes": 1367,
+      "collector_minutes": 1367,
+      "match": true
+    }
+  },
+  "delays": {
+    "signal_start_delay_seconds": 23298.1,
+    "signal_lock_delay_seconds": null,
+    "execution_start_delay_seconds": 18804.5
+  },
+  "signal_locked_before_execution_activation": false,
+  "hard_deadline_utc": "2026-10-26T18:05:00+00:00",
+  "on_time_deadline_utc": "2026-10-26T17:02:00+00:00",
+  "declared_purpose": "scheduled",
+  "primary_external_failure": false,
+  "recovery_external_success": false,
+  "actual_started_at_utc": "2026-10-26T23:18:28.600596+00:00",
+  "actual_run_date": "2026-10-26",
+  "target_execution_date": "2026-10-26",
+  "scheduled_slot": "30 19 * * *",
+  "trigger_role": "POST_DEADLINE_AUDIT",
+  "role_has_signal_authority": false,
+  "trigger": "schedule",
+  "canonical_lock_created_by": null,
+  "primary_trigger_fired": false,
+  "validity_classification": "MISSED_OBSERVATION_OPERATIONAL_FAILURE",
+  "counts_as_prospective_observation": false,
+  "timing": {
+    "SIGNAL_JOB_STARTED": {
+      "due_utc": "2026-10-26T16:47:00+00:00",
+      "started_utc": "2026-10-26T23:15:18.114803+00:00",
+      "lateness_minutes": 388.3,
+      "grace_minutes": 78,
+      "within_grace": false
+    },
+    "EXECUTION_JOB_STARTED": {
+      "due_utc": "2026-10-26T18:05:00+00:00",
+      "started_utc": "2026-10-26T23:18:24.544935+00:00",
+      "lateness_minutes": 313.4,
+      "grace_minutes": 78,
+      "within_grace": false
+    }
+  },
+  "failures": [
+    {
+      "stage": "SIGNAL_LOCKED",
+      "reason": "no signal record; prospective lock never occurred",
+      "detected_at_utc": "2026-10-26T23:18:28.660105+00:00"
+    }
+  ],
+  "audited_at_utc": "2026-10-26T23:18:28.600606+00:00",
+  "note": "NOT reconstructed. A missed causal lock is excluded from the prospective sample and is never labelled canonical."
+}
