@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "record": "SETTLEMENT",
+  "track": "instant",
+  "immutable": true,
+  "entry_boundary_utc": "2026-10-25T18:00:00+00:00",
+  "expiry_boundary_utc": "2026-10-26T18:00:00+00:00",
+  "settled_at_utc": "2026-10-26T18:00:52.111005+00:00",
+  "rules": "TP if high >= TP; SL if low <= SL; same minute = SL; else exit at OPEN of the next 18:00 UTC minute; net = exit*(1-fee)/(entry*(1+fee))-1",
+  "strategies": {
+    "SimpleP": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    },
+    "SimpleP2": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    },
+    "SimpleE": {
+      "status": "SL",
+      "ambiguous_same_minute": false,
+      "entry_price": 0.2077,
+      "entry_time_utc": "2026-10-25T18:00:39.456347+00:00",
+      "exit_price": 0.20250749999999998,
+      "exit_time_utc": "2026-10-26T01:44:00+00:00",
+      "exit_time_dubai": "2026-10-26T05:44:00+04:00",
+      "gross_return_pct": -2.5,
+      "net_return_pct": -2.6948,
+      "fee_per_side": 0.001,
+      "missing_minutes": 0,
+      "symbol": "ENAUSDT"
+    },
+    "SimpleE2": {
+      "status": "TIME_EXIT",
+      "ambiguous_same_minute": false,
+      "entry_price": 0.2077,
+      "entry_time_utc": "2026-10-25T18:00:39.456347+00:00",
+      "exit_price": 0.2109,
+      "exit_time_utc": "2026-10-26T18:00:00+00:00",
+      "exit_time_dubai": "2026-10-26T22:00:00+04:00",
+      "gross_return_pct": 1.5407,
+      "net_return_pct": 1.3378,
+      "fee_per_side": 0.001,
+      "missing_minutes": 0,
+      "symbol": "ENAUSDT"
+    },
+    "SimpleH": {
+      "status": "SL",
+      "ambiguous_same_minute": false,
+      "entry_price": 0.0601,
+      "entry_time_utc": "2026-10-25T18:00:40.318568+00:00",
+      "exit_price": 0.0585975,
+      "exit_time_utc": "2026-10-26T01:39:00+00:00",
+      "exit_time_dubai": "2026-10-26T05:39:00+04:00",
+      "gross_return_pct": -2.5,
+      "net_return_pct": -2.6948,
+      "fee_per_side": 0.001,
+      "missing_minutes": 0,
+      "symbol": "HOLOUSDT"
+    },
+    "SimpleH2": {
+      "status": "TIME_EXIT",
+      "ambiguous_same_minute": false,
+      "entry_price": 0.0601,
+      "entry_time_utc": "2026-10-25T18:00:40.318568+00:00",
+      "exit_price": 0.0595,
+      "exit_time_utc": "2026-10-26T18:00:00+00:00",
+      "exit_time_dubai": "2026-10-26T22:00:00+04:00",
+      "gross_return_pct": -0.9983,
+      "net_return_pct": -1.1961,
+      "fee_per_side": 0.001,
+      "missing_minutes": 0,
+      "symbol": "HOLOUSDT"
+    }
+  }
+}
