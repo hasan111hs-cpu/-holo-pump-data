@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "record": "SETTLEMENT",
+  "track": "official",
+  "immutable": true,
+  "entry_boundary_utc": "2026-10-26T18:00:00+00:00",
+  "expiry_boundary_utc": "2026-10-27T18:00:00+00:00",
+  "settled_at_utc": "2026-10-27T18:00:43.208158+00:00",
+  "rules": "TP if high >= TP; SL if low <= SL; same minute = SL; else exit at OPEN of the next 18:00 UTC minute; net = exit*(1-fee)/(entry*(1+fee))-1",
+  "strategies": {
+    "SimpleP": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    },
+    "SimpleP2": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    },
+    "SimpleE": {
+      "status": "SL",
+      "ambiguous_same_minute": false,
+      "entry_price": 0.2123,
+      "entry_time_utc": "2026-10-26T18:05:00+00:00",
+      "exit_price": 0.2069925,
+      "exit_time_utc": "2026-10-26T20:58:00+00:00",
+      "exit_time_dubai": "2026-10-27T00:58:00+04:00",
+      "gross_return_pct": -2.5,
+      "net_return_pct": -2.6948,
+      "fee_per_side": 0.001,
+      "missing_minutes": 0,
+      "symbol": "ENAUSDT"
+    },
+    "SimpleE2": {
+      "status": "SL",
+      "ambiguous_same_minute": false,
+      "entry_price": 0.2123,
+      "entry_time_utc": "2026-10-26T18:05:00+00:00",
+      "exit_price": 0.19796975,
+      "exit_time_utc": "2026-10-27T10:21:00+00:00",
+      "exit_time_dubai": "2026-10-27T14:21:00+04:00",
+      "gross_return_pct": -6.75,
+      "net_return_pct": -6.9363,
+      "fee_per_side": 0.001,
+      "missing_minutes": 0,
+      "symbol": "ENAUSDT"
+    },
+    "SimpleH": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    },
+    "SimpleH2": {
+      "status": "NO_POSITION",
+      "decision": "NO TRADE"
+    }
+  }
+}
