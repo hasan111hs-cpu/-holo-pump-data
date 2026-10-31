@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "record": "REPORT",
+  "report_date": "2026-10-31",
+  "boundary_utc": "2026-10-31T18:00:00+00:00",
+  "boundary_dubai": "2026-10-31T22:00:00+04:00",
+  "generated_at_utc": "2026-10-31T18:00:35.601698+00:00",
+  "stage": "DECISIONS_MADE_ENTRY_PENDING",
+  "final": false,
+  "signal_valid": true,
+  "signal_generated_at_utc": "2026-10-31T18:00:32.812652+00:00",
+  "rules": {
+    "entry": "Binance Spot price at 22:05 Dubai (open of the 18:05 UTC 1m candle)",
+    "fee_per_side": 0.001,
+    "same_minute_tp_sl": "counts as SL",
+    "comparison_track": "instant = entry at the live ask when the decision is made (about 22:00:40 Dubai); same fees and exits",
+    "start_equity_each": 10000.0,
+    "paper_trading_only": true
+  },
+  "totals": {
+    "entry_2205": {
+      "cumulative_net_pnl": -3840.22,
+      "today_realized_net_pnl": 0.0,
+      "trades": 50
+    },
+    "entry_instant": {
+      "cumulative_net_pnl": -3605.76,
+      "today_realized_net_pnl": 0.0,
+      "trades": 50
+    }
+  },
+  "strategies": {
+    "SimpleP": {
+      "symbol": "PUMPUSDT",
+      "gate_pct": 6.5,
+      "tp_pct": 4.0,
+      "sl_pct": 2.5,
+      "decision": "NO TRADE",
+      "reason": "24h return +5.37% is below the +6.5% gate",
+      "return_pct": 5.369127516778516,
+      "entry": null,
+      "price_marks": null,
+      "previous_trade": null,
+      "today_realized_net_pnl": 0.0,
+      "cumulative_net_pnl": 200.03,
+      "equity": 10200.03,
+      "trades": 4,
+      "wins": 2,
+      "losses": 2,
+      "win_rate_pct": 50.0,
+      "open_position": null,
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": 200.03,
+        "equity": 10200.03,
+        "trades": 4,
+        "wins": 2,
+        "losses": 2,
+        "win_rate_pct": 50.0
+      }
+    },
+    "SimpleP2": {
+      "symbol": "PUMPUSDT",
+      "gate_pct": 6.5,
+      "tp_pct": 2.5,
+      "sl_pct": 5.5,
+      "decision": "NO TRADE",
+      "reason": "24h return +5.37% is below the +6.5% gate",
+      "return_pct": 5.369127516778516,
+      "entry": null,
+      "price_marks": null,
+      "previous_trade": null,
+      "today_realized_net_pnl": 0.0,
+      "cumulative_net_pnl": -692.41,
+      "equity": 9307.59,
+      "trades": 4,
+      "wins": 2,
+      "losses": 2,
+      "win_rate_pct": 50.0,
+      "open_position": null,
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": -692.41,
+        "equity": 9307.59,
+        "trades": 4,
+        "wins": 2,
+        "losses": 2,
+        "win_rate_pct": 50.0
+      }
+    },
+    "SimpleE": {
+      "symbol": "ENAUSDT",
+      "gate_pct": 1.0,
+      "tp_pct": 4.0,
+      "sl_pct": 2.5,
+      "decision": "BUY",
+      "reason": "24h return +2.24% is at or above the +1.0% gate",
+      "return_pct": 2.235231506120261,
+      "entry": {
+        "status": "PENDING",
+        "note": "Entry price is recorded at 22:05 Dubai"
+      },
+      "price_marks": {
+        "at_decision": {
+          "bid": 0.1921,
+          "ask": 0.1922,
+          "last": 0.1921,
+          "seconds_after_boundary": 34.693
+        }
+      },
+      "previous_trade": null,
+      "today_realized_net_pnl": 0.0,
+      "cumulative_net_pnl": -924.23,
+      "equity": 9075.77,
+      "trades": 13,
+      "wins": 4,
+      "losses": 9,
+      "win_rate_pct": 30.77,
+      "open_position": null,
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": -924.23,
+        "equity": 9075.77,
+        "trades": 13,
+        "wins": 4,
+        "losses": 9,
+        "win_rate_pct": 30.77
+      }
+    },
+    "SimpleE2": {
+      "symbol": "ENAUSDT",
+      "gate_pct": 1.0,
+      "tp_pct": 6.75,
+      "sl_pct": 6.75,
+      "decision": "BUY",
+      "reason": "24h return +2.24% is at or above the +1.0% gate",
+      "return_pct": 2.235231506120261,
+      "entry": {
+        "status": "PENDING",
+        "note": "Entry price is recorded at 22:05 Dubai"
+      },
+      "price_marks": {
+        "at_decision": {
+          "bid": 0.1921,
+          "ask": 0.1922,
+          "last": 0.1921,
+          "seconds_after_boundary": 34.693
+        }
+      },
+      "previous_trade": null,
+      "today_realized_net_pnl": 0.0,
+      "cumulative_net_pnl": -1322.32,
+      "equity": 8677.68,
+      "trades": 13,
+      "wins": 6,
+      "losses": 7,
+      "win_rate_pct": 46.15,
+      "open_position": null,
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": -866.36,
+        "equity": 9133.64,
+        "trades": 13,
+        "wins": 6,
+        "losses": 7,
+        "win_rate_pct": 46.15
+      }
+    },
+    "SimpleH": {
+      "symbol": "HOLOUSDT",
+      "gate_pct": 2.0,
+      "tp_pct": 4.0,
+      "sl_pct": 2.5,
+      "decision": "NO TRADE",
+      "reason": "24h return +1.05% is below the +2.0% gate",
+      "return_pct": 1.0526315789473717,
+      "entry": null,
+      "price_marks": null,
+      "previous_trade": null,
+      "today_realized_net_pnl": 0.0,
+      "cumulative_net_pnl": -703.31,
+      "equity": 9296.69,
+      "trades": 8,
+      "wins": 3,
+      "losses": 5,
+      "win_rate_pct": 37.5,
+      "open_position": null,
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": -780.93,
+        "equity": 9219.07,
+        "trades": 8,
+        "wins": 3,
+        "losses": 5,
+        "win_rate_pct": 37.5
+      }
+    },
+    "SimpleH2": {
+      "symbol": "HOLOUSDT",
+      "gate_pct": 2.0,
+      "tp_pct": 6.0,
+      "sl_pct": 5.0,
+      "decision": "NO TRADE",
+      "reason": "24h return +1.05% is below the +2.0% gate",
+      "return_pct": 1.0526315789473717,
+      "entry": null,
+      "price_marks": null,
+      "previous_trade": null,
+      "today_realized_net_pnl": 0.0,
+      "cumulative_net_pnl": -397.98,
+      "equity": 9602.02,
+      "trades": 8,
+      "wins": 3,
+      "losses": 5,
+      "win_rate_pct": 37.5,
+      "open_position": null,
+      "instant": {
+        "entry": null,
+        "previous_trade": null,
+        "today_realized_net_pnl": 0.0,
+        "cumulative_net_pnl": -541.86,
+        "equity": 9458.14,
+        "trades": 8,
+        "wins": 3,
+        "losses": 5,
+        "win_rate_pct": 37.5
+      }
+    }
+  }
+}
