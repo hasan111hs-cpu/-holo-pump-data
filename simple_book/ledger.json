@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "record": "LEDGER",
-  "generated_at_utc": "2026-10-31T18:05:04.868141+00:00",
+  "generated_at_utc": "2026-11-01T18:00:40.927604+00:00",
   "start_equity": 10000.0,
   "fee_per_side": 0.001,
   "strategies": {
@@ -105,18 +105,11 @@
     },
     "SimpleE": {
       "symbol": "ENAUSDT",
-      "equity": 9075.77,
-      "trades": 13,
+      "equity": 8831.19,
+      "trades": 14,
       "wins": 4,
-      "losses": 9,
-      "open_position": {
-        "entry_date": "2026-10-31",
-        "entry_price": 0.1926,
-        "entry_time_utc": "2026-10-31T18:05:00+00:00",
-        "tp_price": 0.200304,
-        "sl_price": 0.18778499999999998,
-        "expiry_utc": "2026-11-01T18:00:00+00:00"
-      },
+      "losses": 10,
+      "open_position": null,
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -234,26 +227,28 @@
           "net_return_pct": -2.6948,
           "net_pnl": -251.35,
           "equity_after": 9075.77
+        },
+        {
+          "entry_date": "2026-10-31",
+          "status": "SL",
+          "entry_price": 0.1926,
+          "exit_price": 0.18778499999999998,
+          "net_return_pct": -2.6948,
+          "net_pnl": -244.57,
+          "equity_after": 8831.19
         }
       ],
-      "cumulative_net_pnl": -924.23,
-      "cumulative_return_pct": -9.2423,
-      "win_rate_pct": 30.77
+      "cumulative_net_pnl": -1168.81,
+      "cumulative_return_pct": -11.6881,
+      "win_rate_pct": 28.57
     },
     "SimpleE2": {
       "symbol": "ENAUSDT",
-      "equity": 8677.68,
-      "trades": 13,
+      "equity": 8242.17,
+      "trades": 14,
       "wins": 6,
-      "losses": 7,
-      "open_position": {
-        "entry_date": "2026-10-31",
-        "entry_price": 0.1926,
-        "entry_time_utc": "2026-10-31T18:05:00+00:00",
-        "tp_price": 0.20560049999999996,
-        "sl_price": 0.1795995,
-        "expiry_utc": "2026-11-01T18:00:00+00:00"
-      },
+      "losses": 8,
+      "open_position": null,
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -371,11 +366,20 @@
           "net_return_pct": -6.9363,
           "net_pnl": -646.77,
           "equity_after": 8677.68
+        },
+        {
+          "entry_date": "2026-10-31",
+          "status": "TIME_EXIT",
+          "entry_price": 0.1926,
+          "exit_price": 0.1833,
+          "net_return_pct": -5.0188,
+          "net_pnl": -435.52,
+          "equity_after": 8242.17
         }
       ],
-      "cumulative_net_pnl": -1322.32,
-      "cumulative_return_pct": -13.2232,
-      "win_rate_pct": 46.15
+      "cumulative_net_pnl": -1757.83,
+      "cumulative_return_pct": -17.5783,
+      "win_rate_pct": 42.86
     },
     "SimpleH": {
       "symbol": "HOLOUSDT",
@@ -649,18 +653,11 @@
     },
     "SimpleE": {
       "symbol": "ENAUSDT",
-      "equity": 9075.77,
-      "trades": 13,
+      "equity": 8831.19,
+      "trades": 14,
       "wins": 4,
-      "losses": 9,
-      "open_position": {
-        "entry_date": "2026-10-31",
-        "entry_price": 0.1922,
-        "entry_time_utc": "2026-10-31T18:00:34.692634+00:00",
-        "tp_price": 0.199888,
-        "sl_price": 0.187395,
-        "expiry_utc": "2026-11-01T18:00:00+00:00"
-      },
+      "losses": 10,
+      "open_position": null,
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -778,26 +775,28 @@
           "net_return_pct": -2.6948,
           "net_pnl": -251.35,
           "equity_after": 9075.77
+        },
+        {
+          "entry_date": "2026-10-31",
+          "status": "SL",
+          "entry_price": 0.1922,
+          "exit_price": 0.187395,
+          "net_return_pct": -2.6948,
+          "net_pnl": -244.57,
+          "equity_after": 8831.19
         }
       ],
-      "cumulative_net_pnl": -924.23,
-      "cumulative_return_pct": -9.2423,
-      "win_rate_pct": 30.77
+      "cumulative_net_pnl": -1168.81,
+      "cumulative_return_pct": -11.6881,
+      "win_rate_pct": 28.57
     },
     "SimpleE2": {
       "symbol": "ENAUSDT",
-      "equity": 9133.64,
-      "trades": 13,
+      "equity": 8693.3,
+      "trades": 14,
       "wins": 6,
-      "losses": 7,
-      "open_position": {
-        "entry_date": "2026-10-31",
-        "entry_price": 0.1922,
-        "entry_time_utc": "2026-10-31T18:00:34.692634+00:00",
-        "tp_price": 0.20517349999999998,
-        "sl_price": 0.1792265,
-        "expiry_utc": "2026-11-01T18:00:00+00:00"
-      },
+      "losses": 8,
+      "open_position": null,
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -915,11 +914,20 @@
           "net_return_pct": -6.9363,
           "net_pnl": -680.76,
           "equity_after": 9133.64
+        },
+        {
+          "entry_date": "2026-10-31",
+          "status": "TIME_EXIT",
+          "entry_price": 0.1922,
+          "exit_price": 0.1833,
+          "net_return_pct": -4.8211,
+          "net_pnl": -440.34,
+          "equity_after": 8693.3
         }
       ],
-      "cumulative_net_pnl": -866.36,
-      "cumulative_return_pct": -8.6636,
-      "win_rate_pct": 46.15
+      "cumulative_net_pnl": -1306.7,
+      "cumulative_return_pct": -13.067,
+      "win_rate_pct": 42.86
     },
     "SimpleH": {
       "symbol": "HOLOUSDT",
