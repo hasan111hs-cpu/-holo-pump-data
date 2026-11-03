@@ -10,6 +10,14 @@
       "expected_at_utc": "2026-11-02T16:47:00+00:00"
     },
     {
+      "stage": "SIGNAL_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "16:47 UTC cutoff",
+      "recorded_at_utc": "2026-11-03T02:46:47.142840+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-11-02T16:47:00+00:00"
+    },
+    {
       "stage": "SIGNAL_JOB_STARTED",
       "status": "ok",
       "detail": "run 193 schedule role=POST_DEADLINE_AUDIT",
@@ -17,10 +25,24 @@
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
+      "stage": "SIGNAL_JOB_STARTED",
+      "status": "ok",
+      "detail": "run 194 schedule role=POST_DEADLINE_AUDIT",
+      "recorded_at_utc": "2026-11-03T02:46:47.207663+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
       "stage": "COLLECTOR_HEALTH_CHECK",
       "status": "ok",
       "detail": "collector + btc_d completed",
       "recorded_at_utc": "2026-11-03T01:48:04.124330+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "COLLECTOR_HEALTH_CHECK",
+      "status": "ok",
+      "detail": "collector + btc_d completed",
+      "recorded_at_utc": "2026-11-03T02:50:04.378404+00:00",
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
@@ -32,10 +54,25 @@
       "expected_at_utc": "2026-11-02T18:05:00+00:00"
     },
     {
+      "stage": "EXECUTION_JOB_EXPECTED",
+      "status": "ok",
+      "detail": "18:05 UTC activation",
+      "recorded_at_utc": "2026-11-03T02:50:04.611093+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT",
+      "expected_at_utc": "2026-11-02T18:05:00+00:00"
+    },
+    {
       "stage": "EXECUTION_JOB_STARTED",
       "status": "ok",
       "detail": "",
       "recorded_at_utc": "2026-11-03T01:48:04.441295+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
+      "stage": "EXECUTION_JOB_STARTED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-11-03T02:50:04.677590+00:00",
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
@@ -46,10 +83,23 @@
       "trigger_role": "POST_DEADLINE_AUDIT"
     },
     {
+      "stage": "REPORT_GENERATED",
+      "status": "ok",
+      "detail": "",
+      "recorded_at_utc": "2026-11-03T02:50:04.817327+00:00",
+      "trigger_role": "POST_DEADLINE_AUDIT"
+    },
+    {
       "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
       "status": "ok",
       "detail": "exact match both symbols",
       "recorded_at_utc": "2026-11-03T01:48:09.520065+00:00"
+    },
+    {
+      "stage": "T1_BINANCE_RECONCILIATION_COMPLETE",
+      "status": "ok",
+      "detail": "exact match both symbols",
+      "recorded_at_utc": "2026-11-03T02:50:09.111298+00:00"
     }
   ],
   "final_status": "OPERATIONAL FAILURE",
@@ -59,7 +109,7 @@
     {
       "stage": "SIGNAL_LOCKED",
       "reason": "no signal record; prospective lock never occurred",
-      "detected_at_utc": "2026-11-03T01:48:09.609286+00:00"
+      "detected_at_utc": "2026-11-03T02:50:09.198820+00:00"
     }
   ],
   "note": "NOT reconstructed. A missed causal lock is excluded from the prospective sample and is never labelled canonical.",
@@ -84,9 +134,9 @@
     }
   },
   "delays": {
-    "signal_start_delay_seconds": 32238.6,
+    "signal_start_delay_seconds": 35987.2,
     "signal_lock_delay_seconds": null,
-    "execution_start_delay_seconds": 27784.4
+    "execution_start_delay_seconds": 31504.7
   },
   "signal_locked_before_execution_activation": false,
   "hard_deadline_utc": "2026-11-02T18:05:00+00:00",
@@ -94,10 +144,10 @@
   "declared_purpose": "scheduled",
   "primary_external_failure": false,
   "recovery_external_success": false,
-  "actual_started_at_utc": "2026-11-03T01:48:09.520167+00:00",
+  "actual_started_at_utc": "2026-11-03T02:50:09.111380+00:00",
   "actual_run_date": "2026-11-03",
   "target_execution_date": "2026-11-02",
-  "scheduled_slot": "30 19 * * *",
+  "scheduled_slot": "0 21 * * *",
   "trigger_role": "POST_DEADLINE_AUDIT",
   "role_has_signal_authority": false,
   "trigger": "schedule",
@@ -106,18 +156,18 @@
   "timing": {
     "SIGNAL_JOB_STARTED": {
       "due_utc": "2026-11-02T16:47:00+00:00",
-      "started_utc": "2026-11-03T01:44:18.647872+00:00",
-      "lateness_minutes": 537.3,
+      "started_utc": "2026-11-03T02:46:47.207663+00:00",
+      "lateness_minutes": 599.8,
       "grace_minutes": 78,
       "within_grace": false
     },
     "EXECUTION_JOB_STARTED": {
       "due_utc": "2026-11-02T18:05:00+00:00",
-      "started_utc": "2026-11-03T01:48:04.441295+00:00",
-      "lateness_minutes": 463.1,
+      "started_utc": "2026-11-03T02:50:04.677590+00:00",
+      "lateness_minutes": 525.1,
       "grace_minutes": 78,
       "within_grace": false
     }
   },
-  "audited_at_utc": "2026-11-03T01:48:09.520182+00:00"
+  "audited_at_utc": "2026-11-03T02:50:09.111395+00:00"
 }
