@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "record": "DECISION_PRICE_MARK",
+  "immutable": true,
+  "information_only": true,
+  "boundary_utc": "2026-11-04T18:00:00+00:00",
+  "note": "Live Binance Spot quote when the decision was made. An automatic market buy would fill at about the ask. Not used by the official ledger.",
+  "symbols": {
+    "PUMPUSDT": {
+      "status": "OK",
+      "bid": 0.004261,
+      "ask": 0.004262,
+      "last": 0.004262,
+      "fetched_at_utc": "2026-11-04T18:00:35.581192+00:00",
+      "seconds_after_boundary": 35.581
+    },
+    "ENAUSDT": {
+      "status": "OK",
+      "bid": 0.1844,
+      "ask": 0.1845,
+      "last": 0.1845,
+      "fetched_at_utc": "2026-11-04T18:00:36.582208+00:00",
+      "seconds_after_boundary": 36.582
+    },
+    "HOLOUSDT": {
+      "status": "OK",
+      "bid": 0.0562,
+      "ask": 0.0563,
+      "last": 0.0563,
+      "fetched_at_utc": "2026-11-04T18:00:37.571520+00:00",
+      "seconds_after_boundary": 37.572
+    }
+  }
+}
