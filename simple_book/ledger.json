@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "record": "LEDGER",
-  "generated_at_utc": "2026-11-05T18:00:42.200791+00:00",
+  "generated_at_utc": "2026-11-06T18:05:04.562159+00:00",
   "start_equity": 10000.0,
   "fee_per_side": 0.001,
   "strategies": {
@@ -109,7 +109,14 @@
       "trades": 15,
       "wins": 4,
       "losses": 11,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-11-06",
+        "entry_price": 0.1651,
+        "entry_time_utc": "2026-11-06T18:05:00+00:00",
+        "tp_price": 0.171704,
+        "sl_price": 0.1609725,
+        "expiry_utc": "2026-11-07T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -257,7 +264,14 @@
       "trades": 15,
       "wins": 6,
       "losses": 9,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-11-06",
+        "entry_price": 0.1651,
+        "entry_time_utc": "2026-11-06T18:05:00+00:00",
+        "tp_price": 0.17624425,
+        "sl_price": 0.15395575,
+        "expiry_utc": "2026-11-07T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -675,7 +689,14 @@
       "trades": 15,
       "wins": 4,
       "losses": 11,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-11-06",
+        "entry_price": 0.1653,
+        "entry_time_utc": "2026-11-06T18:00:43.633960+00:00",
+        "tp_price": 0.171912,
+        "sl_price": 0.1611675,
+        "expiry_utc": "2026-11-07T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-04",
@@ -823,7 +844,14 @@
       "trades": 15,
       "wins": 6,
       "losses": 9,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-11-06",
+        "entry_price": 0.1653,
+        "entry_time_utc": "2026-11-06T18:00:43.633960+00:00",
+        "tp_price": 0.17645775,
+        "sl_price": 0.15414225,
+        "expiry_utc": "2026-11-07T18:00:00+00:00"
+      },
       "history": [
         {
           "entry_date": "2026-10-04",
