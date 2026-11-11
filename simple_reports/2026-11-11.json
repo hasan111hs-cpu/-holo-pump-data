@@ -4,9 +4,9 @@
   "report_date": "2026-11-11",
   "boundary_utc": "2026-11-11T18:00:00+00:00",
   "boundary_dubai": "2026-11-11T22:00:00+04:00",
-  "generated_at_utc": "2026-11-11T18:00:42.942864+00:00",
-  "stage": "DECISIONS_MADE_ENTRY_PENDING",
-  "final": false,
+  "generated_at_utc": "2026-11-11T18:05:04.933387+00:00",
+  "stage": "FINAL",
+  "final": true,
   "signal_valid": true,
   "signal_generated_at_utc": "2026-11-11T18:00:39.310221+00:00",
   "rules": {
@@ -101,8 +101,13 @@
       "reason": "24h return +3.51% is at or above the +1.0% gate",
       "return_pct": 3.513513513513522,
       "entry": {
-        "status": "PENDING",
-        "note": "Entry price is recorded at 22:05 Dubai"
+        "status": "ENTERED",
+        "entry_price": 0.1531,
+        "entry_time_utc": "2026-11-11T18:05:00+00:00",
+        "entry_time_dubai": "2026-11-11T22:05:00+04:00",
+        "tp_price": 0.15922400000000003,
+        "sl_price": 0.1492725,
+        "expiry_utc": "2026-11-12T18:00:00+00:00"
       },
       "price_marks": {
         "at_decision": {
@@ -110,6 +115,12 @@
           "ask": 0.1531,
           "last": 0.1531,
           "seconds_after_boundary": 41.786
+        },
+        "open_dubai": {
+          "22:00": 0.1532,
+          "22:01": 0.1532,
+          "22:02": 0.1525,
+          "22:05": 0.1531
         }
       },
       "previous_trade": null,
@@ -120,9 +131,23 @@
       "wins": 4,
       "losses": 12,
       "win_rate_pct": 25.0,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-11-11",
+        "entry_price": 0.1531,
+        "entry_time_utc": "2026-11-11T18:05:00+00:00",
+        "tp_price": 0.15922400000000003,
+        "sl_price": 0.1492725,
+        "expiry_utc": "2026-11-12T18:00:00+00:00"
+      },
       "instant": {
-        "entry": null,
+        "entry": {
+          "status": "ENTERED",
+          "entry_price": 0.1531,
+          "entry_time_utc": "2026-11-11T18:00:41.785825+00:00",
+          "entry_source": "live_ask_at_decision",
+          "tp_price": 0.15922400000000003,
+          "sl_price": 0.1492725
+        },
         "previous_trade": null,
         "today_realized_net_pnl": 0.0,
         "cumulative_net_pnl": -1638.36,
@@ -142,8 +167,13 @@
       "reason": "24h return +3.51% is at or above the +1.0% gate",
       "return_pct": 3.513513513513522,
       "entry": {
-        "status": "PENDING",
-        "note": "Entry price is recorded at 22:05 Dubai"
+        "status": "ENTERED",
+        "entry_price": 0.1531,
+        "entry_time_utc": "2026-11-11T18:05:00+00:00",
+        "entry_time_dubai": "2026-11-11T22:05:00+04:00",
+        "tp_price": 0.16343425,
+        "sl_price": 0.14276575000000002,
+        "expiry_utc": "2026-11-12T18:00:00+00:00"
       },
       "price_marks": {
         "at_decision": {
@@ -151,6 +181,12 @@
           "ask": 0.1531,
           "last": 0.1531,
           "seconds_after_boundary": 41.786
+        },
+        "open_dubai": {
+          "22:00": 0.1532,
+          "22:01": 0.1532,
+          "22:02": 0.1525,
+          "22:05": 0.1531
         }
       },
       "previous_trade": null,
@@ -161,9 +197,23 @@
       "wins": 6,
       "losses": 10,
       "win_rate_pct": 37.5,
-      "open_position": null,
+      "open_position": {
+        "entry_date": "2026-11-11",
+        "entry_price": 0.1531,
+        "entry_time_utc": "2026-11-11T18:05:00+00:00",
+        "tp_price": 0.16343425,
+        "sl_price": 0.14276575000000002,
+        "expiry_utc": "2026-11-12T18:00:00+00:00"
+      },
       "instant": {
-        "entry": null,
+        "entry": {
+          "status": "ENTERED",
+          "entry_price": 0.1531,
+          "entry_time_utc": "2026-11-11T18:00:41.785825+00:00",
+          "entry_source": "live_ask_at_decision",
+          "tp_price": 0.16343425,
+          "sl_price": 0.14276575000000002
+        },
         "previous_trade": null,
         "today_realized_net_pnl": 0.0,
         "cumulative_net_pnl": -2262.89,
