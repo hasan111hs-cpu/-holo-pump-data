@@ -429,15 +429,6 @@
   },
   "retrievals": [
     {
-      "retrieved_at_utc": "2026-09-24T01:00:38.782503+00:00",
-      "attempt": 1,
-      "observation_count": 365,
-      "latest_observation_date": "2026-09-23",
-      "response_sha256": "789567d94a9a2bd1f64758af024ba44582e1d8056368b3669b603ea26178964d",
-      "source_status": "ok",
-      "canonical_for_execution_date": "2026-09-24"
-    },
-    {
       "retrieved_at_utc": "2026-09-25T01:03:10.858071+00:00",
       "attempt": 1,
       "observation_count": 365,
@@ -967,6 +958,15 @@
       "response_sha256": "43e9ed200ae6942900973e6e0413bcbe88e37df98c7ae96271e7b3db8386cc48",
       "source_status": "ok",
       "canonical_for_execution_date": "2026-11-10"
+    },
+    {
+      "retrieved_at_utc": "2026-11-11T00:14:02.851618+00:00",
+      "attempt": 1,
+      "observation_count": 364,
+      "latest_observation_date": "2026-11-09",
+      "response_sha256": "ff0c03ff5deac5c3eae039589f55beece9a1802c74994b210e31f249ef3e7814",
+      "source_status": "ok",
+      "canonical_for_execution_date": "2026-11-11"
     }
   ],
   "canonical": {
