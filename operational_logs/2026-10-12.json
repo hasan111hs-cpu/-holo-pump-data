@@ -159,7 +159,7 @@
     {
       "stage": "SIGNAL_LOCKED",
       "reason": "no signal record; prospective lock never occurred",
-      "detected_at_utc": "2026-11-12T03:31:40.378292+00:00"
+      "detected_at_utc": "2026-11-13T00:42:04.301665+00:00"
     }
   ],
   "note": "NOT reconstructed. A missed causal lock is excluded from the prospective sample and is never labelled canonical.",
