@@ -165,7 +165,7 @@
     {
       "stage": "SIGNAL_LOCKED",
       "reason": "no signal record; prospective lock never occurred",
-      "detected_at_utc": "2026-11-17T03:30:40.732393+00:00"
+      "detected_at_utc": "2026-11-17T04:55:05.395536+00:00"
     }
   ],
   "audited_at_utc": "2026-10-27T00:18:50.611411+00:00",
