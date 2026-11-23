@@ -437,18 +437,10 @@
     "2026-11-18": 58.96,
     "2026-11-19": 58.54,
     "2026-11-20": 58.57,
-    "2026-11-21": 58.65
+    "2026-11-21": 58.65,
+    "2026-11-22": 58.94
   },
   "retrievals": [
-    {
-      "retrieved_at_utc": "2026-10-06T00:58:56.032519+00:00",
-      "attempt": 1,
-      "observation_count": 365,
-      "latest_observation_date": "2026-10-05",
-      "response_sha256": "c4bc19c8ee06987aceaebba3789ce9edf94640eeda20b6e68db70eeae259170c",
-      "source_status": "ok",
-      "canonical_for_execution_date": "2026-10-06"
-    },
     {
       "retrieved_at_utc": "2026-10-07T00:28:17.099172+00:00",
       "attempt": 1,
@@ -977,6 +969,15 @@
       "observation_count": 364,
       "latest_observation_date": "2026-11-21",
       "response_sha256": "b3ee88430a0569f3961cdb3c9de8e3f3b9a9003b736414ce74f28bb99c70fdf7",
+      "source_status": "ok",
+      "canonical_for_execution_date": "2026-11-23"
+    },
+    {
+      "retrieved_at_utc": "2026-11-23T01:28:30.249534+00:00",
+      "attempt": 1,
+      "observation_count": 365,
+      "latest_observation_date": "2026-11-22",
+      "response_sha256": "f2296d9a7d6c622c239b74d35e85183f350d59d421dcb7e905729e371c0ca971",
       "source_status": "ok",
       "canonical_for_execution_date": "2026-11-23"
     }
@@ -1762,6 +1763,17 @@
       "btcd_direction": "UP_OR_FLAT",
       "btcd_multiplier": 1.0,
       "resolved_at_utc": "2026-11-22T01:02:32.660635+00:00"
+    },
+    "2026-11-23": {
+      "btcd_provider": "NEWHEDGE",
+      "btcd_convention": "CANONICAL_NEWHEDGE_DAILY",
+      "btcd_d_minus_1_date": "2026-11-22",
+      "btcd_d_minus_1": 58.94,
+      "btcd_d_minus_2_date": "2026-11-21",
+      "btcd_d_minus_2": 58.65,
+      "btcd_direction": "UP_OR_FLAT",
+      "btcd_multiplier": 1.0,
+      "resolved_at_utc": "2026-11-23T01:28:30.251470+00:00"
     }
   }
 }
